@@ -1,0 +1,10 @@
+biosppy
+einops
+neurokit2
+numpy
+pandas
+pytorch-lightning
+seaborn
+torchinfo
+tqdm
+wandb
