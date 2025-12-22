@@ -1,16 +1,16 @@
 import os
 import sys
 from pathlib import Path
-root = str(Path(__file__).resolve().parents[3])
+USER_ROOT = str(Path(__file__).resolve().parents[3])
 paths = [
     os.path.join(
-        root, "ssl-physio", "src", "dataloaders"
+        USER_ROOT, "ssl-physio", "src", "dataloaders"
     ),
     os.path.join(
-        root, "ssl-physio", "src", "s4-models"
+        USER_ROOT, "ssl-physio", "src", "s4-models"
     ),
     os.path.join(
-        root, "ssl-physio", "src", "trainers"
+        USER_ROOT, "ssl-physio", "src", "trainers"
     )
 ]
 for path in paths:
@@ -54,9 +54,9 @@ os.environ["S4_FAST_VAND"] = "0"
 os.environ["S4_BACKEND"] = "keops"   # or "keops" if you installed pykeops
 
 # Save paths 
-MODEL_SAVE_FOLDER = "/home/emilyzho/ssl-physio/models/reconstruction"
+MODEL_SAVE_FOLDER = f"{USER_ROOT}/ssl-physio/models/reconstruction"
 
-CHECKPOINT_DIR = "/home/emilyzho/ssl-physio/ckpts"
+CHECKPOINT_DIR = f"{USER_ROOT}/ssl-physio/ckpts"
 CHECKPOINT_PREFIX = "S4"
 
 
@@ -85,7 +85,7 @@ def signal_handler(sig, frame):
 
 if __name__ == "__main__":
     # Read arguments -----------------------------------------------------------------------------------------------
-    with open("/home/emilyzho/ssl-physio/scripts/params.yaml", "r") as file:
+    with open(f"{USER_ROOT}/ssl-physio/scripts/params.yaml", "r") as file:
         params = yaml.safe_load(file)
         mode = params["mode"]
         reconstruction = params["reconstruction"]
@@ -131,7 +131,7 @@ if __name__ == "__main__":
     MODEL_SAVE_PATH = os.path.join(MODEL_SAVE_FOLDER, f"s4-mae_{START_DATETIME}.pt")
 
     # Training variables
-    epochs = 100
+    epochs = 50
     batch_size = 32
 
 

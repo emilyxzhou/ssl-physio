@@ -1,0 +1,99 @@
+'# S4 layers':
+    value: 4
+_wandb:
+    value:
+        cli_version: 0.21.1
+        e:
+            gwuo4ziscre9v1s3k00xjvdf0vljkqjd:
+                codePath: scripts/training/train_s4_mae.py
+                codePathLocal: train_s4_mae.py
+                cpu_count: 64
+                cpu_count_logical: 128
+                cudaVersion: "12.4"
+                disk:
+                    /:
+                        total: "134145380352"
+                        used: "36835549184"
+                email: emilyzho@usc.edu
+                executable: /home/emilyzho/miniconda3/envs/physio-data/bin/python3
+                git:
+                    commit: 35426b5f0fe3f8cadfb042bf1463d2db3fb96383
+                    remote: git@github.com:emilyxzhou/ssl-physio.git
+                gpu: Quadro RTX 5000
+                gpu_count: 2
+                gpu_nvidia:
+                    - architecture: Turing
+                      cudaCores: 3072
+                      memoryTotal: "17179869184"
+                      name: Quadro RTX 5000
+                      uuid: GPU-b7a5dcf0-5513-bf36-8d9e-36c2435d5778
+                    - architecture: Turing
+                      cudaCores: 3072
+                      memoryTotal: "17179869184"
+                      name: Quadro RTX 5000
+                      uuid: GPU-cab7dc3a-e25e-9bc1-7b72-3c54de7bc97c
+                host: erie
+                memory:
+                    total: "67343081472"
+                os: Linux-5.15.0-139-generic-x86_64-with-glibc2.35
+                program: /home/emilyzho/ssl-physio/scripts/training/train_s4_mae.py
+                python: CPython 3.12.11
+                root: /home/emilyzho/ssl-physio/scripts/training
+                startedAt: "2025-12-21T23:44:21.170672Z"
+                writerId: gwuo4ziscre9v1s3k00xjvdf0vljkqjd
+        m: []
+        python_version: 3.12.11
+        t:
+            "1":
+                - 1
+                - 5
+                - 9
+                - 11
+                - 41
+                - 49
+                - 53
+                - 103
+            "2":
+                - 1
+                - 5
+                - 9
+                - 11
+                - 41
+                - 49
+                - 53
+                - 103
+            "3":
+                - 13
+                - 16
+            "4": 3.12.11
+            "5": 0.21.1
+            "6": 4.56.1
+            "12": 0.21.1
+            "13": linux-x86_64
+S4 dim:
+    value: 128
+d_output:
+    value: 128
+decoder:
+    value:
+        - 128
+        - 64
+        - 32
+encoder:
+    value: null
+epochs:
+    value: 100
+learning rate:
+    value: 0.0001
+masking ratio:
+    value: 0
+mode:
+    value: full
+optimizer:
+    value: AdamW
+reconstruction:
+    value: full
+save path:
+    value: /home/emilyzho/ssl-physio/models/reconstruction/s4-mae_2025-12-21_15:44:20.pt
+scaling:
+    value: mean

@@ -1,16 +1,16 @@
 import os
 import sys
 from pathlib import Path
-root = str(Path(__file__).resolve().parents[3])
+USER_ROOT = str(Path(__file__).resolve().parents[3])
 paths = [
     os.path.join(
-        root, "ssl-physio", "src", "dataloaders"
+        USER_ROOT, "ssl-physio", "src", "dataloaders"
     ),
     os.path.join(
-        root, "ssl-physio", "src", "s4-models"
+        USER_ROOT, "ssl-physio", "src", "s4-models"
     ),
     os.path.join(
-        root, "ssl-physio", "src", "trainers"
+        USER_ROOT, "ssl-physio", "src", "trainers"
     )
 ]
 for path in paths:
@@ -53,11 +53,7 @@ os.environ["S4_FAST_CAUCHY"] = "0"
 os.environ["S4_FAST_VAND"] = "0"
 os.environ["S4_BACKEND"] = "keops"   # or "keops" if you installed pykeops
 
-# Save paths 
-MODEL_SAVE_FOLDER = "/home/emilyzho/ssl-physio/models/reconstruction"
-
-CHECKPOINT_DIR = "/home/emilyzho/ssl-physio/ckpts"
-CHECKPOINT_PREFIX = "S4"
+MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2025-12-22_07:30:57.pt"
 
 
 def load_model(checkpoint_path, classification=False, verbose=False):
@@ -133,3 +129,9 @@ if __name__ == "__main__":
     # Training variables
     epochs = 100
     batch_size = 32
+
+    # Load model ------------------------------------------------------------------------------------------------
+    model = load_model(MODEL_SAVE_PATH, classification=False)
+    model = freeze_weights(model)
+
+    summary(model, input_size=(32, 2, 1440))

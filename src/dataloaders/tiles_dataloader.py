@@ -50,7 +50,10 @@ def load_tiles_open(
     :param scale: None (no scaling), "mean" (mean & std, day-level), "median" (med & iqr, day-level), 
         "global mean" (mean & std, across all subjects and days)
     :param window_size: Window size for moving average calculation. Ignores if 0 is passed.
-    :param label_type: "shift", "age", "sex", "anxiety", "stress", None
+    :param label_type: 
+        - None
+        - From EMAs: "shift", "age", "sex", "anxiety", "stress"
+        - Wearable-based, next-day averages: "day RHR", "day step count", "day SDNN", 
     :param debug: If True, only loads 
     """
     data_dfs = get_data(constants.TILES_OPEN_FITBIT_BASE_FOLDER, debug=debug)

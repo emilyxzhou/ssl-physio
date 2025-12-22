@@ -22,10 +22,10 @@ dec_hidden_dims: [128, 64, 32]
 
 decoder_type: deconv
 
-n_layers_s4: 4
+n_layers_s4: 6
 
-mask_ratio: 0.0
+mask_ratio: 0.1
 
 sequence_len: 1440
 
-lr: 0.0001
+lr: 0.0005
