@@ -15,10 +15,10 @@ class EmbeddingSequencersRunner(threadward.Threadward):
         self.set_constraints(
             SUCCESS_CONDITION="NO_ERROR_AND_VERIFY",
             OUTPUT_MODE="LOG_FILE_ONLY",
-            NUM_WORKERS=9,
-            NUM_GPUS_PER_WORKER=0.333333333333333,
+            NUM_WORKERS=40,
+            NUM_GPUS_PER_WORKER=0.1,
             NUM_CPUS_PER_WORKER=-1,  # CPU cores per worker (-1 for no limit, Linux only)
-            AVOID_GPUS=[0],
+            AVOID_GPUS=None,
             INCLUDE_GPUS=None,
             FAILURE_HANDLING="PRINT_FAILURE_AND_CONTINUE",
             TASK_FOLDER_LOCATION="VARIABLE_SUBFOLDER",
