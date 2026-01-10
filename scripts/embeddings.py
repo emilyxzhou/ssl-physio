@@ -206,7 +206,7 @@ def save_embeddings(embeddings, subject_ids, dates, save_dir, mask_pct):
     np.save(embeddings_path, embeddings)
     print(f"  Saved embeddings to: {embeddings_path}")
     
-    # Create index.json with metadata
+    # Create index with metadata
     index = []
     for i, (subject_id, date) in enumerate(zip(subject_ids, dates)):
         index.append({
@@ -216,9 +216,26 @@ def save_embeddings(embeddings, subject_ids, dates, save_dir, mask_pct):
             "date": str(date)
         })
     
+    # Group by user and assign user_day (1-indexed day per user)
+    from collections import defaultdict
+    user_entries = defaultdict(list)
+    for entry in index:
+        user_entries[entry["user"]].append(entry)
+    
+    # Sort each user's entries by date and assign user_day
+    for user, entries in user_entries.items():
+        entries.sort(key=lambda x: x["date"])
+        for day_num, entry in enumerate(entries, start=1):
+            entry["user_day"] = day_num
+    
+    # Rebuild index sorted by user (major) and user_day (minor)
+    sorted_index = []
+    for user in sorted(user_entries.keys()):
+        sorted_index.extend(user_entries[user])
+    
     index_path = os.path.join(save_dir, "index.json")
     with open(index_path, "w") as f:
-        json.dump(index, f, indent=4)
+        json.dump(sorted_index, f, indent=4)
     print(f"  Saved index to: {index_path}")
     
     # Create readme.txt
@@ -231,7 +248,14 @@ Each row = one user-day (heart rate + step count, 1440 minutes).
 
 Files:
   embeddings.npy  - (N, 128) float64 array
-  index.json      - metadata for each row
+  index.json      - metadata for each row, sorted by user then user_day
+
+Index fields:
+  key      - unique identifier "{user}_{date}"
+  row      - numpy row index
+  user     - subject ID
+  date     - date string
+  user_day - 1-indexed day number per user
 
 Usage:
   import json
@@ -242,10 +266,8 @@ Usage:
       index = json.load(f)
 
   # Get embedding for specific user-day
-  row = index[0]["row"]
-  user = index[0]["user"]
-  date = index[0]["date"]
-  emb = embeddings[row]  # shape (128,)
+  entry = index[0]
+  emb = embeddings[entry["row"]]  # shape (128,)
 """
     
     readme_path = os.path.join(save_dir, "readme.txt")
