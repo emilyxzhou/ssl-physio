@@ -4,7 +4,8 @@ import torch
 from torch import nn
 from torchinfo import summary
 
-from binary_classifier import BinaryClassifier
+from linear_classifier import CNN, LogisticRegressionHead
+from regressor import Regressor
 from s4model import S4Model
 
 
@@ -201,6 +202,24 @@ class S4MAE(nn.Module):
             classification=False,
             verbose=False
         ):
+        """
+        Docstring for __init__
+        
+        :param self: Description
+        :param d_model: Description
+        :type d_model: int
+        :param d_input: Description
+        :type d_input: int
+        :param d_output: Description
+        :type d_output: int
+        :param enc_hidden_dims: Description
+        :param dec_hidden_dims: Description
+        :param n_layers_s4: Description
+        :type n_layers_s4: int
+        :param mask_ratio: Description
+        :param classification: "finetune", "lin_probe", False
+        :param verbose: Description
+        """
         
         super().__init__()
         # assert mask_ratio > 0 and mask_ratio < 1, "Masking ratio must be kept between 0 and 1"
@@ -246,11 +265,19 @@ class S4MAE(nn.Module):
             print("Setting decoder to identity mapping.")
             self.decoder = nn.Identity()
 
-        if classification:
+        if classification in ["finetune"]:
             dummy_input = torch.randn(1, d_input, 1440)
             x = self.encoder(dummy_input)
             x = self.s4_model(x.transpose(-1, -2).clone())
-            self.cls_head = BinaryClassifier(
+            self.cls_head = CNN(
+                d_input=x.shape[1],
+                sequence_len=x.shape[2]
+            )
+        elif classification == "lin_probe":
+            dummy_input = torch.randn(1, d_input, 1440)
+            x = self.encoder(dummy_input)
+            x = self.s4_model(x.transpose(-1, -2).clone())
+            self.cls_head = LogisticRegressionHead(
                 d_input=x.shape[1],
                 sequence_len=x.shape[2]
             )

@@ -1,0 +1,541 @@
+nohup: ignoring input
+2026-01-08 22:58:23 WARNING ==> CUDA extension for structured kernels (Cauchy and Vandermonde multiplication) not found. Install by going to extensions/kernels/ and running `python setup.py install`, for improved speed and memory efficiency. Note that the kernel changed for state-spaces 4.0 and must be recompiled.
+2026-01-08 22:58:23 WARNING ==> Falling back on slow Cauchy and Vandermonde kernel. Install at least one of pykeops or the CUDA extension for better speed and memory efficiency.
+2026-01-08 22:58:23 INFO ==> Label: age --------------------------------------------------------------------------------
+2026-01-08 22:58:23 INFO ==> Loading data from /home/emilyzho/physio-data/data/tiles-holdout/fitbit.
+{'d_input': 2,
+ 'd_model': 128,
+ 'd_output': 128,
+ 'dec_hidden_dims': [128, 64, 32],
+ 'decoder_type': 'deconv',
+ 'enc_hidden_dims': None,
+ 'lr': 0.0005,
+ 'mask_ratio': 0.3,
+ 'mode': 'full',
+ 'n_layers_s4': 6,
+ 'reconstruction': 'full',
+ 'scale': 'mean',
+ 'sequence_len': 1440}
+Default device set to CUDA.
+
+2026-01-08 23:00:06 INFO ==> Fold 1 --------------------------------------------------------------------------------
+2026-01-08 23:00:06 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:00:06 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:00:06 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:00:06 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:00:06 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:00:06 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:00:06 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:00:06 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:00:06 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:00:06 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:00:06 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:00:06 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:02:26 INFO ==> ACC | bACC | F1 | AUC: 0.5690316395014382 0.5833916423096188 0.5614091587224854 0.6183864116203724
+2026-01-08 23:02:26 INFO ==> ------------------------------------------------------------
+2026-01-08 23:02:26 INFO ==> Training labels: Counter({np.int64(0): 443, np.int64(1): 236})
+2026-01-08 23:02:26 INFO ==> Testing labels: Counter({np.int64(0): 2725, np.int64(1): 1447})
+2026-01-08 23:02:26 INFO ==> Fold 2 --------------------------------------------------------------------------------
+2026-01-08 23:02:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:02:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:02:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:02:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:02:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:02:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:02:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:02:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:02:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:02:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:02:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:02:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:04:46 INFO ==> ACC | bACC | F1 | AUC: 0.6069031639501438 0.5866155221495913 0.5815985756172541 0.6131346728124624
+2026-01-08 23:04:46 INFO ==> ------------------------------------------------------------
+2026-01-08 23:04:46 INFO ==> Training labels: Counter({np.int64(0): 443, np.int64(1): 236})
+2026-01-08 23:04:46 INFO ==> Testing labels: Counter({np.int64(0): 2725, np.int64(1): 1447})
+2026-01-08 23:04:46 INFO ==> Fold 3 --------------------------------------------------------------------------------
+2026-01-08 23:04:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:04:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:04:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:04:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:04:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:04:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:04:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:04:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:04:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:04:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:04:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:04:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:07:05 INFO ==> ACC | bACC | F1 | AUC: 0.6085810162991371 0.5725045808157339 0.5717826466677415 0.604583985848608
+2026-01-08 23:07:05 INFO ==> ------------------------------------------------------------
+2026-01-08 23:07:05 INFO ==> Training labels: Counter({np.int64(0): 443, np.int64(1): 236})
+2026-01-08 23:07:05 INFO ==> Testing labels: Counter({np.int64(0): 2725, np.int64(1): 1447})
+2026-01-08 23:07:05 INFO ==> Fold 4 --------------------------------------------------------------------------------
+2026-01-08 23:07:05 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:07:05 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:07:05 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:07:05 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:07:05 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:07:05 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:07:05 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:07:05 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:07:05 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:07:05 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:07:05 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:07:05 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:09:25 INFO ==> ACC | bACC | F1 | AUC: 0.6109779482262704 0.5754738370434243 0.5746660583608041 0.6092399967030807
+2026-01-08 23:09:25 INFO ==> ------------------------------------------------------------
+2026-01-08 23:09:25 INFO ==> Training labels: Counter({np.int64(0): 443, np.int64(1): 236})
+2026-01-08 23:09:25 INFO ==> Testing labels: Counter({np.int64(0): 2725, np.int64(1): 1447})
+2026-01-08 23:09:25 INFO ==> Fold 5 --------------------------------------------------------------------------------
+2026-01-08 23:09:25 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:09:25 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:09:25 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:09:25 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:09:25 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:09:25 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:09:25 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:09:25 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:09:25 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:09:25 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:09:25 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:09:25 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:11:45 INFO ==> ACC | bACC | F1 | AUC: 0.6414189837008629 0.581760681701464 0.5834806861086909 0.6280491748191449
+2026-01-08 23:11:45 INFO ==> ------------------------------------------------------------
+2026-01-08 23:11:45 INFO ==> Training labels: Counter({np.int64(0): 443, np.int64(1): 236})
+2026-01-08 23:11:45 INFO ==> Testing labels: Counter({np.int64(0): 2725, np.int64(1): 1447})
+2026-01-08 23:11:45 INFO ==> Average ACC | bACC | F1 | AUC: 0.6073825503355705 0.5799492528039665 0.5745874250953953 0.6146788483607336
+2026-01-08 23:11:45 INFO ==> Label: shift --------------------------------------------------------------------------------
+2026-01-08 23:11:45 INFO ==> Loading data from /home/emilyzho/physio-data/data/tiles-holdout/fitbit.
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─Identity: 1-1                               --
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-1                            (384)
+│    └─ModuleList: 2-2                        --
+│    │    └─S4Block: 3-1                      (66,048)
+│    │    └─S4Block: 3-2                      (66,048)
+│    │    └─S4Block: 3-3                      (66,048)
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    └─ModuleList: 2-3                        --
+│    │    └─LayerNorm: 3-7                    (256)
+│    │    └─LayerNorm: 3-8                    (256)
+│    │    └─LayerNorm: 3-9                    (256)
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    └─ModuleList: 2-4                        --
+│    │    └─Dropout1d: 3-13                   --
+│    │    └─Dropout1d: 3-14                   --
+│    │    └─Dropout1d: 3-15                   --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    └─Linear: 2-5                            (16,512)
+├─ConvDecoder: 1-4                            --
+│    └─ModuleList: 2-6                        --
+│    │    └─BlockConv: 3-19                   (24,768)
+│    │    └─BlockConv: 3-20                   (6,240)
+│    │    └─BlockDecoderLast: 3-21            (198)
+├─LogisticRegressionHead: 1-5                 --
+│    └─Linear: 2-7                            184,321
+======================================================================
+Total params: 630,247
+Trainable params: 184,321
+Non-trainable params: 445,926
+======================================================================
+
+2026-01-08 23:13:26 INFO ==> Fold 1 --------------------------------------------------------------------------------
+2026-01-08 23:13:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:13:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:13:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:13:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:13:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:13:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:13:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:13:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:13:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:13:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:13:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:13:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:15:46 INFO ==> ACC | bACC | F1 | AUC: 0.8523489932885906 0.7039676406496933 0.7353431972868979 0.8305137255721018
+2026-01-08 23:15:46 INFO ==> ------------------------------------------------------------
+2026-01-08 23:15:46 INFO ==> Training labels: Counter({np.int64(0): 537, np.int64(1): 142})
+2026-01-08 23:15:46 INFO ==> Testing labels: Counter({np.int64(0): 3302, np.int64(1): 870})
+2026-01-08 23:15:46 INFO ==> Fold 2 --------------------------------------------------------------------------------
+2026-01-08 23:15:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:15:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:15:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:15:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:15:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:15:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:15:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:15:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:15:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:15:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:15:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:15:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:18:06 INFO ==> ACC | bACC | F1 | AUC: 0.838686481303931 0.7406284592410034 0.7479702798105126 0.8287742712532287
+2026-01-08 23:18:06 INFO ==> ------------------------------------------------------------
+2026-01-08 23:18:06 INFO ==> Training labels: Counter({np.int64(0): 537, np.int64(1): 142})
+2026-01-08 23:18:06 INFO ==> Testing labels: Counter({np.int64(0): 3302, np.int64(1): 870})
+2026-01-08 23:18:06 INFO ==> Fold 3 --------------------------------------------------------------------------------
+2026-01-08 23:18:06 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:18:06 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:18:06 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:18:06 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:18:06 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:18:06 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:18:06 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:18:06 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:18:06 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:18:06 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:18:06 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:18:06 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:20:26 INFO ==> ACC | bACC | F1 | AUC: 0.8523489932885906 0.7073539547609599 0.7377337733773377 0.8108485278862689
+2026-01-08 23:20:26 INFO ==> ------------------------------------------------------------
+2026-01-08 23:20:26 INFO ==> Training labels: Counter({np.int64(0): 537, np.int64(1): 142})
+2026-01-08 23:20:26 INFO ==> Testing labels: Counter({np.int64(0): 3302, np.int64(1): 870})
+2026-01-08 23:20:26 INFO ==> Fold 4 --------------------------------------------------------------------------------
+2026-01-08 23:20:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:20:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:20:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:20:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:20:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:20:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:20:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:20:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:20:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:20:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:20:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:20:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:22:46 INFO ==> ACC | bACC | F1 | AUC: 0.8501917545541706 0.7449337566225973 0.7591526384816909 0.8359903785236393
+2026-01-08 23:22:46 INFO ==> ------------------------------------------------------------
+2026-01-08 23:22:46 INFO ==> Training labels: Counter({np.int64(0): 537, np.int64(1): 142})
+2026-01-08 23:22:46 INFO ==> Testing labels: Counter({np.int64(0): 3302, np.int64(1): 870})
+2026-01-08 23:22:46 INFO ==> Fold 5 --------------------------------------------------------------------------------
+2026-01-08 23:22:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:22:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:22:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:22:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:22:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:22:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:22:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:22:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:22:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:22:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:22:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:22:46 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:25:06 INFO ==> ACC | bACC | F1 | AUC: 0.8430009587727708 0.7475869727159437 0.7549311995614938 0.8329124807674901
+2026-01-08 23:25:06 INFO ==> ------------------------------------------------------------
+2026-01-08 23:25:06 INFO ==> Training labels: Counter({np.int64(0): 537, np.int64(1): 142})
+2026-01-08 23:25:06 INFO ==> Testing labels: Counter({np.int64(0): 3302, np.int64(1): 870})
+2026-01-08 23:25:06 INFO ==> Average ACC | bACC | F1 | AUC: 0.8473154362416107 0.7288941567980395 0.7470262177035865 0.8278078768005457
+2026-01-08 23:25:06 INFO ==> Label: anxiety --------------------------------------------------------------------------------
+2026-01-08 23:25:06 INFO ==> Loading data from /home/emilyzho/physio-data/data/tiles-holdout/fitbit.
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─Identity: 1-1                               --
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-1                            (384)
+│    └─ModuleList: 2-2                        --
+│    │    └─S4Block: 3-1                      (66,048)
+│    │    └─S4Block: 3-2                      (66,048)
+│    │    └─S4Block: 3-3                      (66,048)
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    └─ModuleList: 2-3                        --
+│    │    └─LayerNorm: 3-7                    (256)
+│    │    └─LayerNorm: 3-8                    (256)
+│    │    └─LayerNorm: 3-9                    (256)
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    └─ModuleList: 2-4                        --
+│    │    └─Dropout1d: 3-13                   --
+│    │    └─Dropout1d: 3-14                   --
+│    │    └─Dropout1d: 3-15                   --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    └─Linear: 2-5                            (16,512)
+├─ConvDecoder: 1-4                            --
+│    └─ModuleList: 2-6                        --
+│    │    └─BlockConv: 3-19                   (24,768)
+│    │    └─BlockConv: 3-20                   (6,240)
+│    │    └─BlockDecoderLast: 3-21            (198)
+├─LogisticRegressionHead: 1-5                 --
+│    └─Linear: 2-7                            184,321
+======================================================================
+Total params: 630,247
+Trainable params: 184,321
+Non-trainable params: 445,926
+======================================================================
+
+2026-01-08 23:26:49 INFO ==> Fold 1 --------------------------------------------------------------------------------
+2026-01-08 23:26:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:26:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:26:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:26:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:26:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:26:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:26:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:26:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:26:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:26:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:26:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:26:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:29:09 INFO ==> ACC | bACC | F1 | AUC: 0.6428571428571429 0.5187229941016732 0.5172646227440748 0.5371572299438743
+2026-01-08 23:29:09 INFO ==> ------------------------------------------------------------
+2026-01-08 23:29:09 INFO ==> Training labels: Counter({np.int64(0): 490, np.int64(1): 189})
+2026-01-08 23:29:09 INFO ==> Testing labels: Counter({np.int64(0): 3009, np.int64(1): 1163})
+2026-01-08 23:29:09 INFO ==> Fold 2 --------------------------------------------------------------------------------
+2026-01-08 23:29:09 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:29:09 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:29:09 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:29:09 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:29:09 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:29:09 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:29:09 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:29:09 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:29:09 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:29:09 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:29:09 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:29:09 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:31:29 INFO ==> ACC | bACC | F1 | AUC: 0.6303930968360498 0.5338201503257496 0.5341878163473602 0.5450572901530433
+2026-01-08 23:31:29 INFO ==> ------------------------------------------------------------
+2026-01-08 23:31:29 INFO ==> Training labels: Counter({np.int64(0): 490, np.int64(1): 189})
+2026-01-08 23:31:29 INFO ==> Testing labels: Counter({np.int64(0): 3009, np.int64(1): 1163})
+2026-01-08 23:31:29 INFO ==> Fold 3 --------------------------------------------------------------------------------
+2026-01-08 23:31:29 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:31:29 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:31:29 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:31:29 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:31:29 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:31:29 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:31:29 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:31:29 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:31:29 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:31:29 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:31:29 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:31:29 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:33:49 INFO ==> ACC | bACC | F1 | AUC: 0.6490891658676894 0.5156582416693742 0.5122137280213751 0.5186289797846358
+2026-01-08 23:33:49 INFO ==> ------------------------------------------------------------
+2026-01-08 23:33:49 INFO ==> Training labels: Counter({np.int64(0): 490, np.int64(1): 189})
+2026-01-08 23:33:49 INFO ==> Testing labels: Counter({np.int64(0): 3009, np.int64(1): 1163})
+2026-01-08 23:33:49 INFO ==> Fold 4 --------------------------------------------------------------------------------
+2026-01-08 23:33:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:33:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:33:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:33:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:33:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:33:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:33:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:33:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:33:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:33:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:33:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:33:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:36:09 INFO ==> ACC | bACC | F1 | AUC: 0.659875359539789 0.5141681576080015 0.5070411944787583 0.5305190761907457
+2026-01-08 23:36:09 INFO ==> ------------------------------------------------------------
+2026-01-08 23:36:09 INFO ==> Training labels: Counter({np.int64(0): 490, np.int64(1): 189})
+2026-01-08 23:36:09 INFO ==> Testing labels: Counter({np.int64(0): 3009, np.int64(1): 1163})
+2026-01-08 23:36:09 INFO ==> Fold 5 --------------------------------------------------------------------------------
+2026-01-08 23:36:09 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:36:09 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:36:09 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:36:09 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:36:09 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:36:09 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:36:09 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:36:09 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:36:09 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:36:09 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:36:09 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:36:09 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:38:29 INFO ==> ACC | bACC | F1 | AUC: 0.6572387344199425 0.514450343438015 0.5083257183470403 0.5335529667803697
+2026-01-08 23:38:29 INFO ==> ------------------------------------------------------------
+2026-01-08 23:38:29 INFO ==> Training labels: Counter({np.int64(0): 490, np.int64(1): 189})
+2026-01-08 23:38:29 INFO ==> Testing labels: Counter({np.int64(0): 3009, np.int64(1): 1163})
+2026-01-08 23:38:29 INFO ==> Average ACC | bACC | F1 | AUC: 0.6478906999041227 0.5193639774285627 0.5158066159877218 0.5329831085705338
+2026-01-08 23:38:29 INFO ==> Label: stress --------------------------------------------------------------------------------
+2026-01-08 23:38:29 INFO ==> Loading data from /home/emilyzho/physio-data/data/tiles-holdout/fitbit.
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─Identity: 1-1                               --
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-1                            (384)
+│    └─ModuleList: 2-2                        --
+│    │    └─S4Block: 3-1                      (66,048)
+│    │    └─S4Block: 3-2                      (66,048)
+│    │    └─S4Block: 3-3                      (66,048)
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    └─ModuleList: 2-3                        --
+│    │    └─LayerNorm: 3-7                    (256)
+│    │    └─LayerNorm: 3-8                    (256)
+│    │    └─LayerNorm: 3-9                    (256)
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    └─ModuleList: 2-4                        --
+│    │    └─Dropout1d: 3-13                   --
+│    │    └─Dropout1d: 3-14                   --
+│    │    └─Dropout1d: 3-15                   --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    └─Linear: 2-5                            (16,512)
+├─ConvDecoder: 1-4                            --
+│    └─ModuleList: 2-6                        --
+│    │    └─BlockConv: 3-19                   (24,768)
+│    │    └─BlockConv: 3-20                   (6,240)
+│    │    └─BlockDecoderLast: 3-21            (198)
+├─LogisticRegressionHead: 1-5                 --
+│    └─Linear: 2-7                            184,321
+======================================================================
+Total params: 630,247
+Trainable params: 184,321
+Non-trainable params: 445,926
+======================================================================
+
+2026-01-08 23:40:13 INFO ==> Fold 1 --------------------------------------------------------------------------------
+2026-01-08 23:40:13 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:40:13 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:40:13 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:40:13 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:40:13 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:40:13 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:40:13 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:40:13 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:40:13 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:40:13 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:40:13 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:40:13 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:42:33 INFO ==> ACC | bACC | F1 | AUC: 0.5946788111217641 0.5163721378835922 0.5106283282567328 0.5444954131925897
+2026-01-08 23:42:33 INFO ==> ------------------------------------------------------------
+2026-01-08 23:42:33 INFO ==> Training labels: Counter({np.int64(0): 443, np.int64(1): 236})
+2026-01-08 23:42:33 INFO ==> Testing labels: Counter({np.int64(0): 2721, np.int64(1): 1451})
+2026-01-08 23:42:33 INFO ==> Fold 2 --------------------------------------------------------------------------------
+2026-01-08 23:42:33 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:42:33 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:42:33 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:42:33 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:42:33 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:42:33 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:42:33 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:42:33 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:42:33 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:42:33 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:42:33 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:42:33 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:44:53 INFO ==> ACC | bACC | F1 | AUC: 0.6085810162991371 0.5329808410020741 0.5292118871843172 0.5691463211699798
+2026-01-08 23:44:53 INFO ==> ------------------------------------------------------------
+2026-01-08 23:44:53 INFO ==> Training labels: Counter({np.int64(0): 443, np.int64(1): 236})
+2026-01-08 23:44:53 INFO ==> Testing labels: Counter({np.int64(0): 2721, np.int64(1): 1451})
+2026-01-08 23:44:53 INFO ==> Fold 3 --------------------------------------------------------------------------------
+2026-01-08 23:44:53 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:44:53 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:44:53 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:44:53 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:44:53 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:44:53 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:44:53 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:44:53 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:44:53 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:44:53 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:44:53 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:44:53 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:47:13 INFO ==> ACC | bACC | F1 | AUC: 0.5939597315436241 0.5304567608647143 0.5295211284407676 0.5503918143363091
+2026-01-08 23:47:13 INFO ==> ------------------------------------------------------------
+2026-01-08 23:47:13 INFO ==> Training labels: Counter({np.int64(0): 443, np.int64(1): 236})
+2026-01-08 23:47:13 INFO ==> Testing labels: Counter({np.int64(0): 2721, np.int64(1): 1451})
+2026-01-08 23:47:13 INFO ==> Fold 4 --------------------------------------------------------------------------------
+2026-01-08 23:47:13 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:47:13 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:47:13 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:47:13 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:47:13 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:47:13 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:47:13 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:47:13 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:47:13 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:47:13 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:47:13 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:47:13 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:49:34 INFO ==> ACC | bACC | F1 | AUC: 0.5870086289549377 0.5450712494468958 0.5450492538272228 0.5621605548493214
+2026-01-08 23:49:34 INFO ==> ------------------------------------------------------------
+2026-01-08 23:49:34 INFO ==> Training labels: Counter({np.int64(0): 443, np.int64(1): 236})
+2026-01-08 23:49:34 INFO ==> Testing labels: Counter({np.int64(0): 2721, np.int64(1): 1451})
+2026-01-08 23:49:34 INFO ==> Fold 5 --------------------------------------------------------------------------------
+2026-01-08 23:49:34 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:49:34 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:49:34 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:49:34 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:49:34 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:49:34 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-08 23:49:34 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:49:34 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:49:34 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:49:34 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:49:34 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:49:34 INFO ==> S4: Initializing kernel to length 1440
+2026-01-08 23:51:55 INFO ==> ACC | bACC | F1 | AUC: 0.6097794822627037 0.5295571037829921 0.523888515029161 0.5430636109732836
+2026-01-08 23:51:55 INFO ==> ------------------------------------------------------------
+2026-01-08 23:51:55 INFO ==> Training labels: Counter({np.int64(0): 443, np.int64(1): 236})
+2026-01-08 23:51:55 INFO ==> Testing labels: Counter({np.int64(0): 2721, np.int64(1): 1451})
+2026-01-08 23:51:55 INFO ==> Average ACC | bACC | F1 | AUC: 0.5988015340364334 0.5308876185960536 0.5276598225476403 0.5538515429042967
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─Identity: 1-1                               --
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-1                            (384)
+│    └─ModuleList: 2-2                        --
+│    │    └─S4Block: 3-1                      (66,048)
+│    │    └─S4Block: 3-2                      (66,048)
+│    │    └─S4Block: 3-3                      (66,048)
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    └─ModuleList: 2-3                        --
+│    │    └─LayerNorm: 3-7                    (256)
+│    │    └─LayerNorm: 3-8                    (256)
+│    │    └─LayerNorm: 3-9                    (256)
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    └─ModuleList: 2-4                        --
+│    │    └─Dropout1d: 3-13                   --
+│    │    └─Dropout1d: 3-14                   --
+│    │    └─Dropout1d: 3-15                   --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    └─Linear: 2-5                            (16,512)
+├─ConvDecoder: 1-4                            --
+│    └─ModuleList: 2-6                        --
+│    │    └─BlockConv: 3-19                   (24,768)
+│    │    └─BlockConv: 3-20                   (6,240)
+│    │    └─BlockDecoderLast: 3-21            (198)
+├─LogisticRegressionHead: 1-5                 --
+│    └─Linear: 2-7                            184,321
+======================================================================
+Total params: 630,247
+Trainable params: 184,321
+Non-trainable params: 445,926
+======================================================================

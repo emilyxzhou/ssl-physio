@@ -1,0 +1,461 @@
+nohup: ignoring input
+2026-01-07 04:47:47 WARNING ==> CUDA extension for structured kernels (Cauchy and Vandermonde multiplication) not found. Install by going to extensions/kernels/ and running `python setup.py install`, for improved speed and memory efficiency. Note that the kernel changed for state-spaces 4.0 and must be recompiled.
+2026-01-07 04:47:47 WARNING ==> Falling back on slow Cauchy and Vandermonde kernel. Install at least one of pykeops or the CUDA extension for better speed and memory efficiency.
+2026-01-07 04:47:47 INFO ==> Label: StepCount --------------------------------------------------------------------------------
+2026-01-07 04:47:47 INFO ==> Loading data from /home/emilyzho/physio-data/data/tiles-holdout/fitbit.
+{'d_input': 2,
+ 'd_model': 128,
+ 'd_output': 128,
+ 'dec_hidden_dims': [128, 64, 32],
+ 'decoder_type': 'deconv',
+ 'enc_hidden_dims': None,
+ 'lr': 0.0005,
+ 'mask_ratio': 0.3,
+ 'mode': 'full',
+ 'n_layers_s4': 6,
+ 'reconstruction': 'full',
+ 'scale': 'mean',
+ 'sequence_len': 1440}
+Default device set to CUDA.
+
+2026-01-07 04:51:06 INFO ==> Fold 1
+2026-01-07 04:51:06 INFO ==> # training samples: 671
+2026-01-07 04:51:06 INFO ==> # testing samples: 4122
+2026-01-07 04:51:07 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 04:51:07 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 04:51:07 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 04:51:07 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 04:51:07 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 04:51:07 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 04:51:07 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 04:51:07 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 04:51:07 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 04:51:07 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 04:51:07 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 04:51:07 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 04:58:16 INFO ==> MSE | MAE | R: 21.51699190435478 3.555630241850933 PearsonRResult(statistic=np.float64(0.06547529450014133), pvalue=np.float64(2.5885518853305877e-05))
+2026-01-07 04:58:16 INFO ==> ------------------------------------------------------------
+2026-01-07 04:58:16 INFO ==> Fold 2
+2026-01-07 04:58:16 INFO ==> # training samples: 671
+2026-01-07 04:58:16 INFO ==> # testing samples: 4122
+2026-01-07 04:58:16 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 04:58:16 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 04:58:16 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 04:58:16 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 04:58:16 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 04:58:16 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 04:58:16 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 04:58:16 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 04:58:16 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 04:58:16 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 04:58:16 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 04:58:16 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:05:24 INFO ==> MSE | MAE | R: 21.273540021084493 3.495834431827996 PearsonRResult(statistic=np.float64(0.09862162212551967), pvalue=np.float64(2.2193819002630299e-10))
+2026-01-07 05:05:24 INFO ==> ------------------------------------------------------------
+2026-01-07 05:05:24 INFO ==> Fold 3
+2026-01-07 05:05:24 INFO ==> # training samples: 671
+2026-01-07 05:05:24 INFO ==> # testing samples: 4122
+2026-01-07 05:05:24 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:05:24 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:05:24 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:05:24 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:05:24 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:05:24 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:05:24 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:05:24 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:05:24 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:05:24 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:05:24 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:05:24 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:12:32 INFO ==> MSE | MAE | R: 20.993804470596846 3.5377828741744763 PearsonRResult(statistic=np.float64(0.12012006301864703), pvalue=np.float64(1.0120241049312878e-14))
+2026-01-07 05:12:32 INFO ==> ------------------------------------------------------------
+2026-01-07 05:12:32 INFO ==> Fold 4
+2026-01-07 05:12:32 INFO ==> # training samples: 671
+2026-01-07 05:12:32 INFO ==> # testing samples: 4122
+2026-01-07 05:12:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:12:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:12:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:12:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:12:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:12:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:12:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:12:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:12:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:12:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:12:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:12:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:19:41 INFO ==> MSE | MAE | R: 21.783914357375913 3.5313540248765474 PearsonRResult(statistic=np.float64(0.07054130623426763), pvalue=np.float64(5.809021708078209e-06))
+2026-01-07 05:19:41 INFO ==> ------------------------------------------------------------
+2026-01-07 05:19:41 INFO ==> Fold 5
+2026-01-07 05:19:41 INFO ==> # training samples: 671
+2026-01-07 05:19:41 INFO ==> # testing samples: 4122
+2026-01-07 05:19:41 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:19:41 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:19:41 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:19:41 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:19:41 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:19:41 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:19:41 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:19:41 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:19:41 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:19:41 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:19:41 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:19:41 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:25:21 INFO ==> MSE | MAE | R: 21.892037344872232 3.573501741225755 PearsonRResult(statistic=np.float64(0.06472998091737836), pvalue=np.float64(3.197170747303396e-05))
+2026-01-07 05:25:21 INFO ==> ------------------------------------------------------------
+2026-01-07 05:25:21 INFO ==> 
+Average MSE: 21.492057619656855
+2026-01-07 05:25:21 INFO ==> 
+Average MAE: 3.5388206627911414
+2026-01-07 05:25:21 INFO ==> 
+Average R: 0.04195519332659368
+2026-01-07 05:25:21 INFO ==> Label: bpm --------------------------------------------------------------------------------
+2026-01-07 05:25:21 INFO ==> Loading data from /home/emilyzho/physio-data/data/tiles-holdout/fitbit.
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─Identity: 1-1                               --
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-1                            (384)
+│    └─ModuleList: 2-2                        --
+│    │    └─S4Block: 3-1                      (66,048)
+│    │    └─S4Block: 3-2                      (66,048)
+│    │    └─S4Block: 3-3                      (66,048)
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      66,048
+│    └─ModuleList: 2-3                        --
+│    │    └─LayerNorm: 3-7                    (256)
+│    │    └─LayerNorm: 3-8                    (256)
+│    │    └─LayerNorm: 3-9                    (256)
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    └─ModuleList: 2-4                        --
+│    │    └─Dropout1d: 3-13                   --
+│    │    └─Dropout1d: 3-14                   --
+│    │    └─Dropout1d: 3-15                   --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    └─Linear: 2-5                            (16,512)
+├─ConvDecoder: 1-4                            --
+│    └─ModuleList: 2-6                        --
+│    │    └─BlockConv: 3-19                   (24,768)
+│    │    └─BlockConv: 3-20                   (6,240)
+│    │    └─BlockDecoderLast: 3-21            (198)
+├─CNN: 1-5                                    --
+│    └─Conv1d: 2-7                            553,088
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 1,079,367
+Trainable params: 699,489
+Non-trainable params: 379,878
+======================================================================
+
+2026-01-07 05:28:33 INFO ==> Fold 1
+2026-01-07 05:28:33 INFO ==> # training samples: 670
+2026-01-07 05:28:33 INFO ==> # testing samples: 4120
+2026-01-07 05:28:33 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:28:33 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:28:33 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:28:33 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:28:33 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:28:33 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:28:33 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:28:33 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:28:33 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:28:33 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:28:33 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:28:33 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:35:41 INFO ==> MSE | MAE | R: 165.28787953866623 10.111170991981927 PearsonRResult(statistic=np.float64(0.055695418507630344), pvalue=np.float64(0.0003480577637540068))
+2026-01-07 05:35:41 INFO ==> ------------------------------------------------------------
+2026-01-07 05:35:41 INFO ==> Fold 2
+2026-01-07 05:35:41 INFO ==> # training samples: 670
+2026-01-07 05:35:41 INFO ==> # testing samples: 4120
+2026-01-07 05:35:41 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:35:41 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:35:41 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:35:41 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:35:41 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:35:41 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:35:41 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:35:41 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:35:41 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:35:41 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:35:41 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:35:41 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:42:49 INFO ==> MSE | MAE | R: 183.0339565802798 10.410290882896918 PearsonRResult(statistic=np.float64(0.05084501237647119), pvalue=np.float64(0.0010957170070417597))
+2026-01-07 05:42:49 INFO ==> ------------------------------------------------------------
+2026-01-07 05:42:49 INFO ==> Fold 3
+2026-01-07 05:42:49 INFO ==> # training samples: 670
+2026-01-07 05:42:49 INFO ==> # testing samples: 4120
+2026-01-07 05:42:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:42:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:42:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:42:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:42:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:42:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:42:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:42:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:42:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:42:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:42:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:42:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:49:56 INFO ==> MSE | MAE | R: 172.83649858393343 10.015463973858797 PearsonRResult(statistic=np.float64(0.045339308286262356), pvalue=np.float64(0.0036048370298578636))
+2026-01-07 05:49:56 INFO ==> ------------------------------------------------------------
+2026-01-07 05:49:56 INFO ==> Fold 4
+2026-01-07 05:49:56 INFO ==> # training samples: 670
+2026-01-07 05:49:56 INFO ==> # testing samples: 4120
+2026-01-07 05:49:57 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:49:57 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:49:57 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:49:57 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:49:57 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:49:57 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:49:57 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:49:57 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:49:57 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:49:57 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:49:57 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:49:57 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:57:04 INFO ==> MSE | MAE | R: 187.47516324727414 10.70825015733462 PearsonRResult(statistic=np.float64(0.05037531664806777), pvalue=np.float64(0.0012184555801786532))
+2026-01-07 05:57:04 INFO ==> ------------------------------------------------------------
+2026-01-07 05:57:04 INFO ==> Fold 5
+2026-01-07 05:57:04 INFO ==> # training samples: 670
+2026-01-07 05:57:04 INFO ==> # testing samples: 4120
+2026-01-07 05:57:04 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:57:04 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:57:04 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:57:04 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:57:04 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:57:04 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 05:57:04 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:57:04 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:57:04 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:57:04 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:57:04 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 05:57:04 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:01:55 INFO ==> MSE | MAE | R: 185.81431865224792 10.73802952434527 PearsonRResult(statistic=np.float64(0.04485248656101768), pvalue=np.float64(0.003982656161999985))
+2026-01-07 06:01:55 INFO ==> ------------------------------------------------------------
+2026-01-07 06:01:55 INFO ==> 
+Average MSE: 178.88956332048033
+2026-01-07 06:01:55 INFO ==> 
+Average MAE: 10.396641106083507
+2026-01-07 06:01:55 INFO ==> 
+Average R: 0.025735726592228163
+2026-01-07 06:01:55 INFO ==> Label: SDNN_ms --------------------------------------------------------------------------------
+2026-01-07 06:01:55 INFO ==> Loading data from /home/emilyzho/physio-data/data/tiles-holdout/fitbit.
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─Identity: 1-1                               --
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-1                            (384)
+│    └─ModuleList: 2-2                        --
+│    │    └─S4Block: 3-1                      (66,048)
+│    │    └─S4Block: 3-2                      (66,048)
+│    │    └─S4Block: 3-3                      (66,048)
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      66,048
+│    └─ModuleList: 2-3                        --
+│    │    └─LayerNorm: 3-7                    (256)
+│    │    └─LayerNorm: 3-8                    (256)
+│    │    └─LayerNorm: 3-9                    (256)
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    └─ModuleList: 2-4                        --
+│    │    └─Dropout1d: 3-13                   --
+│    │    └─Dropout1d: 3-14                   --
+│    │    └─Dropout1d: 3-15                   --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    └─Linear: 2-5                            (16,512)
+├─ConvDecoder: 1-4                            --
+│    └─ModuleList: 2-6                        --
+│    │    └─BlockConv: 3-19                   (24,768)
+│    │    └─BlockConv: 3-20                   (6,240)
+│    │    └─BlockDecoderLast: 3-21            (198)
+├─CNN: 1-5                                    --
+│    └─Conv1d: 2-7                            553,088
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 1,079,367
+Trainable params: 699,489
+Non-trainable params: 379,878
+======================================================================
+
+2026-01-07 06:05:12 INFO ==> Fold 1
+2026-01-07 06:05:12 INFO ==> # training samples: 257
+2026-01-07 06:05:12 INFO ==> # testing samples: 1581
+2026-01-07 06:05:12 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:05:12 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:05:12 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:05:12 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:05:12 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:05:12 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:05:12 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:05:12 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:05:12 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:05:12 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:05:12 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:05:12 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:08:00 INFO ==> MSE | MAE | R: 1329.847082072563 27.08498493233059 PearsonRResult(statistic=np.float64(0.05011179975123681), pvalue=np.float64(0.04634795194554546))
+2026-01-07 06:08:00 INFO ==> ------------------------------------------------------------
+2026-01-07 06:08:00 INFO ==> Fold 2
+2026-01-07 06:08:00 INFO ==> # training samples: 257
+2026-01-07 06:08:00 INFO ==> # testing samples: 1581
+2026-01-07 06:08:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:08:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:08:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:08:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:08:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:08:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:08:00 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:08:00 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:08:00 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:08:00 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:08:00 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:08:00 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:10:48 INFO ==> MSE | MAE | R: 1292.0910812985928 26.61742882536423 PearsonRResult(statistic=np.float64(0.057456403444728646), pvalue=np.float64(0.022333357238861106))
+2026-01-07 06:10:48 INFO ==> ------------------------------------------------------------
+2026-01-07 06:10:48 INFO ==> Fold 3
+2026-01-07 06:10:48 INFO ==> # training samples: 257
+2026-01-07 06:10:48 INFO ==> # testing samples: 1581
+2026-01-07 06:10:48 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:10:48 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:10:48 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:10:48 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:10:48 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:10:48 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:10:48 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:10:48 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:10:48 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:10:48 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:10:48 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:10:48 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:13:32 INFO ==> MSE | MAE | R: 1218.5736261397328 25.944727523350707 PearsonRResult(statistic=np.float64(0.0550003756951538), pvalue=np.float64(0.028754271436815373))
+2026-01-07 06:13:32 INFO ==> ------------------------------------------------------------
+2026-01-07 06:13:32 INFO ==> Fold 4
+2026-01-07 06:13:32 INFO ==> # training samples: 257
+2026-01-07 06:13:32 INFO ==> # testing samples: 1581
+2026-01-07 06:13:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:13:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:13:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:13:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:13:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:13:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:13:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:13:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:13:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:13:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:13:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:13:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:16:20 INFO ==> MSE | MAE | R: 1228.8852375495276 26.625749918989868 PearsonRResult(statistic=np.float64(0.0330942933128851), pvalue=np.float64(0.1884400604081174))
+2026-01-07 06:16:20 INFO ==> ------------------------------------------------------------
+2026-01-07 06:16:20 INFO ==> Fold 5
+2026-01-07 06:16:20 INFO ==> # training samples: 257
+2026-01-07 06:16:20 INFO ==> # testing samples: 1581
+2026-01-07 06:16:20 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:16:20 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:16:20 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:16:20 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:16:20 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:16:20 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-07 06:16:20 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:16:20 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:16:20 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:16:20 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:16:20 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:16:20 INFO ==> S4: Initializing kernel to length 1440
+2026-01-07 06:19:08 INFO ==> MSE | MAE | R: 1207.9354534936583 26.25126153207518 PearsonRResult(statistic=np.float64(0.0393643009197662), pvalue=np.float64(0.11768528399222807))
+2026-01-07 06:19:08 INFO ==> ------------------------------------------------------------
+2026-01-07 06:19:08 INFO ==> 
+Average MSE: 1255.466496110815
+2026-01-07 06:19:08 INFO ==> 
+Average MAE: 26.504830546422113
+2026-01-07 06:19:08 INFO ==> 
+Average R: 0.0638588098145338
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─Identity: 1-1                               --
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-1                            (384)
+│    └─ModuleList: 2-2                        --
+│    │    └─S4Block: 3-1                      (66,048)
+│    │    └─S4Block: 3-2                      (66,048)
+│    │    └─S4Block: 3-3                      (66,048)
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      66,048
+│    └─ModuleList: 2-3                        --
+│    │    └─LayerNorm: 3-7                    (256)
+│    │    └─LayerNorm: 3-8                    (256)
+│    │    └─LayerNorm: 3-9                    (256)
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    └─ModuleList: 2-4                        --
+│    │    └─Dropout1d: 3-13                   --
+│    │    └─Dropout1d: 3-14                   --
+│    │    └─Dropout1d: 3-15                   --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    └─Linear: 2-5                            (16,512)
+├─ConvDecoder: 1-4                            --
+│    └─ModuleList: 2-6                        --
+│    │    └─BlockConv: 3-19                   (24,768)
+│    │    └─BlockConv: 3-20                   (6,240)
+│    │    └─BlockDecoderLast: 3-21            (198)
+├─CNN: 1-5                                    --
+│    └─Conv1d: 2-7                            553,088
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 1,079,367
+Trainable params: 699,489
+Non-trainable params: 379,878
+======================================================================

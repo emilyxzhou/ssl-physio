@@ -6,7 +6,7 @@ from torch import nn
 from torchinfo import summary
 
 
-class BinaryClassifier(nn.Module):
+class Regressor(nn.Module):
 
     def __init__(
         self,

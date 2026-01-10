@@ -96,8 +96,9 @@ if __name__ == "__main__":
         dec_hidden_dims = params["dec_hidden_dims"]
         d_model = params["d_model"]
         n_layers_s4 = params["n_layers_s4"]
-        mask_ratio = params["mask_ratio"]
+        # mask_ratio = params["mask_ratio"]
         lr = params["lr"]
+    mask_ratio = 0.5
     if dec_hidden_dims is not None: d_model = dec_hidden_dims[0]
 
     parser = argparse.ArgumentParser(description="Script for S4-MAE pre-training.")
@@ -186,10 +187,11 @@ if __name__ == "__main__":
     window_size = 15    # minutes
     label_type = None
 
-    subject_ids, dates, data, labels = load_tiles_open(
+    subject_ids, dates, data = load_tiles_open(
         signal_columns=signal_columns,
-        scale=scale, window_size=window_size, label_type=label_type, debug=debug
+        scale=scale, window_size=window_size, debug=debug
     )
+    labels = [-1 for _ in range(len(subject_ids))]
 
     # Split into train and validation sets, 80/20
     unique_subjects = list(set(subject_ids))
@@ -257,9 +259,9 @@ if __name__ == "__main__":
     )
 
     if not debug:
-        subject_ids, dates, data, labels = load_tiles_open(
+        subject_ids, dates, data = load_tiles_holdout(
             signal_columns=signal_columns,
-            scale=scale, window_size=window_size, label_type=label_type, debug=debug
+            scale=scale, window_size=window_size, debug=debug
         )
 
         tiles_test = TilesDataset(train_subject_ids, train_data, train_labels)

@@ -27,6 +27,7 @@ class S4Model(nn.Module):
         n_layers=4,
         dropout=0.2,
         prenorm=False,
+        pooling=False,
         lr=0.001
     ):
         super().__init__()
@@ -49,6 +50,7 @@ class S4Model(nn.Module):
 
         # Linear decoder
         self.decoder = nn.Linear(d_model, d_output)
+        self.pooling = pooling
 
     def forward(self, x):
         """
@@ -81,7 +83,7 @@ class S4Model(nn.Module):
         x = x.transpose(-1, -2)
 
         # Pooling: average pooling over the sequence length
-        # x = x.mean(dim=1)
+        if self.pooling: x = x.mean(dim=1)
 
         # Decode the outputs
         x = self.decoder(x)  # (B, L, d_model) -> (B, L, d_output)

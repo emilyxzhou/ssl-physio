@@ -24,7 +24,7 @@ decoder_type: deconv
 
 n_layers_s4: 6
 
-mask_ratio: 0.1
+mask_ratio: 0.3
 
 sequence_len: 1440
 

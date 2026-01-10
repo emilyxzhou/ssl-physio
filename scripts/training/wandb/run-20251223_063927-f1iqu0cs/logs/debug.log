@@ -1,0 +1,26 @@
+2025-12-23 06:39:27,934 INFO    MainThread:2873328 [wandb_setup.py:_flush():80] Current SDK version is 0.23.1
+2025-12-23 06:39:27,935 INFO    MainThread:2873328 [wandb_setup.py:_flush():80] Configure stats pid to 2873328
+2025-12-23 06:39:27,935 INFO    MainThread:2873328 [wandb_setup.py:_flush():80] Loading settings from /home/emilyzho/.config/wandb/settings
+2025-12-23 06:39:27,935 INFO    MainThread:2873328 [wandb_setup.py:_flush():80] Loading settings from /home/emilyzho/ssl-physio/scripts/training/wandb/settings
+2025-12-23 06:39:27,935 INFO    MainThread:2873328 [wandb_setup.py:_flush():80] Loading settings from environment variables
+2025-12-23 06:39:27,935 INFO    MainThread:2873328 [wandb_init.py:setup_run_log_directory():714] Logging user logs to /home/emilyzho/ssl-physio/scripts/training/wandb/run-20251223_063927-f1iqu0cs/logs/debug.log
+2025-12-23 06:39:27,935 INFO    MainThread:2873328 [wandb_init.py:setup_run_log_directory():715] Logging internal logs to /home/emilyzho/ssl-physio/scripts/training/wandb/run-20251223_063927-f1iqu0cs/logs/debug-internal.log
+2025-12-23 06:39:27,935 INFO    MainThread:2873328 [wandb_init.py:init():841] calling init triggers
+2025-12-23 06:39:27,935 INFO    MainThread:2873328 [wandb_init.py:init():846] wandb.init called with sweep_config: {}
+config: {'scaling': 'mean', 'epochs': 50, 'optimizer': 'AdamW', 'encoder': None, 'decoder': [128, 64, 32], 'S4 dim': 128, '# S4 layers': 6, 'd_output': 128, 'masking ratio': 0.3, 'learning rate': 0.0005, 'mode': 'full', 'reconstruction': 'full', 'save path': '/home/emilyzho/ssl-physio/models/reconstruction/s4-mae_2025-12-23_06:39:27.pt', '_wandb': {}}
+2025-12-23 06:39:27,935 INFO    MainThread:2873328 [wandb_init.py:init():889] starting backend
+2025-12-23 06:39:28,164 INFO    MainThread:2873328 [wandb_init.py:init():892] sending inform_init request
+2025-12-23 06:39:28,170 INFO    MainThread:2873328 [wandb_init.py:init():900] backend started and connected
+2025-12-23 06:39:28,172 INFO    MainThread:2873328 [wandb_init.py:init():970] updated telemetry
+2025-12-23 06:39:28,178 INFO    MainThread:2873328 [wandb_init.py:init():994] communicating run to backend with 90.0 second timeout
+2025-12-23 06:39:28,605 INFO    MainThread:2873328 [wandb_init.py:init():1041] starting run threads in backend
+2025-12-23 06:39:28,712 INFO    MainThread:2873328 [wandb_run.py:_console_start():2521] atexit reg
+2025-12-23 06:39:28,712 INFO    MainThread:2873328 [wandb_run.py:_redirect():2369] redirect: wrap_raw
+2025-12-23 06:39:28,712 INFO    MainThread:2873328 [wandb_run.py:_redirect():2438] Wrapping output streams.
+2025-12-23 06:39:28,712 INFO    MainThread:2873328 [wandb_run.py:_redirect():2461] Redirects installed.
+2025-12-23 06:39:28,717 INFO    MainThread:2873328 [wandb_init.py:init():1081] run started, returning control to user process
+2025-12-23 07:15:07,221 INFO    MainThread:2873328 [wandb_run.py:_finish():2287] finishing run emilyzho-usc/ssl-s4/f1iqu0cs
+2025-12-23 07:15:07,221 INFO    MainThread:2873328 [wandb_run.py:_atexit_cleanup():2486] got exitcode: 0
+2025-12-23 07:15:07,221 INFO    MainThread:2873328 [wandb_run.py:_restore():2468] restore
+2025-12-23 07:15:07,221 INFO    MainThread:2873328 [wandb_run.py:_restore():2474] restore done
+2025-12-23 07:15:09,395 INFO    MainThread:2873328 [wandb_run.py:_footer_sync_info():3862] logging synced files

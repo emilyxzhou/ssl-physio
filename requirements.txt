@@ -1,5 +1,6 @@
 biosppy
 einops
+imblearn
 neurokit2
 numpy
 pandas

@@ -1,0 +1,382 @@
+2025-12-23 06:41:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2025-12-23 06:41:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2025-12-23 06:41:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2025-12-23 06:41:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2025-12-23 06:41:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2025-12-23 06:41:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2025-12-23 06:41:00 INFO ==> S4: Initializing kernel to length 1440
+2025-12-23 06:41:00 INFO ==> S4: Initializing kernel to length 1440
+2025-12-23 06:41:00 INFO ==> S4: Initializing kernel to length 1440
+2025-12-23 06:41:00 INFO ==> S4: Initializing kernel to length 1440
+2025-12-23 06:41:00 INFO ==> S4: Initializing kernel to length 1440
+2025-12-23 06:41:00 INFO ==> S4: Initializing kernel to length 1440
+===============================================================================================
+Layer (type:depth-idx)                        Output Shape              Param #
+===============================================================================================
+S4MAE                                         [1, 2, 1440]              --
+├─PatchMasking: 1-1                           [1, 2, 1440]              --
+├─Identity: 1-2                               [1, 2, 1440]              --
+├─S4Model: 1-3                                [1, 1440, 128]            --
+│    └─Linear: 2-1                            [1, 1440, 128]            384
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-1                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-2                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-3                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-4                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-5                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-6                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-7                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-8                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-9                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-10                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-11                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-12                   [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-13                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-14                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-15                   [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-16                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-17                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-18                   [1, 1440, 128]            256
+│    └─Linear: 2-20                           [1, 1440, 128]            16,512
+├─ConvDecoder: 1-4                            [1, 2, 1440]              --
+│    └─ModuleList: 2-21                       --                        --
+│    │    └─BlockConv: 3-19                   [1, 64, 1440]             24,768
+│    │    └─BlockConv: 3-20                   [1, 32, 1440]             6,240
+│    │    └─BlockDecoderLast: 3-21            [1, 2, 1440]              198
+===============================================================================================
+Total params: 445,926
+Trainable params: 445,926
+Non-trainable params: 0
+Total mult-adds (Units.MEGABYTES): 44.87
+===============================================================================================
+Input size (MB): 0.01
+Forward/backward pass size (MB): 72.30
+Params size (MB): 2.77
+Estimated Total Size (MB): 75.08
+===============================================================================================
+2025-12-23 06:41:00 INFO ==> Loading data from /home/emilyzho/physio-data/data/tiles-opendataset/fitbit.
+100%|██████████| 13184/13184 [00:18<00:00, 702.00it/s]
+2025-12-23 06:42:10 INFO ==> Trainable params: 0.45 M
+Starting training...
+2025-12-23 06:42:10 INFO ==> Epoch 1/50
+2025-12-23 06:42:28 INFO ==> Epoch 1, step 100 | loss 0.1762502383548528
+2025-12-23 06:42:45 INFO ==> Epoch 1, step 191 | loss 0.1884812282730435
+2025-12-23 06:42:45 INFO ==> Train loss: 0.2362
+2025-12-23 06:42:48 INFO ==> [val] Step 51 | Loss 1.1102
+2025-12-23 06:42:48 INFO ==> Validation loss: 1.0801
+2025-12-23 06:42:48 INFO ==> Epoch 2/50
+2025-12-23 06:43:06 INFO ==> Epoch 2, step 100 | loss 0.13991209067051608
+2025-12-23 06:43:22 INFO ==> Epoch 2, step 191 | loss 0.17482573387727296
+2025-12-23 06:43:22 INFO ==> Train loss: 0.1802
+2025-12-23 06:43:26 INFO ==> [val] Step 51 | Loss 0.7854
+2025-12-23 06:43:26 INFO ==> Validation loss: 0.7907
+2025-12-23 06:43:26 INFO ==> Epoch 3/50
+2025-12-23 06:43:44 INFO ==> Epoch 3, step 100 | loss 0.15692033691295987
+2025-12-23 06:44:00 INFO ==> Epoch 3, step 191 | loss 0.1658413076314374
+2025-12-23 06:44:00 INFO ==> Train loss: 0.1698
+2025-12-23 06:44:04 INFO ==> [val] Step 51 | Loss 0.7045
+2025-12-23 06:44:04 INFO ==> Validation loss: 0.7327
+2025-12-23 06:44:04 INFO ==> Epoch 4/50
+2025-12-23 06:44:22 INFO ==> Epoch 4, step 100 | loss 0.15746255582697474
+2025-12-23 06:44:38 INFO ==> Epoch 4, step 191 | loss 0.1535574310118324
+2025-12-23 06:44:38 INFO ==> Train loss: 0.1616
+2025-12-23 06:44:41 INFO ==> [val] Step 51 | Loss 0.6645
+2025-12-23 06:44:41 INFO ==> Validation loss: 0.6988
+2025-12-23 06:44:41 INFO ==> Epoch 5/50
+2025-12-23 06:45:00 INFO ==> Epoch 5, step 100 | loss 0.15084052395077205
+2025-12-23 06:45:16 INFO ==> Epoch 5, step 191 | loss 0.17789262615272905
+2025-12-23 06:45:16 INFO ==> Train loss: 0.1592
+2025-12-23 06:45:19 INFO ==> [val] Step 51 | Loss 0.6722
+2025-12-23 06:45:19 INFO ==> Validation loss: 0.7199
+2025-12-23 06:45:19 INFO ==> Epoch 6/50
+2025-12-23 06:45:38 INFO ==> Epoch 6, step 100 | loss 0.1901888165647243
+2025-12-23 06:45:54 INFO ==> Epoch 6, step 191 | loss 0.13004057996430937
+2025-12-23 06:45:54 INFO ==> Train loss: 0.1597
+2025-12-23 06:45:57 INFO ==> [val] Step 51 | Loss 0.5286
+2025-12-23 06:45:57 INFO ==> Validation loss: 0.5886
+2025-12-23 06:45:57 INFO ==> Epoch 7/50
+2025-12-23 06:46:15 INFO ==> Epoch 7, step 100 | loss 0.1376318859627323
+2025-12-23 06:46:32 INFO ==> Epoch 7, step 191 | loss 0.14403572170252293
+2025-12-23 06:46:32 INFO ==> Train loss: 0.1549
+2025-12-23 06:46:35 INFO ==> [val] Step 51 | Loss 0.5281
+2025-12-23 06:46:35 INFO ==> Validation loss: 0.5794
+2025-12-23 06:46:35 INFO ==> Epoch 8/50
+2025-12-23 06:46:53 INFO ==> Epoch 8, step 100 | loss 0.14202649451828522
+2025-12-23 06:47:10 INFO ==> Epoch 8, step 191 | loss 0.12520827206673646
+2025-12-23 06:47:10 INFO ==> Train loss: 0.1536
+2025-12-23 06:47:13 INFO ==> [val] Step 51 | Loss 0.6212
+2025-12-23 06:47:13 INFO ==> Validation loss: 0.6725
+2025-12-23 06:47:13 INFO ==> Epoch 9/50
+2025-12-23 06:47:31 INFO ==> Epoch 9, step 100 | loss 0.15935232019292966
+2025-12-23 06:47:48 INFO ==> Epoch 9, step 191 | loss 0.1353778920943425
+2025-12-23 06:47:48 INFO ==> Train loss: 0.1490
+2025-12-23 06:47:51 INFO ==> [val] Step 51 | Loss 0.5582
+2025-12-23 06:47:51 INFO ==> Validation loss: 0.6043
+2025-12-23 06:47:51 INFO ==> Epoch 10/50
+2025-12-23 06:48:09 INFO ==> Epoch 10, step 100 | loss 0.18789604724679912
+2025-12-23 06:48:26 INFO ==> Epoch 10, step 191 | loss 0.10982924095464754
+2025-12-23 06:48:26 INFO ==> Train loss: 0.1509
+2025-12-23 06:48:29 INFO ==> [val] Step 51 | Loss 0.4880
+2025-12-23 06:48:29 INFO ==> Validation loss: 0.5383
+2025-12-23 06:48:29 INFO ==> Epoch 11/50
+2025-12-23 06:48:47 INFO ==> Epoch 11, step 100 | loss 0.1252082347056128
+2025-12-23 06:49:04 INFO ==> Epoch 11, step 191 | loss 0.0609871337162006
+2025-12-23 06:49:04 INFO ==> Train loss: 0.1470
+2025-12-23 06:49:07 INFO ==> [val] Step 51 | Loss 0.4943
+2025-12-23 06:49:07 INFO ==> Validation loss: 0.5463
+2025-12-23 06:49:07 INFO ==> Epoch 12/50
+2025-12-23 06:49:25 INFO ==> Epoch 12, step 100 | loss 0.12970689877568306
+2025-12-23 06:49:42 INFO ==> Epoch 12, step 191 | loss 0.15134386490437146
+2025-12-23 06:49:42 INFO ==> Train loss: 0.1456
+2025-12-23 06:49:45 INFO ==> [val] Step 51 | Loss 0.5472
+2025-12-23 06:49:45 INFO ==> Validation loss: 0.5920
+2025-12-23 06:49:45 INFO ==> Epoch 13/50
+2025-12-23 06:50:03 INFO ==> Epoch 13, step 100 | loss 0.1312763441437004
+2025-12-23 06:50:19 INFO ==> Epoch 13, step 191 | loss 0.16949322457141772
+2025-12-23 06:50:19 INFO ==> Train loss: 0.1473
+2025-12-23 06:50:23 INFO ==> [val] Step 51 | Loss 0.4542
+2025-12-23 06:50:23 INFO ==> Validation loss: 0.5110
+2025-12-23 06:50:23 INFO ==> Epoch 14/50
+2025-12-23 06:50:41 INFO ==> Epoch 14, step 100 | loss 0.14193697984261605
+2025-12-23 06:50:57 INFO ==> Epoch 14, step 191 | loss 0.1274939004598903
+2025-12-23 06:50:57 INFO ==> Train loss: 0.1451
+2025-12-23 06:51:01 INFO ==> [val] Step 51 | Loss 0.5130
+2025-12-23 06:51:01 INFO ==> Validation loss: 0.5593
+2025-12-23 06:51:01 INFO ==> Epoch 15/50
+2025-12-23 06:51:19 INFO ==> Epoch 15, step 100 | loss 0.13207827949362358
+2025-12-23 06:51:35 INFO ==> Epoch 15, step 191 | loss 0.1898939957778916
+2025-12-23 06:51:35 INFO ==> Train loss: 0.1461
+2025-12-23 06:51:39 INFO ==> [val] Step 51 | Loss 0.4755
+2025-12-23 06:51:39 INFO ==> Validation loss: 0.5179
+2025-12-23 06:51:39 INFO ==> Epoch 16/50
+2025-12-23 06:51:57 INFO ==> Epoch 16, step 100 | loss 0.14434838842223882
+2025-12-23 06:52:13 INFO ==> Epoch 16, step 191 | loss 0.15565273796554954
+2025-12-23 06:52:13 INFO ==> Train loss: 0.1399
+2025-12-23 06:52:16 INFO ==> [val] Step 51 | Loss 0.5366
+2025-12-23 06:52:16 INFO ==> Validation loss: 0.5799
+2025-12-23 06:52:16 INFO ==> Epoch 17/50
+2025-12-23 06:52:35 INFO ==> Epoch 17, step 100 | loss 0.17253590054511192
+2025-12-23 06:52:51 INFO ==> Epoch 17, step 191 | loss 0.22195629790569626
+2025-12-23 06:52:51 INFO ==> Train loss: 0.1415
+2025-12-23 06:52:54 INFO ==> [val] Step 51 | Loss 0.4902
+2025-12-23 06:52:54 INFO ==> Validation loss: 0.5381
+2025-12-23 06:52:54 INFO ==> Epoch 18/50
+2025-12-23 06:53:13 INFO ==> Epoch 18, step 100 | loss 0.1755094313142103
+2025-12-23 06:53:29 INFO ==> Epoch 18, step 191 | loss 0.1848479027293795
+2025-12-23 06:53:29 INFO ==> Train loss: 0.1422
+2025-12-23 06:53:32 INFO ==> [val] Step 51 | Loss 0.5405
+2025-12-23 06:53:32 INFO ==> Validation loss: 0.6016
+2025-12-23 06:53:32 INFO ==> Epoch 19/50
+2025-12-23 06:53:50 INFO ==> Epoch 19, step 100 | loss 0.1402946116632405
+2025-12-23 06:54:07 INFO ==> Epoch 19, step 191 | loss 0.07585962773676168
+2025-12-23 06:54:07 INFO ==> Train loss: 0.1420
+2025-12-23 06:54:10 INFO ==> [val] Step 51 | Loss 0.5065
+2025-12-23 06:54:10 INFO ==> Validation loss: 0.5647
+2025-12-23 06:54:10 INFO ==> Epoch 20/50
+2025-12-23 06:54:28 INFO ==> Epoch 20, step 100 | loss 0.141016146281517
+2025-12-23 06:54:45 INFO ==> Epoch 20, step 191 | loss 0.2055938085770346
+2025-12-23 06:54:45 INFO ==> Train loss: 0.1392
+2025-12-23 06:54:48 INFO ==> [val] Step 51 | Loss 0.4641
+2025-12-23 06:54:48 INFO ==> Validation loss: 0.5060
+2025-12-23 06:54:48 INFO ==> Epoch 21/50
+2025-12-23 06:55:06 INFO ==> Epoch 21, step 100 | loss 0.10572521493172186
+2025-12-23 06:55:23 INFO ==> Epoch 21, step 191 | loss 0.09114141440010966
+2025-12-23 06:55:23 INFO ==> Train loss: 0.1395
+2025-12-23 06:55:26 INFO ==> [val] Step 51 | Loss 0.4997
+2025-12-23 06:55:26 INFO ==> Validation loss: 0.5525
+2025-12-23 06:55:26 INFO ==> Epoch 22/50
+2025-12-23 06:55:44 INFO ==> Epoch 22, step 100 | loss 0.12562496957921185
+2025-12-23 06:56:01 INFO ==> Epoch 22, step 191 | loss 0.11929220095762183
+2025-12-23 06:56:01 INFO ==> Train loss: 0.1383
+2025-12-23 06:56:04 INFO ==> [val] Step 51 | Loss 0.4554
+2025-12-23 06:56:04 INFO ==> Validation loss: 0.5033
+2025-12-23 06:56:04 INFO ==> Epoch 23/50
+2025-12-23 06:56:22 INFO ==> Epoch 23, step 100 | loss 0.15134862792403475
+2025-12-23 06:56:39 INFO ==> Epoch 23, step 191 | loss 0.185063957161144
+2025-12-23 06:56:39 INFO ==> Train loss: 0.1404
+2025-12-23 06:56:42 INFO ==> [val] Step 51 | Loss 0.5998
+2025-12-23 06:56:42 INFO ==> Validation loss: 0.6525
+2025-12-23 06:56:42 INFO ==> Epoch 24/50
+2025-12-23 06:57:00 INFO ==> Epoch 24, step 100 | loss 0.11951348848211846
+2025-12-23 06:57:16 INFO ==> Epoch 24, step 191 | loss 0.11905038785173312
+2025-12-23 06:57:16 INFO ==> Train loss: 0.1370
+2025-12-23 06:57:20 INFO ==> [val] Step 51 | Loss 0.4520
+2025-12-23 06:57:20 INFO ==> Validation loss: 0.4868
+2025-12-23 06:57:20 INFO ==> Epoch 25/50
+2025-12-23 06:57:38 INFO ==> Epoch 25, step 100 | loss 0.15474747892965818
+2025-12-23 06:57:54 INFO ==> Epoch 25, step 191 | loss 0.18136107362149909
+2025-12-23 06:57:54 INFO ==> Train loss: 0.1380
+2025-12-23 06:57:58 INFO ==> [val] Step 51 | Loss 0.5982
+2025-12-23 06:57:58 INFO ==> Validation loss: 0.6455
+2025-12-23 06:57:58 INFO ==> Epoch 26/50
+2025-12-23 06:58:16 INFO ==> Epoch 26, step 100 | loss 0.1422221829374244
+2025-12-23 06:58:32 INFO ==> Epoch 26, step 191 | loss 0.09317510359962779
+2025-12-23 06:58:32 INFO ==> Train loss: 0.1382
+2025-12-23 06:58:36 INFO ==> [val] Step 51 | Loss 0.4508
+2025-12-23 06:58:36 INFO ==> Validation loss: 0.4933
+2025-12-23 06:58:36 INFO ==> Epoch 27/50
+2025-12-23 06:58:54 INFO ==> Epoch 27, step 100 | loss 0.13893288504860268
+2025-12-23 06:59:10 INFO ==> Epoch 27, step 191 | loss 0.11024101505385026
+2025-12-23 06:59:10 INFO ==> Train loss: 0.1358
+2025-12-23 06:59:13 INFO ==> [val] Step 51 | Loss 0.4751
+2025-12-23 06:59:13 INFO ==> Validation loss: 0.5132
+2025-12-23 06:59:13 INFO ==> Epoch 28/50
+2025-12-23 06:59:32 INFO ==> Epoch 28, step 100 | loss 0.16586427367045226
+2025-12-23 06:59:48 INFO ==> Epoch 28, step 191 | loss 0.11606242198315223
+2025-12-23 06:59:48 INFO ==> Train loss: 0.1385
+2025-12-23 06:59:51 INFO ==> [val] Step 51 | Loss 0.5107
+2025-12-23 06:59:51 INFO ==> Validation loss: 0.5657
+2025-12-23 06:59:51 INFO ==> Epoch 29/50
+2025-12-23 07:00:10 INFO ==> Epoch 29, step 100 | loss 0.14892797244149483
+2025-12-23 07:00:26 INFO ==> Epoch 29, step 191 | loss 0.10494955290604126
+2025-12-23 07:00:26 INFO ==> Train loss: 0.1359
+2025-12-23 07:00:29 INFO ==> [val] Step 51 | Loss 0.4744
+2025-12-23 07:00:29 INFO ==> Validation loss: 0.5278
+2025-12-23 07:00:29 INFO ==> Epoch 30/50
+2025-12-23 07:00:48 INFO ==> Epoch 30, step 100 | loss 0.1452671058037087
+2025-12-23 07:01:04 INFO ==> Epoch 30, step 191 | loss 0.1257607758022119
+2025-12-23 07:01:04 INFO ==> Train loss: 0.1352
+2025-12-23 07:01:07 INFO ==> [val] Step 51 | Loss 0.5668
+2025-12-23 07:01:07 INFO ==> Validation loss: 0.6195
+2025-12-23 07:01:07 INFO ==> Epoch 31/50
+2025-12-23 07:01:25 INFO ==> Epoch 31, step 100 | loss 0.12568196102607812
+2025-12-23 07:01:42 INFO ==> Epoch 31, step 191 | loss 0.1755979717005227
+2025-12-23 07:01:42 INFO ==> Train loss: 0.1371
+2025-12-23 07:01:45 INFO ==> [val] Step 51 | Loss 0.5180
+2025-12-23 07:01:45 INFO ==> Validation loss: 0.5725
+2025-12-23 07:01:45 INFO ==> Epoch 32/50
+2025-12-23 07:02:03 INFO ==> Epoch 32, step 100 | loss 0.17519961856310562
+2025-12-23 07:02:20 INFO ==> Epoch 32, step 191 | loss 0.07572044623028316
+2025-12-23 07:02:20 INFO ==> Train loss: 0.1367
+2025-12-23 07:02:23 INFO ==> [val] Step 51 | Loss 0.4849
+2025-12-23 07:02:23 INFO ==> Validation loss: 0.5261
+2025-12-23 07:02:23 INFO ==> Epoch 33/50
+2025-12-23 07:02:41 INFO ==> Epoch 33, step 100 | loss 0.16603549387357247
+2025-12-23 07:02:58 INFO ==> Epoch 33, step 191 | loss 0.14275218434005654
+2025-12-23 07:02:58 INFO ==> Train loss: 0.1323
+2025-12-23 07:03:01 INFO ==> [val] Step 51 | Loss 0.5185
+2025-12-23 07:03:01 INFO ==> Validation loss: 0.5700
+2025-12-23 07:03:01 INFO ==> Epoch 34/50
+2025-12-23 07:03:19 INFO ==> Epoch 34, step 100 | loss 0.14264438802191712
+2025-12-23 07:03:36 INFO ==> Epoch 34, step 191 | loss 0.09866366055139633
+2025-12-23 07:03:36 INFO ==> Train loss: 0.1342
+2025-12-23 07:03:39 INFO ==> [val] Step 51 | Loss 0.5286
+2025-12-23 07:03:39 INFO ==> Validation loss: 0.5752
+2025-12-23 07:03:39 INFO ==> Epoch 35/50
+2025-12-23 07:03:57 INFO ==> Epoch 35, step 100 | loss 0.1406414669813935
+2025-12-23 07:04:14 INFO ==> Epoch 35, step 191 | loss 0.12429029108030815
+2025-12-23 07:04:14 INFO ==> Train loss: 0.1375
+2025-12-23 07:04:17 INFO ==> [val] Step 51 | Loss 0.4248
+2025-12-23 07:04:17 INFO ==> Validation loss: 0.4689
+2025-12-23 07:04:17 INFO ==> Epoch 36/50
+2025-12-23 07:04:35 INFO ==> Epoch 36, step 100 | loss 0.13821598653250478
+2025-12-23 07:04:52 INFO ==> Epoch 36, step 191 | loss 0.1065160051655535
+2025-12-23 07:04:52 INFO ==> Train loss: 0.1357
+2025-12-23 07:04:55 INFO ==> [val] Step 51 | Loss 0.3992
+2025-12-23 07:04:55 INFO ==> Validation loss: 0.4396
+2025-12-23 07:04:55 INFO ==> Epoch 37/50
+2025-12-23 07:05:13 INFO ==> Epoch 37, step 100 | loss 0.1101742061065806
+2025-12-23 07:05:29 INFO ==> Epoch 37, step 191 | loss 0.12027137284340628
+2025-12-23 07:05:29 INFO ==> Train loss: 0.1331
+2025-12-23 07:05:33 INFO ==> [val] Step 51 | Loss 0.5420
+2025-12-23 07:05:33 INFO ==> Validation loss: 0.5997
+2025-12-23 07:05:33 INFO ==> Epoch 38/50
+2025-12-23 07:05:51 INFO ==> Epoch 38, step 100 | loss 0.14152042912273033
+2025-12-23 07:06:07 INFO ==> Epoch 38, step 191 | loss 0.17387019116440455
+2025-12-23 07:06:07 INFO ==> Train loss: 0.1299
+2025-12-23 07:06:11 INFO ==> [val] Step 51 | Loss 0.4802
+2025-12-23 07:06:11 INFO ==> Validation loss: 0.5370
+2025-12-23 07:06:11 INFO ==> Epoch 39/50
+2025-12-23 07:06:29 INFO ==> Epoch 39, step 100 | loss 0.15369405374024583
+2025-12-23 07:06:45 INFO ==> Epoch 39, step 191 | loss 0.20316069279167476
+2025-12-23 07:06:45 INFO ==> Train loss: 0.1321
+2025-12-23 07:06:48 INFO ==> [val] Step 51 | Loss 0.4626
+2025-12-23 07:06:48 INFO ==> Validation loss: 0.5097
+2025-12-23 07:06:48 INFO ==> Epoch 40/50
+2025-12-23 07:07:07 INFO ==> Epoch 40, step 100 | loss 0.12986079934454423
+2025-12-23 07:07:23 INFO ==> Epoch 40, step 191 | loss 0.13101849039819616
+2025-12-23 07:07:23 INFO ==> Train loss: 0.1329
+2025-12-23 07:07:26 INFO ==> [val] Step 51 | Loss 0.4514
+2025-12-23 07:07:26 INFO ==> Validation loss: 0.5073
+2025-12-23 07:07:26 INFO ==> Epoch 41/50
+2025-12-23 07:07:45 INFO ==> Epoch 41, step 100 | loss 0.1261665122578635
+2025-12-23 07:08:01 INFO ==> Epoch 41, step 191 | loss 0.2096831036309495
+2025-12-23 07:08:01 INFO ==> Train loss: 0.1327
+2025-12-23 07:08:04 INFO ==> [val] Step 51 | Loss 0.4609
+2025-12-23 07:08:04 INFO ==> Validation loss: 0.5090
+2025-12-23 07:08:04 INFO ==> Epoch 42/50
+2025-12-23 07:08:23 INFO ==> Epoch 42, step 100 | loss 0.10884021109342372
+2025-12-23 07:08:39 INFO ==> Epoch 42, step 191 | loss 0.1654902570318503
+2025-12-23 07:08:39 INFO ==> Train loss: 0.1314
+2025-12-23 07:08:42 INFO ==> [val] Step 51 | Loss 0.4097
+2025-12-23 07:08:42 INFO ==> Validation loss: 0.4461
+2025-12-23 07:08:42 INFO ==> Epoch 43/50
+2025-12-23 07:09:00 INFO ==> Epoch 43, step 100 | loss 0.15524858655292936
+2025-12-23 07:09:17 INFO ==> Epoch 43, step 191 | loss 0.13094659660737448
+2025-12-23 07:09:17 INFO ==> Train loss: 0.1313
+2025-12-23 07:09:20 INFO ==> [val] Step 51 | Loss 0.3811
+2025-12-23 07:09:20 INFO ==> Validation loss: 0.4265
+2025-12-23 07:09:20 INFO ==> Epoch 44/50
+2025-12-23 07:09:38 INFO ==> Epoch 44, step 100 | loss 0.13956736753994198
+2025-12-23 07:09:55 INFO ==> Epoch 44, step 191 | loss 0.25003780303358397
+2025-12-23 07:09:55 INFO ==> Train loss: 0.1320
+2025-12-23 07:09:58 INFO ==> [val] Step 51 | Loss 0.5636
+2025-12-23 07:09:58 INFO ==> Validation loss: 0.6178
+2025-12-23 07:09:58 INFO ==> Epoch 45/50
+2025-12-23 07:10:16 INFO ==> Epoch 45, step 100 | loss 0.1405670239436774
+2025-12-23 07:10:33 INFO ==> Epoch 45, step 191 | loss 0.13211181802686495
+2025-12-23 07:10:33 INFO ==> Train loss: 0.1316
+2025-12-23 07:10:36 INFO ==> [val] Step 51 | Loss 0.4598
+2025-12-23 07:10:36 INFO ==> Validation loss: 0.5055
+2025-12-23 07:10:36 INFO ==> Epoch 46/50
+2025-12-23 07:10:54 INFO ==> Epoch 46, step 100 | loss 0.14894432003491587
+2025-12-23 07:11:11 INFO ==> Epoch 46, step 191 | loss 0.15355291409079294
+2025-12-23 07:11:11 INFO ==> Train loss: 0.1309
+2025-12-23 07:11:14 INFO ==> [val] Step 51 | Loss 0.4060
+2025-12-23 07:11:14 INFO ==> Validation loss: 0.4454
+2025-12-23 07:11:14 INFO ==> Epoch 47/50
+2025-12-23 07:11:32 INFO ==> Epoch 47, step 100 | loss 0.12986403280480982
+2025-12-23 07:11:49 INFO ==> Epoch 47, step 191 | loss 0.16015960617487318
+2025-12-23 07:11:49 INFO ==> Train loss: 0.1318
+2025-12-23 07:11:52 INFO ==> [val] Step 51 | Loss 0.4575
+2025-12-23 07:11:52 INFO ==> Validation loss: 0.4994
+2025-12-23 07:11:52 INFO ==> Epoch 48/50
+2025-12-23 07:12:10 INFO ==> Epoch 48, step 100 | loss 0.13466012207139139
+2025-12-23 07:12:26 INFO ==> Epoch 48, step 191 | loss 0.17404074791289942
+2025-12-23 07:12:26 INFO ==> Train loss: 0.1301
+2025-12-23 07:12:30 INFO ==> [val] Step 51 | Loss 0.3776
+2025-12-23 07:12:30 INFO ==> Validation loss: 0.4135
+2025-12-23 07:12:30 INFO ==> Epoch 49/50
+2025-12-23 07:12:48 INFO ==> Epoch 49, step 100 | loss 0.13505523426718924
+2025-12-23 07:13:04 INFO ==> Epoch 49, step 191 | loss 0.17783480662920326
+2025-12-23 07:13:04 INFO ==> Train loss: 0.1308
+2025-12-23 07:13:08 INFO ==> [val] Step 51 | Loss 0.4406
+2025-12-23 07:13:08 INFO ==> Validation loss: 0.4864
+2025-12-23 07:13:08 INFO ==> Epoch 50/50
+2025-12-23 07:13:26 INFO ==> Epoch 50, step 100 | loss 0.12801448546698838
+2025-12-23 07:13:42 INFO ==> Epoch 50, step 191 | loss 0.09433423090719194
+2025-12-23 07:13:42 INFO ==> Train loss: 0.1313
+2025-12-23 07:13:46 INFO ==> [val] Step 51 | Loss 0.4289
+2025-12-23 07:13:46 INFO ==> Validation loss: 0.4715
+2025-12-23 07:13:46 INFO ==> Loading data from /home/emilyzho/physio-data/data/tiles-opendataset/fitbit.
+100%|██████████| 13184/13184 [00:17<00:00, 739.65it/s]
+2025-12-23 07:15:06 INFO ==> [test] Step 191 | Loss 0.1203
+2025-12-23 07:15:06 INFO ==> Validation loss: 0.1710
+Model saved as /home/emilyzho/ssl-physio/models/reconstruction/s4-mae_2025-12-23_06:39:27.pt. Exiting.
