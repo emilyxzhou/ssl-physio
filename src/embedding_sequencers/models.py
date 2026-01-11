@@ -214,7 +214,8 @@ class CombinedLoss(nn.Module):
         super().__init__()
         self.bpm_weight = bpm_weight
         self.steps_weight = steps_weight
-        self.mse = nn.MSELoss()
+        # self.mse = nn.MSELoss()
+        self.mse = nn.L1Loss()
     
     def forward(self, pred, target):
         """
@@ -241,7 +242,8 @@ def get_loss_function(output_type: str, bpm_weight: float = 0.5, steps_weight: f
         Loss function
     """
     if output_type == 'bpm':
-        return nn.MSELoss()
+        # return nn.MSELoss()
+        return nn.L1Loss()
     elif output_type == 'steps':
         return nn.L1Loss()  # MAE
     elif output_type == 'both':
