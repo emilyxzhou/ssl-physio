@@ -106,7 +106,7 @@ def freeze_weights(model):
 
 if __name__ == "__main__":
     # Read arguments -----------------------------------------------------------------------------------------------
-    with open("/home/emilyzho/ssl-physio/scripts/params.yaml", "r") as file:
+    with open("/home/emilyzho/ssl-physio/scripts/params_s4.yaml", "r") as file:
         params = yaml.safe_load(file)
         mode = params["mode"]
         reconstruction = params["reconstruction"]

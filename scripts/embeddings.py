@@ -278,7 +278,7 @@ Usage:
 
 if __name__ == "__main__":
     # Read arguments -----------------------------------------------------------------------------------------------
-    with open(f"{USER_ROOT}/ssl-physio/scripts/params.yaml", "r") as file:
+    with open(f"{USER_ROOT}/ssl-physio/scripts/params_s4.yaml", "r") as file:
         params = yaml.safe_load(file)
         d_input = params["d_input"]
         d_output = params["d_output"]
