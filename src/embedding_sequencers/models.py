@@ -2,12 +2,21 @@
 Sequence prediction models for embedding sequencers.
 
 Models take sequences of day embeddings and predict future biosignal values.
+Supports both regression (bpm, steps) and binary classification (anxiety, stress).
 """
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from abc import ABC, abstractmethod
+
+# Output types and their properties
+OUTPUT_TYPE_CONFIG = {
+    'bpm': {'output_dim': 1, 'task': 'regression', 'target_idx': 0},
+    'steps': {'output_dim': 1, 'task': 'regression', 'target_idx': 1},
+    'anxiety': {'output_dim': 1, 'task': 'binary', 'target_idx': 2},
+    'stress': {'output_dim': 1, 'task': 'binary', 'target_idx': 3},
+}
 
 
 class EmbeddingSequenceModel(ABC, nn.Module):
@@ -18,10 +27,11 @@ class EmbeddingSequenceModel(ABC, nn.Module):
     - Input: (batch, days_given, embedding_dim=128)
     - Output: (batch, days_predicted, output_dim)
     
-    output_dim depends on output_type:
-    - 'bpm': 1 (avg heart rate)
-    - 'steps': 1 (total step count)
-    - 'both': 2 (avg_bpm, total_steps)
+    output_type:
+    - 'bpm': 1 (avg heart rate) - regression
+    - 'steps': 1 (total step count) - regression
+    - 'anxiety': 1 (binary anxiety label) - classification
+    - 'stress': 1 (binary stress label) - classification
     """
     
     def __init__(self, days_given: int, days_predicted: int, output_type: str, embedding_dim: int = 128):
@@ -31,15 +41,14 @@ class EmbeddingSequenceModel(ABC, nn.Module):
         self.output_type = output_type
         self.embedding_dim = embedding_dim
         
-        # Determine output dimension
-        if output_type == 'bpm':
-            self.output_dim = 1
-        elif output_type == 'steps':
-            self.output_dim = 1
-        elif output_type == 'both':
-            self.output_dim = 2
-        else:
-            raise ValueError(f"Unknown output_type: {output_type}")
+        # Determine output dimension and task type
+        if output_type not in OUTPUT_TYPE_CONFIG:
+            raise ValueError(f"Unknown output_type: {output_type}. Valid types: {list(OUTPUT_TYPE_CONFIG.keys())}")
+        
+        config = OUTPUT_TYPE_CONFIG[output_type]
+        self.output_dim = config['output_dim']
+        self.task_type = config['task']
+        self.target_idx = config['target_idx']
     
     @abstractmethod
     def forward(self, x):
@@ -51,6 +60,7 @@ class EmbeddingSequenceModel(ABC, nn.Module):
         
         Returns:
             (batch, days_predicted, output_dim)
+            For binary classification, these are logits (not probabilities).
         """
         pass
     
@@ -60,6 +70,7 @@ class EmbeddingSequenceModel(ABC, nn.Module):
             'days_given': self.days_given,
             'days_predicted': self.days_predicted,
             'output_type': self.output_type,
+            'task_type': self.task_type,
             'embedding_dim': self.embedding_dim,
             'output_dim': self.output_dim
         }
@@ -187,7 +198,7 @@ def create_model(model_type: str, days_given: int, days_predicted: int, output_t
         model_type: 'cnn' or 'nn'
         days_given: number of input days
         days_predicted: number of output days
-        output_type: 'bpm', 'steps', or 'both'
+        output_type: 'bpm', 'steps', 'anxiety', or 'stress'
         embedding_dim: dimension of embeddings (default 128)
     
     Returns:
@@ -201,53 +212,65 @@ def create_model(model_type: str, days_given: int, days_predicted: int, output_t
         raise ValueError(f"Unknown model_type: {model_type}")
 
 
-class CombinedLoss(nn.Module):
+class MaskedBCEWithLogitsLoss(nn.Module):
     """
-    Combined loss for predicting both bpm and steps.
-    
-    Loss = bpm_weight * MSE(bpm) + steps_weight * MAE(steps)
-    
-    Weights are computed to equalize contribution based on variance.
+    Binary cross entropy loss that handles NaN values in targets.
+    NaN targets are masked out and don't contribute to the loss.
     """
     
-    def __init__(self, bpm_weight: float, steps_weight: float):
+    def __init__(self):
         super().__init__()
-        self.bpm_weight = bpm_weight
-        self.steps_weight = steps_weight
-        # self.mse = nn.MSELoss()
-        self.mse = nn.L1Loss()
+        self.bce = nn.BCEWithLogitsLoss(reduction='none')
     
     def forward(self, pred, target):
         """
         Args:
-            pred: (batch, days_predicted, 2) - [bpm, steps]
-            target: (batch, days_predicted, 2) - [bpm, steps]
-        """
-        bpm_loss = self.mse(pred[:, :, 0], target[:, :, 0])
-        steps_loss = F.l1_loss(pred[:, :, 1], target[:, :, 1])
+            pred: (batch, days_predicted, 1) - logits
+            target: (batch, days_predicted, 1) - binary labels (may contain NaN)
         
-        return self.bpm_weight * bpm_loss + self.steps_weight * steps_loss
+        Returns:
+            Scalar loss (averaged over valid entries only)
+        """
+        # Create mask for valid (non-NaN) entries
+        valid_mask = ~torch.isnan(target)
+        
+        if valid_mask.sum() == 0:
+            # No valid entries, return zero loss
+            return torch.tensor(0.0, device=pred.device, requires_grad=True)
+        
+        # Replace NaN with 0 to avoid errors (will be masked anyway)
+        target_clean = torch.where(valid_mask, target, torch.zeros_like(target))
+        
+        # Compute element-wise loss
+        loss = self.bce(pred, target_clean)
+        
+        # Apply mask and average
+        masked_loss = loss * valid_mask.float()
+        return masked_loss.sum() / valid_mask.sum()
 
 
-def get_loss_function(output_type: str, bpm_weight: float = 0.5, steps_weight: float = 0.5):
+def get_loss_function(output_type: str, **kwargs):
     """
     Get appropriate loss function for output type.
     
     Args:
-        output_type: 'bpm', 'steps', or 'both'
-        bpm_weight: weight for bpm loss (only used for 'both')
-        steps_weight: weight for steps loss (only used for 'both')
+        output_type: 'bpm', 'steps', 'anxiety', or 'stress'
+        **kwargs: additional arguments (unused, for backward compatibility)
     
     Returns:
         Loss function
     """
+    if output_type not in OUTPUT_TYPE_CONFIG:
+        raise ValueError(f"Unknown output_type: {output_type}. Valid types: {list(OUTPUT_TYPE_CONFIG.keys())}")
+    
+    task_type = OUTPUT_TYPE_CONFIG[output_type]['task']
+    
     if output_type == 'bpm':
-        # return nn.MSELoss()
         return nn.L1Loss()
     elif output_type == 'steps':
         return nn.L1Loss()  # MAE
-    elif output_type == 'both':
-        return CombinedLoss(bpm_weight, steps_weight)
+    elif task_type == 'binary':  # anxiety or stress
+        return MaskedBCEWithLogitsLoss()
     else:
-        raise ValueError(f"Unknown output_type: {output_type}")
+        raise ValueError(f"Unknown task type for output_type: {output_type}")
 
