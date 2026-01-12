@@ -38,21 +38,21 @@ plt.rcParams['legend.fontsize'] = 9
 plt.rcParams['figure.titlesize'] = 14
 
 # Color palettes
-MASKING_COLORS = {'10': '#3498db', '30': '#e74c3c', '50': '#2ecc71'}
-MODEL_COLORS = {'nn': '#9b59b6', 'cnn': '#f39c12'}
+MASKING_COLORS = {'10': '#D8906E', '30': '#8ACED0', '50': '#AF95DB'}
+MODEL_COLORS = {'nn': '#D8906E', 'cnn': '#8ACED0'}
 METRIC_COLORS = {
-    'bpm': '#e74c3c', 
-    'steps': '#3498db', 
-    'anxiety': '#9b59b6',
-    'stress': '#27ae60'
+    'bpm': '#D8906E', 
+    'steps': '#8ACED0', 
+    'anxiety': '#AF95DB',
+    'stress': '#66A253'
 }
 CLASSIFICATION_METRIC_COLORS = {
-    'balanced_accuracy': '#e74c3c',
-    'accuracy': '#3498db',
-    'f1': '#2ecc71',
+    'balanced_accuracy': '#D8906E',
+    'accuracy': '#8ACED0',
+    'f1': '#AF95DB',
     'precision': '#f39c12',
-    'recall': '#9b59b6',
-    'auc': '#1abc9c'
+    'recall': '#66A253',
+    'auc': '#5D6B83'
 }
 
 
@@ -134,7 +134,7 @@ def plot_regression_model_comparison(df: pd.DataFrame, output_dir: str):
     fig, axes = plt.subplots(1, 2, figsize=(12, 4.5))
     
     metrics = [
-        ('test_bpm_loss', 'BPM Loss (MSE)', 'Heart Rate Prediction'),
+        ('test_bpm_loss', 'BPM Loss (MAE)', 'Heart Rate Prediction'),
         ('test_steps_loss', 'Steps Loss (MAE)', 'Step Count Prediction'),
     ]
     
@@ -252,7 +252,7 @@ def plot_masking_effect_regression(df: pd.DataFrame, output_dir: str):
     fig, axes = plt.subplots(1, 2, figsize=(11, 4.5))
     
     metrics = [
-        ('test_bpm_loss', 'BPM Loss (MSE)'),
+        ('test_bpm_loss', 'BPM Loss (MAE)'),
         ('test_steps_loss', 'Steps Loss (MAE)'),
     ]
     
@@ -332,7 +332,7 @@ def plot_prediction_horizon_effect(df: pd.DataFrame, output_dir: str):
     
     # Top row: Regression
     metrics_regression = [
-        ('test_bpm_loss', 'BPM Loss (MSE)', axes[0, 0]),
+        ('test_bpm_loss', 'BPM Loss (MAE)', axes[0, 0]),
         ('test_steps_loss', 'Steps Loss (MAE)', axes[0, 1]),
     ]
     
@@ -402,7 +402,7 @@ def plot_context_length_effect(df: pd.DataFrame, output_dir: str):
     
     # Top row: Regression
     metrics_regression = [
-        ('test_bpm_loss', 'BPM Loss (MSE)', axes[0, 0]),
+        ('test_bpm_loss', 'BPM Loss (MAE)', axes[0, 0]),
         ('test_steps_loss', 'Steps Loss (MAE)', axes[0, 1]),
     ]
     
@@ -490,7 +490,7 @@ def plot_heatmaps_regression(df: pd.DataFrame, output_dir: str):
             
             sns.heatmap(pivot, ax=ax, cmap=cmap, vmin=vmin, vmax=vmax,
                        annot=True, fmt='.0f', cbar=col == 2,
-                       cbar_kws={'label': 'BPM Loss (MSE)'} if col == 2 else {},
+                       cbar_kws={'label': 'BPM Loss (MAE)'} if col == 2 else {},
                        linewidths=0.5, linecolor='white')
             
             ax.set_title(f'{model.upper()} - Mask {masking}%')
@@ -715,7 +715,7 @@ def plot_all_configs_ranked(df: pd.DataFrame, output_dir: str):
     
     ax.bar(x, df_sorted['test_bpm_loss'], color=colors, alpha=0.85, edgecolor='white')
     
-    ax.set_ylabel('Test BPM Loss (MSE)')
+    ax.set_ylabel('Test BPM Loss (MAE)')
     ax.set_xticks(x)
     ax.set_xticklabels(labels, rotation=90, ha='center', fontsize=7)
     ax.grid(axis='y', alpha=0.3, linestyle='--')
@@ -767,8 +767,9 @@ def generate_summary_table(df: pd.DataFrame, output_dir: str):
 
 def main():
     # Paths
-    base_dir = '/data1/mjma/ssl-physio/embedding_sequencers_results'
-    output_dir = os.path.join('/data1/mjma/ssl-physio', 'plots')
+    root_path = Path(__file__).resolve().parents[1]
+    base_dir = os.path.join(root_path, 'embedding_sequencers_results')
+    output_dir = os.path.join(root_path, 'plots_2')
     os.makedirs(output_dir, exist_ok=True)
     
     print(f"Loading results from: {base_dir}")
@@ -818,7 +819,7 @@ def main():
     print(f"  Days given: {best_bpm['days_given']}")
     print(f"  Days predicted: {best_bpm['days_predicted']}")
     print(f"  Model: {best_bpm['model_type'].upper()}")
-    print(f"  Test BPM loss (MSE): {best_bpm['test_bpm_loss']:.2f}")
+    print(f"  Test BPM Loss (MAE): {best_bpm['test_bpm_loss']:.2f}")
     
     if has_classification:
         best_anxiety = df.loc[df['test_anxiety_balanced_accuracy'].idxmax()]

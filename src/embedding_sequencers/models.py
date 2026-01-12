@@ -266,7 +266,7 @@ def get_loss_function(output_type: str, **kwargs):
     task_type = OUTPUT_TYPE_CONFIG[output_type]['task']
     
     if output_type == 'bpm':
-        return nn.MSELoss()
+        return nn.L1Loss()
     elif output_type == 'steps':
         return nn.L1Loss()  # MAE
     elif task_type == 'binary':  # anxiety or stress

@@ -1,0 +1,6 @@
+,test_bpm_loss,test_bpm_loss,test_steps_loss,test_steps_loss,test_both_loss,test_both_loss
+,mean,std,mean,std,mean,std
+masking_ratio,,,,,,
+10,4.65,0.54,5630.78,2022.82,152.63,7.97
+30,5.24,0.78,5522.18,2034.04,151.04,10.14
+50,5.66,0.78,5260.17,2347.34,144.91,16.88

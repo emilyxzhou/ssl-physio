@@ -5,7 +5,7 @@ Trains sequence prediction models on pre-computed embeddings.
 Per-subject models predicting future biosignals from embedding sequences.
 
 Output types:
-- bpm: regression (MSE loss)
+- bpm: regression (MAE loss)
 - steps: regression (MAE loss)
 - anxiety: binary classification (BCE loss)
 - stress: binary classification (BCE loss)
@@ -13,6 +13,7 @@ Output types:
 
 import json
 import os
+import random
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -31,12 +32,32 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
+
+
 from torch.utils.data import DataLoader, TensorDataset
 from sklearn.metrics import (
     balanced_accuracy_score, accuracy_score, f1_score,
     precision_score, recall_score, roc_auc_score
 )
 from tqdm import tqdm
+
+
+def set_seed(seed: int):
+    """
+    Set random seed for reproducibility across all relevant libraries.
+    
+    Args:
+        seed: Integer seed value
+    """
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+        # For deterministic behavior (may impact performance)
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
 
 # All output types to train
 OUTPUT_TYPES = ['bpm', 'steps', 'anxiety', 'stress']
@@ -303,7 +324,9 @@ def run_embedding_sequencer(
     days_predicted: int,
     prediction_model: str,
     output_folder: str,
-    min_days_per_subject: int = 30
+    min_days_per_subject: int = 30,
+    seed: int = None,
+    save_results: bool = True
 ):
     """
     Run the embedding sequencer pipeline.
@@ -315,10 +338,17 @@ def run_embedding_sequencer(
         prediction_model: Model architecture ("cnn" or "nn")
         output_folder: Directory to save results
         min_days_per_subject: Minimum days of data required per subject (default: 30)
+        seed: Random seed for reproducibility (default: None, uses random initialization)
+        save_results: Whether to save results.json (default: True, set False when called from multi-seed)
     
     Returns:
-        None. Saves results.json to output_folder upon completion.
+        dict: Results dictionary containing all metrics and metadata.
+              If save_results=True, also saves results.json to output_folder.
     """
+    # Set random seed if provided
+    if seed is not None:
+        set_seed(seed)
+    
     # Get timezone and start time
     pst = pytz.timezone('America/Los_Angeles')
     started_at = datetime.now(pst).strftime('%Y-%m-%d %H:%M:%S %Z')
@@ -332,6 +362,7 @@ def run_embedding_sequencer(
     print(f"Prediction model: {prediction_model}")
     print(f"Output types: {OUTPUT_TYPES}")
     print(f"Min days per subject: {min_days_per_subject}")
+    print(f"Random seed: {seed}")
     print(f"Output folder: {output_folder}")
     print(f"Started at: {started_at}")
     print(f"{'='*60}\n")
@@ -418,13 +449,14 @@ def run_embedding_sequencer(
             'days_predicted': days_predicted,
             'prediction_model': prediction_model,
             'min_days_per_subject': min_days_per_subject,
-            'output_types': OUTPUT_TYPES
+            'output_types': OUTPUT_TYPES,
+            'seed': seed
         },
         'started_at': started_at,
         'ended_at': ended_at,
         'average_results': average_results,
         'metadata': {
-            'bpm_loss_type': 'mse',
+            'bpm_loss_type': 'mae',
             'steps_loss_type': 'mae',
             'anxiety_loss_type': 'binary_cross_entropy',
             'stress_loss_type': 'binary_cross_entropy',
@@ -440,25 +472,186 @@ def run_embedding_sequencer(
         'subject_index': subject_index
     }
     
+    # Save results (conditionally)
+    if save_results:
+        os.makedirs(output_folder, exist_ok=True)
+        results_path = os.path.join(output_folder, 'results.json')
+        with open(results_path, 'w') as f:
+            json.dump(output, f, indent=4)
+        
+        print(f"\n{'='*60}")
+        print("RESULTS SUMMARY")
+        print(f"{'='*60}")
+        print("\n--- Regression Tasks ---")
+        print(f"BPM - Test MAE: {average_results['test_bpm_loss']:.4f}")
+        print(f"Steps - Test MAE: {average_results['test_steps_loss']:.4f}")
+        print("\n--- Binary Classification Tasks ---")
+        print(f"Anxiety - Balanced Acc: {average_results.get('test_anxiety_balanced_accuracy', float('nan')):.4f}, "
+              f"F1: {average_results.get('test_anxiety_f1', float('nan')):.4f}, "
+              f"AUC: {average_results.get('test_anxiety_auc', float('nan')):.4f}")
+        print(f"Stress - Balanced Acc: {average_results.get('test_stress_balanced_accuracy', float('nan')):.4f}, "
+              f"F1: {average_results.get('test_stress_f1', float('nan')):.4f}, "
+              f"AUC: {average_results.get('test_stress_auc', float('nan')):.4f}")
+        print(f"\nResults saved to: {results_path}")
+        print(f"Ended at: {ended_at}")
+        print(f"{'='*60}")
+    
+    return output
+
+
+def run_embedding_sequencer_multi_seed(
+    masking_model: str,
+    days_given: int,
+    days_predicted: int,
+    prediction_model: str,
+    output_folder: str,
+    min_days_per_subject: int = 30,
+    seeds: list = None,
+    num_seeds: int = 5
+):
+    """
+    Run the embedding sequencer pipeline multiple times with different seeds.
+    Computes mean and variance for all metrics across seeds.
+    
+    Args:
+        masking_model: The masking model to use (e.g., "masking_10", "masking_30", "masking_50")
+        days_given: Number of days of input data (e.g., 3, 5, 7)
+        days_predicted: Number of days to predict (e.g., 1, 5, 7, 14)
+        prediction_model: Model architecture ("cnn" or "nn")
+        output_folder: Directory to save results
+        min_days_per_subject: Minimum days of data required per subject (default: 30)
+        seeds: List of specific seeds to use. If None, uses [0, 1, 2, ..., num_seeds-1]
+        num_seeds: Number of seeds if seeds list not provided (default: 5)
+    
+    Returns:
+        None. Saves seed_results.json to output_folder upon completion.
+    """
+    pst = pytz.timezone('America/Los_Angeles')
+    started_at = datetime.now(pst).strftime('%Y-%m-%d %H:%M:%S %Z')
+    
+    # Determine seeds to use
+    if seeds is None:
+        seeds = list(range(num_seeds))
+    
+    print(f"\n{'='*60}")
+    print("EMBEDDING SEQUENCER - MULTI-SEED RUN")
+    print(f"{'='*60}")
+    print(f"Masking model: {masking_model}")
+    print(f"Days given: {days_given}")
+    print(f"Days predicted: {days_predicted}")
+    print(f"Prediction model: {prediction_model}")
+    print(f"Seeds: {seeds}")
+    print(f"Output folder: {output_folder}")
+    print(f"Started at: {started_at}")
+    print(f"{'='*60}\n")
+    
+    # Collect results from each seed run
+    all_seed_results = []
+    
+    for seed_idx, seed in enumerate(seeds):
+        print(f"\n--- Running seed {seed} ({seed_idx + 1}/{len(seeds)}) ---\n")
+        
+        # Run with this seed (don't save individual results, capture the output dict)
+        result = run_embedding_sequencer(
+            masking_model=masking_model,
+            days_given=days_given,
+            days_predicted=days_predicted,
+            prediction_model=prediction_model,
+            output_folder=output_folder,
+            min_days_per_subject=min_days_per_subject,
+            seed=seed,
+            save_results=False  # Don't save individual results.json
+        )
+        
+        all_seed_results.append({
+            'seed': seed,
+            'average_results': result['average_results'],
+            'subject_results': result['subject_results']
+        })
+    
+    # Compute aggregated statistics across seeds
+    # For each metric, compute mean and variance across the seed runs
+    aggregated_results = {}
+    
+    # Get all metric keys from the first result
+    metric_keys = list(all_seed_results[0]['average_results'].keys())
+    
+    for metric in metric_keys:
+        values = [r['average_results'][metric] for r in all_seed_results]
+        # Filter out NaN values for statistics
+        valid_values = [v for v in values if not np.isnan(v)]
+        
+        if len(valid_values) > 0:
+            aggregated_results[f'{metric}_mean'] = float(np.mean(valid_values))
+            aggregated_results[f'{metric}_std'] = float(np.std(valid_values))
+            aggregated_results[f'{metric}_var'] = float(np.var(valid_values))
+            aggregated_results[f'{metric}_min'] = float(np.min(valid_values))
+            aggregated_results[f'{metric}_max'] = float(np.max(valid_values))
+            aggregated_results[f'{metric}_n_valid_seeds'] = len(valid_values)
+        else:
+            aggregated_results[f'{metric}_mean'] = float('nan')
+            aggregated_results[f'{metric}_std'] = float('nan')
+            aggregated_results[f'{metric}_var'] = float('nan')
+            aggregated_results[f'{metric}_min'] = float('nan')
+            aggregated_results[f'{metric}_max'] = float('nan')
+            aggregated_results[f'{metric}_n_valid_seeds'] = 0
+    
+    # End time
+    ended_at = datetime.now(pst).strftime('%Y-%m-%d %H:%M:%S %Z')
+    
+    # Build output dictionary
+    output = {
+        'parameters': {
+            'masking_model': masking_model,
+            'days_given': days_given,
+            'days_predicted': days_predicted,
+            'prediction_model': prediction_model,
+            'min_days_per_subject': min_days_per_subject,
+            'output_types': OUTPUT_TYPES,
+            'seeds': seeds,
+            'num_seeds': len(seeds)
+        },
+        'started_at': started_at,
+        'ended_at': ended_at,
+        'aggregated_results': aggregated_results,
+        'per_seed_results': [
+            {'seed': r['seed'], 'average_results': r['average_results']}
+            for r in all_seed_results
+        ],
+        'metadata': {
+            'bpm_loss_type': 'mae',
+            'steps_loss_type': 'mae',
+            'anxiety_loss_type': 'binary_cross_entropy',
+            'stress_loss_type': 'binary_cross_entropy',
+            'anxiety_metrics': ['balanced_accuracy', 'accuracy', 'f1', 'precision', 'recall', 'auc'],
+            'stress_metrics': ['balanced_accuracy', 'accuracy', 'f1', 'precision', 'recall', 'auc'],
+            'num_subjects': all_seed_results[0]['subject_results']['train_bpm_loss'].__len__() if all_seed_results else 0,
+            'aggregation': 'mean and variance computed across seed runs'
+        },
+        'model_params': None,  # Would be same across seeds
+        'training_config': TRAINING_CONFIG
+    }
+    
     # Save results
     os.makedirs(output_folder, exist_ok=True)
-    results_path = os.path.join(output_folder, 'results.json')
+    results_path = os.path.join(output_folder, 'seed_results.json')
     with open(results_path, 'w') as f:
         json.dump(output, f, indent=4)
     
     print(f"\n{'='*60}")
-    print("RESULTS SUMMARY")
+    print("MULTI-SEED RESULTS SUMMARY")
     print(f"{'='*60}")
-    print("\n--- Regression Tasks ---")
-    print(f"BPM - Test MSE: {average_results['test_bpm_loss']:.4f}")
-    print(f"Steps - Test MAE: {average_results['test_steps_loss']:.4f}")
-    print("\n--- Binary Classification Tasks ---")
-    print(f"Anxiety - Balanced Acc: {average_results.get('test_anxiety_balanced_accuracy', float('nan')):.4f}, "
-          f"F1: {average_results.get('test_anxiety_f1', float('nan')):.4f}, "
-          f"AUC: {average_results.get('test_anxiety_auc', float('nan')):.4f}")
-    print(f"Stress - Balanced Acc: {average_results.get('test_stress_balanced_accuracy', float('nan')):.4f}, "
-          f"F1: {average_results.get('test_stress_f1', float('nan')):.4f}, "
-          f"AUC: {average_results.get('test_stress_auc', float('nan')):.4f}")
+    print(f"\nSeeds used: {seeds}")
+    print("\n--- Regression Tasks (Mean ± Std) ---")
+    print(f"BPM - Test MAE: {aggregated_results['test_bpm_loss_mean']:.4f} ± {aggregated_results['test_bpm_loss_std']:.4f}")
+    print(f"Steps - Test MAE: {aggregated_results['test_steps_loss_mean']:.4f} ± {aggregated_results['test_steps_loss_std']:.4f}")
+    print("\n--- Binary Classification Tasks (Mean ± Std) ---")
+    print(f"Anxiety - Balanced Acc: {aggregated_results.get('test_anxiety_balanced_accuracy_mean', float('nan')):.4f} ± {aggregated_results.get('test_anxiety_balanced_accuracy_std', float('nan')):.4f}")
+    print(f"Anxiety - F1: {aggregated_results.get('test_anxiety_f1_mean', float('nan')):.4f} ± {aggregated_results.get('test_anxiety_f1_std', float('nan')):.4f}")
+    print(f"Anxiety - AUC: {aggregated_results.get('test_anxiety_auc_mean', float('nan')):.4f} ± {aggregated_results.get('test_anxiety_auc_std', float('nan')):.4f}")
+    print(f"Stress - Balanced Acc: {aggregated_results.get('test_stress_balanced_accuracy_mean', float('nan')):.4f} ± {aggregated_results.get('test_stress_balanced_accuracy_std', float('nan')):.4f}")
+    print(f"Stress - F1: {aggregated_results.get('test_stress_f1_mean', float('nan')):.4f} ± {aggregated_results.get('test_stress_f1_std', float('nan')):.4f}")
+    print(f"Stress - AUC: {aggregated_results.get('test_stress_auc_mean', float('nan')):.4f} ± {aggregated_results.get('test_stress_auc_std', float('nan')):.4f}")
     print(f"\nResults saved to: {results_path}")
     print(f"Ended at: {ended_at}")
     print(f"{'='*60}")
@@ -479,7 +672,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     print(f"Output types being trained: {OUTPUT_TYPES}")
-    print("  - bpm: regression (MSE)")
+    print("  - bpm: regression (MAE)")
     print("  - steps: regression (MAE)")
     print("  - anxiety: binary classification (BCE)")
     print("  - stress: binary classification (BCE)")
