@@ -62,7 +62,7 @@ def save_model(
         model
 ):
     torch.save(
-        model.state_dic(),
+        model.state_dict(),
         MODEL_SAVE_PATH
     )
 
