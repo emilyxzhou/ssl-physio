@@ -264,14 +264,16 @@ def generate_binary_labels(subject_ids, dates, version, label_type):
     return labels
 
 
-def generate_continuous_labels_day(subject_ids, dates, version, label_type, debug=True):
+def generate_continuous_labels_day(subject_ids, dates, version, label_type, debug=False):
     """
     Generate corresponding continuous labels from demographics and wearable data for the given lists of subject IDs and dates.
     
     :param subject_ids: list of subject IDs obtained from `load_tiles_open` or `load_tiles_holdout`
     :param dates: list of dates obtained from `load_tiles_open` or `load_tiles_holdout`
     :param version: "open", "holdout"
-    :param label_type: "RMSStdDev_ms", "RRPeakCoverage", "SDNN_ms", "RR0 ", "bpm", "level", "StepCount"
+    :param label_type: "RMSStdDev_ms", "RRPeakCoverage", "SDNN_ms", "RR0 ", "bpm", "level"
+        - The following are obtained from the daily summary files located at '/data1/tiantiaf/tiles-opendata/tiles-phase1-opendataset-holdout/fitbit/daily-summary/{subject_ID}'
+        - "NumberSteps", "RestingHeartRate", "SleepMinutesAsleep"
     """
     labels = list()
     unique_subject_ids = list(set(subject_ids))
@@ -279,18 +281,37 @@ def generate_continuous_labels_day(subject_ids, dates, version, label_type, debu
     if version == "open": base_path = constants.TILES_OPEN_FITBIT_BASE_FOLDER
     else: base_path = constants.TILES_HOLDOUT_FITBIT_BASE_FOLDER
     
-    daily_data = get_data_daily(base_path, debug=debug)
-    for i in range(len(subject_ids)):
-        subject_id = subject_ids[i]
-        date = dates[i]
-        next_day = date + datetime.timedelta(days=1)
-        if next_day in daily_data["Date"].values:
+    if label_type in ["RMSStdDev_ms", "RRPeakCoverage", "SDNN_ms", "RR0 ", "bpm", "level"]:
+        daily_data = get_data_daily(base_path, debug=debug)
+        for i in range(len(subject_ids)):
+            subject_id = subject_ids[i]
+            date = dates[i]
+            next_day = date + datetime.timedelta(days=1)
+            if next_day in daily_data["Date"].values:
+                try:
+                    label = daily_data.loc[(daily_data["ID"] == subject_id ) & (daily_data["Date"] == next_day), label_type].item()
+                except Exception as e: 
+                    label = np.nan
+            else: label = np.nan
+            labels.append(label)
+    else:
+        summary_files = glob.glob("/data1/tiantiaf/tiles-opendata/tiles-phase1-opendataset-holdout/fitbit/daily-summary/*")
+        summary_dfs = []
+        for fp in summary_files:
+            subject_id = fp.split("/")[-1].split(".")[0]
+            df = pd.read_csv(fp)
+            df["Date"] = df["Timestamp"].apply(lambda t: datetime.datetime.strptime(t, '%Y-%m-%d').date())
+            df.insert(0, "ID", subject_id)
+            summary_dfs.append(df)
+        summary_dfs = pd.concat(summary_dfs, axis=0).reset_index(drop=True)
+        for i in range(len(subject_ids)):
+            subject_id = subject_ids[i]
+            date = dates[i]
             try:
-                label = daily_data.loc[(daily_data["ID"] == subject_id ) & (daily_data["Date"] == next_day), label_type].item()
+                label = summary_dfs[(summary_dfs["ID"] == subject_id) & (summary_dfs["Date"] == date)][label_type].iloc[0]
             except Exception as e: 
                 label = np.nan
-        else: label = np.nan
-        labels.append(label)
+            labels.append(label)
 
     return labels
 
@@ -324,13 +345,22 @@ if __name__ == "__main__":
         # "RMSStdDev_ms", "RRPeakCoverage", 
         # "SDNN_ms", 
         # "RR0", 
-    # "level", 
+        # "level", 
         "bpm", "StepCount"
     ]
     scale = "mean"
     window_size = 15    # minutes
 
-    label_type = constants.Labels.STRESS
+    label_types = [
+        # constants.Labels.AGE,
+        # constants.Labels.SHIFT,
+        # constants.Labels.ANXIETY,
+        # constants.Labels.STRESS,
+        constants.Labels.HR,
+        constants.Labels.RHR,
+        constants.Labels.STEPS,
+        constants.Labels.SLEEP_MINS,
+    ]
     debug = True
 
 # Test TILES-2018 open dataset ----------------------------------------------------------------------------------------------------
@@ -342,22 +372,13 @@ if __name__ == "__main__":
     # labels = generate_binary_labels(subject_ids, dates, version="open", label_type=label_type)
 
 # Test TILES-2018 held-out dataset ----------------------------------------------------------------------------------------------------
-    # subject_ids, dates, data = load_tiles_holdout(
-    #     signal_columns=signal_columns,
-    #     scale=scale, window_size=window_size, debug=debug
-    # )
+    subject_ids, dates, data = load_tiles_holdout(
+        signal_columns=signal_columns,
+        scale=scale, window_size=window_size, debug=debug
+    )
 
     # labels = generate_binary_labels(subject_ids, dates, version="holdout", label_type=label_type)
     # print(labels)
 
-    # labels = generate_continuous_labels_day(subject_ids, dates, data, version="holdout", label_type=label_type, debug=debug)
-    # nan_indices = [i for i in range(len(labels)) if np.isnan(labels[i])]
-    # labels = [-1 for _ in range(len(subject_ids))]
-
-# Test TILES-2018 few-shot version ----------------------------------------------------------------------------------------------------
-    load_tiles_few_shot(
-        signal_columns=signal_columns, version="open", label_type=label_type,
-        scale=scale, window_size=window_size, 
-        num_training_samples=5, num_testing_samples=5,
-        debug=debug
-    )
+    for label_type in label_types:
+        labels = generate_continuous_labels_day(subject_ids, dates, version="holdout", label_type=label_type, debug=debug)

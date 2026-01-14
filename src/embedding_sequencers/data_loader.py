@@ -27,7 +27,7 @@ constants.TILES_HOLDOUT_LABELS_ANXIETY = "/data1/mjma/tiles-holdout/labels/anxie
 constants.TILES_HOLDOUT_LABELS_SHIFT = "/data1/mjma/tiles-holdout/labels/shift.csv"
 constants.TILES_HOLDOUT_LABELS_STRESSD = "/data1/mjma/tiles-holdout/labels/stressd.csv"
 
-from tiles_dataloader import load_tiles_holdout, generate_binary_labels
+from tiles_dataloader import load_tiles_holdout, generate_binary_labels, generate_continuous_labels_day
 
 # Base path for embeddings
 EMBEDDINGS_BASE_DIR = "/data1/mjma/tiles-2018-processed/tiles-holdout/embeddings"
@@ -75,28 +75,26 @@ def load_raw_data_and_compute_targets():
     )
     
     # Generate binary labels for anxiety and stress
+    bpm_values = generate_continuous_labels_day(subject_ids, dates, version="holdout", label_type=constants.Labels.HR)
+    steps_values = generate_continuous_labels_day(subject_ids, dates, version="holdout", label_type=constants.Labels.STEPS)
+    # rhr_values = generate_continuous_labels_day(subject_ids, dates, version="holdout", label_type=constants.Labels.RHR)
+    # sleep_values = generate_continuous_labels_day(subject_ids, dates, version="holdout", label_type=constants.Labels.SLEEP_MINS)
     anxiety_labels = generate_binary_labels(subject_ids, dates, version="holdout", label_type="anxiety")
     stress_labels = generate_binary_labels(subject_ids, dates, version="holdout", label_type="stress")
     
     targets_by_user = defaultdict(dict)
     
     for i, (subject_id, date, day_data) in enumerate(zip(subject_ids, dates, data)):
-        # day_data is (1440, 2) - [bpm, StepCount] per minute
-        bpm_values = day_data[:, 0]
-        step_values = day_data[:, 1]
-        
-        # Compute daily aggregates
-        # Use nanmean/nansum to handle any remaining NaNs
-        avg_bpm = np.nanmean(bpm_values)
-        total_steps = np.nansum(step_values)
+        bpm_value = bpm_values[i]
+        steps_value = steps_values[i]
         
         # Get binary labels (may be NaN if not available)
         anxiety = anxiety_labels[i]
         stress = stress_labels[i]
         
         targets_by_user[subject_id][str(date)] = {
-            'bpm': avg_bpm,
-            'steps': total_steps,
+            'bpm': bpm_value,
+            'steps': steps_value,
             'anxiety': anxiety,
             'stress': stress
         }

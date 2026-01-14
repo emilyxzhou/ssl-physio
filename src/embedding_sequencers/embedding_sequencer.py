@@ -127,7 +127,7 @@ def train_model(model, train_X, train_Y, output_type, stats, device, config=None
             patience_counter += 1
             if patience_counter >= config['early_stopping_patience']:
                 break
-    
+    if not np.isfinite(best_loss): best_loss = np.nan
     return best_loss
 
 
