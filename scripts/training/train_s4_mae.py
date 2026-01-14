@@ -263,7 +263,7 @@ if __name__ == "__main__":
             signal_columns=signal_columns,
             scale=scale, window_size=window_size, debug=debug
         )
-        test_labels = [-1 for _ in range(len(subject_ids))]
+        test_labels = [-1 for _ in range(len(test_subject_ids))]
         tiles_test = TilesDataset(test_subject_ids, test_data, test_labels)
         test_dataloader = DataLoader(tiles_test, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
 
