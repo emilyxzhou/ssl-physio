@@ -316,7 +316,7 @@ class TilesDataset(Dataset):
         data       = self.data[index]
         subject_id = self.subject_ids[index]
         labels     = self.labels[index]
-        return data, subject_id, labels
+        return data.astype(np.float32), subject_id, labels
 
 
 if __name__ == "__main__":

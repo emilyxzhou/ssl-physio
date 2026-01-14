@@ -38,3 +38,6 @@ pytz>=2023.3
 filelock>=3.12.0
 typing_extensions>=4.7.0
 pydantic>=2.0.0
+
+# mamba requirements
+mamba-ssm==2.2.4
