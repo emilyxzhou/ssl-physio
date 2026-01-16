@@ -1,0 +1,22 @@
+{
+    "training_params": {
+        "mode": "full",
+        "reconstruction": "full",
+        "scaling": "mean",
+        "lr": 5e-4,
+        "weight_decay": 1e-4,
+        "epochs": 50,
+        "batch_size": 32,
+        "window_size": 15
+    },
+    "model_params": {
+        "d_input": 2,
+        "d_model": 128,
+        "d_output": 128,
+        "enc_hidden_dims": null,
+        "dec_hidden_dims": [128, 64, 32],
+        "n_layers_s4": 6,
+        "mask_ratio": 0.7,
+        "verbose": false
+    }
+}

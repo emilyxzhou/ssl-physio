@@ -301,6 +301,7 @@ def generate_continuous_labels_day(subject_ids, dates, version, label_type, debu
             subject_id = fp.split("/")[-1].split(".")[0]
             df = pd.read_csv(fp)
             df["Date"] = df["Timestamp"].apply(lambda t: datetime.datetime.strptime(t, '%Y-%m-%d').date())
+            df = df.sort_values(by="Date").reset_index(drop=True)
             df.insert(0, "ID", subject_id)
             summary_dfs.append(df)
         summary_dfs = pd.concat(summary_dfs, axis=0).reset_index(drop=True)
@@ -382,3 +383,4 @@ if __name__ == "__main__":
 
     for label_type in label_types:
         labels = generate_continuous_labels_day(subject_ids, dates, version="holdout", label_type=label_type, debug=debug)
+        print(labels)

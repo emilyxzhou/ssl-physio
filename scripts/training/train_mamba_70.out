@@ -1,0 +1,11 @@
+nohup: ignoring input
+Traceback (most recent call last):
+  File "/home/emilyzho/ssl-physio/scripts/training/train_mamba_mae.py", line 46, in <module>
+    from mamba_mae import MambaMAE
+  File "/home/emilyzho/ssl-physio/src/mamba/mamba_mae.py", line 15, in <module>
+    from mamba_ssm import Mamba
+  File "/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/mamba_ssm/__init__.py", line 3, in <module>
+    from mamba_ssm.ops.selective_scan_interface import selective_scan_fn, mamba_inner_fn
+  File "/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/mamba_ssm/ops/selective_scan_interface.py", line 20, in <module>
+    import selective_scan_cuda
+ImportError: /home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/selective_scan_cuda.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c104cuda9SetDeviceEab

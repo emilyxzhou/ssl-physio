@@ -17,6 +17,7 @@ for path in paths:
     sys.path.insert(0, path)
 
 import argparse
+import json
 import logging
 import math
 import numpy as np
@@ -53,64 +54,42 @@ os.environ["S4_FAST_CAUCHY"] = "0"
 os.environ["S4_FAST_VAND"] = "0"
 os.environ["S4_BACKEND"] = "keops"   # or "keops" if you installed pykeops
 
-# Save paths 
+# Paths 
+SSL_ROOT = os.path.join(USER_ROOT, "ssl-physio")
 MODEL_SAVE_FOLDER = f"{USER_ROOT}/ssl-physio/models/reconstruction"
-
 CHECKPOINT_DIR = f"{USER_ROOT}/ssl-physio/ckpts"
 CHECKPOINT_PREFIX = "S4"
 
 
 # Define loop functions -----------------------------------------------------------------------------------------------
-def save_model(model):
+def save_model(model, save_path):
     torch.save(
         model.state_dict(), 
-        MODEL_SAVE_PATH
+        save_path
     )
-    print(f"Model saved as {MODEL_SAVE_PATH}. Exiting.")
+    print(f"Model saved as {save_path}. Exiting.")
     if use_wandb:
         artifact = wandb.Artifact("s4-mae", type="model")
-        artifact.add_file(MODEL_SAVE_PATH)
+        artifact.add_file(save_path)
         wandb.log_artifact(artifact)
         wandb.finish()
 
 
-# Set up exit handler -------------------------------------------------------------------------------------------------
-def signal_handler(sig, frame):
-    print("\nCtrl+C detected.")
-    if not debug: 
-        save_model(model)
-        print("Saving model...")
-    exit(0)
-
-
 if __name__ == "__main__":
     # Read arguments -----------------------------------------------------------------------------------------------
-    with open(f"{USER_ROOT}/ssl-physio/scripts/params_s4.yaml", "r") as file:
-        params = yaml.safe_load(file)
-        mode = params["mode"]
-        reconstruction = params["reconstruction"]
-        scale = params["scale"]
-        d_input = params["d_input"]
-        d_output = params["d_output"]
-        enc_hidden_dims = params["enc_hidden_dims"]
-        dec_hidden_dims = params["dec_hidden_dims"]
-        d_model = params["d_model"]
-        n_layers_s4 = params["n_layers_s4"]
-        # mask_ratio = params["mask_ratio"]
-        lr = params["lr"]
-    mask_ratio = 0.5
-    if dec_hidden_dims is not None: d_model = dec_hidden_dims[0]
+    config_path = os.path.join(SSL_ROOT, "config", "s4_config.json")
+    config = json.load(open(config_path, "r"))
+
+    training_params = config["training_params"]
+
+    model_params = config["model_params"]
+    if model_params["dec_hidden_dims"] is not None: model_params["d_model"] = model_params["dec_hidden_dims"][0]
+    pprint.pprint(model_params)
 
     parser = argparse.ArgumentParser(description="Script for S4-MAE pre-training.")
-    parser.add_argument("--mode", "-m", type=str, default="full")
-    parser.add_argument("--reconstruction", "-r", type=str, default="full")
     parser.add_argument("--debug", "-d", type=str, default=False)
     args = parser.parse_args()
-    mode = args.mode
     debug = args.debug
-    reconstruction = args.reconstruction
-
-    pprint.pprint(params)
 
     # Find device
     device = torch.device("cuda:0") if torch.cuda.is_available() else "cpu"
@@ -119,22 +98,19 @@ if __name__ == "__main__":
         print("Default device set to CUDA.")
     else:
         print("CUDA not available.")
-    torch.set_default_dtype(torch.float64)
+    # torch.set_default_dtype(torch.float64)
 
 
     # Define parameters ----------------------------------------------------------------------------------------------------
     use_wandb = not debug
-    verbose = False
+    verbose = model_params["verbose"]
 
     # Save network
-    START_DATETIME = datetime.now()
-    START_DATETIME = START_DATETIME.strftime("%Y-%m-%d_%H:%M:%S")
-    MODEL_SAVE_PATH = os.path.join(MODEL_SAVE_FOLDER, f"s4-mae_{START_DATETIME}.pt")
+    MODEL_SAVE_PATH = os.path.join(MODEL_SAVE_FOLDER, f"s4-mae_{str(model_params['mask_ratio']*10)}.pt")
 
     # Training variables
-    epochs = 50
-    batch_size = 32
-
+    epochs = training_params["epochs"]
+    batch_size = training_params["batch_size"]
 
     # Initialize wandb ----------------------------------------------------------------------------------------------------
     if use_wandb:
@@ -142,39 +118,29 @@ if __name__ == "__main__":
             project="ssl-s4",
             name="S4",
             config = {
-                "scaling": scale,
-                "epochs": epochs,
+                "scaling": training_params["scaling"],
+                "epochs": training_params["epochs"],
                 "optimizer": "AdamW",
-                "encoder": enc_hidden_dims,
-                "decoder": dec_hidden_dims,
-                "S4 dim": d_model,
-                "# S4 layers": n_layers_s4,
-                "d_output": d_output,
-                "masking ratio": mask_ratio,
-                "learning rate": lr,
-                "mode": mode,
-                "reconstruction": reconstruction,
+                "encoder": model_params["enc_hidden_dims"],
+                "decoder": model_params["dec_hidden_dims"],
+                "S4 dim": model_params["d_model"],
+                "# S4 layers": model_params["n_layers_s4"],
+                "d_output": model_params["d_output"],
+                "masking ratio": model_params["mask_ratio"],
+                "learning rate": training_params["lr"],
+                "mode": training_params["mode"],
+                "reconstruction": training_params["reconstruction"],
                 "save path": MODEL_SAVE_PATH
             }
         )
 
-    signal.signal(signal.SIGINT, signal_handler)
-    signal.signal(signal.SIGTERM, signal_handler)
-
 
     # Setting up models -----------------------------------------------------------------------------------------------
     model = S4MAE(
-        d_model=dec_hidden_dims[0],
-        d_input=d_input,
-        d_output=d_output,
-        enc_hidden_dims=enc_hidden_dims,
-        dec_hidden_dims=dec_hidden_dims,
-        n_layers_s4=n_layers_s4,
-        mask_ratio=mask_ratio,
-        classification=False,
-        verbose=verbose
+        **model_params,
+        classification=False
     ).to(device)
-    summary(model, input_size=(1, d_input, 1440))
+    summary(model, input_size=(1, model_params["d_input"], 1440))
 
 
     # Loading data -----------------------------------------------------------------------------------------------
@@ -183,8 +149,8 @@ if __name__ == "__main__":
         # "sleepId", "level", 
         "bpm", "StepCount"
     ]
-    scale = "mean"
-    window_size = 15    # minutes
+    scale = training_params["scaling"]
+    window_size = training_params["window_size"]    # Window size for moving average 
     label_type = None
 
     subject_ids, dates, data = load_tiles_open(
@@ -220,7 +186,6 @@ if __name__ == "__main__":
     warmup_steps = int(0.05 * total_train_steps)    # 5% warmup
 
     # Model training ------------------------------------------------------------------------------------------------
-    
     # Define learning rate
     def lr_lambda(current_step: int):
         if current_step < warmup_steps:
@@ -233,28 +198,31 @@ if __name__ == "__main__":
     # Define optimizer
     optimizer = optim.AdamW(
         model.parameters(),
-        lr=lr,
-        weight_decay=1e-4,
+        lr=training_params["lr"],
+        weight_decay=training_params["weight_decay"],
         betas=(0.9, 0.95)
     )
+    scheduler = None
 
     # Read trainable params
     model_parameters = list(filter(lambda p: p.requires_grad, model.parameters()))
     params = sum([np.prod(p.size()) for p in model_parameters])
     logging.info(f"Trainable params: {params/(1e6):.2f} M")
 
-    scheduler = None
-
     trainer = Trainer(
         n_epochs=epochs, 
         checkpoint_dir=CHECKPOINT_DIR, checkpoint_prefix=CHECKPOINT_PREFIX, 
         model_save_folder=MODEL_SAVE_FOLDER,
-        mode=mode, reconstruction=reconstruction, use_wandb=use_wandb
+        mode=training_params["mode"], reconstruction=training_params["reconstruction"], use_wandb=use_wandb
     )
+    
+    start_datetime = datetime.now()
+    start_str = start_datetime.strftime("%Y-%m-%d_%H:%M:%S")
+    logging.info(f"Training start: {start_str}.")
 
     model = trainer.train_recon(
         model, train_dataloader, val_dataloader, criterion=nn.MSELoss(),
-        optimizer=optimizer, scheduler=scheduler, mask_ratio=mask_ratio,
+        optimizer=optimizer, scheduler=scheduler, mask_ratio=model_params["mask_ratio"],
         resume_checkpoint=None, device=device, debug=debug
     )
 
@@ -269,9 +237,17 @@ if __name__ == "__main__":
 
         test_loss = trainer.validate_recon(
             model, test_dataloader, criterion=nn.MSELoss(),
-            mask_ratio=mask_ratio, split="test",
+            mask_ratio=model_params["mask_ratio"], split="test",
             device=device
         )
+    
+    end_datetime = datetime.now()
+    end_str = end_datetime.strftime("%Y-%m-%d_%H:%M:%S")
+    total_seconds = (end_datetime - start_datetime).total_seconds()
+    minutes = int(total_seconds // 60)
+    seconds = int(total_seconds % 60)
+
+    logging.info(f"Training end: {end_str}. Elapsed time: {minutes}:{seconds}.")
 
     # Save model
-    if not debug: save_model(model)
+    if not debug: save_model(model, MODEL_SAVE_PATH)

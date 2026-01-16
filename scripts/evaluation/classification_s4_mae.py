@@ -22,15 +22,10 @@ sys.path.append(physio_data_path)
 
 import argparse
 import logging
-import math
 import numpy as np
 import pprint
-import random
-import signal
-import time
 import torch
 import torch.nn as nn
-import wandb
 import yaml
 
 import constants
@@ -63,16 +58,24 @@ os.environ["S4_FAST_CAUCHY"] = "0"
 os.environ["S4_FAST_VAND"] = "0"
 os.environ["S4_BACKEND"] = "keops"   # or "keops" if you installed pykeops
 
-# MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2025-12-22_11:15:39.pt"    # 10% masking
-MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2025-12-23_06:39:27.pt"    # 30% masking
-# MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2026-01-04_21:48:55.pt"    # 50% masking
 
-classification = "finetune"
-unfreeze_s4 = (classification != "lin_probe")
-mask_ratio = 0.3
+def load_model(checkpoint_path, params_path, classification=False, verbose=False):
+    # Read arguments -----------------------------------------------------------------------------------------------
+    with open(params_path, "r") as file:
+        params = yaml.safe_load(file)
+        mode = params["mode"]
+        reconstruction = params["reconstruction"]
+        scale = params["scale"]
+        d_input = params["d_input"]
+        d_output = params["d_output"]
+        enc_hidden_dims = params["enc_hidden_dims"]
+        dec_hidden_dims = params["dec_hidden_dims"]
+        d_model = params["d_model"]
+        n_layers_s4 = params["n_layers_s4"]
+        mask_ratio = params["mask_ratio"]
+        lr = params["lr"]
+    if dec_hidden_dims is not None: d_model = dec_hidden_dims[0]
 
-
-def load_model(checkpoint_path, classification=False, verbose=False):
     checkpoint = torch.load(checkpoint_path, map_location="cpu")
 
     model = S4MAE(
@@ -208,6 +211,14 @@ def validate_epoch(
 
 
 if __name__ == "__main__":
+    # MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2025-12-22_11:15:39.pt"    # 10% masking
+    MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2025-12-23_06:39:27.pt"    # 30% masking
+    # MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2026-01-04_21:48:55.pt"    # 50% masking
+
+    classification = "finetune"
+    unfreeze_s4 = (classification != "lin_probe")
+    mask_ratio = 0.3
+
     # Read arguments -----------------------------------------------------------------------------------------------
     with open("/home/emilyzho/ssl-physio/scripts/params_s4.yaml", "r") as file:
         params = yaml.safe_load(file)

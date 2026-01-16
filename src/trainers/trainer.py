@@ -79,8 +79,8 @@ class Trainer:
         optimizer, criterion=nn.MSELoss(),
         scheduler=None, 
         mask_ratio=0.0,
-        resume_checkpoint: str=None,
-        device: str="cuda", debug=False
+        resume_checkpoint=None,
+        device="cuda", debug=False
     ):
         print("Starting training...")
         model = model.to(device)
@@ -156,7 +156,7 @@ class Trainer:
         criterion=nn.MSELoss(),
         mask_ratio=0.0,
         split="val",
-        device: str="cuda",
+        device="cuda",
     ):
         model.eval()
         total_val_loss = 0.0
