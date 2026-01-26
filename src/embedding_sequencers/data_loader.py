@@ -21,16 +21,16 @@ sys.path.insert(0, physio_data_path)
 
 # Override constants before importing tiles_dataloader
 import constants
-constants.TILES_HOLDOUT_FITBIT_BASE_FOLDER = "/data1/mjma/tiles-holdout/fitbit"
-constants.TILES_HOLDOUT_LABELS_DEMOG = "/data1/mjma/tiles-holdout/labels/demographics_1.csv"
-constants.TILES_HOLDOUT_LABELS_ANXIETY = "/data1/mjma/tiles-holdout/labels/anxiety.csv"
-constants.TILES_HOLDOUT_LABELS_SHIFT = "/data1/mjma/tiles-holdout/labels/shift.csv"
-constants.TILES_HOLDOUT_LABELS_STRESSD = "/data1/mjma/tiles-holdout/labels/stressd.csv"
+# constants.TILES_HOLDOUT_FITBIT_BASE_FOLDER = "/data1/mjma/tiles-holdout/fitbit"
+# constants.TILES_HOLDOUT_LABELS_DEMOG = "/data1/mjma/tiles-holdout/labels/demographics_1.csv"
+# constants.TILES_HOLDOUT_LABELS_ANXIETY = "/data1/mjma/tiles-holdout/labels/anxiety.csv"
+# constants.TILES_HOLDOUT_LABELS_SHIFT = "/data1/mjma/tiles-holdout/labels/shift.csv"
+# constants.TILES_HOLDOUT_LABELS_STRESSD = "/data1/mjma/tiles-holdout/labels/stressd.csv"
 
 from tiles_dataloader import load_tiles_holdout, generate_binary_labels, generate_continuous_labels_day
 
 # Base path for embeddings
-EMBEDDINGS_BASE_DIR = "/data1/mjma/tiles-2018-processed/tiles-holdout/embeddings"
+EMBEDDINGS_BASE_DIR = "/data1/emilyzho/tiles-2018-processed/tiles-holdout/embeddings"
 
 
 def load_embeddings_and_index(masking_model: str):

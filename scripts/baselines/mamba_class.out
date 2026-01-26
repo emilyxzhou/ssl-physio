@@ -1,0 +1,56 @@
+nohup: ignoring input
+2026-01-26 16:47:48 INFO ==> Label: age --------------------------------------------------------------------------------
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+2026-01-26 16:50:54 INFO ==> ACC | bACC | F1 | AUC: 0.7210743801652892 0.6808070409172571 0.6768785698390327 0.6929691758008842
+2026-01-26 16:50:54 INFO ==> ------------------------------------------------------------
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+2026-01-26 16:53:35 INFO ==> ACC | bACC | F1 | AUC: 0.6962809917355371 0.6501693275278181 0.651793448736584 0.6769908079342042
+2026-01-26 16:53:35 INFO ==> ------------------------------------------------------------
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+2026-01-26 16:56:15 INFO ==> ACC | bACC | F1 | AUC: 0.7128099173553719 0.6715654765383042 0.6718484013364876 0.7373244511969457
+2026-01-26 16:56:15 INFO ==> ------------------------------------------------------------

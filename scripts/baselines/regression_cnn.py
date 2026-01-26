@@ -1,9 +1,11 @@
-# End-to-end regression with CNN
 import os
 import sys
 from pathlib import Path
 USER_ROOT = str(Path(__file__).resolve().parents[3])
 paths = [
+    os.path.join(
+        USER_ROOT, "ssl-physio", "src"
+    ),
     os.path.join(
         USER_ROOT, "ssl-physio", "src", "dataloaders"
     ),
@@ -21,7 +23,7 @@ physio_data_path = os.path.join(
 )
 sys.path.append(physio_data_path)
 
-import argparse
+import json
 import logging
 import math
 import numpy as np
@@ -47,7 +49,6 @@ from torch.utils.data import DataLoader
 from torchinfo import summary
 from tqdm import tqdm
 
-from trainer import Trainer, split_k_fold
 from tiles_dataloader import load_tiles_open, load_tiles_holdout, TilesDataset, generate_binary_labels, generate_continuous_labels_day
 
 from linear_classifier import CNN
@@ -64,12 +65,7 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S"
 )
 
-
-def freeze_weights(model):
-    for param in model.parameters():
-        param.requires_grad = False
-    model.eval()
-    return model
+SSL_ROOT = os.path.join(USER_ROOT, "ssl-physio")
 
 
 def train_epoch(
@@ -107,7 +103,7 @@ def train_epoch(
 
         mse = mean_squared_error(total_labels, total_preds)
         mae = mean_absolute_error(total_labels, total_preds)
-        r = pearsonr(total_labels, total_preds)
+        pearsonr_result = pearsonr(total_labels, total_preds)
         
         # if (epoch+1 % 10 == 0) and (batch_idx+1 % 50 == 0 or batch_idx+1 == len(dataloader)):
         # if (batch_idx+1 % 50 == 0 or batch_idx+1 == len(dataloader)):
@@ -116,7 +112,7 @@ def train_epoch(
         #     logging.info(f"Current R at epoch {epoch+1}, step {batch_idx+1}/{len(dataloader)} {r}")
         #     logging.info(f"------------------------------------------------------------")
 
-    return mse, mae, r
+    return mse, mae, pearsonr_result
 
 
 def validate_epoch(
@@ -124,7 +120,6 @@ def validate_epoch(
     model, 
     device,
     epoch,
-    split:  str="test"
 ):
     model.eval()
     criterion = nn.L1Loss()
@@ -149,7 +144,7 @@ def validate_epoch(
 
             mse = mean_squared_error(total_labels, total_preds)
             mae = mean_absolute_error(total_labels, total_preds)
-            r = pearsonr(total_labels, total_preds)
+            pearsonr_result = pearsonr(total_labels, total_preds)
 
             # if (epoch+1 % 10 == 0) and (batch_idx+1 % 50 == 0 or batch_idx+1 == len(dataloader)):
             if (batch_idx+1 % 50 == 0 or batch_idx+1 == len(dataloader)):
@@ -159,7 +154,7 @@ def validate_epoch(
                 logging.info(f"MSE | MAE | R: {mse} {mae} {r}")
                 logging.info(f"------------------------------------------------------------")
 
-    return mse, mae, r
+    return mse, mae, pearsonr_result
 
 
 if __name__ == "__main__":
@@ -172,7 +167,7 @@ if __name__ == "__main__":
         print("Default device set to CUDA.")
     else:
         print("CUDA not available.")
-    torch.set_default_dtype(torch.float64)
+    # torch.set_default_dtype(torch.float64)
 
 
     # Define parameters ----------------------------------------------------------------------------------------------------
@@ -188,11 +183,12 @@ if __name__ == "__main__":
     ]
     scale = "mean"
     window_size = 15    # minutes
-    window_size = 15    # minutes
     label_types = [
-        constants.Labels.STEPS,
         constants.Labels.HR,
-        constants.Labels.SDNN
+        constants.Labels.SDNN,
+        constants.Labels.RHR,
+        constants.Labels.STEPS,
+        constants.Labels.SLEEP_MINS
     ]
     num_folds = 5
     for label_type in label_types:
@@ -203,8 +199,6 @@ if __name__ == "__main__":
             scale=scale, window_size=window_size, debug=debug
         )
         labels = generate_continuous_labels_day(subject_ids, dates, version="holdout", label_type=label_type, debug=debug)
-        if label_type == constants.Labels.STEPS:
-            labels[:] = [s / 1000 for s in labels]
         nan_indices = [i for i in range(len(labels)) if np.isnan(labels[i])]
         nan_indices.sort(reverse=True)
         for i in nan_indices:
@@ -214,9 +208,24 @@ if __name__ == "__main__":
 
         # 5 folds, randomly sampling 700 samples as the training set and using the remaining as the test set
         # subject_id_folds, data_folds, labels_folds = split_k_fold(subject_ids, data, labels, num_folds=num_folds, seed=37)
-        mses = list()
-        maes = list()
-        rs = list()
+        results = {
+                "splits": {
+                    "train_size": [],
+                    "test_size": [],
+                },
+                "train": {
+                    "MSE": [],
+                    "MAE": [],
+                    "R": [],
+                    "p": []
+                },
+                "test": {
+                    "MSE": [],
+                    "MAE": [],
+                    "R": [],
+                    "p": []
+                }
+            }
 
         for i in range(num_folds):
             logging.info(f"Fold {i+1}")
@@ -233,7 +242,7 @@ if __name__ == "__main__":
             #         test_labels.extend(labels_folds[j])
 
             random.seed(42*i)
-            num_train_samples = int(len(subject_ids) * 0.14)
+            num_train_samples = int(len(subject_ids) * 0.09)
             logging.info(f"# training samples: {num_train_samples}")
             logging.info(f"# testing samples: {len(subject_ids) - num_train_samples}")
             train_indices = random.sample(list(range(len(subject_ids))), num_train_samples)
@@ -274,19 +283,27 @@ if __name__ == "__main__":
             )
 
             for epoch in range(epochs):
-                train_epoch(
+                mse, mae, pearsonr_result = train_epoch(
                     train_dataloader, model, device, optimizer, epoch=epoch
                 )
+                r = pearsonr_result[0]
+                p = pearsonr_result[1]
+                results["train"]["MSE"].append(mse)
+                results["train"]["MAE"].append(mae)
+                results["train"]["R"].append(r)
+                results["train"]["p"].append(p)
                 
-            mse, mae, r = validate_epoch(
-                test_dataloader, model, device, epoch=0, 
-                split="test"
+            mse, mae, pearsonr_result = validate_epoch(
+                test_dataloader, model, device, epoch=0
             )
+            r = pearsonr_result[0]
+            p = pearsonr_result[1]
+            results["test"]["MSE"].append(mse)
+            results["test"]["MAE"].append(mae)
+            results["test"]["R"].append(r)
+            results["test"]["p"].append(p)
 
-            mses.append(mse)
-            maes.append(mae)
-            rs.append(r)
-
-        logging.info(f"\nAverage MSE: {np.mean(mses)}")
-        logging.info(f"\nAverage MAE: {np.mean(maes)}")
-        logging.info(f"\nAverage R: {np.mean(rs)}")
+        logging.info(f"Average MSE | MAE | R | p: {np.mean(results["test"]["MSE"])} {np.mean(results["test"]["MAE"])} {np.mean(results["test"]["R"])} {np.mean(results["test"]["p"])}")
+        RESULTS_FILE = os.path.join(SSL_ROOT, "results", "baselines", "regression", f"cnn_{label_type}.json")
+        with open(RESULTS_FILE, "w") as json_file:
+            json.dump(results, json_file, indent=4)

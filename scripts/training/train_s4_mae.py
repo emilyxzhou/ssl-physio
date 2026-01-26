@@ -33,12 +33,11 @@ import yaml
 from datetime import datetime
 from pathlib import Path
 from torch import optim
-from torch.utils.data import DataLoader
 from torchinfo import summary
 from tqdm import tqdm
 
 from trainer import Trainer
-from tiles_dataloader import load_tiles_open, load_tiles_holdout, TilesDataset
+from tiles_dataloader import get_pretrain_eval_dataloaders
 
 from s4_mae import S4MAE
 
@@ -77,6 +76,13 @@ def save_model(model, save_path):
 
 if __name__ == "__main__":
     # Read arguments -----------------------------------------------------------------------------------------------
+    parser = argparse.ArgumentParser(description="Script for S4-MAE pre-training.")
+    parser.add_argument("--debug", "-d", action="store_true", default=False)
+    parser.add_argument("--mask_ratio", "-m", type=float, default=None)
+    args = parser.parse_args()
+    debug = args.debug
+    mask_ratio = args.mask_ratio
+
     config_path = os.path.join(SSL_ROOT, "config", "s4_config.json")
     config = json.load(open(config_path, "r"))
 
@@ -84,17 +90,14 @@ if __name__ == "__main__":
 
     model_params = config["model_params"]
     if model_params["dec_hidden_dims"] is not None: model_params["d_model"] = model_params["dec_hidden_dims"][0]
+    if mask_ratio is not None: model_params["mask_ratio"] = mask_ratio
+
     pprint.pprint(model_params)
 
-    parser = argparse.ArgumentParser(description="Script for S4-MAE pre-training.")
-    parser.add_argument("--debug", "-d", type=str, default=False)
-    args = parser.parse_args()
-    debug = args.debug
-
     # Find device
-    device = torch.device("cuda:0") if torch.cuda.is_available() else "cpu"
+    device = torch.device("cuda") if torch.cuda.is_available() else "cpu"
     if torch.cuda.is_available():
-        torch.set_default_device("cuda:0")
+        torch.set_default_device("cuda")
         print("Default device set to CUDA.")
     else:
         print("CUDA not available.")
@@ -106,7 +109,7 @@ if __name__ == "__main__":
     verbose = model_params["verbose"]
 
     # Save network
-    MODEL_SAVE_PATH = os.path.join(MODEL_SAVE_FOLDER, f"s4-mae_{str(model_params['mask_ratio']*10)}.pt")
+    MODEL_SAVE_PATH = os.path.join(MODEL_SAVE_FOLDER, f"s4-mae_{int(model_params['mask_ratio']*100)}.pt")
 
     # Training variables
     epochs = training_params["epochs"]
@@ -153,34 +156,15 @@ if __name__ == "__main__":
     window_size = training_params["window_size"]    # Window size for moving average 
     label_type = None
 
-    subject_ids, dates, data = load_tiles_open(
-        signal_columns=signal_columns,
-        scale=scale, window_size=window_size, debug=debug
+    pretrain_dataloader, val_dataloader, test_dataloader = get_pretrain_eval_dataloaders(
+        signal_columns, label_type=label_type,
+        scale="mean", window_size=15, 
+        batch_size=32, train_test_split=0.9,
+        device=device, debug=debug,
+        random_seed=42
     )
-    labels = [-1 for _ in range(len(subject_ids))]
 
-    # Split into train and validation sets, 80/20
-    unique_subjects = list(set(subject_ids))
-    train_subjects = random.sample(unique_subjects, int(len(unique_subjects)*0.8))
-    train_subject_ids, train_data, train_labels = list(), list(), list()
-    val_subject_ids, val_data, val_labels = list(), list(), list()
-    for i in range(len(subject_ids)):
-        if subject_ids[i] in train_subjects:
-            train_subject_ids.append(subject_ids[i])
-            train_data.append(data[i])
-            train_labels.append(labels[i])
-        else:
-            val_subject_ids.append(subject_ids[i])
-            val_data.append(data[i])
-            val_labels.append(labels[i])
-
-    tiles_train = TilesDataset(train_subject_ids, train_data, train_labels)
-    tiles_val = TilesDataset(val_subject_ids, val_data, val_labels)
-
-    train_dataloader = DataLoader(tiles_train, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
-    val_dataloader = DataLoader(tiles_val, batch_size=batch_size, num_workers=0, shuffle=False)
-
-    num_train_samples = len(tiles_train)
+    num_train_samples = len(pretrain_dataloader.dataset)
     steps_per_train_epoch = math.ceil(num_train_samples / batch_size)
     total_train_steps = epochs * steps_per_train_epoch
     warmup_steps = int(0.05 * total_train_steps)    # 5% warmup
@@ -221,20 +205,12 @@ if __name__ == "__main__":
     logging.info(f"Training start: {start_str}.")
 
     model = trainer.train_recon(
-        model, train_dataloader, val_dataloader, criterion=nn.MSELoss(),
+        model, pretrain_dataloader, val_dataloader, criterion=nn.MSELoss(),
         optimizer=optimizer, scheduler=scheduler, mask_ratio=model_params["mask_ratio"],
         resume_checkpoint=None, device=device, debug=debug
     )
 
     if not debug:
-        test_subject_ids, dates, test_data = load_tiles_holdout(
-            signal_columns=signal_columns,
-            scale=scale, window_size=window_size, debug=debug
-        )
-        test_labels = [-1 for _ in range(len(test_subject_ids))]
-        tiles_test = TilesDataset(test_subject_ids, test_data, test_labels)
-        test_dataloader = DataLoader(tiles_test, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
-
         test_loss = trainer.validate_recon(
             model, test_dataloader, criterion=nn.MSELoss(),
             mask_ratio=model_params["mask_ratio"], split="test",

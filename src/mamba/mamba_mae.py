@@ -1,5 +1,8 @@
 # MAMBA MAE implementation
-import sys, os 
+import os, sys 
+from pathlib import Path
+USER_ROOT = str(Path(__file__).resolve().parents[3])
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -8,7 +11,7 @@ import numpy as np
 
 from torchinfo import summary
 
-sys.path.append(os.path.join(os.getcwd(), "src", "s4-models"))
+sys.path.append(os.path.join(USER_ROOT, "ssl-physio", "src", "s4-models"))
 from linear_classifier import CNN, LogisticRegressionHead
 from regressor import Regressor
 
@@ -208,6 +211,55 @@ class MambaBlock(nn.Module):
         # Pre-Norm Residual connection pattern: x + Mamba(Norm(x))
         return x + self.mamba(self.norm(x))
     
+
+class MambaModel(nn.Module):
+
+    def __init__(
+            self,
+            d_input: int=None,
+            d_model: int=None,
+            d_output=None,
+            d_state=16,
+            expand=2,
+            n_layers=6,
+            pooling=False
+    ):
+        super().__init__()
+
+        self.encoder = nn.Linear(d_input, d_model, bias=False)
+        
+        self.mamba_layers = nn.ModuleList()
+
+        for _ in range(n_layers):
+            self.mamba_layers.append(
+                MambaBlock(d_model=d_model, d_state=d_state, expand=expand) 
+            )
+        
+        if d_output is not None:
+            # Linear decoder
+            self.decoder = nn.Linear(d_model, d_output)
+        else:
+            self.decoder = nn.Identity()
+
+        self.pooling = pooling
+
+    def forward(self, x):
+        """
+        Input x is shape (B, L, d_input)
+        """
+        x = self.encoder(x)
+        for layer in self.mamba_layers:
+            x = layer(x)
+
+        # Pooling: average pooling over the sequence length
+        if self.pooling: x = x.mean(dim=1)
+
+        # Decode the outputs
+        x = self.decoder(x)  # (B, L, d_model) -> (B, L, d_output)
+        
+        return x
+
+    
 class MambaMAE(nn.Module):
 
     def __init__(
@@ -241,17 +293,11 @@ class MambaMAE(nn.Module):
             enc_out_dim = d_input
             seq_dim = d_model
 
-        if enc_out_dim == d_input:
-            self.proj_encoder = nn.Linear(enc_out_dim, d_model, bias=False)
-        else:
-            self.proj_encoder = nn.Identity()
-
         self.mask = PatchMasking(mask_ratio)
 
-        self.seq_model = nn.ModuleList([
-            MambaBlock(d_model=seq_dim, d_state=16, expand=2) 
-            for _ in range(n_layers_seq)
-        ])
+        self.seq_model = MambaModel(
+            d_input=enc_out_dim, d_model=d_model, d_state=16, expand=2, n_layers=n_layers_seq
+        )
 
         self.norm_f = nn.LayerNorm(seq_dim)
 
@@ -274,19 +320,23 @@ class MambaMAE(nn.Module):
         
         if classification in ["finetune"]:
             dummy_input = torch.randn(1, d_input, 1440)
-            x = self.encoder(dummy_input)
-            x = self.s4_model(x.transpose(-1, -2).clone())
+            conv_output = self.encoder(dummy_input.clone())
+            seq_output = conv_output.transpose(1, 2)
+            seq_output = self.seq_model(seq_output)
+            seq_output = self.norm_f(seq_output)
             self.cls_head = CNN(
-                d_input=x.shape[1],
-                sequence_len=x.shape[2]
+                d_input=seq_output.shape[1],
+                sequence_len=seq_output.shape[2]
             )
         elif classification == "lin_probe":
             dummy_input = torch.randn(1, d_input, 1440)
-            x = self.encoder(dummy_input)
-            x = self.s4_model(x.transpose(-1, -2).clone())
+            conv_output = self.encoder(dummy_input.clone())
+            seq_output = conv_output.transpose(1, 2)
+            seq_output = self.seq_model(seq_output)
+            seq_output = self.norm_f(seq_output)
             self.cls_head = LogisticRegressionHead(
-                d_input=x.shape[1],
-                sequence_len=x.shape[2]
+                d_input=seq_output.shape[1],
+                sequence_len=seq_output.shape[2]
             )
         else:
             self.cls_head = None
@@ -304,14 +354,11 @@ class MambaMAE(nn.Module):
         conv_output = self.encoder(masked_input.clone())
         if self.verbose: print(f"Conv output shape: {conv_output.shape}")
         
-        seq_output = conv_output.transpose(1,2)
-        seq_output = self.proj_encoder(seq_output)
-        for layer in self.seq_model:
-            seq_output = layer(seq_output)
-
+        seq_output = conv_output.transpose(1, 2)
+        seq_output = self.seq_model(seq_output)
         seq_output = self.norm_f(seq_output)
 
-        if self.verbose: print(f"mamba output shape: {seq_output.shape}")
+        if self.verbose: print(f"Mamba output shape: {seq_output.shape}")
 
         if self.cls_head is not None:
             logits = self.cls_head(seq_output)
@@ -319,13 +366,14 @@ class MambaMAE(nn.Module):
         else:
             decoder_out = self.decoder(seq_output.transpose(-1, -2).clone())
             return decoder_out, x, mask
+        
 
 if __name__ == "__main__":
     device = torch.device("cuda") if torch.cuda.is_available() else "cpu"
     debug = True 
 
-    use_wandb= not debug
-    verbose=True 
+    use_wandb = not debug
+    verbose = True 
 
     mode = "full"
     reconstruction = "full"

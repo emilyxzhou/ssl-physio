@@ -24,32 +24,6 @@ logging.basicConfig(
 )
 
 
-def split_k_fold(subject_ids, data, labels, num_folds=5, seed=37):
-    random.seed(seed)
-    unique_subjects = list(set(subject_ids))
-    subjects_per_fold = (len(unique_subjects) // num_folds) + 1
-    random.shuffle(unique_subjects)
-
-    fold_ids = {subject_id: None for subject_id in unique_subjects}
-    subject_id_folds = [[] for _ in range(num_folds)]
-    data_folds = [[] for _ in range(num_folds)]
-    labels_folds = [[] for _ in range(num_folds)]
-    for i in range(num_folds):
-        subject_sublist = unique_subjects[i*subjects_per_fold:i*subjects_per_fold + subjects_per_fold]
-        for subject_id in subject_sublist:
-            fold_ids[subject_id] = i
-
-    for subject_id in fold_ids.keys():
-        fold = fold_ids[subject_id]
-        for i in range(len(subject_ids)):
-            if subject_ids[i] == subject_id:
-                subject_id_folds[fold].append(subject_ids[i])
-                data_folds[fold].append(data[i])
-                labels_folds[fold].append(labels[i])
-    
-    return subject_id_folds, data_folds, labels_folds
-
-
 class Trainer:
     def __init__(
             self, n_epochs, checkpoint_dir, checkpoint_prefix, model_save_folder,

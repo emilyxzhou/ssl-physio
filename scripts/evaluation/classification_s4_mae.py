@@ -4,6 +4,9 @@ from pathlib import Path
 USER_ROOT = str(Path(__file__).resolve().parents[3])
 paths = [
     os.path.join(
+        USER_ROOT, "ssl-physio", "src"
+    ),
+    os.path.join(
         USER_ROOT, "ssl-physio", "src", "dataloaders"
     ),
     os.path.join(
@@ -21,8 +24,10 @@ physio_data_path = os.path.join(
 sys.path.append(physio_data_path)
 
 import argparse
+import json
 import logging
 import numpy as np
+import pandas as pd
 import pprint
 import torch
 import torch.nn as nn
@@ -33,18 +38,17 @@ import constants
 from collections import Counter
 from datetime import datetime
 from imblearn.over_sampling import RandomOverSampler
-from pathlib import Path
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score, recall_score, roc_auc_score
-from sklearn.model_selection import train_test_split
 from torch import optim
 from torch.utils.data import DataLoader
 from torchinfo import summary
 from tqdm import tqdm
 
-from trainer import Trainer, split_k_fold
-from tiles_dataloader import load_tiles_open, load_tiles_holdout, TilesDataset, generate_binary_labels, generate_continuous_labels_day
-
 from s4_mae import S4MAE
+from trainer import Trainer
+from tiles_dataloader import get_pretrain_eval_dataloaders
+from utils import stratified_group_split, get_kfold_loaders
+
 
 # Define logging console
 import logging
@@ -58,36 +62,20 @@ os.environ["S4_FAST_CAUCHY"] = "0"
 os.environ["S4_FAST_VAND"] = "0"
 os.environ["S4_BACKEND"] = "keops"   # or "keops" if you installed pykeops
 
+SSL_ROOT = os.path.join(USER_ROOT, "ssl-physio")
 
-def load_model(checkpoint_path, params_path, classification=False, verbose=False):
+
+def load_model(checkpoint_path, config_path, classification=False):
     # Read arguments -----------------------------------------------------------------------------------------------
-    with open(params_path, "r") as file:
-        params = yaml.safe_load(file)
-        mode = params["mode"]
-        reconstruction = params["reconstruction"]
-        scale = params["scale"]
-        d_input = params["d_input"]
-        d_output = params["d_output"]
-        enc_hidden_dims = params["enc_hidden_dims"]
-        dec_hidden_dims = params["dec_hidden_dims"]
-        d_model = params["d_model"]
-        n_layers_s4 = params["n_layers_s4"]
-        mask_ratio = params["mask_ratio"]
-        lr = params["lr"]
-    if dec_hidden_dims is not None: d_model = dec_hidden_dims[0]
+    config = json.load(open(config_path, "r"))
+    model_params = config["model_params"]
+    if model_params["dec_hidden_dims"] is not None: model_params["d_model"] = model_params["dec_hidden_dims"][0]
 
     checkpoint = torch.load(checkpoint_path, map_location="cpu")
 
     model = S4MAE(
-        d_model=dec_hidden_dims[0],
-        d_input=d_input,
-        d_output=d_output,
-        enc_hidden_dims=enc_hidden_dims,
-        dec_hidden_dims=dec_hidden_dims,
-        n_layers_s4=n_layers_s4,
-        mask_ratio=mask_ratio,
-        classification=classification,
-        verbose=verbose
+        **model_params,
+        classification=classification
     ).to(device)
 
     # Load weights
@@ -164,8 +152,7 @@ def validate_epoch(
     dataloader, 
     model, 
     device,
-    epoch,
-    split:  str="test"
+    epoch
 ):
     model.eval()
     criterion = nn.BCEWithLogitsLoss()
@@ -211,40 +198,14 @@ def validate_epoch(
 
 
 if __name__ == "__main__":
-    # MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2025-12-22_11:15:39.pt"    # 10% masking
-    MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2025-12-23_06:39:27.pt"    # 30% masking
-    # MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2026-01-04_21:48:55.pt"    # 50% masking
-
-    classification = "finetune"
-    unfreeze_s4 = (classification != "lin_probe")
-    mask_ratio = 0.3
-
     # Read arguments -----------------------------------------------------------------------------------------------
-    with open("/home/emilyzho/ssl-physio/scripts/params_s4.yaml", "r") as file:
-        params = yaml.safe_load(file)
-        mode = params["mode"]
-        reconstruction = params["reconstruction"]
-        scale = params["scale"]
-        d_input = params["d_input"]
-        d_output = params["d_output"]
-        enc_hidden_dims = params["enc_hidden_dims"]
-        dec_hidden_dims = params["dec_hidden_dims"]
-        d_model = params["d_model"]
-        n_layers_s4 = params["n_layers_s4"]
-        # mask_ratio = params["mask_ratio"]
-        lr = params["lr"]
-    if dec_hidden_dims is not None: d_model = dec_hidden_dims[0]
-
-    parser = argparse.ArgumentParser(description="Script for S4-MAE pre-training.")
-    parser.add_argument("--mode", "-m", type=str, default="full")
-    parser.add_argument("--reconstruction", "-r", type=str, default="full")
+    parser = argparse.ArgumentParser(description="Script for S4-MAE downstream classification.")
     parser.add_argument("--debug", "-d", type=str, default=False)
+    parser.add_argument("--classification", "-c", type=str, default="lin_probe")
     args = parser.parse_args()
-    mode = args.mode
     debug = args.debug
-    reconstruction = args.reconstruction
-
-    pprint.pprint(params)
+    classification = args.classification
+    unfreeze_s4 = (classification != "lin_probe")
 
     # Find device
     device = torch.device("cuda:0") if torch.cuda.is_available() else "cpu"
@@ -253,132 +214,138 @@ if __name__ == "__main__":
         print("Default device set to CUDA.")
     else:
         print("CUDA not available.")
-    torch.set_default_dtype(torch.float64)
+    # torch.set_default_dtype(torch.float64)
 
+    config_path = os.path.join(SSL_ROOT, "config", "s4_config.json")
+    config = json.load(open(config_path, "r"))
+    training_params = config["training_params"]
+    model_params = config["model_params"]
 
-    # Define parameters ----------------------------------------------------------------------------------------------------
-    # Training variables
-    epochs = 100
-    batch_size = 32
+    for mask_ratio in [0.1, 0.3, 0.5, 0.7]:
+        logging.info(f"Mask ratio: {mask_ratio} " + "-"*120)
+        MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_{int(mask_ratio*100)}.pt"
 
+        # Define parameters ----------------------------------------------------------------------------------------------------
+        # Training variables
+        epochs = 100
+        batch_size = 32
 
-    # Loading data -----------------------------------------------------------------------------------------------
-    signal_columns = [
-        # "RMSStdDev_ms", "RRPeakCoverage", "SDNN_ms", "RR0", 
-        # "sleepId", "level", 
-        "bpm", "StepCount"
-    ]
-    scale = "mean"
-    window_size = 15    # minutes
-    label_types = [
-        "age", "shift", "anxiety", "stress"
-    ]
-    num_folds = 5
-    for label_type in label_types:
-        logging.info(f"Label: {label_type} " + "-"*80)
+        # Loading data -----------------------------------------------------------------------------------------------
+        signal_columns = [
+            # "RMSStdDev_ms", "RRPeakCoverage", "SDNN_ms", "RR0", 
+            # "sleepId", "level", 
+            "bpm", "StepCount"
+        ]
+        scale = "mean"
+        window_size = 15    # minutes
+        label_types = [
+            "age", "shift", "anxiety", "stress"
+        ]
+        
+        for label_type in label_types:
+            logging.info(f"Label: {label_type} " + "-"*80)
 
-        subject_ids, dates, data = load_tiles_holdout(
-            signal_columns=signal_columns,
-            scale=scale, window_size=window_size, debug=debug
-        )
-        labels = generate_binary_labels(subject_ids, dates, version="holdout", label_type=label_type)
+            results = {
+                "splits": {
+                    "train_size": [],
+                    "test_size": [],
+                    "train_labels": {
+                        0: [],
+                        1: []
+                    },
+                    "test_labels": {
+                        0: [],
+                        1: []
+                    }
+                },
+                "train": {
+                    "ACC": [],
+                    "bACC": [],
+                    "F1": [],
+                    "AUC": []
+                },
+                "test": {
+                    "ACC": [],
+                    "bACC": [],
+                    "F1": [],
+                    "AUC": []
+                }
+            }
 
-        # 5 folds, randomly sampling 700 samples as the training set and using the remaining as the test set
-        # subject_id_folds, data_folds, labels_folds = split_k_fold(subject_ids, data, labels, num_folds=num_folds, seed=37)
-        accs = list()
-        baccs = list()
-        f1s = list()
-        aucs = list()
-
-        for i in range(num_folds):
-            logging.info(f"Fold {i+1} " + "-"*80)
-            # train_subject_ids, train_data, train_labels = list(), list(), list()
-            # test_subject_ids, test_data, test_labels = list(), list(), list()
-            # for j in range(num_folds):
-            #     if j != i: 
-            #         train_subject_ids.extend(subject_id_folds[j])
-            #         train_data.extend(data_folds[j])
-            #         train_labels.extend(labels_folds[j])
-            #     else: 
-            #         test_subject_ids.extend(subject_id_folds[j])
-            #         test_data.extend(data_folds[j])
-            #         test_labels.extend(labels_folds[j])
-
-            train_subject_ids, test_subject_ids, train_data, test_data, train_labels, test_labels = train_test_split(
-                subject_ids, data, labels,
-                test_size=0.86,         
-                stratify=labels,
-                random_state=42*i
+            _, _, test_dataloader = get_pretrain_eval_dataloaders(
+                signal_columns, label_type=label_type,
+                scale="mean", window_size=15, 
+                batch_size=32, train_test_split=0.9,
+                device=device, debug=debug,
+                random_seed=42
             )
 
-            # Balance training labels
-            # sampler = RandomOverSampler(sampling_strategy=0.8)
-            # temp_data = np.array(list(range(len(train_data)))).reshape(-1, 1)
-            # train_labels = np.array(train_labels)
-            # temp_data, train_labels = sampler.fit_resample(temp_data, train_labels)
-            # temp_data = temp_data.flatten()
-            # resampled_data, resampled_subjects = list(), list()
-            # for i in temp_data:
-            #     resampled_data.append(train_data[i])
-            #     resampled_subjects.append(train_subject_ids[i])
+            folds = get_kfold_loaders(test_dataloader)
 
-            train_arr = np.array(train_labels)
-            train_counts = Counter(train_arr)
-            test_arr = np.array(test_labels)
-            test_counts = Counter(test_arr)
+            for fold_idx, (train_dataloader, test_dataloader) in enumerate(folds):
 
-            tiles_holdout_train = TilesDataset(
-                subject_ids=train_subject_ids, data=train_data, labels=train_labels
-            )
-            train_dataloader = DataLoader(tiles_holdout_train, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
+                # train_arr = np.array(train_dataloader.dataset.labels)
+                # train_counts = Counter(train_arr)
+                # train_counts = list(train_counts.items())
+                # test_arr = np.array(test_dataloader.dataset.labels)
+                # test_counts = Counter(test_arr)
+                # test_counts = list(test_counts.items())
 
-            tiles_holdout_test = TilesDataset(
-                subject_ids=test_subject_ids, data=test_data, labels=test_labels
-            )
-            test_dataloader = DataLoader(tiles_holdout_test, batch_size=batch_size, num_workers=0, shuffle=False)
+                # results["splits"]["train_size"].append(train_arr.size)
+                # results["splits"]["test_size"].append(test_arr.size)
+                # results["splits"]["train_labels"][0].append(train_counts[0][1])
+                # results["splits"]["train_labels"][1].append(train_counts[1][1])
+                # results["splits"]["test_labels"][0].append(test_counts[0][1])
+                # results["splits"]["test_labels"][1].append(test_counts[1][1])
 
-            num_train_samples = len(tiles_holdout_train)
-            num_test_samples = len(tiles_holdout_test)
+                num_train_samples = len(train_dataloader)
+                num_test_samples = len(test_dataloader)
 
+                # Load model ------------------------------------------------------------------------------------------------
+                model = load_model(MODEL_SAVE_PATH, config_path, classification=classification)
+                model = freeze_weights(model)
 
-            # Load model ------------------------------------------------------------------------------------------------
-            model = load_model(MODEL_SAVE_PATH, classification=classification)
-            model = freeze_weights(model)
+                if unfreeze_s4:
+                    # for layer in model.seq_model.s4_layers[-1:]:
+                    for layer in model.seq_model.s4_layers:
+                        for param in layer.parameters():
+                            param.requires_grad = True
+                        
+                for param in model.cls_head.parameters():
+                    param.requires_grad = True
 
-            if unfreeze_s4:
-                for layer in model.s4_model.s4_layers[-1:]:
-                    for param in layer.parameters():
-                        param.requires_grad = True
-                    
-            for param in model.cls_head.parameters():
-                param.requires_grad = True
+                if fold_idx == 0: summary(model)
 
-            if i == 0: summary(model)
-
-            optimizer = optim.AdamW(
-                model.parameters(),
-                # lr=5e-3,
-                lr=1e-5,
-                # weight_decay=1e-4,
-                # betas=(0.9, 0.95)
-            )
-
-            for epoch in range(epochs):
-                train_epoch(
-                    train_dataloader, model, device, optimizer, epoch=epoch
+                optimizer = optim.AdamW(
+                    model.parameters(),
+                    # lr=5e-3,
+                    lr=1e-5,
+                    # weight_decay=1e-4,
+                    # betas=(0.9, 0.95)
                 )
-                
-            acc, bacc, f1, auc = validate_epoch(
-                test_dataloader, model, device, epoch=0, 
-                split="test"
-            )
 
-            logging.info(f"Training labels: {train_counts}")
-            logging.info(f"Testing labels: {test_counts}")
+                for epoch in range(epochs):
+                    acc, bacc, f1, auc = train_epoch(
+                        train_dataloader, model, device, optimizer, epoch=epoch
+                    )
+                    results["train"]["ACC"].append(acc)
+                    results["train"]["bACC"].append(bacc)
+                    results["train"]["F1"].append(f1)
+                    results["train"]["AUC"].append(auc)
+                    
+                acc, bacc, f1, auc = validate_epoch(
+                    test_dataloader, model, device, epoch=0
+                )
 
-            accs.append(acc)
-            baccs.append(bacc)
-            f1s.append(f1)
-            aucs.append(auc)
+                # logging.info(f"Training labels: {train_counts}")
+                # logging.info(f"Testing labels: {test_counts}")
 
-        logging.info(f"Average ACC | bACC | F1 | AUC: {np.mean(accs)} {np.mean(baccs)} {np.mean(f1s)} {np.mean(aucs)}")
+                results["test"]["ACC"].append(acc)
+                results["test"]["bACC"].append(bacc)
+                results["test"]["F1"].append(f1)
+                results["test"]["AUC"].append(auc)
+
+            logging.info(f"Average ACC | bACC | F1 | AUC: {np.mean(results["test"]["ACC"])} {np.mean(results["test"]["bACC"])} {np.mean(results["test"]["F1"])} {np.mean(results["test"]["AUC"])}")
+            RESULTS_FILE = os.path.join(SSL_ROOT, "results", "downstream", "classification", f"s4_{int(mask_ratio*100)}_{classification}_{label_type}.json")
+            with open(RESULTS_FILE, "w") as json_file:
+                json.dump(results, json_file, indent=4)

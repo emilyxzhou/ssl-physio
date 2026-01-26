@@ -4,6 +4,9 @@ from pathlib import Path
 USER_ROOT = str(Path(__file__).resolve().parents[3])
 paths = [
     os.path.join(
+        USER_ROOT, "ssl-physio", "src"
+    ),
+    os.path.join(
         USER_ROOT, "ssl-physio", "src", "dataloaders"
     ),
     os.path.join(
@@ -20,7 +23,7 @@ physio_data_path = os.path.join(
 )
 sys.path.append(physio_data_path)
 
-import argparse
+import json
 import logging
 import math
 import numpy as np
@@ -44,8 +47,9 @@ from sklearn.svm import SVC, SVR
 from torchinfo import summary
 from tqdm import tqdm
 
-from trainer import Trainer, split_k_fold
 from tiles_dataloader import load_tiles_open, load_tiles_holdout, TilesDataset, generate_binary_labels, generate_continuous_labels_day
+
+SSL_ROOT = os.path.join(USER_ROOT, "ssl-physio")
 
 
 if __name__ == "__main__":
@@ -60,9 +64,11 @@ if __name__ == "__main__":
     scale = "mean"
     window_size = 15    # minutes
     label_types = [
-        constants.Labels.STEPS,
         constants.Labels.HR,
-        constants.Labels.SDNN
+        constants.Labels.SDNN,
+        constants.Labels.RHR,
+        constants.Labels.STEPS,
+        constants.Labels.SLEEP_MINS
     ]
     num_folds = 5
     for label_type in label_types:
@@ -73,8 +79,6 @@ if __name__ == "__main__":
             scale=scale, window_size=window_size, debug=debug
         )
         labels = generate_continuous_labels_day(subject_ids, dates, version="holdout", label_type=label_type, debug=debug)
-        if label_type == constants.Labels.STEPS:
-            labels[:] = [s / 1000 for s in labels]
         nan_indices = [i for i in range(len(labels)) if np.isnan(labels[i])]
         nan_indices.sort(reverse=True)
         for i in nan_indices:
@@ -84,9 +88,18 @@ if __name__ == "__main__":
 
         # 5 folds, randomly sampling 700 samples as the training set and using the remaining as the test set
         # subject_id_folds, data_folds, labels_folds = split_k_fold(subject_ids, data, labels, num_folds=num_folds, seed=37)
-        mses = list()
-        maes = list()
-        rs = list()
+        results = {
+                "splits": {
+                    "train_size": [],
+                    "test_size": [],
+                },
+                "test": {
+                    "MSE": [],
+                    "MAE": [],
+                    "R": [],
+                    "p": []
+                }
+            }
 
         for i in range(num_folds):
             logging.info(f"Fold {i+1} " + "-"*80)
@@ -104,7 +117,7 @@ if __name__ == "__main__":
             #         test_labels.extend(labels_folds[j])
 
             random.seed(42*i)
-            num_train_samples = int(len(subject_ids) * 0.14)
+            num_train_samples = int(len(subject_ids) * 0.09)
             logging.info(f"# training samples: {num_train_samples}")
             logging.info(f"# testing samples: {len(subject_ids) - num_train_samples}")
             train_indices = random.sample(list(range(len(subject_ids))), num_train_samples)
@@ -117,6 +130,9 @@ if __name__ == "__main__":
                     test_subject_ids.append(subject_ids[idx])
                     test_data.append(data[idx])
                     test_labels.append(labels[idx])
+
+            results["splits"]["train_size"].append(len(train_subject_ids))
+            results["splits"]["test_size"].append(len(test_subject_ids))
             
             # Take daily average of inputs
             for i in range(len(train_data)):
@@ -138,14 +154,16 @@ if __name__ == "__main__":
 
             mse = mean_squared_error(test_labels, preds)
             mae = mean_absolute_error(test_labels, preds)
-            r = pearsonr(test_labels, preds)
+            pearsonr_result = pearsonr(test_labels, preds)
 
-            logging.info(f"MSE | MAE | R: {mse} {mae} {r}")
+            r = pearsonr_result[0]
+            p = pearsonr_result[1]
+            results["test"]["MSE"].append(mse)
+            results["test"]["MAE"].append(mae)
+            results["test"]["R"].append(r)
+            results["test"]["p"].append(p)
 
-            mses.append(mse)
-            maes.append(mae)
-            rs.append(r)
-
-        logging.info(f"\nAverage MSE: {np.mean(mses)}")
-        logging.info(f"\nAverage MAE: {np.mean(maes)}")
-        logging.info(f"\nAverage R: {np.mean(rs)}")
+        logging.info(f"Average MSE | MAE | R | p: {np.mean(results["test"]["MSE"])} {np.mean(results["test"]["MAE"])} {np.mean(results["test"]["R"])} {np.mean(results["test"]["p"])}")
+        RESULTS_FILE = os.path.join(SSL_ROOT, "results", "baselines", "regression", f"svm_{label_type}.json")
+        with open(RESULTS_FILE, "w") as json_file:
+            json.dump(results, json_file, indent=4)

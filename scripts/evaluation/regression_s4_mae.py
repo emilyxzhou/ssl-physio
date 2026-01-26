@@ -4,6 +4,9 @@ from pathlib import Path
 USER_ROOT = str(Path(__file__).resolve().parents[3])
 paths = [
     os.path.join(
+        USER_ROOT, "ssl-physio", "src"
+    ),
+    os.path.join(
         USER_ROOT, "ssl-physio", "src", "dataloaders"
     ),
     os.path.join(
@@ -21,16 +24,14 @@ physio_data_path = os.path.join(
 sys.path.append(physio_data_path)
 
 import argparse
+import json
 import logging
-import math
 import numpy as np
+import pandas as pd
 import pprint
 import random
-import signal
-import time
 import torch
 import torch.nn as nn
-import wandb
 import yaml
 
 import constants
@@ -41,16 +42,16 @@ from imblearn.over_sampling import RandomOverSampler
 from pathlib import Path
 from scipy.stats import pearsonr, ConstantInputWarning
 from sklearn.metrics import mean_squared_error, mean_absolute_error
-from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score, recall_score, roc_auc_score
 from torch import optim
 from torch.utils.data import DataLoader
 from torchinfo import summary
 from tqdm import tqdm
 
-from trainer import Trainer, split_k_fold
-from tiles_dataloader import load_tiles_open, load_tiles_holdout, TilesDataset, generate_binary_labels, generate_continuous_labels_day
-
 from s4_mae import S4MAE
+from trainer import Trainer
+from tiles_dataloader import get_pretrain_eval_dataloaders, get_data_from_splits, TilesDataset
+from utils import stratified_group_split, get_kfold_loaders
 
 import warnings
 warnings.simplefilter(action="ignore", category=FutureWarning)
@@ -68,28 +69,20 @@ os.environ["S4_FAST_CAUCHY"] = "0"
 os.environ["S4_FAST_VAND"] = "0"
 os.environ["S4_BACKEND"] = "keops"   # or "keops" if you installed pykeops
 
-# MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2025-12-22_11:15:39.pt"    # 10% masking
-MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2025-12-23_06:39:27.pt"    # 30% masking
-# MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2026-01-04_21:48:55.pt"    # 50% masking
-
-classification = "lin_probe"
-unfreeze_s4 = (classification != "lin_probe")
-mask_ratio = 0.3
+SSL_ROOT = os.path.join(USER_ROOT, "ssl-physio")
 
 
-def load_model(checkpoint_path, classification=False, verbose=False):
+def load_model(checkpoint_path, config_path, classification=False):
+    # Read arguments -----------------------------------------------------------------------------------------------
+    config = json.load(open(config_path, "r"))
+    model_params = config["model_params"]
+    if model_params["dec_hidden_dims"] is not None: model_params["d_model"] = model_params["dec_hidden_dims"][0]
+
     checkpoint = torch.load(checkpoint_path, map_location="cpu")
 
     model = S4MAE(
-        d_model=dec_hidden_dims[0],
-        d_input=d_input,
-        d_output=d_output,
-        enc_hidden_dims=enc_hidden_dims,
-        dec_hidden_dims=dec_hidden_dims,
-        n_layers_s4=n_layers_s4,
-        mask_ratio=mask_ratio,
-        classification=classification,
-        verbose=verbose
+        **model_params,
+        classification=classification
     ).to(device)
 
     # Load weights
@@ -136,31 +129,30 @@ def train_epoch(
         torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
         optimizer.step()
 
-        preds = preds.detach().cpu().numpy().astype(int)
-        labels = labels.detach().cpu().numpy().astype(int)
+        preds = preds.detach().cpu().numpy().astype(float)
+        labels = labels.detach().cpu().numpy().astype(float)
         total_labels.extend(labels)
         total_preds.extend(preds)
 
         mse = mean_squared_error(total_labels, total_preds)
         mae = mean_absolute_error(total_labels, total_preds)
-        r = pearsonr(total_labels, total_preds)
+        pearsonr_result = pearsonr(total_labels, total_preds)
         
         # if (epoch+1 % 10 == 0) and (batch_idx+1 % 50 == 0 or batch_idx+1 == len(dataloader)):
         # if (batch_idx+1 % 50 == 0 or batch_idx+1 == len(dataloader)):
         #     logging.info(f"Current MSE at epoch {epoch+1}, step {batch_idx+1}/{len(dataloader)} {mse}")
         #     logging.info(f"Current MAE at epoch {epoch+1}, step {batch_idx+1}/{len(dataloader)} {mae}")
-        #     logging.info(f"Current R at epoch {epoch+1}, step {batch_idx+1}/{len(dataloader)} {r}")
+        #     logging.info(f"Current R at epoch {epoch+1}, step {batch_idx+1}/{len(dataloader)} {pearsonr_result}")
         #     logging.info(f"------------------------------------------------------------")
 
-    return mse, mae, r
+    return mse, mae, pearsonr_result
 
 
 def validate_epoch(
     dataloader, 
     model, 
     device,
-    epoch,
-    split:  str="test"
+    epoch
 ):
     model.eval()
     criterion = nn.L1Loss()
@@ -185,45 +177,28 @@ def validate_epoch(
 
             mse = mean_squared_error(total_labels, total_preds)
             mae = mean_absolute_error(total_labels, total_preds)
-            r = pearsonr(total_labels, total_preds)
+            pearsonr_result = pearsonr(total_labels, total_preds)
             
             # if (epoch+1 % 10 == 0) and (batch_idx+1 % 50 == 0 or batch_idx+1 == len(dataloader)):
             if (batch_idx+1 % 50 == 0 or batch_idx+1 == len(dataloader)):
                 # logging.info(f"Current MSE at epoch {epoch+1}, step {batch_idx+1}/{len(dataloader)} {mse}")
                 # logging.info(f"Current MAE at epoch {epoch+1}, step {batch_idx+1}/{len(dataloader)} {mae}")
                 # logging.info(f"Current R at epoch {epoch+1}, step {batch_idx+1}/{len(dataloader)} {r}")
-                logging.info(f"MSE | MAE | R: {mse} {mae} {r}")
+                logging.info(f"MSE | MAE | R: {mse} {mae} {pearsonr_result}")
                 logging.info(f"------------------------------------------------------------")
-        return mse, mae, r
+        return mse, mae, pearsonr_result
 
 
 if __name__ == "__main__":
     # Read arguments -----------------------------------------------------------------------------------------------
-    with open("/home/emilyzho/ssl-physio/scripts/params_s4.yaml", "r") as file:
-        params = yaml.safe_load(file)
-        mode = params["mode"]
-        reconstruction = params["reconstruction"]
-        scale = params["scale"]
-        d_input = params["d_input"]
-        d_output = params["d_output"]
-        enc_hidden_dims = params["enc_hidden_dims"]
-        dec_hidden_dims = params["dec_hidden_dims"]
-        d_model = params["d_model"]
-        n_layers_s4 = params["n_layers_s4"]
-        # mask_ratio = params["mask_ratio"]
-        lr = params["lr"]
-    if dec_hidden_dims is not None: d_model = dec_hidden_dims[0]
-
-    parser = argparse.ArgumentParser(description="Script for S4-MAE regression evaluation.")
-    parser.add_argument("--mode", "-m", type=str, default="full")
-    parser.add_argument("--reconstruction", "-r", type=str, default="full")
-    parser.add_argument("--debug", "-d", type=str, default=False)
+    parser = argparse.ArgumentParser(description="Script for S4-MAE downstream classification.")
+    parser.add_argument("--debug", "-d", action="store_true", default=False,
+                        help="If set, only loads 5 subjects for testing")
+    parser.add_argument("--classification", "-c", type=str, default="lin_probe")
     args = parser.parse_args()
-    mode = args.mode
     debug = args.debug
-    reconstruction = args.reconstruction
-
-    pprint.pprint(params)
+    classification = args.classification
+    unfreeze_s4 = (classification != "lin_probe")
 
     # Find device
     device = torch.device("cuda:0") if torch.cuda.is_available() else "cpu"
@@ -232,130 +207,137 @@ if __name__ == "__main__":
         print("Default device set to CUDA.")
     else:
         print("CUDA not available.")
-    torch.set_default_dtype(torch.float64)
+    # torch.set_default_dtype(torch.float64)
 
+    config_path = os.path.join(SSL_ROOT, "config", "s4_config.json")
+    config = json.load(open(config_path, "r"))
+    training_params = config["training_params"]
+    model_params = config["model_params"]
 
-    # Define parameters ----------------------------------------------------------------------------------------------------
-    # Training variables
-    epochs = 100
-    batch_size = 32
+    for mask_ratio in [0.1, 0.3, 0.5, 0.7]:
+        logging.info(f"Mask ratio: {mask_ratio} " + "-"*120)
+        MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_{int(mask_ratio*100)}.pt"
 
-    # Loading data -----------------------------------------------------------------------------------------------
-    signal_columns = [
-        # "RMSStdDev_ms", "RRPeakCoverage", "SDNN_ms", "RR0", 
-        # "sleepId", "level", 
-        "bpm", "StepCount"
-    ]
-    scale = "mean"
-    window_size = 15    # minutes
-    label_types = [
-        constants.Labels.STEPS,
-        constants.Labels.HR,
-        constants.Labels.SDNN
-    ]
-    num_folds = 5
-    for label_type in label_types:
-        logging.info(f"Label: {label_type} " + "-"*80)
+        # Define parameters ----------------------------------------------------------------------------------------------------
+        # Training variables
+        epochs = 100
+        batch_size = 32
 
-        subject_ids, dates, data = load_tiles_holdout(
-            signal_columns=signal_columns,
-            scale=scale, window_size=window_size, debug=debug
-        )
-        labels = generate_continuous_labels_day(subject_ids, dates, version="holdout", label_type=label_type, debug=debug)
-        if label_type == constants.Labels.STEPS:
-            labels[:] = [s / 1000 for s in labels]
-        nan_indices = [i for i in range(len(labels)) if np.isnan(labels[i])]
-        nan_indices.sort(reverse=True)
-        for i in nan_indices:
-            subject_ids.pop(i)
-            data.pop(i)
-            labels.pop(i)
+        # Loading data -----------------------------------------------------------------------------------------------
+        signal_columns = [
+            # "RMSStdDev_ms", "RRPeakCoverage", "SDNN_ms", "RR0", 
+            # "sleepId", "level", 
+            "bpm", "StepCount"
+        ]
+        scale = "mean"
+        window_size = 15    # minutes
+        label_types = [
+            constants.Labels.HR,
+            constants.Labels.SDNN,
+            constants.Labels.RHR,
+            constants.Labels.STEPS,
+            constants.Labels.SLEEP_MINS
+        ]
+        for label_type in label_types:
+            logging.info(f"Label: {label_type} " + "-"*80)
 
-        # 5 folds, randomly sampling 700 samples as the training set and using the remaining as the test set
-        # subject_id_folds, data_folds, labels_folds = split_k_fold(subject_ids, data, labels, num_folds=num_folds, seed=37)
-        mses = list()
-        maes = list()
-        rs = list()
+            results = {
+                "splits": {
+                    "train_size": [],
+                    "test_size": [],
+                    "train_labels": {
+                        0: [],
+                        1: []
+                    },
+                    "test_labels": {
+                        0: [],
+                        1: []
+                    }
+                },
+                "train": {
+                    "MSE": [],
+                    "MAE": [],
+                    "R": [],
+                    "p": []
+                },
+                "test": {
+                    "MSE": [],
+                    "MAE": [],
+                    "R": [],
+                    "p": []
+                }
+            }
 
-        for i in range(num_folds):
-            logging.info(f"Fold {i+1}")
-            train_subject_ids, train_data, train_labels = list(), list(), list()
-            test_subject_ids, test_data, test_labels = list(), list(), list()
-            # for j in range(num_folds):
-            #     if j != i: 
-            #         train_subject_ids.extend(subject_id_folds[j])
-            #         train_data.extend(data_folds[j])
-            #         train_labels.extend(labels_folds[j])
-            #     else: 
-            #         test_subject_ids.extend(subject_id_folds[j])
-            #         test_data.extend(data_folds[j])
-            #         test_labels.extend(labels_folds[j])
+            subject_ids, dates, data = get_data_from_splits()
+            test_dataset = TilesDataset(subject_ids, dates, data)
+            test_dataloader = DataLoader(test_dataset, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
 
-            random.seed(42*i)
-            num_train_samples = int(len(subject_ids) * 0.14)
-            logging.info(f"# training samples: {num_train_samples}")
-            logging.info(f"# testing samples: {len(subject_ids) - num_train_samples}")
-            train_indices = random.sample(list(range(len(subject_ids))), num_train_samples)
-            for idx in range(len(subject_ids)):
-                if idx in train_indices:
-                    train_subject_ids.append(subject_ids[idx])
-                    train_data.append(data[idx])
-                    train_labels.append(labels[idx])
-                else:
-                    test_subject_ids.append(subject_ids[idx])
-                    test_data.append(data[idx])
-                    test_labels.append(labels[idx])
+            folds = get_kfold_loaders(test_dataloader)
 
-            tiles_holdout_train = TilesDataset(
-                subject_ids=train_subject_ids, data=train_data, labels=train_labels
-            )
-            train_dataloader = DataLoader(tiles_holdout_train, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
+            for fold_idx, (train_dataloader, test_dataloader) in enumerate(folds):
 
-            tiles_holdout_test = TilesDataset(
-                subject_ids=test_subject_ids, data=test_data, labels=test_labels
-            )
-            test_dataloader = DataLoader(tiles_holdout_test, batch_size=batch_size, num_workers=0, shuffle=False)
+                # train_arr = np.array(train_dataloader.dataset.labels)
+                # train_counts = Counter(train_arr)
+                # train_counts = list(train_counts.items())
+                # test_arr = np.array(test_dataloader.dataset.labels)
+                # test_counts = Counter(test_arr)
+                # test_counts = list(test_counts.items())
 
-            num_train_samples = len(tiles_holdout_train)
-            num_test_samples = len(tiles_holdout_test)
+                # results["splits"]["train_size"].append(train_arr.size)
+                # results["splits"]["test_size"].append(test_arr.size)
+                # results["splits"]["train_labels"][0].append(train_counts[0][1])
+                # results["splits"]["train_labels"][1].append(train_counts[1][1])
+                # results["splits"]["test_labels"][0].append(test_counts[0][1])
+                # results["splits"]["test_labels"][1].append(test_counts[1][1])
 
-            # Load model ------------------------------------------------------------------------------------------------
-            model = load_model(MODEL_SAVE_PATH, classification=classification)
-            model = freeze_weights(model)
+                num_train_samples = len(train_dataloader)
+                num_test_samples = len(test_dataloader)
 
-            if unfreeze_s4:
-                for layer in model.s4_model.s4_layers[-1:]:
-                    for param in layer.parameters():
-                        param.requires_grad = True
-                    
-            for param in model.cls_head.parameters():
-                param.requires_grad = True
+                # Load model ------------------------------------------------------------------------------------------------
+                model = load_model(MODEL_SAVE_PATH, config_path, classification=classification)
+                model = freeze_weights(model)
 
-            if i == 0: summary(model)
+                if unfreeze_s4:
+                    for layer in model.seq_model.s4_layers[-1:]:
+                        for param in layer.parameters():
+                            param.requires_grad = True
+                        
+                for param in model.cls_head.parameters():
+                    param.requires_grad = True
 
-            optimizer = optim.AdamW(
-                model.parameters(),
-                # lr=5e-3,
-                lr=1e-5,
-                # weight_decay=1e-4,
-                # betas=(0.9, 0.95)
-            )
+                if fold_idx == 0: summary(model)
 
-            for epoch in range(epochs):
-                train_epoch(
-                    train_dataloader, model, device, optimizer, epoch=epoch
+                optimizer = optim.AdamW(
+                    model.parameters(),
+                    # lr=5e-3,
+                    lr=1e-5,
+                    # weight_decay=1e-4,
+                    # betas=(0.9, 0.95)
                 )
-                
-            mse, mae, r = validate_epoch(
-                test_dataloader, model, device, epoch=0, 
-                split="test"
-            )
 
-            mses.append(mse)
-            maes.append(mae)
-            rs.append(r)
+                for epoch in range(epochs):
+                    mse, mae, pearsonr_result = train_epoch(
+                        train_dataloader, model, device, optimizer, epoch=epoch
+                    )
+                    r = pearsonr_result[0]
+                    p = pearsonr_result[1]
+                    results["train"]["MSE"].append(mse)
+                    results["train"]["MAE"].append(mae)
+                    results["train"]["R"].append(r)
+                    results["train"]["p"].append(p)
+                    
+                mse, mae, pearsonr_result = validate_epoch(
+                    test_dataloader, model, device, epoch=0
+                )
+                r = pearsonr_result[0]
+                p = pearsonr_result[1]
+                results["test"]["MSE"].append(mse)
+                results["test"]["MAE"].append(mae)
+                results["test"]["R"].append(r)
+                results["test"]["p"].append(p)
 
-        logging.info(f"\nAverage MSE: {np.mean(mses)}")
-        logging.info(f"\nAverage MAE: {np.mean(maes)}")
-        logging.info(f"\nAverage R: {np.mean(rs)}")
-
+            logging.info(f"Average MSE | MAE | R | p: {np.mean(results["test"]["MSE"])} {np.mean(results["test"]["MAE"])} {np.mean(results["test"]["R"])} {np.mean(results["test"]["p"])}")
+            if not debug:
+                RESULTS_FILE = os.path.join(SSL_ROOT, "results", "downstream", "regression", f"s4_{int(mask_ratio*100)}_{classification}_{label_type}.json")
+                with open(RESULTS_FILE, "w") as json_file:
+                    json.dump(results, json_file, indent=4)

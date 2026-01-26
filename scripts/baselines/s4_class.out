@@ -1,0 +1,46 @@
+nohup: ignoring input
+CUDA extension for structured kernels (Cauchy and Vandermonde multiplication) not found. Install by going to extensions/kernels/ and running `python setup.py install`, for improved speed and memory efficiency. Note that the kernel changed for state-spaces 4.0 and must be recompiled.
+Falling back on slow Cauchy and Vandermonde kernel. Install at least one of pykeops or the CUDA extension for better speed and memory efficiency.
+2026-01-26 16:47:47 INFO ==> Label: age --------------------------------------------------------------------------------
+2026-01-26 16:48:11 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-26 16:48:11 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-26 16:48:11 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-26 16:48:11 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-26 16:48:11 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-26 16:48:11 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-26 16:48:11 INFO ==> S4: Initializing kernel to length 2
+2026-01-26 16:48:12 INFO ==> S4: Initializing kernel to length 2
+2026-01-26 16:48:12 INFO ==> S4: Initializing kernel to length 2
+2026-01-26 16:48:12 INFO ==> S4: Initializing kernel to length 2
+2026-01-26 16:48:12 INFO ==> S4: Initializing kernel to length 2
+2026-01-26 16:48:12 INFO ==> S4: Initializing kernel to length 2
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_classification.py:2924: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/home/emilyzho/miniconda3/envs/ssl-physio/lib/python3.12/site-packages/sklearn/metrics/_ranking.py:442: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+2026-01-26 16:53:45 INFO ==> ACC | bACC | F1 | AUC: 0.7128099173553719 0.6307656593794788 0.6371598845832322 0.7171117705242335
+2026-01-26 16:53:45 INFO ==> ------------------------------------------------------------
+2026-01-26 16:53:45 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-26 16:53:45 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-26 16:53:45 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-26 16:53:45 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-26 16:53:45 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-26 16:53:45 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-26 16:53:45 INFO ==> S4: Initializing kernel to length 2
+2026-01-26 16:53:45 INFO ==> S4: Initializing kernel to length 2
+2026-01-26 16:53:45 INFO ==> S4: Initializing kernel to length 2
+2026-01-26 16:53:45 INFO ==> S4: Initializing kernel to length 2
+2026-01-26 16:53:45 INFO ==> S4: Initializing kernel to length 2
+2026-01-26 16:53:45 INFO ==> S4: Initializing kernel to length 2

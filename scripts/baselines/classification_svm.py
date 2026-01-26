@@ -4,6 +4,9 @@ from pathlib import Path
 USER_ROOT = str(Path(__file__).resolve().parents[3])
 paths = [
     os.path.join(
+        USER_ROOT, "ssl-physio", "src"
+    ),
+    os.path.join(
         USER_ROOT, "ssl-physio", "src", "dataloaders"
     ),
     os.path.join(
@@ -20,18 +23,9 @@ physio_data_path = os.path.join(
 )
 sys.path.append(physio_data_path)
 
-import argparse
+import json
 import logging
-import math
 import numpy as np
-import pprint
-import random
-import signal
-import time
-import wandb
-import yaml
-
-import constants
 
 from collections import Counter
 from datetime import datetime
@@ -40,13 +34,16 @@ from pathlib import Path
 from scipy.stats import pearsonr, ConstantInputWarning
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score, recall_score, roc_auc_score, \
     mean_squared_error, mean_absolute_error
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GroupKFold
 from sklearn.svm import SVC, SVR
 from torchinfo import summary
+from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-from trainer import Trainer, split_k_fold
-from tiles_dataloader import load_tiles_open, load_tiles_holdout, TilesDataset, generate_binary_labels, generate_continuous_labels_day
+from tiles_dataloader import TilesDataset, get_data_from_splits, generate_binary_labels
+from utils import stratified_group_split, get_kfold_loaders
+
+SSL_ROOT = os.path.join(USER_ROOT, "ssl-physio")
 
 
 if __name__ == "__main__":
@@ -61,70 +58,73 @@ if __name__ == "__main__":
     scale = "mean"
     window_size = 15    # minutes
     label_types = [
-        "age", "shift", "anxiety", "stress"
+        # "age", "shift", "anxiety", "stress"
+        "stress"
     ]
     num_folds = 5
     for label_type in label_types:
         logging.info(f"Label: {label_type} " + "-"*80)
 
-        subject_ids, dates, data = load_tiles_holdout(
-            signal_columns=signal_columns,
-            scale=scale, window_size=window_size, debug=debug
-        )
-        labels = generate_binary_labels(subject_ids, dates, version="holdout", label_type=label_type)
+        results = {
+            "splits": {
+                "train_size": [],
+                "test_size": [],
+                "train_labels": {
+                    0: [],
+                    1: []
+                },
+                "test_labels": {
+                    0: [],
+                    1: []
+                }
+            },
+            "train": {
+                "ACC": [],
+                "bACC": [],
+                "F1": [],
+                "AUC": []
+            },
+            "test": {
+                "ACC": [],
+                "bACC": [],
+                "F1": [],
+                "AUC": []
+            }
+        }
 
-        # 5 folds, randomly sampling 700 samples as the training set and using the remaining as the test set
-        # subject_id_folds, data_folds, labels_folds = split_k_fold(subject_ids, data, labels, num_folds=num_folds, seed=37)
-        accs = list()
-        baccs = list()
-        f1s = list()
-        aucs = list()
+        subject_ids, dates, data = get_data_from_splits()
+        labels = generate_binary_labels(subject_ids, dates, label_type=label_type)
 
-        for i in range(num_folds):
-            logging.info(f"Fold {i+1} " + "-"*80)
-            # train_subject_ids, train_data, train_labels = list(), list(), list()
-            # test_subject_ids, test_data, test_labels = list(), list(), list()
-            # for j in range(num_folds):
-            #     if j != i: 
-            #         train_subject_ids.extend(subject_id_folds[j])
-            #         train_data.extend(data_folds[j])
-            #         train_labels.extend(labels_folds[j])
-            #     else: 
-            #         test_subject_ids.extend(subject_id_folds[j])
-            #         test_data.extend(data_folds[j])
-            #         test_labels.extend(labels_folds[j])
+        subject_ids = np.asarray(subject_ids)
+        data = np.asarray(data)
+        labels = np.asarray(labels)
 
-            train_subject_ids, test_subject_ids, train_data, test_data, train_labels, test_labels = train_test_split(
-                subject_ids, data, labels,
-                test_size=0.86,         
-                stratify=labels,
-                random_state=42*i
-            )
+        group_kfold = GroupKFold(n_splits=5, shuffle=True, random_state=42)
 
-            # Balance training labels
-            # sampler = RandomOverSampler(sampling_strategy=0.8)
-            # temp_data = np.array(list(range(len(train_data)))).reshape(-1, 1)
-            # train_labels = np.array(train_labels)
-            # temp_data, train_labels = sampler.fit_resample(temp_data, train_labels)
-            # temp_data = temp_data.flatten()
-            # resampled_data, resampled_subjects = list(), list()
-            # for i in temp_data:
-            #     resampled_data.append(train_data[i])
-            #     resampled_subjects.append(train_subject_ids[i])
-
-            train_arr = np.array(train_labels)
+        for i, (train_index, test_index) in enumerate(group_kfold.split(data, labels, subject_ids)):
+            train_arr = labels[train_index]
             train_counts = Counter(train_arr)
-            test_arr = np.array(test_labels)
+            train_counts = list(train_counts.items())
+            test_arr = labels[test_index]
             test_counts = Counter(test_arr)
-            
-            logging.info(f"Training labels: {train_counts}")
-            logging.info(f"Testing labels: {test_counts}")
+            test_counts = list(test_counts.items())
+
+            train_data = data[train_index]
+            test_data = data[test_index]
+
+            train_labels = labels[train_index]
+            test_labels = labels[test_index]
+
+            results["splits"]["train_size"].append(train_arr.size)
+            results["splits"]["test_size"].append(test_arr.size)
+            results["splits"]["train_labels"][0].append(train_counts[0][1])
+            results["splits"]["train_labels"][1].append(train_counts[1][1])
+            results["splits"]["test_labels"][0].append(test_counts[0][1])
+            results["splits"]["test_labels"][1].append(test_counts[1][1])
 
             # Take daily average of inputs
-            for i in range(len(train_data)):
-                train_data[i] = np.average(train_data[i], axis=0)
-            for i in range(len(test_data)):
-                test_data[i] = np.average(test_data[i], axis=0)
+            train_data = np.mean(train_data, axis=1)
+            test_data = np.mean(test_data, axis=1)
 
             # Load model ------------------------------------------------------------------------------------------------
             model = SVC(probability=True, random_state=42)
@@ -143,9 +143,15 @@ if __name__ == "__main__":
 
             logging.info(f"ACC | bACC | F1 | AUC: {acc} {bacc} {f1} {auc}")
 
-            accs.append(acc)
-            baccs.append(bacc)
-            f1s.append(f1)
-            aucs.append(auc)
+            logging.info(f"Training labels: {train_counts}")
+            logging.info(f"Testing labels: {test_counts}")
 
-        logging.info(f"Average ACC | bACC | F1 | AUC: {np.mean(accs)} {np.mean(baccs)} {np.mean(f1s)} {np.mean(aucs)}")
+            results["test"]["ACC"].append(acc)
+            results["test"]["bACC"].append(bacc)
+            results["test"]["F1"].append(f1)
+            results["test"]["AUC"].append(auc)
+
+        logging.info(f"Average ACC | bACC | F1 | AUC: {np.mean(results["test"]["ACC"])} {np.mean(results["test"]["bACC"])} {np.mean(results["test"]["F1"])} {np.mean(results["test"]["AUC"])}")
+        RESULTS_FILE = os.path.join(SSL_ROOT, "results", "baselines", "classification", f"svm_{label_type}.json")
+        with open(RESULTS_FILE, "w") as json_file:
+            json.dump(results, json_file, indent=4)

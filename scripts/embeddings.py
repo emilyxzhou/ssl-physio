@@ -7,6 +7,9 @@ paths = [
         USER_ROOT, "ssl-physio", "src", "dataloaders"
     ),
     os.path.join(
+        USER_ROOT, "ssl-physio", "src", "mamba"
+    ),
+    os.path.join(
         USER_ROOT, "ssl-physio", "src", "s4-models"
     ),
     os.path.join(
@@ -21,6 +24,7 @@ physio_data_path = os.path.join(
 sys.path.append(physio_data_path)
 
 import argparse
+import datetime
 import json
 import logging
 import numpy as np
@@ -29,10 +33,14 @@ import torch
 import yaml
 
 from collections import Counter
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from tqdm import tqdm
 
-from tiles_dataloader import load_tiles_holdout
+from data_reader import get_data_for_subject_list
+from mamba_mae import MambaMAE
+from preprocessing import apply_moving_average, impute_missing
 from s4_mae import S4MAE
+from tiles_dataloader import get_pretrain_eval_dataloaders
 
 # Define logging console
 logging.basicConfig(
@@ -45,39 +53,30 @@ os.environ["S4_FAST_CAUCHY"] = "0"
 os.environ["S4_FAST_VAND"] = "0"
 os.environ["S4_BACKEND"] = "keops"
 
-# Override the data path for tiles-holdout
-import constants
-constants.TILES_HOLDOUT_FITBIT_BASE_FOLDER = "/data1/mjma/tiles-holdout/fitbit"
-constants.TILES_HOLDOUT_LABELS_DEMOG = "/data1/mjma/tiles-holdout/labels/demographics_1.csv"
-constants.TILES_HOLDOUT_LABELS_ANXIETY = "/data1/mjma/tiles-holdout/labels/anxiety.csv"
-constants.TILES_HOLDOUT_LABELS_SHIFT = "/data1/mjma/tiles-holdout/labels/shift.csv"
-constants.TILES_HOLDOUT_LABELS_STRESSD = "/data1/mjma/tiles-holdout/labels/stressd.csv"
 
-# Model configurations: (mask_ratio_percent, checkpoint_path)
-MODELS = {
-    10: f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2025-12-22_11:15:39.pt",
-    30: f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2025-12-23_06:39:27.pt",
-    50: f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_2026-01-04_21:48:55.pt",
-}
+MODELS_BASE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction"
 
-SAVE_BASE_DIR = "/data1/mjma/tiles-2018-processed/tiles-holdout/embeddings"
+SAVE_BASE_DIR = "/data1/emilyzho/tiles-2018-processed/tiles-test/embeddings"
 
+def load_model(checkpoint_path, config_path, model_type, mask_ratio=None):
+    # Read arguments -----------------------------------------------------------------------------------------------
+    config = json.load(open(config_path, "r"))
+    model_params = config["model_params"]
+    if model_params["dec_hidden_dims"] is not None: model_params["d_model"] = model_params["dec_hidden_dims"][0]
+    if mask_ratio is not None: model_params["mask_ratio"] = mask_ratio
 
-def load_model(checkpoint_path, mask_ratio, device, d_input, d_output, enc_hidden_dims, dec_hidden_dims, n_layers_s4, verbose=False):
-    """Load the S4MAE model from checkpoint."""
     checkpoint = torch.load(checkpoint_path, map_location="cpu")
 
-    model = S4MAE(
-        d_model=dec_hidden_dims[0],
-        d_input=d_input,
-        d_output=d_output,
-        enc_hidden_dims=enc_hidden_dims,
-        dec_hidden_dims=dec_hidden_dims,
-        n_layers_s4=n_layers_s4,
-        mask_ratio=mask_ratio,
-        classification=False,
-        verbose=verbose
-    ).to(device)
+    if model_type == "s4":
+        model = S4MAE(
+            **model_params,
+            classification=False
+        ).to(device)
+    elif model_type == "mamba":
+        model = MambaMAE(
+            **model_params,
+            classification=False
+        ).to(device)
 
     # Load weights
     if "model" in checkpoint:
@@ -98,10 +97,10 @@ def freeze_weights(model):
 
 def extract_embeddings(model, data_list, device, batch_size=32):
     """
-    Extract embeddings from the S4MAE encoder.
+    Extract embeddings from the encoder.
     
     Args:
-        model: Trained S4MAE model (with weights loaded, in eval mode)
+        model: Trained S4MAE/Mamba model (with weights loaded, in eval mode)
         data_list: List of numpy arrays, each shape (1440, 2)
         device: torch device
         batch_size: Number of samples to process at once
@@ -126,17 +125,17 @@ def extract_embeddings(model, data_list, device, batch_size=32):
             
             # Stack and transpose: list of (1440, 2) -> (batch, 2, 1440)
             batch_tensor = torch.stack([
-                torch.tensor(sample, dtype=torch.float64).T 
+                torch.tensor(sample, dtype=torch.float).T 
                 for sample in batch_data
             ]).to(device)
             
             # Forward through encoder and S4 (but NOT the decoder)
             # No masking for embedding extraction
             conv_output = model.encoder(batch_tensor)  # (batch, 2, 1440) with Identity encoder
-            s4_output = model.s4_model(conv_output.transpose(-1, -2))  # (batch, 1440, 128)
+            seq_output = model.seq_model(conv_output.transpose(-1, -2))  # (batch, 1440, 128)
             
             # Mean pool over sequence length to get single embedding per day
-            embedding = s4_output.mean(dim=1)  # (batch, 128)
+            embedding = seq_output.mean(dim=1)  # (batch, 128)
             embeddings.append(embedding.cpu().numpy())
     
     return np.vstack(embeddings)  # (num_samples, 128)
@@ -278,37 +277,31 @@ Usage:
 
 if __name__ == "__main__":
     # Read arguments -----------------------------------------------------------------------------------------------
-    with open(f"{USER_ROOT}/ssl-physio/scripts/params_s4.yaml", "r") as file:
-        params = yaml.safe_load(file)
-        d_input = params["d_input"]
-        d_output = params["d_output"]
-        enc_hidden_dims = params["enc_hidden_dims"]
-        dec_hidden_dims = params["dec_hidden_dims"]
-        d_model = params["d_model"]
-        n_layers_s4 = params["n_layers_s4"]
-    if dec_hidden_dims is not None: 
-        d_model = dec_hidden_dims[0]
-
-    parser = argparse.ArgumentParser(description="Generate embeddings from S4-MAE models.")
+    parser = argparse.ArgumentParser(description="Generate embeddings from MAE models.")
     parser.add_argument("--debug", "-d", action="store_true", default=False,
                         help="If set, only loads 5 subjects for testing")
     parser.add_argument("--batch_size", "-b", type=int, default=32,
                         help="Batch size for embedding extraction")
-    parser.add_argument("--mask", "-m", type=int, choices=[10, 30, 50], default=None,
-                        help="Run only for specific masking ratio (10, 30, or 50). Default: run all.")
+    parser.add_argument("--mask", "-m", type=int, choices=[10, 30, 50, 70], default=None,
+                        help="Run only for specific masking ratio (10, 30, 50, or 70). Default: run all.")
+    parser.add_argument("--model_type", "-t", type=str, choices=["s4", "mamba"], default=None,
+                        help="Run only for specific encoder type (s4 or mamba). Default: run all.")
     args = parser.parse_args()
     debug = args.debug
     batch_size = args.batch_size
 
     # Determine which models to run
     if args.mask is not None:
-        models_to_run = {args.mask: MODELS[args.mask]}
+        mask_ratios = [args.mask]
     else:
-        models_to_run = MODELS
+        mask_ratios = [10, 30, 50, 70]
 
-    print("\nModel parameters:")
-    pprint.pprint(params)
-    print(f"\nWill generate embeddings for masking ratios: {list(models_to_run.keys())}")
+    if args.model_type is not None:
+        model_types = [args.model_type]
+    else:
+        model_types = ["s4", "mamba"]
+
+    print(f"\nWill generate embeddings for masking ratios: {mask_ratios} and encoders: {model_types}")
 
     # Find device
     device = torch.device("cuda:0") if torch.cuda.is_available() else torch.device("cpu")
@@ -317,7 +310,7 @@ if __name__ == "__main__":
         print("\nDefault device set to CUDA.")
     else:
         print("\nCUDA not available, using CPU.")
-    torch.set_default_dtype(torch.float64)
+    torch.set_default_dtype(torch.float)
 
     # Loading data (only once, reused for all models) -------------------------------------------------------------
     print("\n" + "="*60)
@@ -327,59 +320,110 @@ if __name__ == "__main__":
     signal_columns = ["bpm", "StepCount"]
     scale = "mean"
     window_size = 15    # minutes
-    
-    subject_ids, dates, data = load_tiles_holdout(
-        signal_columns=signal_columns,
-        scale=scale, window_size=window_size, debug=debug
-    )
+
+    splits = json.load(open('/data1/emilyzho/tiles-2018-processed/subject_splits.json', "r"))
+    subject_ids = []
+    dates = []
+    data = []
+
+    unique_subjects = splits["test"].keys()
+    dfs = get_data_for_subject_list(unique_subjects)
+    for data_df in dfs: 
+        id = data_df["ID"].iloc[0]
+        date = data_df["Date"].iloc[0]
+
+        try: df = data_df[signal_columns]
+        except Exception: continue
+
+        for col in signal_columns:
+            df.loc[:, col] = df[col].astype(float)
+
+        # Filtering out invalid days
+        nan_count = np.sum(np.isnan(np.array(df["bpm"], dtype=float)))
+        if nan_count/1440 > 0.2:
+            continue
+
+        # Get indices of NaN in HR array to remove from step count array
+        # nan_hr_rows = df[df["bpm"].isna()].index
+        # df.loc[nan_hr_rows, "StepCount"] = np.nan
+
+        # Perform imputation: linear interpolation on heart rate, step count
+        for col in signal_columns:
+            df.loc[:, col] = impute_missing(df, col, method="linear")
+            df.loc[:, col] = df[col].bfill()
+        df = df.bfill()
+
+        # Apply moving averagez
+        if window_size > 0:
+            for col in signal_columns:
+                df.loc[:, col] = apply_moving_average(df, col, window_size=window_size)
+
+        # Scale data according to `scale` parameter
+        if scale == "mean":
+            scaler = StandardScaler()
+            for col in signal_columns:
+                df.loc[:, col] = scaler.fit_transform(df[[col]])
+        elif scale == "median":
+            for col in signal_columns:
+                med = df[col].median()
+                q1 = np.nanpercentile(df[col], 25)
+                q3 = np.nanpercentile(df[col], 75)
+                iqr = q3 - q1
+
+                df.loc[:, col] = (df[col] - med) / (iqr + 1e-5)
+
+        df = df.to_numpy()
+
+        subject_ids.append(id)
+        dates.append(date)
+        data.append(df)
 
     # Report data statistics
     stats = report_data_statistics(subject_ids, dates, data)
-    print(f"Expected embedding shape: ({len(data)}, {d_output})")
 
     # Process each model ------------------------------------------------------------------------------------------
-    for mask_pct, checkpoint_path in models_to_run.items():
-        mask_ratio = mask_pct / 100.0
-        
+    for model_type in model_types:
+        for mask_pct in mask_ratios:
+            config_path = f"{USER_ROOT}/ssl-physio/config/{model_type}_config.json"
+            checkpoint_path = os.path.join(MODELS_BASE_PATH, f"{model_type}-mae_{mask_pct}.pt")
+            mask_ratio = mask_pct / 100.0
+            
+            print("\n" + "="*60)
+            print(f"PROCESSING: masking_{mask_pct} ({mask_pct}% masking)")
+            print("="*60)
+            
+            # Load model
+            print(f"\nLoading model from: {checkpoint_path}")
+            model = load_model(
+                checkpoint_path, config_path, model_type, mask_ratio=mask_ratio
+            )
+            model = freeze_weights(model)
+            print("Model loaded and frozen.")
+
+            # Extract embeddings
+            print("\nExtracting embeddings...")
+            embeddings = extract_embeddings(model, data, device, batch_size=batch_size)
+            
+            print(f"\nEmbeddings extracted:")
+            print(f"  Shape: {embeddings.shape}")
+            print(f"  Memory: {embeddings.nbytes / 1024 / 1024:.2f} MB")
+
+            # Save to subfolder
+            save_dir = os.path.join(SAVE_BASE_DIR, model_type, f"masking_{mask_pct}")
+            print(f"\nSaving to: {save_dir}")
+            save_embeddings(embeddings, subject_ids, dates, save_dir, mask_pct)
+            
+            # Free memory
+            del model
+            torch.cuda.empty_cache()
+
+        # Final summary
         print("\n" + "="*60)
-        print(f"PROCESSING: masking_{mask_pct} ({mask_pct}% masking)")
+        print("COMPLETE")
         print("="*60)
-        
-        # Load model
-        print(f"\nLoading model from: {checkpoint_path}")
-        model = load_model(
-            checkpoint_path, mask_ratio, device,
-            d_input=d_input, d_output=d_output,
-            enc_hidden_dims=enc_hidden_dims, dec_hidden_dims=dec_hidden_dims,
-            n_layers_s4=n_layers_s4, verbose=False
-        )
-        model = freeze_weights(model)
-        print("Model loaded and frozen.")
-
-        # Extract embeddings
-        print("\nExtracting embeddings...")
-        embeddings = extract_embeddings(model, data, device, batch_size=batch_size)
-        
-        print(f"\nEmbeddings extracted:")
-        print(f"  Shape: {embeddings.shape}")
-        print(f"  Memory: {embeddings.nbytes / 1024 / 1024:.2f} MB")
-
-        # Save to subfolder
-        save_dir = os.path.join(SAVE_BASE_DIR, f"masking_{mask_pct}")
-        print(f"\nSaving to: {save_dir}")
-        save_embeddings(embeddings, subject_ids, dates, save_dir, mask_pct)
-        
-        # Free memory
-        del model
-        torch.cuda.empty_cache()
-
-    # Final summary
-    print("\n" + "="*60)
-    print("COMPLETE")
-    print("="*60)
-    print(f"Total samples: {len(data)}")
-    print(f"Unique subjects: {stats['unique_subjects']}")
-    print(f"Embeddings saved to:")
-    for mask_pct in models_to_run.keys():
-        print(f"  - {SAVE_BASE_DIR}/masking_{mask_pct}/")
-    print("="*60)
+        print(f"Total samples: {len(data)}")
+        print(f"Unique subjects: {stats['unique_subjects']}")
+        print(f"Embeddings saved to:")
+        for mask_pct in mask_ratios:
+            print(f"  - {SAVE_BASE_DIR}/{model_type}/masking_{mask_pct}/")
+        print("="*60)

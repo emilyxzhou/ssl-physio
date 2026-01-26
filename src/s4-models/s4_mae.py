@@ -225,21 +225,21 @@ class S4MAE(nn.Module):
         # assert mask_ratio > 0 and mask_ratio < 1, "Masking ratio must be kept between 0 and 1"
         self.mask_ratio = mask_ratio
 
+        # S4 acts as the encoder when enc_hidden_dims is None
         if enc_hidden_dims is not None:
             self.encoder = ConvEncoder(
                 input_channels=d_input,
                 hidden_dims=enc_hidden_dims,
                 verbose=verbose
             )
-        else: self.encoder = nn.Identity()
+            s4_dim = enc_hidden_dims[-1]
+        else: 
+            self.encoder = nn.Identity()
+            s4_dim = d_input
 
         self.mask = PatchMasking(mask_ratio)
 
-        # S4 acts as the encoder when enc_hidden_dims is None
-        if enc_hidden_dims is not None: s4_dim = enc_hidden_dims[-1]
-        else: s4_dim = d_input
-
-        self.s4_model = S4Model(
+        self.seq_model = S4Model(
             d_input=s4_dim,
             d_output=d_output,
             d_model=d_model,
@@ -268,7 +268,7 @@ class S4MAE(nn.Module):
         if classification in ["finetune"]:
             dummy_input = torch.randn(1, d_input, 1440)
             x = self.encoder(dummy_input)
-            x = self.s4_model(x.transpose(-1, -2).clone())
+            x = self.seq_model(x.transpose(-1, -2).clone())
             self.cls_head = CNN(
                 d_input=x.shape[1],
                 sequence_len=x.shape[2]
@@ -276,7 +276,7 @@ class S4MAE(nn.Module):
         elif classification == "lin_probe":
             dummy_input = torch.randn(1, d_input, 1440)
             x = self.encoder(dummy_input)
-            x = self.s4_model(x.transpose(-1, -2).clone())
+            x = self.seq_model(x.transpose(-1, -2).clone())
             self.cls_head = LogisticRegressionHead(
                 d_input=x.shape[1],
                 sequence_len=x.shape[2]
@@ -296,7 +296,7 @@ class S4MAE(nn.Module):
         conv_output = self.encoder(masked_input.clone())
         if self.verbose: print(f"Conv output shape: {conv_output.shape}")
         
-        s4_output = self.s4_model(conv_output.transpose(-1, -2).clone())
+        s4_output = self.seq_model(conv_output.transpose(-1, -2).clone())
         if self.verbose: print(f"S4 output shape: {s4_output.shape}")
 
         if self.cls_head is not None:
@@ -331,10 +331,10 @@ if __name__ == "__main__":
     # scale = "median"
     scale = "scale"
 
-    d_model = 64
+    d_model = 128
     if mode == "heart rate": d_input = 1
     else: d_input = 2
-    d_output = 256
+    d_output = 128
 
     # enc_hidden_dims = [32, 64, 128]
     dec_hidden_dims = [128, 64, 32]
@@ -350,7 +350,7 @@ if __name__ == "__main__":
         d_model=dec_hidden_dims[0],
         d_input=d_input,
         d_output=d_output,
-        enc_hidden_dims=enc_hidden_dims,
+        enc_hidden_dims=None,
         dec_hidden_dims=dec_hidden_dims,
         n_layers_s4=n_layers_s4,
         mask_ratio=mask_ratio,
