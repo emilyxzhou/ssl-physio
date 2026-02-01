@@ -56,7 +56,7 @@ os.environ["S4_BACKEND"] = "keops"
 
 MODELS_BASE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction"
 
-SAVE_BASE_DIR = "/data1/emilyzho/tiles-2018-processed/tiles-test/embeddings"
+SAVE_BASE_DIR = "/data1/mjma/tiles-2018-processed/tiles-test/embeddings"
 
 
 def load_model(checkpoint_path, model_params, model_type, mask_ratio=None):
@@ -329,7 +329,7 @@ if __name__ == "__main__":
     stats = report_data_statistics(subject_ids, dates, data)
 
     # Process each model ------------------------------------------------------------------------------------------
-    method = "mean"
+    method = "raw"
     for model_type in model_types:
         for mask_pct in mask_ratios:
             config_path = f"{USER_ROOT}/ssl-physio/config/{model_type}_config.json"
@@ -361,7 +361,7 @@ if __name__ == "__main__":
             print(f"  Memory: {embeddings.nbytes / 1024 / 1024:.2f} MB")
 
             # Save to subfolder
-            save_dir = os.path.join(SAVE_BASE_DIR, model_type, f"masking_{mask_pct}_{method}{enc_type}")
+            save_dir = os.path.join(SAVE_BASE_DIR, model_type, f"masking_{mask_pct}")
             print(f"\nSaving to: {save_dir}")
             save_embeddings(embeddings, subject_ids, dates, save_dir, mask_pct)
             

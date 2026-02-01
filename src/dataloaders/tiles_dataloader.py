@@ -440,13 +440,8 @@ def generate_continuous_labels_day(subject_ids, dates, version="open", label_typ
                 for label_type in daily_labels:
                     labels[label_type].append(np.nan)
             
-<<<<<<< HEAD
     else:    # "RestingHeartRate", "SleepMinutesAsleep", "NumberSteps"
         summary_files = glob.glob("/data1/tiantiaf/tiles-opendata/tiles-phase1-*/fitbit/daily-summary/*")
-=======
-    if len(summary_labels) > 0:
-        summary_files = glob.glob("/data/tiantiaf/tiles-opendataset/tiles-phase1-*/fitbit/daily-summary/*")
->>>>>>> 26b9a0b46a2aa211bf3764c21e19968ba0bd5567
         summary_dfs = []
         for fp in summary_files:
             subject_id = fp.split("/")[-1].split(".")[0]

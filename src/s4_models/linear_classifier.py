@@ -30,21 +30,11 @@ class CNN(nn.Module):
         self.relu4 = nn.ReLU()
         self.pool4 = nn.AvgPool1d(kernel_size=2)
 
-        # self.conv5 = nn.Conv1d(in_channels=64, out_channels=32, kernel_size=3, padding="same")
-        # self.relu5 = nn.ReLU()
-        # self.pool5 = nn.AvgPool1d(kernel_size=2)
-
-        # self.conv6 = nn.Conv1d(in_channels=32, out_channels=32, kernel_size=3, padding="same")
-        # self.relu6 = nn.ReLU()
-        # self.pool6 = nn.AvgPool1d(kernel_size=2)
-
         dummy_input = torch.randn(1, d_input, sequence_len)
         x = self.pool1(self.relu1(self.conv1(dummy_input)))
         x = self.pool2(self.relu2(self.conv2(x)))
         x = self.pool3(self.relu3(self.conv3(x)))
         x = self.pool4(self.relu4(self.conv4(x)))
-        # x = self.pool5(self.relu5(self.conv5(x)))
-        # x = self.pool6(self.relu6(self.conv6(x)))
         self._to_linear = x.shape[1] * x.shape[2]    # channels * final_sequence_length
         self.fc = nn.Linear(self._to_linear, 1)
 
@@ -53,8 +43,6 @@ class CNN(nn.Module):
         x = self.pool2(self.relu2(self.conv2(x)))
         x = self.pool3(self.relu3(self.conv3(x)))
         x = self.pool4(self.relu4(self.conv4(x)))
-        # x = self.pool5(self.relu5(self.conv5(x)))
-        # x = self.pool6(self.relu6(self.conv6(x)))
         x = x.view(-1, self._to_linear)
         x = self.fc(x)
         return x

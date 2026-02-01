@@ -32,11 +32,11 @@ class ContextWindowsRunner(threadward.Threadward):
         self.set_constraints(
             SUCCESS_CONDITION="NO_ERROR_AND_VERIFY",
             OUTPUT_MODE="LOG_FILE_ONLY",
-            NUM_WORKERS=20,  # MAML is more GPU-intensive
+            NUM_WORKERS=10,  # MAML is more GPU-intensive
             NUM_GPUS_PER_WORKER=0.1,
             NUM_CPUS_PER_WORKER=-1,
             AVOID_GPUS=None,
-            INCLUDE_GPUS=[1,3],
+            INCLUDE_GPUS=[1],
             FAILURE_HANDLING="PRINT_FAILURE_AND_CONTINUE",
             TASK_FOLDER_LOCATION="VARIABLE_SUBFOLDER",
             EXISTING_FOLDER_HANDLING="VERIFY",
@@ -90,7 +90,7 @@ class ContextWindowsRunner(threadward.Threadward):
             nicknames=embedding_models)
         
         # 2. Masking ratio
-        masking_ratios = ["masking_10", "masking_30", "masking_50", "masking_70"]
+        masking_ratios = ["masking_30", "masking_70"]
         variable_set.add_variable("masking_ratio",
             values=masking_ratios,
             nicknames=masking_ratios)
@@ -112,7 +112,7 @@ class ContextWindowsRunner(threadward.Threadward):
             nicknames=days_nicknames)
         
         # 4. Prediction model
-        prediction_models = ["cnn", "nn"]
+        prediction_models = ["cnn"]
         variable_set.add_variable("prediction_model",
             values=prediction_models,
             nicknames=prediction_models)

@@ -18,14 +18,14 @@ TILES_TEST_DIR = "/data1/mjma/tiles-2018-processed/tiles-test"
 EMBEDDINGS_BASE_DIR = os.path.join(TILES_TEST_DIR, "embeddings")
 
 # Target column indices in labels.npy
-# Cols: [user_id, date, stress, anxiety, ?, ?, sleep, rhr, steps]
-TARGET_NAMES = ['stress', 'anxiety', 'rhr', 'sleep', 'steps']
+# Cols: [user_id, date, age, shift, anxiety, stress, NumberSteps, RestingHeartRate, SleepMinutesAsleep]
+TARGET_NAMES = ['anxiety', 'stress', 'NumberSteps', 'RestingHeartRate', 'SleepMinutesAsleep']
 TARGET_TYPES = {
-    'stress': 'binary',
     'anxiety': 'binary', 
-    'rhr': 'regression',
-    'sleep': 'regression',
-    'steps': 'regression'
+    'stress': 'binary',
+    'NumberSteps': 'regression',
+    'RestingHeartRate': 'regression',
+    'SleepMinutesAsleep': 'regression'
 }
 
 
@@ -38,7 +38,7 @@ def load_embeddings_and_index(embedding_model: str, masking_ratio: str):
         masking_ratio: e.g., "masking_10", "masking_30", "masking_50", "masking_70"
     
     Returns:
-        embeddings: np.ndarray of shape (N, 128)
+        embeddings: np.ndarray of shape (N, 180, 128)
         index: list of dicts with keys: key, row, user, date, user_day
     """
     emb_dir = os.path.join(EMBEDDINGS_BASE_DIR, embedding_model, masking_ratio)
@@ -68,11 +68,11 @@ def load_labels():
         date_str = str(row[1])  # Convert datetime.date to string
         
         labels_dict[(user_id, date_str)] = {
-            'stress': float(row[2]),
-            'anxiety': float(row[3]),
-            'sleep': float(row[6]),
-            'rhr': float(row[7]),
-            'steps': float(row[8])
+            'anxiety': float(row[4]),
+            'stress': float(row[5]),
+            'NumberSteps': float(row[6]),
+            'RestingHeartRate': float(row[7]),
+            'SleepMinutesAsleep': float(row[8])
         }
     
     return labels_dict
@@ -125,11 +125,11 @@ def organize_data_by_subject(embeddings, index, labels_dict, min_days_per_subjec
             
             user_embeddings.append(embeddings[entry["row"]])
             user_targets.append([
-                label['stress'],
                 label['anxiety'],
-                label['rhr'],
-                label['sleep'],
-                label['steps']
+                label['stress'],
+                label['NumberSteps'],
+                label['RestingHeartRate'],
+                label['SleepMinutesAsleep']
             ])
             user_dates.append(date_str)
         

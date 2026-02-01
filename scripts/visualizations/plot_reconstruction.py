@@ -194,6 +194,7 @@ if __name__ == "__main__":
             conv_output = model.encoder(test_sample)  # (batch, 2, 1440) with Identity encoder
             seq_output = model.seq_model(conv_output.transpose(-1, -2))  # (batch, 1440, 128)
             seq_output = seq_output.detach().cpu().numpy()[0]
+            print(seq_output.shape)
 
             # Get masked positions
             x_recon_masked = (out * (1-mask)).detach().cpu().numpy()
