@@ -83,8 +83,9 @@ def run_context_windows(
     Run the context windows MAML experiment.
     
     Args:
-        embedding_model: "s4" or "mamba"
+        embedding_model: "s4", "mamba", or "raw_data"
         masking_ratio: "masking_10", "masking_30", "masking_50", "masking_70"
+                      (ignored for raw_data)
         input_days: number of input days (3, 5, or 7)
         output_days: number of output days to predict (1-7)
         prediction_model: "cnn" or "nn"
@@ -108,6 +109,14 @@ def run_context_windows(
     # Set seed
     set_seed(seed)
     rng = np.random.default_rng(seed)
+    
+    # Determine embedding dimensions based on model type
+    if embedding_model == "raw_data":
+        embedding_dim = 2      # 2 biosignal channels (HR, steps)
+        sequence_len = 1440    # 1440 minutes per day
+    else:
+        embedding_dim = 128    # S4/Mamba embedding dimension
+        sequence_len = 180     # S4/Mamba sequence length
     
     # Timezone for timestamps
     pst = pytz.timezone('America/Los_Angeles')
@@ -195,7 +204,9 @@ def run_context_windows(
             input_days=input_days,
             output_days=output_days,
             config=maml_config,
-            device=device
+            device=device,
+            embedding_dim=embedding_dim,
+            sequence_len=sequence_len
         )
         
         # Meta-train on support set (using a subset of query for meta-gradient)
@@ -313,9 +324,10 @@ if __name__ == "__main__":
     import argparse
     
     parser = argparse.ArgumentParser(description="Run Context Windows MAML Experiment")
-    parser.add_argument('--embedding-model', default='s4', choices=['s4', 'mamba'])
+    parser.add_argument('--embedding-model', default='s4', choices=['s4', 'mamba', 'raw_data'])
     parser.add_argument('--masking-ratio', default='masking_10', 
-                       choices=['masking_10', 'masking_30', 'masking_50', 'masking_70'])
+                       choices=['masking_10', 'masking_30', 'masking_50', 'masking_70'],
+                       help='Masking ratio (ignored for raw_data)')
     parser.add_argument('--input-days', type=int, default=3, choices=[3, 5, 7])
     parser.add_argument('--output-days', type=int, default=5, choices=[1, 2, 3, 4, 5, 6, 7])
     parser.add_argument('--prediction-model', default='nn', choices=['nn', 'cnn'])

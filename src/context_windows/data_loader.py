@@ -1,9 +1,13 @@
 """
 Data loading utilities for context_windows MAML experiment.
 
-Loads pre-computed embeddings (S4 or Mamba) and all 5 target labels from labels.npy:
+Loads pre-computed embeddings (S4, Mamba, or raw_data) and all 5 target labels from labels.npy:
 - Binary: stress, anxiety (cols 2-3)
 - Regression: sleep, rhr, steps (cols 6-8, already normalized)
+
+Embedding shapes:
+- S4/Mamba: (N, 180, 128) - 180 time steps, 128 features
+- raw_data: (N, 1440, 2) - 1440 minutes, 2 biosignals (HR, steps)
 """
 
 import json
@@ -16,6 +20,7 @@ import numpy as np
 # Base path for tiles-test data
 TILES_TEST_DIR = "/data1/mjma/tiles-2018-processed/tiles-test"
 EMBEDDINGS_BASE_DIR = os.path.join(TILES_TEST_DIR, "embeddings")
+RAW_DATA_DIR = os.path.join(TILES_TEST_DIR, "data")
 
 # Target column indices in labels.npy
 # Cols: [user_id, date, age, shift, anxiety, stress, NumberSteps, RestingHeartRate, SleepMinutesAsleep]
@@ -34,18 +39,27 @@ def load_embeddings_and_index(embedding_model: str, masking_ratio: str):
     Load embeddings and index for a given embedding model and masking ratio.
     
     Args:
-        embedding_model: "s4" or "mamba"
+        embedding_model: "s4", "mamba", or "raw_data"
         masking_ratio: e.g., "masking_10", "masking_30", "masking_50", "masking_70"
+                      (ignored for raw_data)
     
     Returns:
-        embeddings: np.ndarray of shape (N, 180, 128)
+        embeddings: np.ndarray
+            - S4/Mamba: shape (N, 180, 128)
+            - raw_data: shape (N, 1440, 2)
         index: list of dicts with keys: key, row, user, date, user_day
     """
-    emb_dir = os.path.join(EMBEDDINGS_BASE_DIR, embedding_model, masking_ratio)
-    
-    embeddings = np.load(os.path.join(emb_dir, "embeddings.npy"))
-    with open(os.path.join(emb_dir, "index.json"), "r") as f:
-        index = json.load(f)
+    if embedding_model == "raw_data":
+        # Raw biosignal data - no masking ratio applies
+        embeddings = np.load(os.path.join(RAW_DATA_DIR, "data.npy"))
+        with open(os.path.join(RAW_DATA_DIR, "index.json"), "r") as f:
+            index = json.load(f)
+    else:
+        # S4 or Mamba embeddings
+        emb_dir = os.path.join(EMBEDDINGS_BASE_DIR, embedding_model, masking_ratio)
+        embeddings = np.load(os.path.join(emb_dir, "embeddings.npy"))
+        with open(os.path.join(emb_dir, "index.json"), "r") as f:
+            index = json.load(f)
     
     return embeddings, index
 

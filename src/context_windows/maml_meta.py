@@ -263,7 +263,8 @@ class MultiTargetMAML:
     Trains all models together for efficiency but keeps them separate.
     """
     
-    def __init__(self, model_type, input_days, output_days, config, device):
+    def __init__(self, model_type, input_days, output_days, config, device, 
+                 embedding_dim=128, sequence_len=180):
         """
         Args:
             model_type: "nn" or "cnn"
@@ -271,17 +272,22 @@ class MultiTargetMAML:
             output_days: number of output days to predict
             config: MAMLConfig instance
             device: torch device
+            embedding_dim: dimension of embedding features (128 for S4/Mamba, 2 for raw_data)
+            sequence_len: length of sequence per day (180 for S4/Mamba, 1440 for raw_data)
         """
         self.model_type = model_type
         self.input_days = input_days
         self.output_days = output_days
         self.config = config
         self.device = device
+        self.embedding_dim = embedding_dim
+        self.sequence_len = sequence_len
         
         # Create one trainer per target
         self.trainers = {}
         for target_name in TARGET_CONFIG.keys():
-            model = create_maml_learner(model_type, input_days, output_days)
+            model = create_maml_learner(model_type, input_days, output_days,
+                                        embedding_dim=embedding_dim, sequence_len=sequence_len)
             self.trainers[target_name] = MAMLTrainer(model, target_name, config, device)
     
     def train_epoch(self, x_support, y_support, x_query, y_query):

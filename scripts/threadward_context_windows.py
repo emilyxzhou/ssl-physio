@@ -2,14 +2,13 @@
 Threadward runner for Context Windows MAML experiment.
 
 Variables:
-- embedding_model: s4, mamba
-- masking_ratio: masking_10, masking_30, masking_50, masking_70
+- embedding_config: Combined embedding model + masking ratio
+  - s4/mamba with masking_10, masking_30, masking_50, masking_70
+  - raw_data (no masking)
 - input_days: 3, 5, 7
 - output_days: 1, 2, 3, 4, 5, 6, 7
 - prediction_model: cnn, nn
 - seed: 0, 1, 2, 3, 4
-
-Total: 2 × 4 × 3 × 7 × 2 × 5 = 1,680 tasks
 """
 
 import argparse
@@ -45,11 +44,20 @@ class ContextWindowsRunner(threadward.Threadward):
     
     def task_method(self, variables, task_folder, log_file):
         # Extract variables from threadward
-        embedding_model = variables["embedding_model"]
-        masking_ratio = variables["masking_ratio"]
+        embedding_config = variables["embedding_config"]
         days_config = variables["days_config"]
         prediction_model = variables["prediction_model"]
         seed = variables["seed"]
+        
+        # Parse embedding_config (format: "s4_masking_10" or "raw_data")
+        if embedding_config == "raw_data":
+            embedding_model = "raw_data"
+            masking_ratio = "none"  # Not used for raw_data
+        else:
+            # Format: "s4_masking_10" or "mamba_masking_30"
+            parts = embedding_config.split("_", 1)  # Split on first underscore
+            embedding_model = parts[0]
+            masking_ratio = parts[1]
         
         # Parse days_config (format: "in_03_out_05")
         parts = days_config.split("_")
@@ -83,17 +91,25 @@ class ContextWindowsRunner(threadward.Threadward):
         return os.path.exists(os.path.join(task_folder, "results.json"))
     
     def setup_variable_set(self, variable_set):
-        # 1. Embedding model
-        embedding_models = ["s4", "mamba"]
-        variable_set.add_variable("embedding_model",
-            values=embedding_models,
-            nicknames=embedding_models)
+        # 1. Combined embedding model + masking ratio
+        # S4 and Mamba have masking ratios, raw_data does not
+        embedding_configs = []
+        embedding_nicknames = []
         
-        # 2. Masking ratio
-        masking_ratios = ["masking_30", "masking_70"]
-        variable_set.add_variable("masking_ratio",
-            values=masking_ratios,
-            nicknames=masking_ratios)
+        # S4 and Mamba with masking ratios
+        for model in ["s4", "mamba"]:
+            for ratio in ["masking_10", "masking_30", "masking_50", "masking_70"]:
+                config = f"{model}_{ratio}"
+                embedding_configs.append(config)
+                embedding_nicknames.append(config)
+        
+        # Raw data (no masking)
+        embedding_configs.append("raw_data")
+        embedding_nicknames.append("raw_data")
+        
+        variable_set.add_variable("embedding_config",
+            values=embedding_configs,
+            nicknames=embedding_nicknames)
         
         # 3. Days in/out combinations
         input_days_options = [3, 5, 7]
