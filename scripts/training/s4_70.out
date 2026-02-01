@@ -1,31 +1,453 @@
 nohup: ignoring input
-2026-01-25 16:14:44 WARNING ==> CUDA extension for structured kernels (Cauchy and Vandermonde multiplication) not found. Install by going to extensions/kernels/ and running `python setup.py install`, for improved speed and memory efficiency. Note that the kernel changed for state-spaces 4.0 and must be recompiled.
-2026-01-25 16:14:44 WARNING ==> Falling back on slow Cauchy and Vandermonde kernel. Install at least one of pykeops or the CUDA extension for better speed and memory efficiency.
+CUDA extension for structured kernels (Cauchy and Vandermonde multiplication) not found. Install by going to extensions/kernels/ and running `python setup.py install`, for improved speed and memory efficiency. Note that the kernel changed for state-spaces 4.0 and must be recompiled.
+Falling back on slow Cauchy and Vandermonde kernel. Install at least one of pykeops or the CUDA extension for better speed and memory efficiency.
 wandb: Currently logged in as: emilyzho (emilyzho-usc) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
 wandb: Tracking run with wandb version 0.23.1
-wandb: Run data is saved locally in /home/emilyzho/ssl-physio/scripts/training/wandb/run-20260125_161444-juasp6a0
+wandb: Run data is saved locally in /home/emilyzho/ssl-physio/scripts/training/wandb/run-20260131_051254-hpailwwk
 wandb: Run `wandb offline` to turn off syncing.
-wandb: Syncing run S4
+wandb: Syncing run S4-70
 wandb: ⭐️ View project at https://wandb.ai/emilyzho-usc/ssl-s4
-wandb: 🚀 View run at https://wandb.ai/emilyzho-usc/ssl-s4/runs/juasp6a0
-2026-01-25 16:14:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
-2026-01-25 16:14:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
-2026-01-25 16:14:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
-2026-01-25 16:14:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
-2026-01-25 16:14:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
-2026-01-25 16:14:46 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
-2026-01-25 16:14:46 INFO ==> S4: Initializing kernel to length 1440
-2026-01-25 16:14:46 INFO ==> S4: Initializing kernel to length 1440
-2026-01-25 16:14:46 INFO ==> S4: Initializing kernel to length 1440
-2026-01-25 16:14:46 INFO ==> S4: Initializing kernel to length 1440
-2026-01-25 16:14:46 INFO ==> S4: Initializing kernel to length 1440
-2026-01-25 16:14:46 INFO ==> S4: Initializing kernel to length 1440
-2026-01-25 16:14:46 INFO ==> Loading data from /data/open_data/tiles-2018-processed/tiles-opendataset/fitbit.
+wandb: 🚀 View run at https://wandb.ai/emilyzho-usc/ssl-s4/runs/hpailwwk
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+Trainable params: 0.49 M
+Training start: 2026-01-31_05:15:08.
+Epoch 1/50
+Epoch 1, step 100 | loss 0.5782979726791382
+Epoch 1, step 200 | loss 0.5382354855537415
+Epoch 1, step 300 | loss 0.5123870968818665
+Epoch 1, step 321 | loss 0.5455577969551086
+Train loss: 0.5761
+[val] Step 38 | Loss 0.3087
+Validation loss: 0.4352
+Epoch 2/50
+Epoch 2, step 100 | loss 0.4463009536266327
+Epoch 2, step 200 | loss 0.40927815437316895
+Epoch 2, step 300 | loss 0.46890315413475037
+Epoch 2, step 321 | loss 0.4234462082386017
+Train loss: 0.4570
+[val] Step 38 | Loss 0.2450
+Validation loss: 0.2863
+Epoch 3/50
+Epoch 3, step 100 | loss 0.4193747341632843
+Epoch 3, step 200 | loss 0.4509149491786957
+Epoch 3, step 300 | loss 0.4123460650444031
+Epoch 3, step 321 | loss 0.3709520101547241
+Train loss: 0.4193
+[val] Step 38 | Loss 0.2272
+Validation loss: 0.2293
+Epoch 4/50
+Epoch 4, step 100 | loss 0.33629605174064636
+Epoch 4, step 200 | loss 0.4463445544242859
+Epoch 4, step 300 | loss 0.3766123652458191
+Epoch 4, step 321 | loss 0.37001147866249084
+Train loss: 0.4088
+[val] Step 38 | Loss 0.2091
+Validation loss: 0.2073
+Epoch 5/50
+Epoch 5, step 100 | loss 0.49282172322273254
+Epoch 5, step 200 | loss 0.3846467435359955
+Epoch 5, step 300 | loss 0.38842979073524475
+Epoch 5, step 321 | loss 0.37930014729499817
+Train loss: 0.4026
+[val] Step 38 | Loss 0.1994
+Validation loss: 0.2345
+Epoch 6/50
+Epoch 6, step 100 | loss 0.34778058528900146
+Epoch 6, step 200 | loss 0.41387757658958435
+Epoch 6, step 300 | loss 0.34101584553718567
+Epoch 6, step 321 | loss 0.37360355257987976
+Train loss: 0.3949
+[val] Step 38 | Loss 0.1906
+Validation loss: 0.1775
+Epoch 7/50
+Epoch 7, step 100 | loss 0.3801344931125641
+Epoch 7, step 200 | loss 0.4415476620197296
+Epoch 7, step 300 | loss 0.37564077973365784
+Epoch 7, step 321 | loss 0.3764733672142029
+Train loss: 0.3956
+[val] Step 38 | Loss 0.1402
+Validation loss: 0.1616
+Epoch 8/50
+Epoch 8, step 100 | loss 0.3246440589427948
+Epoch 8, step 200 | loss 0.3972029983997345
+Epoch 8, step 300 | loss 0.33009299635887146
+Epoch 8, step 321 | loss 0.4313647449016571
+Train loss: 0.3896
+[val] Step 38 | Loss 0.1406
+Validation loss: 0.1240
+Epoch 9/50
+Epoch 9, step 100 | loss 0.4102403223514557
+Epoch 9, step 200 | loss 0.324535071849823
+Epoch 9, step 300 | loss 0.3469415009021759
+Epoch 9, step 321 | loss 0.363535076379776
+Train loss: 0.3905
+[val] Step 38 | Loss 0.1494
+Validation loss: 0.1505
+Epoch 10/50
+Epoch 10, step 100 | loss 0.38986828923225403
+Epoch 10, step 200 | loss 0.41064539551734924
+Epoch 10, step 300 | loss 0.37470144033432007
+Epoch 10, step 321 | loss 0.37121614813804626
+Train loss: 0.3874
+[val] Step 38 | Loss 0.1236
+Validation loss: 0.1367
+Epoch 11/50
+Epoch 11, step 100 | loss 0.40260469913482666
+Epoch 11, step 200 | loss 0.4213959574699402
+Epoch 11, step 300 | loss 0.35142943263053894
+Epoch 11, step 321 | loss 0.40610989928245544
+Train loss: 0.3843
+[val] Step 38 | Loss 0.1661
+Validation loss: 0.1267
+Epoch 12/50
+Epoch 12, step 100 | loss 0.43854400515556335
+Epoch 12, step 200 | loss 0.3920395076274872
+Epoch 12, step 300 | loss 0.38598307967185974
+Epoch 12, step 321 | loss 0.4020320773124695
+Train loss: 0.3822
+[val] Step 38 | Loss 0.1132
+Validation loss: 0.1119
+Epoch 13/50
+Epoch 13, step 100 | loss 0.4209102392196655
+Epoch 13, step 200 | loss 0.43929851055145264
+Epoch 13, step 300 | loss 0.3750700354576111
+Epoch 13, step 321 | loss 0.3717454671859741
+Train loss: 0.3810
+[val] Step 38 | Loss 0.0810
+Validation loss: 0.1107
+Epoch 14/50
+Epoch 14, step 100 | loss 0.3460671305656433
+Epoch 14, step 200 | loss 0.397438108921051
+Epoch 14, step 300 | loss 0.42652004957199097
+Epoch 14, step 321 | loss 0.3653460741043091
+Train loss: 0.3780
+[val] Step 38 | Loss 0.1034
+Validation loss: 0.1237
+Epoch 15/50
+Epoch 15, step 100 | loss 0.37866050004959106
+Epoch 15, step 200 | loss 0.438462495803833
+Epoch 15, step 300 | loss 0.33382704854011536
+Epoch 15, step 321 | loss 0.3398309648036957
+Train loss: 0.3782
+[val] Step 38 | Loss 0.1028
+Validation loss: 0.1095
+Epoch 16/50
+Epoch 16, step 100 | loss 0.39648428559303284
+Epoch 16, step 200 | loss 0.45884308218955994
+Epoch 16, step 300 | loss 0.40242502093315125
+Epoch 16, step 321 | loss 0.3811403214931488
+Train loss: 0.3793
+[val] Step 38 | Loss 0.1111
+Validation loss: 0.1072
+Epoch 17/50
+Epoch 17, step 100 | loss 0.3492204248905182
+Epoch 17, step 200 | loss 0.3873395323753357
+Epoch 17, step 300 | loss 0.35505616664886475
+Epoch 17, step 321 | loss 0.3771381080150604
+Train loss: 0.3744
+[val] Step 38 | Loss 0.0933
+Validation loss: 0.1159
+Epoch 18/50
+Epoch 18, step 100 | loss 0.43374407291412354
+Epoch 18, step 200 | loss 0.3556079566478729
+Epoch 18, step 300 | loss 0.4064796566963196
+Epoch 18, step 321 | loss 0.3246745765209198
+Train loss: 0.3749
+[val] Step 38 | Loss 0.0950
+Validation loss: 0.1044
+Epoch 19/50
+Epoch 19, step 100 | loss 0.3606908321380615
+Epoch 19, step 200 | loss 0.35404613614082336
+Epoch 19, step 300 | loss 0.33487868309020996
+Epoch 19, step 321 | loss 0.3544866740703583
+Train loss: 0.3729
+[val] Step 38 | Loss 0.0827
+Validation loss: 0.1104
+Epoch 20/50
+Epoch 20, step 100 | loss 0.35896924138069153
+Epoch 20, step 200 | loss 0.42557621002197266
+Epoch 20, step 300 | loss 0.4145374000072479
+Epoch 20, step 321 | loss 0.33610326051712036
+Train loss: 0.3752
+[val] Step 38 | Loss 0.1326
+Validation loss: 0.1166
+Epoch 21/50
+Epoch 21, step 100 | loss 0.3900694251060486
+Epoch 21, step 200 | loss 0.3869069516658783
+Epoch 21, step 300 | loss 0.370343953371048
+Epoch 21, step 321 | loss 0.39049190282821655
+Train loss: 0.3722
+[val] Step 38 | Loss 0.1172
+Validation loss: 0.1234
+Epoch 22/50
+Epoch 22, step 100 | loss 0.3719637989997864
+Epoch 22, step 200 | loss 0.379257470369339
+Epoch 22, step 300 | loss 0.3762727677822113
+Epoch 22, step 321 | loss 0.3776577115058899
+Train loss: 0.3730
+[val] Step 38 | Loss 0.1842
+Validation loss: 0.1038
+Epoch 23/50
+Epoch 23, step 100 | loss 0.3570775091648102
+Epoch 23, step 200 | loss 0.4436122477054596
+Epoch 23, step 300 | loss 0.34160473942756653
+Epoch 23, step 321 | loss 0.3638957142829895
+Train loss: 0.3724
+[val] Step 38 | Loss 0.1521
+Validation loss: 0.1133
+Epoch 24/50
+Epoch 24, step 100 | loss 0.4185888469219208
+Epoch 24, step 200 | loss 0.3698239028453827
+Epoch 24, step 300 | loss 0.3946349322795868
+Epoch 24, step 321 | loss 0.3991990089416504
+Train loss: 0.3705
+[val] Step 38 | Loss 0.1306
+Validation loss: 0.1244
+Epoch 25/50
+Epoch 25, step 100 | loss 0.3975832760334015
+Epoch 25, step 200 | loss 0.4246048033237457
+Epoch 25, step 300 | loss 0.43993616104125977
+Epoch 25, step 321 | loss 0.3121575117111206
+Train loss: 0.3710
+[val] Step 38 | Loss 0.1145
+Validation loss: 0.1048
+Epoch 26/50
+Epoch 26, step 100 | loss 0.347007691860199
+Epoch 26, step 200 | loss 0.3473244309425354
+Epoch 26, step 300 | loss 0.3715394139289856
+Epoch 26, step 321 | loss 0.36072230339050293
+Train loss: 0.3682
+[val] Step 38 | Loss 0.0770
+Validation loss: 0.0978
+Epoch 27/50
+Epoch 27, step 100 | loss 0.3491402268409729
+Epoch 27, step 200 | loss 0.34019356966018677
+Epoch 27, step 300 | loss 0.4169974625110626
+Epoch 27, step 321 | loss 0.39285895228385925
+Train loss: 0.3676
+[val] Step 38 | Loss 0.0913
+Validation loss: 0.1053
+Epoch 28/50
+Epoch 28, step 100 | loss 0.3441532254219055
+Epoch 28, step 200 | loss 0.3643629252910614
+Epoch 28, step 300 | loss 0.33781376481056213
+Epoch 28, step 321 | loss 0.3733004331588745
+Train loss: 0.3670
+[val] Step 38 | Loss 0.0603
+Validation loss: 0.0885
+Epoch 29/50
+Epoch 29, step 100 | loss 0.37371841073036194
+Epoch 29, step 200 | loss 0.344389945268631
+Epoch 29, step 300 | loss 0.3709843158721924
+Epoch 29, step 321 | loss 0.30878859758377075
+Train loss: 0.3658
+[val] Step 38 | Loss 0.1149
+Validation loss: 0.1054
+Epoch 30/50
+Epoch 30, step 100 | loss 0.34174394607543945
+Epoch 30, step 200 | loss 0.3627600371837616
+Epoch 30, step 300 | loss 0.3003716766834259
+Epoch 30, step 321 | loss 0.3612062633037567
+Train loss: 0.3680
+[val] Step 38 | Loss 0.0924
+Validation loss: 0.0966
+Epoch 31/50
+Epoch 31, step 100 | loss 0.3749450743198395
+Epoch 31, step 200 | loss 0.32902202010154724
+Epoch 31, step 300 | loss 0.34466874599456787
+Epoch 31, step 321 | loss 0.3252291679382324
+Train loss: 0.3679
+[val] Step 38 | Loss 0.1103
+Validation loss: 0.0963
+Epoch 32/50
+Epoch 32, step 100 | loss 0.29931098222732544
+Epoch 32, step 200 | loss 0.3646053373813629
+Epoch 32, step 300 | loss 0.3363477289676666
+Epoch 32, step 321 | loss 0.38052138686180115
+Train loss: 0.3642
+[val] Step 38 | Loss 0.1224
+Validation loss: 0.1076
+Epoch 33/50
+Epoch 33, step 100 | loss 0.3641887605190277
+Epoch 33, step 200 | loss 0.33895233273506165
+Epoch 33, step 300 | loss 0.4568065404891968
+Epoch 33, step 321 | loss 0.3692805767059326
+Train loss: 0.3667
+[val] Step 38 | Loss 0.1581
+Validation loss: 0.0961
+Epoch 34/50
+Epoch 34, step 100 | loss 0.34595125913619995
+Epoch 34, step 200 | loss 0.3765365779399872
+Epoch 34, step 300 | loss 0.3494469225406647
+Epoch 34, step 321 | loss 0.29180124402046204
+Train loss: 0.3584
+[val] Step 38 | Loss 0.1092
+Validation loss: 0.1054
+Epoch 35/50
+Epoch 35, step 100 | loss 0.4964664876461029
+Epoch 35, step 200 | loss 0.3299742043018341
+Epoch 35, step 300 | loss 0.4110243022441864
+Epoch 35, step 321 | loss 0.3620620369911194
+Train loss: 0.3636
+[val] Step 38 | Loss 0.1118
+Validation loss: 0.1189
+Epoch 36/50
+Epoch 36, step 100 | loss 0.370382696390152
+Epoch 36, step 200 | loss 0.34733784198760986
+Epoch 36, step 300 | loss 0.3561723232269287
+Epoch 36, step 321 | loss 0.2968239486217499
+Train loss: 0.3633
+[val] Step 38 | Loss 0.0799
+Validation loss: 0.0993
+Epoch 37/50
+Epoch 37, step 100 | loss 0.3837887644767761
+Epoch 37, step 200 | loss 0.28685665130615234
+Epoch 37, step 300 | loss 0.3434326648712158
+Epoch 37, step 321 | loss 0.3386123776435852
+Train loss: 0.3613
+[val] Step 38 | Loss 0.1067
+Validation loss: 0.1034
+Epoch 38/50
+Epoch 38, step 100 | loss 0.32886844873428345
+Epoch 38, step 200 | loss 0.38174304366111755
+Epoch 38, step 300 | loss 0.3606916666030884
+Epoch 38, step 321 | loss 0.38267654180526733
+Train loss: 0.3623
+[val] Step 38 | Loss 0.1043
+Validation loss: 0.1054
+Epoch 39/50
+Epoch 39, step 100 | loss 0.3003545105457306
+Epoch 39, step 200 | loss 0.3554656505584717
+Epoch 39, step 300 | loss 0.33396029472351074
+Epoch 39, step 321 | loss 0.3657124638557434
+Train loss: 0.3616
+[val] Step 38 | Loss 0.0595
+Validation loss: 0.0908
+Epoch 40/50
+Epoch 40, step 100 | loss 0.41395628452301025
+Epoch 40, step 200 | loss 0.38983985781669617
+Epoch 40, step 300 | loss 0.4132182002067566
+Epoch 40, step 321 | loss 0.3699442744255066
+Train loss: 0.3570
+[val] Step 38 | Loss 0.1131
+Validation loss: 0.1000
+Epoch 41/50
+Epoch 41, step 100 | loss 0.344835489988327
+Epoch 41, step 200 | loss 0.3508301079273224
+Epoch 41, step 300 | loss 0.3782613277435303
+Epoch 41, step 321 | loss 0.3214179277420044
+Train loss: 0.3608
+[val] Step 38 | Loss 0.0791
+Validation loss: 0.0964
+Epoch 42/50
+Epoch 42, step 100 | loss 0.31869304180145264
+Epoch 42, step 200 | loss 0.38026222586631775
+Epoch 42, step 300 | loss 0.3160421550273895
+Epoch 42, step 321 | loss 0.3536337912082672
+Train loss: 0.3593
+[val] Step 38 | Loss 0.0755
+Validation loss: 0.0836
+Epoch 43/50
+Epoch 43, step 100 | loss 0.3562248647212982
+Epoch 43, step 200 | loss 0.32126888632774353
+Epoch 43, step 300 | loss 0.4010738134384155
+Epoch 43, step 321 | loss 0.4427540898323059
+Train loss: 0.3602
+[val] Step 38 | Loss 0.1220
+Validation loss: 0.0996
+Epoch 44/50
+Epoch 44, step 100 | loss 0.34443312883377075
+Epoch 44, step 200 | loss 0.33722326159477234
+Epoch 44, step 300 | loss 0.40083208680152893
+Epoch 44, step 321 | loss 0.3102068305015564
+Train loss: 0.3582
+[val] Step 38 | Loss 0.0874
+Validation loss: 0.0892
+Epoch 45/50
+Epoch 45, step 100 | loss 0.3453662395477295
+Epoch 45, step 200 | loss 0.405477911233902
+Epoch 45, step 300 | loss 0.39178434014320374
+Epoch 45, step 321 | loss 0.38875120878219604
+Train loss: 0.3638
+[val] Step 38 | Loss 0.1061
+Validation loss: 0.1012
+Epoch 46/50
+Epoch 46, step 100 | loss 0.3574981689453125
+Epoch 46, step 200 | loss 0.3427319824695587
+Epoch 46, step 300 | loss 0.3635120391845703
+Epoch 46, step 321 | loss 0.375437468290329
+Train loss: 0.3593
+[val] Step 38 | Loss 0.0948
+Validation loss: 0.1007
+Epoch 47/50
+Epoch 47, step 100 | loss 0.3245789706707001
+Epoch 47, step 200 | loss 0.3301846981048584
+Epoch 47, step 300 | loss 0.31773266196250916
+Epoch 47, step 321 | loss 0.3585298955440521
+Train loss: 0.3608
+[val] Step 38 | Loss 0.0505
+Validation loss: 0.1052
+Epoch 48/50
+Epoch 48, step 100 | loss 0.28280186653137207
+Epoch 48, step 200 | loss 0.39275428652763367
+Epoch 48, step 300 | loss 0.3623606562614441
+Epoch 48, step 321 | loss 0.3687012791633606
+Train loss: 0.3583
+[val] Step 38 | Loss 0.0819
+Validation loss: 0.1078
+Epoch 49/50
+Epoch 49, step 100 | loss 0.35500064492225647
+Epoch 49, step 200 | loss 0.3363039195537567
+Epoch 49, step 300 | loss 0.3450097143650055
+Epoch 49, step 321 | loss 0.325862318277359
+Train loss: 0.3591
+[val] Step 38 | Loss 0.2171
+Validation loss: 0.1229
+Epoch 50/50
+Epoch 50, step 100 | loss 0.3391975164413452
+Epoch 50, step 200 | loss 0.34781038761138916
+Epoch 50, step 300 | loss 0.3392338156700134
+Epoch 50, step 321 | loss 0.352907657623291
+Train loss: 0.3572
+[val] Step 38 | Loss 0.1027
+Validation loss: 0.0934
+[test] Step 34 | Loss 0.3527
+Validation loss: 0.3644
+Training end: 2026-01-31_05:28:17. Elapsed time: 13:9.
+wandb: uploading artifact s4-mae; updating run metadata
+wandb: uploading artifact s4-mae; uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading artifact s4-mae
+wandb: 
+wandb: Run history:
+wandb:  test_loss ▁
+wandb: train_loss █▄▃▄▃▅▂▃▂▃▄▃▅▃▄▂▂▃▂▁▃▃▂▆▂▂▃▁▂▃▂▃▃▂▂▃▂▂▄▂
+wandb:   val_loss █▆▆▅▅▃▄▃▄▃▂▂▂▂▂▃▅▄▃▃▂▁▃▂▃▄▃▃▂▃▁▃▂▂▃▃▂▁▂▂
+wandb: 
+wandb: Run summary:
+wandb:  test_loss 0.35266
+wandb: train_loss 0.35291
+wandb:   val_loss 0.10269
+wandb: 
+wandb: 🚀 View run S4-70 at: https://wandb.ai/emilyzho-usc/ssl-s4/runs/hpailwwk
+wandb: ⭐️ View project at: https://wandb.ai/emilyzho-usc/ssl-s4
+wandb: Synced 5 W&B file(s), 0 media file(s), 2 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260131_051254-hpailwwk/logs
 {'d_input': 2,
  'd_model': 128,
  'd_output': 128,
  'dec_hidden_dims': [128, 64, 32],
- 'enc_hidden_dims': None,
+ 'enc_hidden_dims': [32, 64, 128],
  'mask_ratio': 0.7,
  'n_layers_s4': 6,
  'verbose': False}
@@ -35,486 +457,65 @@ Layer (type:depth-idx)                        Output Shape              Param #
 ===============================================================================================
 S4MAE                                         [1, 2, 1440]              --
 ├─PatchMasking: 1-1                           [1, 2, 1440]              --
-├─Identity: 1-2                               [1, 2, 1440]              --
-├─S4Model: 1-3                                [1, 1440, 128]            --
-│    └─Linear: 2-1                            [1, 1440, 128]            384
-│    └─ModuleList: 2-17                       --                        (recursive)
-│    │    └─S4Block: 3-1                      [1, 128, 1440]            66,048
-│    └─ModuleList: 2-18                       --                        --
-│    │    └─Dropout1d: 3-2                    [1, 128, 1440]            --
-│    └─ModuleList: 2-19                       --                        (recursive)
-│    │    └─LayerNorm: 3-3                    [1, 1440, 128]            256
-│    └─ModuleList: 2-17                       --                        (recursive)
-│    │    └─S4Block: 3-4                      [1, 128, 1440]            66,048
-│    └─ModuleList: 2-18                       --                        --
-│    │    └─Dropout1d: 3-5                    [1, 128, 1440]            --
-│    └─ModuleList: 2-19                       --                        (recursive)
-│    │    └─LayerNorm: 3-6                    [1, 1440, 128]            256
-│    └─ModuleList: 2-17                       --                        (recursive)
-│    │    └─S4Block: 3-7                      [1, 128, 1440]            66,048
-│    └─ModuleList: 2-18                       --                        --
-│    │    └─Dropout1d: 3-8                    [1, 128, 1440]            --
-│    └─ModuleList: 2-19                       --                        (recursive)
-│    │    └─LayerNorm: 3-9                    [1, 1440, 128]            256
-│    └─ModuleList: 2-17                       --                        (recursive)
-│    │    └─S4Block: 3-10                     [1, 128, 1440]            66,048
-│    └─ModuleList: 2-18                       --                        --
-│    │    └─Dropout1d: 3-11                   [1, 128, 1440]            --
-│    └─ModuleList: 2-19                       --                        (recursive)
-│    │    └─LayerNorm: 3-12                   [1, 1440, 128]            256
-│    └─ModuleList: 2-17                       --                        (recursive)
-│    │    └─S4Block: 3-13                     [1, 128, 1440]            66,048
-│    └─ModuleList: 2-18                       --                        --
-│    │    └─Dropout1d: 3-14                   [1, 128, 1440]            --
-│    └─ModuleList: 2-19                       --                        (recursive)
-│    │    └─LayerNorm: 3-15                   [1, 1440, 128]            256
-│    └─ModuleList: 2-17                       --                        (recursive)
-│    │    └─S4Block: 3-16                     [1, 128, 1440]            66,048
-│    └─ModuleList: 2-18                       --                        --
-│    │    └─Dropout1d: 3-17                   [1, 128, 1440]            --
-│    └─ModuleList: 2-19                       --                        (recursive)
-│    │    └─LayerNorm: 3-18                   [1, 1440, 128]            256
-│    └─Linear: 2-20                           [1, 1440, 128]            16,512
+├─ConvEncoder: 1-2                            [1, 128, 180]             --
+│    └─ModuleList: 2-1                        --                        --
+│    │    └─BlockConv: 3-1                    [1, 32, 720]              288
+│    │    └─BlockConv: 3-2                    [1, 64, 360]              6,336
+│    │    └─BlockConv: 3-3                    [1, 128, 180]             24,960
+├─S4Model: 1-3                                [1, 180, 128]             --
+│    └─Linear: 2-2                            [1, 180, 128]             16,512
+│    └─ModuleList: 2-18                       --                        (recursive)
+│    │    └─S4Block: 3-4                      [1, 128, 180]             66,048
+│    └─ModuleList: 2-19                       --                        --
+│    │    └─Dropout1d: 3-5                    [1, 128, 180]             --
+│    └─ModuleList: 2-20                       --                        (recursive)
+│    │    └─LayerNorm: 3-6                    [1, 180, 128]             256
+│    └─ModuleList: 2-18                       --                        (recursive)
+│    │    └─S4Block: 3-7                      [1, 128, 180]             66,048
+│    └─ModuleList: 2-19                       --                        --
+│    │    └─Dropout1d: 3-8                    [1, 128, 180]             --
+│    └─ModuleList: 2-20                       --                        (recursive)
+│    │    └─LayerNorm: 3-9                    [1, 180, 128]             256
+│    └─ModuleList: 2-18                       --                        (recursive)
+│    │    └─S4Block: 3-10                     [1, 128, 180]             66,048
+│    └─ModuleList: 2-19                       --                        --
+│    │    └─Dropout1d: 3-11                   [1, 128, 180]             --
+│    └─ModuleList: 2-20                       --                        (recursive)
+│    │    └─LayerNorm: 3-12                   [1, 180, 128]             256
+│    └─ModuleList: 2-18                       --                        (recursive)
+│    │    └─S4Block: 3-13                     [1, 128, 180]             66,048
+│    └─ModuleList: 2-19                       --                        --
+│    │    └─Dropout1d: 3-14                   [1, 128, 180]             --
+│    └─ModuleList: 2-20                       --                        (recursive)
+│    │    └─LayerNorm: 3-15                   [1, 180, 128]             256
+│    └─ModuleList: 2-18                       --                        (recursive)
+│    │    └─S4Block: 3-16                     [1, 128, 180]             66,048
+│    └─ModuleList: 2-19                       --                        --
+│    │    └─Dropout1d: 3-17                   [1, 128, 180]             --
+│    └─ModuleList: 2-20                       --                        (recursive)
+│    │    └─LayerNorm: 3-18                   [1, 180, 128]             256
+│    └─ModuleList: 2-18                       --                        (recursive)
+│    │    └─S4Block: 3-19                     [1, 128, 180]             66,048
+│    └─ModuleList: 2-19                       --                        --
+│    │    └─Dropout1d: 3-20                   [1, 128, 180]             --
+│    └─ModuleList: 2-20                       --                        (recursive)
+│    │    └─LayerNorm: 3-21                   [1, 180, 128]             256
+│    └─Linear: 2-21                           [1, 180, 128]             16,512
 ├─ConvDecoder: 1-4                            [1, 2, 1440]              --
-│    └─ModuleList: 2-21                       --                        --
-│    │    └─BlockConv: 3-19                   [1, 64, 1440]             24,768
-│    │    └─BlockConv: 3-20                   [1, 32, 1440]             6,240
-│    │    └─BlockDecoderLast: 3-21            [1, 2, 1440]              198
+│    └─ModuleList: 2-22                       --                        --
+│    │    └─BlockConv: 3-22                   [1, 64, 360]              24,768
+│    │    └─BlockConv: 3-23                   [1, 32, 720]              6,240
+│    │    └─BlockDecoderLast: 3-24            [1, 2, 1440]              198
 ===============================================================================================
-Total params: 445,926
-Trainable params: 445,926
+Total params: 493,638
+Trainable params: 493,638
 Non-trainable params: 0
-Total mult-adds (Units.MEGABYTES): 44.87
+Total mult-adds (Units.MEGABYTES): 20.67
 ===============================================================================================
 Input size (MB): 0.01
-Forward/backward pass size (MB): 40.57
-Params size (MB): 1.78
-Estimated Total Size (MB): 42.37
+Forward/backward pass size (MB): 6.66
+Params size (MB): 1.97
+Estimated Total Size (MB): 8.64
 ===============================================================================================
-  0%|          | 0/13184 [00:00<?, ?it/s]  0%|          | 12/13184 [00:00<01:52, 116.63it/s]  0%|          | 24/13184 [00:00<01:51, 117.77it/s]  0%|          | 36/13184 [00:00<01:51, 118.39it/s]  0%|          | 48/13184 [00:00<01:51, 118.18it/s]  0%|          | 60/13184 [00:00<01:50, 118.60it/s]  1%|          | 72/13184 [00:00<01:50, 118.49it/s]  1%|          | 84/13184 [00:00<01:50, 118.57it/s]  1%|          | 96/13184 [00:00<01:50, 118.44it/s]  1%|          | 108/13184 [00:00<01:51, 117.72it/s]  1%|          | 120/13184 [00:01<01:51, 117.31it/s]  1%|          | 132/13184 [00:01<01:51, 117.44it/s]  1%|          | 144/13184 [00:01<01:51, 116.81it/s]  1%|          | 156/13184 [00:01<01:52, 116.19it/s]  1%|▏         | 168/13184 [00:01<01:52, 116.11it/s]  1%|▏         | 180/13184 [00:01<01:52, 115.89it/s]  1%|▏         | 192/13184 [00:01<01:51, 116.12it/s]  2%|▏         | 204/13184 [00:01<01:51, 116.08it/s]  2%|▏         | 216/13184 [00:01<01:51, 116.24it/s]  2%|▏         | 228/13184 [00:01<01:50, 116.80it/s]  2%|▏         | 240/13184 [00:02<01:50, 117.06it/s]  2%|▏         | 252/13184 [00:02<01:50, 117.25it/s]  2%|▏         | 264/13184 [00:02<01:49, 117.65it/s]  2%|▏         | 276/13184 [00:02<01:49, 117.70it/s]  2%|▏         | 288/13184 [00:02<01:50, 116.64it/s]  2%|▏         | 300/13184 [00:02<01:51, 115.95it/s]  2%|▏         | 312/13184 [00:02<01:51, 115.34it/s]  2%|▏         | 324/13184 [00:02<01:51, 115.02it/s]  3%|▎         | 336/13184 [00:02<01:52, 114.40it/s]  3%|▎         | 348/13184 [00:03<02:38, 81.10it/s]   3%|▎         | 360/13184 [00:03<02:23, 89.15it/s]  3%|▎         | 372/13184 [00:03<02:13, 96.05it/s]  3%|▎         | 384/13184 [00:03<02:05, 101.60it/s]  3%|▎         | 396/13184 [00:03<02:00, 106.13it/s]  3%|▎         | 408/13184 [00:03<01:56, 109.39it/s]  3%|▎         | 420/13184 [00:03<01:54, 111.74it/s]  3%|▎         | 432/13184 [00:03<01:52, 112.89it/s]  3%|▎         | 444/13184 [00:03<01:52, 113.72it/s]  3%|▎         | 456/13184 [00:04<01:51, 114.20it/s]  4%|▎         | 468/13184 [00:04<01:50, 114.66it/s]  4%|▎         | 480/13184 [00:04<01:50, 114.55it/s]  4%|▎         | 492/13184 [00:04<01:50, 114.79it/s]  4%|▍         | 504/13184 [00:04<01:49, 115.65it/s]  4%|▍         | 516/13184 [00:04<01:48, 116.48it/s]  4%|▍         | 528/13184 [00:04<01:49, 115.86it/s]  4%|▍         | 540/13184 [00:04<01:48, 116.69it/s]  4%|▍         | 552/13184 [00:04<01:48, 116.90it/s]  4%|▍         | 565/13184 [00:04<01:46, 118.28it/s]  4%|▍         | 577/13184 [00:05<01:46, 118.24it/s]  4%|▍         | 590/13184 [00:05<01:45, 119.26it/s]  5%|▍         | 602/13184 [00:05<01:45, 119.43it/s]  5%|▍         | 614/13184 [00:05<01:45, 119.56it/s]  5%|▍         | 627/13184 [00:05<01:44, 119.83it/s]  5%|▍         | 639/13184 [00:05<01:44, 119.52it/s]  5%|▍         | 651/13184 [00:05<01:45, 118.74it/s]  5%|▌         | 663/13184 [00:05<01:45, 118.75it/s]  5%|▌         | 675/13184 [00:05<01:45, 119.01it/s]  5%|▌         | 687/13184 [00:06<01:45, 118.20it/s]  5%|▌         | 699/13184 [00:06<01:45, 117.84it/s]  5%|▌         | 711/13184 [00:06<01:45, 117.67it/s]  5%|▌         | 723/13184 [00:06<01:46, 117.43it/s]  6%|▌         | 735/13184 [00:06<01:46, 117.41it/s]  6%|▌         | 747/13184 [00:06<01:46, 116.56it/s]  6%|▌         | 759/13184 [00:06<01:46, 116.17it/s]  6%|▌         | 771/13184 [00:06<01:46, 116.56it/s]  6%|▌         | 784/13184 [00:06<01:44, 118.59it/s]  6%|▌         | 797/13184 [00:06<01:43, 119.86it/s]  6%|▌         | 809/13184 [00:07<01:44, 118.77it/s]  6%|▌         | 821/13184 [00:07<01:46, 116.19it/s]  6%|▋         | 833/13184 [00:07<01:46, 115.90it/s]  6%|▋         | 845/13184 [00:07<01:46, 115.56it/s]  7%|▋         | 857/13184 [00:07<01:46, 115.36it/s]  7%|▋         | 869/13184 [00:07<01:46, 115.17it/s]  7%|▋         | 881/13184 [00:07<01:46, 115.53it/s]  7%|▋         | 893/13184 [00:07<01:45, 116.70it/s]  7%|▋         | 906/13184 [00:07<01:44, 117.72it/s]  7%|▋         | 919/13184 [00:07<01:43, 118.67it/s]  7%|▋         | 932/13184 [00:08<01:42, 119.43it/s]  7%|▋         | 945/13184 [00:08<01:41, 120.22it/s]  7%|▋         | 958/13184 [00:08<01:42, 119.51it/s]  7%|▋         | 970/13184 [00:08<01:43, 118.35it/s]  7%|▋         | 982/13184 [00:08<01:43, 117.68it/s]  8%|▊         | 994/13184 [00:08<01:44, 116.59it/s]  8%|▊         | 1006/13184 [00:08<01:45, 115.76it/s]  8%|▊         | 1018/13184 [00:08<01:45, 115.46it/s]  8%|▊         | 1030/13184 [00:08<01:44, 115.77it/s]  8%|▊         | 1042/13184 [00:09<01:44, 116.00it/s]  8%|▊         | 1054/13184 [00:09<01:44, 115.83it/s]  8%|▊         | 1066/13184 [00:09<01:44, 115.86it/s]  8%|▊         | 1078/13184 [00:09<01:44, 116.15it/s]  8%|▊         | 1090/13184 [00:09<01:44, 116.20it/s]  8%|▊         | 1102/13184 [00:09<01:43, 116.38it/s]  8%|▊         | 1114/13184 [00:09<01:43, 116.64it/s]  9%|▊         | 1126/13184 [00:09<01:43, 116.80it/s]  9%|▊         | 1138/13184 [00:09<01:42, 117.19it/s]  9%|▊         | 1150/13184 [00:09<01:42, 117.79it/s]  9%|▉         | 1162/13184 [00:10<01:42, 117.72it/s]  9%|▉         | 1174/13184 [00:10<01:42, 116.91it/s]  9%|▉         | 1186/13184 [00:10<01:43, 116.45it/s]  9%|▉         | 1198/13184 [00:10<01:43, 116.16it/s]  9%|▉         | 1210/13184 [00:10<01:43, 116.18it/s]  9%|▉         | 1222/13184 [00:10<01:43, 115.77it/s]  9%|▉         | 1234/13184 [00:10<01:42, 116.69it/s]  9%|▉         | 1246/13184 [00:10<01:41, 117.65it/s] 10%|▉         | 1258/13184 [00:10<01:41, 118.05it/s] 10%|▉         | 1271/13184 [00:10<01:40, 118.84it/s] 10%|▉         | 1283/13184 [00:11<01:39, 119.02it/s] 10%|▉         | 1296/13184 [00:11<01:39, 119.36it/s] 10%|▉         | 1308/13184 [00:11<01:39, 119.48it/s] 10%|█         | 1320/13184 [00:11<01:39, 119.30it/s] 10%|█         | 1332/13184 [00:11<01:39, 119.18it/s] 10%|█         | 1344/13184 [00:11<01:39, 119.33it/s] 10%|█         | 1357/13184 [00:11<01:38, 119.48it/s] 10%|█         | 1370/13184 [00:11<01:38, 119.69it/s] 10%|█         | 1382/13184 [00:11<01:39, 118.67it/s] 11%|█         | 1394/13184 [00:12<01:40, 117.45it/s] 11%|█         | 1406/13184 [00:12<01:40, 117.36it/s] 11%|█         | 1418/13184 [00:12<01:40, 117.10it/s] 11%|█         | 1430/13184 [00:12<01:40, 117.13it/s] 11%|█         | 1442/13184 [00:12<01:40, 116.93it/s] 11%|█         | 1455/13184 [00:12<01:39, 117.87it/s] 11%|█         | 1468/13184 [00:12<01:38, 118.67it/s] 11%|█         | 1481/13184 [00:12<01:37, 119.78it/s] 11%|█▏        | 1494/13184 [00:12<01:36, 120.63it/s] 11%|█▏        | 1507/13184 [00:12<01:36, 121.25it/s] 12%|█▏        | 1520/13184 [00:13<01:36, 121.09it/s] 12%|█▏        | 1533/13184 [00:13<01:36, 120.13it/s] 12%|█▏        | 1546/13184 [00:13<01:37, 118.95it/s] 12%|█▏        | 1558/13184 [00:13<01:37, 118.83it/s] 12%|█▏        | 1570/13184 [00:13<01:37, 118.69it/s] 12%|█▏        | 1582/13184 [00:13<01:37, 118.74it/s] 12%|█▏        | 1594/13184 [00:13<01:37, 118.56it/s] 12%|█▏        | 1606/13184 [00:13<01:37, 118.33it/s] 12%|█▏        | 1618/13184 [00:13<01:37, 118.27it/s] 12%|█▏        | 1630/13184 [00:14<01:37, 118.35it/s] 12%|█▏        | 1642/13184 [00:14<01:37, 118.34it/s] 13%|█▎        | 1654/13184 [00:14<01:37, 118.40it/s] 13%|█▎        | 1667/13184 [00:14<01:36, 119.56it/s] 13%|█▎        | 1680/13184 [00:14<01:35, 120.43it/s] 13%|█▎        | 1693/13184 [00:14<01:35, 120.45it/s] 13%|█▎        | 1706/13184 [00:14<01:35, 119.60it/s] 13%|█▎        | 1718/13184 [00:14<01:35, 119.69it/s] 13%|█▎        | 1730/13184 [00:14<01:36, 119.18it/s] 13%|█▎        | 1743/13184 [00:14<01:36, 119.17it/s] 13%|█▎        | 1755/13184 [00:15<01:35, 119.05it/s] 13%|█▎        | 1767/13184 [00:15<01:36, 118.78it/s] 13%|█▎        | 1779/13184 [00:15<01:36, 118.54it/s] 14%|█▎        | 1791/13184 [00:15<01:36, 118.47it/s] 14%|█▎        | 1803/13184 [00:15<01:36, 117.95it/s] 14%|█▍        | 1815/13184 [00:15<01:36, 117.47it/s] 14%|█▍        | 1827/13184 [00:15<01:36, 117.89it/s] 14%|█▍        | 1839/13184 [00:15<01:36, 117.33it/s] 14%|█▍        | 1851/13184 [00:15<01:36, 117.79it/s] 14%|█▍        | 1864/13184 [00:15<01:35, 118.92it/s] 14%|█▍        | 1877/13184 [00:16<01:34, 119.88it/s] 14%|█▍        | 1889/13184 [00:16<01:34, 119.87it/s] 14%|█▍        | 1901/13184 [00:16<01:34, 118.88it/s] 15%|█▍        | 1913/13184 [00:16<01:35, 118.47it/s] 15%|█▍        | 1925/13184 [00:16<01:35, 118.45it/s] 15%|█▍        | 1937/13184 [00:16<01:35, 118.39it/s] 15%|█▍        | 1949/13184 [00:16<01:34, 118.33it/s] 15%|█▍        | 1961/13184 [00:16<01:34, 118.77it/s] 15%|█▍        | 1973/13184 [00:16<01:34, 118.27it/s] 15%|█▌        | 1985/13184 [00:17<01:34, 118.39it/s] 15%|█▌        | 1997/13184 [00:17<01:34, 117.82it/s] 15%|█▌        | 2009/13184 [00:17<01:35, 117.45it/s] 15%|█▌        | 2021/13184 [00:17<01:35, 116.84it/s] 15%|█▌        | 2033/13184 [00:17<01:35, 117.26it/s] 16%|█▌        | 2045/13184 [00:17<01:34, 117.56it/s] 16%|█▌        | 2057/13184 [00:17<01:34, 117.28it/s] 16%|█▌        | 2069/13184 [00:17<01:34, 117.45it/s] 16%|█▌        | 2081/13184 [00:17<01:34, 117.68it/s] 16%|█▌        | 2093/13184 [00:17<01:34, 117.66it/s] 16%|█▌        | 2105/13184 [00:18<01:34, 117.56it/s] 16%|█▌        | 2117/13184 [00:18<01:34, 116.74it/s] 16%|█▌        | 2129/13184 [00:18<01:34, 116.61it/s] 16%|█▌        | 2141/13184 [00:18<01:34, 116.50it/s] 16%|█▋        | 2153/13184 [00:18<01:34, 116.69it/s] 16%|█▋        | 2165/13184 [00:18<01:34, 116.70it/s] 17%|█▋        | 2177/13184 [00:18<01:34, 116.86it/s] 17%|█▋        | 2189/13184 [00:18<01:34, 116.93it/s] 17%|█▋        | 2201/13184 [00:18<01:33, 117.11it/s] 17%|█▋        | 2213/13184 [00:18<01:33, 116.89it/s] 17%|█▋        | 2225/13184 [00:19<01:34, 116.49it/s] 17%|█▋        | 2237/13184 [00:19<01:34, 116.12it/s] 17%|█▋        | 2249/13184 [00:19<01:34, 115.49it/s] 17%|█▋        | 2261/13184 [00:19<01:35, 114.90it/s] 17%|█▋        | 2273/13184 [00:19<01:35, 114.66it/s] 17%|█▋        | 2285/13184 [00:19<01:34, 115.49it/s] 17%|█▋        | 2297/13184 [00:19<01:33, 116.00it/s] 18%|█▊        | 2309/13184 [00:19<01:33, 115.92it/s] 18%|█▊        | 2321/13184 [00:19<01:33, 116.58it/s] 18%|█▊        | 2333/13184 [00:19<01:33, 115.73it/s] 18%|█▊        | 2345/13184 [00:20<01:34, 115.20it/s] 18%|█▊        | 2357/13184 [00:20<01:34, 114.18it/s] 18%|█▊        | 2369/13184 [00:20<01:35, 112.72it/s] 18%|█▊        | 2381/13184 [00:20<01:35, 112.69it/s] 18%|█▊        | 2393/13184 [00:20<01:35, 113.13it/s] 18%|█▊        | 2405/13184 [00:20<01:35, 113.07it/s] 18%|█▊        | 2417/13184 [00:20<01:34, 113.53it/s] 18%|█▊        | 2429/13184 [00:20<01:35, 113.17it/s] 19%|█▊        | 2441/13184 [00:20<01:36, 111.84it/s] 19%|█▊        | 2453/13184 [00:21<01:35, 112.30it/s] 19%|█▊        | 2465/13184 [00:21<01:35, 112.19it/s] 19%|█▉        | 2477/13184 [00:21<01:36, 110.97it/s] 19%|█▉        | 2489/13184 [00:21<01:36, 111.03it/s] 19%|█▉        | 2501/13184 [00:21<01:35, 111.44it/s] 19%|█▉        | 2513/13184 [00:21<01:35, 111.67it/s] 19%|█▉        | 2525/13184 [00:21<01:35, 111.55it/s] 19%|█▉        | 2537/13184 [00:21<01:35, 112.04it/s] 19%|█▉        | 2549/13184 [00:21<01:34, 112.49it/s] 19%|█▉        | 2561/13184 [00:22<01:34, 112.14it/s] 20%|█▉        | 2573/13184 [00:22<01:34, 112.18it/s] 20%|█▉        | 2585/13184 [00:22<01:34, 111.86it/s] 20%|█▉        | 2597/13184 [00:22<01:34, 111.69it/s] 20%|█▉        | 2609/13184 [00:22<01:34, 111.86it/s] 20%|█▉        | 2621/13184 [00:22<01:34, 111.98it/s] 20%|█▉        | 2633/13184 [00:22<01:34, 112.24it/s] 20%|██        | 2645/13184 [00:22<01:33, 112.29it/s] 20%|██        | 2657/13184 [00:22<01:33, 113.04it/s] 20%|██        | 2669/13184 [00:22<01:31, 114.97it/s] 20%|██        | 2681/13184 [00:23<01:30, 116.19it/s] 20%|██        | 2693/13184 [00:23<01:29, 116.73it/s] 21%|██        | 2705/13184 [00:23<01:29, 116.75it/s] 21%|██        | 2717/13184 [00:23<01:29, 116.62it/s] 21%|██        | 2729/13184 [00:23<01:29, 116.83it/s] 21%|██        | 2742/13184 [00:23<01:28, 118.08it/s] 21%|██        | 2754/13184 [00:23<01:28, 118.22it/s] 21%|██        | 2766/13184 [00:23<01:28, 117.89it/s] 21%|██        | 2778/13184 [00:23<01:28, 117.97it/s] 21%|██        | 2790/13184 [00:24<01:27, 118.17it/s] 21%|██▏       | 2802/13184 [00:24<01:27, 118.04it/s] 21%|██▏       | 2814/13184 [00:24<01:27, 118.26it/s] 21%|██▏       | 2826/13184 [00:24<01:27, 117.97it/s] 22%|██▏       | 2838/13184 [00:24<01:28, 117.54it/s] 22%|██▏       | 2850/13184 [00:24<01:27, 117.97it/s] 22%|██▏       | 2862/13184 [00:24<01:27, 117.33it/s] 22%|██▏       | 2874/13184 [00:24<01:28, 117.07it/s] 22%|██▏       | 2886/13184 [00:24<01:27, 117.39it/s] 22%|██▏       | 2898/13184 [00:24<01:27, 117.70it/s] 22%|██▏       | 2910/13184 [00:25<01:27, 117.10it/s] 22%|██▏       | 2922/13184 [00:25<01:27, 117.36it/s] 22%|██▏       | 2934/13184 [00:25<01:27, 117.39it/s] 22%|██▏       | 2946/13184 [00:25<01:27, 117.23it/s] 22%|██▏       | 2958/13184 [00:25<01:27, 116.60it/s] 23%|██▎       | 2970/13184 [00:25<01:27, 116.45it/s] 23%|██▎       | 2982/13184 [00:25<01:27, 116.75it/s] 23%|██▎       | 2994/13184 [00:25<01:27, 116.65it/s] 23%|██▎       | 3006/13184 [00:25<01:26, 117.07it/s] 23%|██▎       | 3018/13184 [00:25<01:27, 116.73it/s] 23%|██▎       | 3030/13184 [00:26<01:26, 116.86it/s] 23%|██▎       | 3042/13184 [00:26<01:26, 117.50it/s] 23%|██▎       | 3054/13184 [00:26<01:26, 117.66it/s] 23%|██▎       | 3066/13184 [00:26<01:25, 118.18it/s] 23%|██▎       | 3078/13184 [00:26<01:25, 118.72it/s] 23%|██▎       | 3090/13184 [00:26<01:24, 119.09it/s] 24%|██▎       | 3102/13184 [00:26<01:24, 119.35it/s] 24%|██▎       | 3114/13184 [00:26<01:24, 119.05it/s] 24%|██▎       | 3126/13184 [00:26<01:24, 118.53it/s] 24%|██▍       | 3138/13184 [00:26<01:24, 118.44it/s] 24%|██▍       | 3150/13184 [00:27<01:24, 118.12it/s] 24%|██▍       | 3162/13184 [00:27<01:24, 118.09it/s] 24%|██▍       | 3174/13184 [00:27<01:24, 118.27it/s] 24%|██▍       | 3186/13184 [00:27<01:24, 118.43it/s] 24%|██▍       | 3198/13184 [00:27<01:24, 118.22it/s] 24%|██▍       | 3210/13184 [00:27<01:24, 118.52it/s] 24%|██▍       | 3222/13184 [00:27<01:23, 118.90it/s] 25%|██▍       | 3234/13184 [00:27<01:24, 118.41it/s] 25%|██▍       | 3246/13184 [00:27<01:24, 118.29it/s] 25%|██▍       | 3258/13184 [00:27<01:23, 118.37it/s] 25%|██▍       | 3270/13184 [00:28<01:23, 118.10it/s] 25%|██▍       | 3282/13184 [00:28<01:23, 118.16it/s] 25%|██▍       | 3294/13184 [00:28<01:23, 118.00it/s] 25%|██▌       | 3306/13184 [00:28<01:23, 118.27it/s] 25%|██▌       | 3318/13184 [00:28<01:23, 118.51it/s] 25%|██▌       | 3330/13184 [00:28<01:22, 118.83it/s] 25%|██▌       | 3342/13184 [00:28<01:22, 119.10it/s] 25%|██▌       | 3354/13184 [00:28<01:22, 119.30it/s] 26%|██▌       | 3367/13184 [00:28<01:22, 119.58it/s] 26%|██▌       | 3379/13184 [00:28<01:22, 118.86it/s] 26%|██▌       | 3391/13184 [00:29<02:07, 76.59it/s]  26%|██▌       | 3403/13184 [00:29<01:53, 85.81it/s] 26%|██▌       | 3415/13184 [00:29<01:44, 93.55it/s] 26%|██▌       | 3428/13184 [00:29<01:37, 100.57it/s] 26%|██▌       | 3441/13184 [00:29<01:31, 105.91it/s] 26%|██▌       | 3454/13184 [00:29<01:28, 110.12it/s] 26%|██▋       | 3466/13184 [00:29<01:26, 112.64it/s] 26%|██▋       | 3479/13184 [00:30<01:24, 115.07it/s] 26%|██▋       | 3492/13184 [00:30<01:22, 116.86it/s] 27%|██▋       | 3504/13184 [00:30<01:22, 117.09it/s] 27%|██▋       | 3516/13184 [00:30<01:22, 117.79it/s] 27%|██▋       | 3528/13184 [00:30<01:22, 117.51it/s] 27%|██▋       | 3540/13184 [00:30<01:22, 117.35it/s] 27%|██▋       | 3552/13184 [00:30<01:21, 117.83it/s] 27%|██▋       | 3564/13184 [00:30<01:21, 118.27it/s] 27%|██▋       | 3576/13184 [00:30<01:21, 118.49it/s] 27%|██▋       | 3588/13184 [00:30<01:20, 118.67it/s] 27%|██▋       | 3600/13184 [00:31<01:21, 118.16it/s] 27%|██▋       | 3612/13184 [00:31<01:20, 118.46it/s] 27%|██▋       | 3624/13184 [00:31<01:20, 118.12it/s] 28%|██▊       | 3636/13184 [00:31<01:20, 118.25it/s] 28%|██▊       | 3649/13184 [00:31<01:20, 118.83it/s] 28%|██▊       | 3662/13184 [00:31<01:19, 119.23it/s] 28%|██▊       | 3675/13184 [00:31<01:19, 119.87it/s] 28%|██▊       | 3687/13184 [00:31<01:19, 119.81it/s] 28%|██▊       | 3700/13184 [00:31<01:18, 120.62it/s] 28%|██▊       | 3713/13184 [00:31<01:18, 120.93it/s] 28%|██▊       | 3726/13184 [00:32<01:18, 120.42it/s] 28%|██▊       | 3739/13184 [00:32<01:18, 119.65it/s] 28%|██▊       | 3752/13184 [00:32<01:18, 119.99it/s] 29%|██▊       | 3765/13184 [00:32<01:18, 120.12it/s] 29%|██▊       | 3778/13184 [00:32<01:18, 120.52it/s] 29%|██▉       | 3791/13184 [00:32<01:18, 119.84it/s] 29%|██▉       | 3803/13184 [00:32<01:18, 119.37it/s] 29%|██▉       | 3815/13184 [00:32<01:18, 118.69it/s] 29%|██▉       | 3827/13184 [00:32<01:18, 118.61it/s] 29%|██▉       | 3839/13184 [00:33<01:18, 118.61it/s] 29%|██▉       | 3851/13184 [00:33<01:18, 118.39it/s] 29%|██▉       | 3863/13184 [00:33<01:18, 118.67it/s] 29%|██▉       | 3875/13184 [00:33<01:18, 118.64it/s] 29%|██▉       | 3887/13184 [00:33<01:18, 118.61it/s] 30%|██▉       | 3899/13184 [00:33<01:18, 118.88it/s] 30%|██▉       | 3911/13184 [00:33<01:17, 118.93it/s] 30%|██▉       | 3923/13184 [00:33<01:17, 119.06it/s] 30%|██▉       | 3935/13184 [00:33<01:17, 118.74it/s] 30%|██▉       | 3948/13184 [00:33<01:17, 119.52it/s] 30%|███       | 3960/13184 [00:34<01:17, 119.15it/s] 30%|███       | 3973/13184 [00:34<01:17, 119.39it/s] 30%|███       | 3985/13184 [00:34<01:17, 119.27it/s] 30%|███       | 3998/13184 [00:34<01:16, 119.98it/s] 30%|███       | 4011/13184 [00:34<01:16, 120.07it/s] 31%|███       | 4024/13184 [00:34<01:17, 118.82it/s] 31%|███       | 4036/13184 [00:34<01:17, 118.53it/s] 31%|███       | 4048/13184 [00:34<01:17, 117.93it/s] 31%|███       | 4060/13184 [00:34<01:17, 118.28it/s] 31%|███       | 4072/13184 [00:35<01:17, 117.43it/s] 31%|███       | 4084/13184 [00:35<01:17, 117.15it/s] 31%|███       | 4096/13184 [00:35<01:17, 117.01it/s] 31%|███       | 4108/13184 [00:35<01:18, 116.36it/s] 31%|███▏      | 4120/13184 [00:35<01:18, 115.75it/s] 31%|███▏      | 4132/13184 [00:35<01:18, 115.28it/s] 31%|███▏      | 4144/13184 [00:35<01:17, 116.05it/s] 32%|███▏      | 4157/13184 [00:35<01:16, 117.64it/s] 32%|███▏      | 4169/13184 [00:35<01:16, 118.30it/s] 32%|███▏      | 4181/13184 [00:35<01:15, 118.60it/s] 32%|███▏      | 4193/13184 [00:36<01:15, 118.94it/s] 32%|███▏      | 4205/13184 [00:36<01:15, 118.29it/s] 32%|███▏      | 4217/13184 [00:36<01:15, 118.36it/s] 32%|███▏      | 4229/13184 [00:36<01:15, 118.03it/s] 32%|███▏      | 4241/13184 [00:36<01:15, 117.72it/s] 32%|███▏      | 4253/13184 [00:36<01:15, 117.86it/s] 32%|███▏      | 4265/13184 [00:36<01:15, 117.71it/s] 32%|███▏      | 4277/13184 [00:36<01:15, 118.17it/s] 33%|███▎      | 4289/13184 [00:36<01:15, 118.41it/s] 33%|███▎      | 4301/13184 [00:36<01:14, 118.56it/s] 33%|███▎      | 4313/13184 [00:37<01:14, 118.60it/s] 33%|███▎      | 4325/13184 [00:37<01:14, 118.69it/s] 33%|███▎      | 4337/13184 [00:37<01:14, 118.15it/s] 33%|███▎      | 4349/13184 [00:37<01:14, 118.00it/s] 33%|███▎      | 4361/13184 [00:37<01:14, 117.86it/s] 33%|███▎      | 4373/13184 [00:37<01:14, 118.06it/s] 33%|███▎      | 4385/13184 [00:37<01:14, 118.20it/s] 33%|███▎      | 4397/13184 [00:37<01:14, 118.57it/s] 33%|███▎      | 4409/13184 [00:37<01:13, 118.90it/s] 34%|███▎      | 4421/13184 [00:37<01:14, 117.66it/s] 34%|███▎      | 4433/13184 [00:38<01:14, 117.29it/s] 34%|███▎      | 4445/13184 [00:38<01:14, 116.71it/s] 34%|███▍      | 4457/13184 [00:38<01:14, 116.42it/s] 34%|███▍      | 4469/13184 [00:38<01:14, 116.40it/s] 34%|███▍      | 4481/13184 [00:38<01:15, 115.92it/s] 34%|███▍      | 4493/13184 [00:38<01:14, 116.69it/s] 34%|███▍      | 4505/13184 [00:38<01:13, 117.39it/s] 34%|███▍      | 4517/13184 [00:38<01:13, 117.85it/s] 34%|███▍      | 4529/13184 [00:38<01:13, 117.76it/s] 34%|███▍      | 4541/13184 [00:38<01:13, 117.61it/s] 35%|███▍      | 4553/13184 [00:39<01:13, 117.51it/s] 35%|███▍      | 4565/13184 [00:39<01:13, 117.34it/s] 35%|███▍      | 4577/13184 [00:39<01:13, 117.51it/s] 35%|███▍      | 4589/13184 [00:39<01:12, 117.81it/s] 35%|███▍      | 4601/13184 [00:39<01:12, 117.82it/s] 35%|███▍      | 4613/13184 [00:39<01:12, 117.53it/s] 35%|███▌      | 4625/13184 [00:39<01:12, 117.84it/s] 35%|███▌      | 4637/13184 [00:39<01:12, 117.12it/s] 35%|███▌      | 4649/13184 [00:39<01:12, 116.98it/s] 35%|███▌      | 4661/13184 [00:40<01:12, 117.52it/s] 35%|███▌      | 4673/13184 [00:40<01:12, 117.41it/s] 36%|███▌      | 4685/13184 [00:40<01:12, 117.78it/s] 36%|███▌      | 4697/13184 [00:40<01:12, 117.05it/s] 36%|███▌      | 4709/13184 [00:40<01:12, 116.97it/s] 36%|███▌      | 4721/13184 [00:40<01:12, 116.84it/s] 36%|███▌      | 4733/13184 [00:40<01:12, 116.27it/s] 36%|███▌      | 4745/13184 [00:40<01:12, 116.39it/s] 36%|███▌      | 4757/13184 [00:40<01:11, 117.17it/s] 36%|███▌      | 4769/13184 [00:40<01:11, 117.27it/s] 36%|███▋      | 4781/13184 [00:41<01:11, 117.49it/s] 36%|███▋      | 4793/13184 [00:41<01:11, 117.59it/s] 36%|███▋      | 4805/13184 [00:41<01:11, 117.97it/s] 37%|███▋      | 4818/13184 [00:41<01:10, 119.29it/s] 37%|███▋      | 4830/13184 [00:41<01:10, 119.17it/s] 37%|███▋      | 4842/13184 [00:41<01:10, 118.59it/s] 37%|███▋      | 4854/13184 [00:41<01:10, 118.33it/s] 37%|███▋      | 4866/13184 [00:41<01:10, 118.38it/s] 37%|███▋      | 4878/13184 [00:41<01:10, 117.84it/s] 37%|███▋      | 4890/13184 [00:41<01:10, 118.06it/s] 37%|███▋      | 4902/13184 [00:42<01:10, 116.99it/s] 37%|███▋      | 4914/13184 [00:42<01:10, 116.69it/s] 37%|███▋      | 4926/13184 [00:42<01:10, 117.07it/s] 37%|███▋      | 4938/13184 [00:42<01:10, 117.45it/s] 38%|███▊      | 4950/13184 [00:42<01:10, 117.47it/s] 38%|███▊      | 4962/13184 [00:42<01:10, 117.13it/s] 38%|███▊      | 4974/13184 [00:42<01:09, 117.78it/s] 38%|███▊      | 4986/13184 [00:42<01:09, 117.67it/s] 38%|███▊      | 4998/13184 [00:42<01:09, 117.61it/s] 38%|███▊      | 5010/13184 [00:42<01:09, 117.19it/s] 38%|███▊      | 5022/13184 [00:43<01:09, 117.25it/s] 38%|███▊      | 5034/13184 [00:43<01:09, 117.45it/s] 38%|███▊      | 5046/13184 [00:43<01:09, 116.75it/s] 38%|███▊      | 5058/13184 [00:43<01:09, 116.51it/s] 38%|███▊      | 5070/13184 [00:43<01:09, 116.23it/s] 39%|███▊      | 5082/13184 [00:43<01:09, 116.30it/s] 39%|███▊      | 5094/13184 [00:43<01:09, 116.44it/s] 39%|███▊      | 5106/13184 [00:43<01:09, 116.30it/s] 39%|███▉      | 5119/13184 [00:43<01:08, 117.63it/s] 39%|███▉      | 5131/13184 [00:44<01:08, 118.03it/s] 39%|███▉      | 5143/13184 [00:44<01:07, 118.35it/s] 39%|███▉      | 5156/13184 [00:44<01:07, 118.91it/s] 39%|███▉      | 5169/13184 [00:44<01:06, 119.69it/s] 39%|███▉      | 5182/13184 [00:44<01:06, 120.46it/s] 39%|███▉      | 5195/13184 [00:44<01:06, 120.91it/s] 40%|███▉      | 5208/13184 [00:44<01:05, 120.94it/s] 40%|███▉      | 5221/13184 [00:44<01:05, 120.98it/s] 40%|███▉      | 5234/13184 [00:44<01:05, 121.51it/s] 40%|███▉      | 5247/13184 [00:44<01:05, 121.62it/s] 40%|███▉      | 5260/13184 [00:45<01:05, 120.83it/s] 40%|███▉      | 5273/13184 [00:45<01:05, 120.10it/s] 40%|████      | 5286/13184 [00:45<01:06, 119.54it/s] 40%|████      | 5298/13184 [00:45<01:06, 118.98it/s] 40%|████      | 5310/13184 [00:45<01:06, 118.61it/s] 40%|████      | 5322/13184 [00:45<01:06, 117.91it/s] 40%|████      | 5334/13184 [00:45<01:06, 117.46it/s] 41%|████      | 5346/13184 [00:45<01:07, 116.74it/s] 41%|████      | 5358/13184 [00:45<01:07, 115.75it/s] 41%|████      | 5370/13184 [00:46<01:07, 115.97it/s] 41%|████      | 5382/13184 [00:46<01:07, 115.36it/s] 41%|████      | 5394/13184 [00:46<01:07, 115.94it/s] 41%|████      | 5406/13184 [00:46<01:06, 117.03it/s] 41%|████      | 5418/13184 [00:46<01:06, 117.55it/s] 41%|████      | 5431/13184 [00:46<01:05, 118.83it/s] 41%|████▏     | 5443/13184 [00:46<01:05, 118.35it/s] 41%|████▏     | 5455/13184 [00:46<01:05, 118.03it/s] 41%|████▏     | 5467/13184 [00:46<01:05, 118.35it/s] 42%|████▏     | 5479/13184 [00:46<01:05, 118.41it/s] 42%|████▏     | 5491/13184 [00:47<01:05, 118.21it/s] 42%|████▏     | 5503/13184 [00:47<01:05, 117.61it/s] 42%|████▏     | 5515/13184 [00:47<01:05, 117.89it/s] 42%|████▏     | 5527/13184 [00:47<01:04, 117.95it/s] 42%|████▏     | 5539/13184 [00:47<01:04, 117.95it/s] 42%|████▏     | 5551/13184 [00:47<01:04, 117.47it/s] 42%|████▏     | 5563/13184 [00:47<01:05, 116.88it/s] 42%|████▏     | 5575/13184 [00:47<01:04, 117.09it/s] 42%|████▏     | 5587/13184 [00:47<01:04, 117.09it/s] 42%|████▏     | 5599/13184 [00:47<01:04, 117.25it/s] 43%|████▎     | 5611/13184 [00:48<01:04, 117.95it/s] 43%|████▎     | 5624/13184 [00:48<01:03, 119.03it/s] 43%|████▎     | 5637/13184 [00:48<01:02, 120.02it/s] 43%|████▎     | 5650/13184 [00:48<01:02, 120.92it/s] 43%|████▎     | 5663/13184 [00:48<01:02, 121.07it/s] 43%|████▎     | 5676/13184 [00:48<01:01, 121.32it/s] 43%|████▎     | 5689/13184 [00:48<01:02, 120.33it/s] 43%|████▎     | 5702/13184 [00:48<01:02, 120.62it/s] 43%|████▎     | 5715/13184 [00:48<01:01, 121.40it/s] 43%|████▎     | 5728/13184 [00:49<01:01, 122.04it/s] 44%|████▎     | 5741/13184 [00:49<01:01, 121.98it/s] 44%|████▎     | 5754/13184 [00:49<01:01, 121.54it/s] 44%|████▎     | 5767/13184 [00:49<01:01, 120.75it/s] 44%|████▍     | 5780/13184 [00:49<01:01, 120.23it/s] 44%|████▍     | 5793/13184 [00:49<01:01, 119.59it/s] 44%|████▍     | 5805/13184 [00:49<01:01, 119.52it/s] 44%|████▍     | 5817/13184 [00:49<01:01, 119.20it/s] 44%|████▍     | 5829/13184 [00:49<01:01, 119.06it/s] 44%|████▍     | 5841/13184 [00:49<01:01, 119.02it/s] 44%|████▍     | 5853/13184 [00:50<01:01, 119.28it/s] 44%|████▍     | 5865/13184 [00:50<01:01, 118.96it/s] 45%|████▍     | 5877/13184 [00:50<01:01, 118.50it/s] 45%|████▍     | 5889/13184 [00:50<01:01, 118.35it/s] 45%|████▍     | 5901/13184 [00:50<01:01, 117.91it/s] 45%|████▍     | 5913/13184 [00:50<01:01, 118.08it/s] 45%|████▍     | 5925/13184 [00:50<01:01, 117.78it/s] 45%|████▌     | 5937/13184 [00:50<01:01, 118.13it/s] 45%|████▌     | 5949/13184 [00:50<01:00, 118.65it/s] 45%|████▌     | 5961/13184 [00:50<01:01, 117.59it/s] 45%|████▌     | 5973/13184 [00:51<01:01, 116.99it/s] 45%|████▌     | 5985/13184 [00:51<01:01, 116.20it/s] 45%|████▌     | 5997/13184 [00:51<01:01, 115.95it/s] 46%|████▌     | 6009/13184 [00:51<01:01, 116.18it/s] 46%|████▌     | 6021/13184 [00:51<01:01, 116.95it/s] 46%|████▌     | 6033/13184 [00:51<01:01, 116.95it/s] 46%|████▌     | 6045/13184 [00:51<01:01, 116.32it/s] 46%|████▌     | 6057/13184 [00:51<01:01, 116.17it/s] 46%|████▌     | 6069/13184 [00:51<01:01, 116.10it/s] 46%|████▌     | 6081/13184 [00:52<01:01, 116.29it/s] 46%|████▌     | 6093/13184 [00:52<01:00, 116.82it/s] 46%|████▋     | 6106/13184 [00:52<01:00, 117.91it/s] 46%|████▋     | 6119/13184 [00:52<00:59, 119.38it/s] 47%|████▋     | 6132/13184 [00:52<00:58, 120.21it/s] 47%|████▋     | 6145/13184 [00:52<00:58, 120.89it/s] 47%|████▋     | 6158/13184 [00:52<00:58, 120.43it/s] 47%|████▋     | 6171/13184 [00:52<00:58, 119.40it/s] 47%|████▋     | 6183/13184 [00:52<00:59, 118.50it/s] 47%|████▋     | 6195/13184 [00:52<00:59, 118.09it/s] 47%|████▋     | 6207/13184 [00:53<00:58, 118.35it/s] 47%|████▋     | 6219/13184 [00:53<00:58, 118.48it/s] 47%|████▋     | 6231/13184 [00:53<00:58, 117.93it/s] 47%|████▋     | 6243/13184 [00:53<00:59, 117.10it/s] 47%|████▋     | 6255/13184 [00:53<00:59, 116.87it/s] 48%|████▊     | 6267/13184 [00:53<00:59, 116.90it/s] 48%|████▊     | 6279/13184 [00:53<00:58, 117.28it/s] 48%|████▊     | 6292/13184 [00:53<00:58, 118.17it/s] 48%|████▊     | 6304/13184 [00:53<00:58, 118.38it/s] 48%|████▊     | 6316/13184 [00:54<00:57, 118.45it/s] 48%|████▊     | 6329/13184 [00:54<00:57, 119.20it/s] 48%|████▊     | 6341/13184 [00:54<00:57, 119.09it/s] 48%|████▊     | 6353/13184 [00:54<00:57, 119.15it/s] 48%|████▊     | 6365/13184 [00:54<00:57, 119.15it/s] 48%|████▊     | 6377/13184 [00:54<00:57, 118.75it/s] 48%|████▊     | 6389/13184 [00:54<00:57, 118.46it/s] 49%|████▊     | 6401/13184 [00:54<00:57, 118.32it/s] 49%|████▊     | 6413/13184 [00:54<00:57, 118.28it/s] 49%|████▊     | 6425/13184 [00:54<00:57, 117.90it/s] 49%|████▉     | 6437/13184 [00:55<00:57, 117.76it/s] 49%|████▉     | 6449/13184 [00:55<00:57, 117.50it/s] 49%|████▉     | 6461/13184 [00:55<00:57, 117.55it/s] 49%|████▉     | 6473/13184 [00:55<00:57, 117.55it/s] 49%|████▉     | 6485/13184 [00:55<00:57, 117.27it/s] 49%|████▉     | 6497/13184 [00:55<00:56, 117.82it/s] 49%|████▉     | 6509/13184 [00:55<00:56, 117.42it/s] 49%|████▉     | 6521/13184 [00:55<00:56, 117.42it/s] 50%|████▉     | 6533/13184 [00:55<00:56, 116.88it/s] 50%|████▉     | 6545/13184 [00:55<00:56, 117.26it/s] 50%|████▉     | 6557/13184 [00:56<00:56, 116.33it/s] 50%|████▉     | 6569/13184 [00:56<00:57, 115.71it/s] 50%|████▉     | 6581/13184 [00:56<00:57, 115.06it/s] 50%|█████     | 6593/13184 [00:56<00:57, 114.35it/s] 50%|█████     | 6605/13184 [00:56<00:57, 114.03it/s] 50%|█████     | 6617/13184 [00:56<00:57, 113.97it/s] 50%|█████     | 6629/13184 [00:56<00:57, 114.53it/s] 50%|█████     | 6641/13184 [00:56<00:57, 113.97it/s] 50%|█████     | 6653/13184 [00:56<00:57, 113.06it/s] 51%|█████     | 6665/13184 [00:57<00:57, 113.55it/s] 51%|█████     | 6677/13184 [00:57<00:57, 113.07it/s] 51%|█████     | 6689/13184 [00:57<00:57, 112.51it/s] 51%|█████     | 6701/13184 [00:57<00:57, 112.93it/s] 51%|█████     | 6713/13184 [00:57<00:57, 112.86it/s] 51%|█████     | 6725/13184 [00:57<00:57, 113.02it/s] 51%|█████     | 6737/13184 [00:57<00:56, 113.13it/s] 51%|█████     | 6749/13184 [00:57<00:56, 113.11it/s] 51%|█████▏    | 6761/13184 [00:57<00:56, 113.61it/s] 51%|█████▏    | 6773/13184 [00:57<00:56, 113.71it/s] 51%|█████▏    | 6785/13184 [00:58<00:56, 113.52it/s] 52%|█████▏    | 6797/13184 [00:58<00:56, 113.90it/s] 52%|█████▏    | 6810/13184 [00:58<00:55, 115.87it/s] 52%|█████▏    | 6823/13184 [00:58<00:54, 117.13it/s] 52%|█████▏    | 6836/13184 [00:58<00:53, 118.12it/s] 52%|█████▏    | 6848/13184 [00:58<00:53, 118.44it/s] 52%|█████▏    | 6860/13184 [00:58<00:53, 117.95it/s] 52%|█████▏    | 6872/13184 [00:58<00:53, 117.62it/s] 52%|█████▏    | 6884/13184 [00:58<00:53, 117.71it/s] 52%|█████▏    | 6896/13184 [00:59<00:53, 117.47it/s] 52%|█████▏    | 6908/13184 [00:59<00:53, 117.56it/s] 52%|█████▏    | 6920/13184 [00:59<00:53, 117.14it/s] 53%|█████▎    | 6932/13184 [00:59<00:53, 116.86it/s] 53%|█████▎    | 6944/13184 [00:59<00:53, 117.22it/s] 53%|█████▎    | 6956/13184 [00:59<00:53, 116.85it/s] 53%|█████▎    | 6968/13184 [00:59<00:53, 116.13it/s] 53%|█████▎    | 6980/13184 [00:59<01:31, 68.13it/s]  53%|█████▎    | 6992/13184 [01:00<01:19, 77.65it/s] 53%|█████▎    | 7004/13184 [01:00<01:11, 86.40it/s] 53%|█████▎    | 7016/13184 [01:00<01:05, 93.79it/s] 53%|█████▎    | 7028/13184 [01:00<01:01, 100.05it/s] 53%|█████▎    | 7040/13184 [01:00<00:58, 105.21it/s] 53%|█████▎    | 7052/13184 [01:00<00:56, 109.24it/s] 54%|█████▎    | 7064/13184 [01:00<00:54, 111.48it/s] 54%|█████▎    | 7076/13184 [01:00<00:54, 112.87it/s] 54%|█████▍    | 7088/13184 [01:00<00:53, 113.89it/s] 54%|█████▍    | 7100/13184 [01:00<00:53, 114.59it/s] 54%|█████▍    | 7112/13184 [01:01<00:52, 115.22it/s] 54%|█████▍    | 7124/13184 [01:01<00:52, 115.39it/s] 54%|█████▍    | 7136/13184 [01:01<00:52, 115.89it/s] 54%|█████▍    | 7148/13184 [01:01<00:51, 116.20it/s] 54%|█████▍    | 7160/13184 [01:01<00:51, 116.21it/s] 54%|█████▍    | 7172/13184 [01:01<00:52, 115.45it/s] 54%|█████▍    | 7184/13184 [01:01<00:52, 115.33it/s] 55%|█████▍    | 7196/13184 [01:01<00:51, 115.24it/s] 55%|█████▍    | 7208/13184 [01:01<00:51, 115.82it/s] 55%|█████▍    | 7220/13184 [01:02<00:51, 116.94it/s] 55%|█████▍    | 7232/13184 [01:02<00:50, 117.78it/s] 55%|█████▍    | 7245/13184 [01:02<00:49, 119.20it/s] 55%|█████▌    | 7258/13184 [01:02<00:49, 119.95it/s] 55%|█████▌    | 7270/13184 [01:02<00:49, 119.69it/s] 55%|█████▌    | 7282/13184 [01:02<00:49, 118.82it/s] 55%|█████▌    | 7294/13184 [01:02<00:49, 118.48it/s] 55%|█████▌    | 7306/13184 [01:02<00:49, 118.37it/s] 56%|█████▌    | 7318/13184 [01:02<00:49, 118.45it/s] 56%|█████▌    | 7330/13184 [01:02<00:49, 118.15it/s] 56%|█████▌    | 7342/13184 [01:03<00:49, 118.20it/s] 56%|█████▌    | 7354/13184 [01:03<00:49, 118.36it/s] 56%|█████▌    | 7367/13184 [01:03<00:48, 119.54it/s] 56%|█████▌    | 7380/13184 [01:03<00:47, 121.08it/s] 56%|█████▌    | 7393/13184 [01:03<00:48, 120.40it/s] 56%|█████▌    | 7406/13184 [01:03<00:48, 118.82it/s] 56%|█████▋    | 7418/13184 [01:03<00:49, 117.34it/s] 56%|█████▋    | 7430/13184 [01:03<00:49, 117.06it/s] 56%|█████▋    | 7442/13184 [01:03<00:48, 117.54it/s] 57%|█████▋    | 7455/13184 [01:04<00:48, 118.92it/s] 57%|█████▋    | 7467/13184 [01:04<00:48, 119.09it/s] 57%|█████▋    | 7479/13184 [01:04<00:47, 119.08it/s] 57%|█████▋    | 7492/13184 [01:04<00:47, 119.53it/s] 57%|█████▋    | 7505/13184 [01:04<00:47, 119.89it/s] 57%|█████▋    | 7518/13184 [01:04<00:47, 120.16it/s] 57%|█████▋    | 7531/13184 [01:04<00:47, 118.20it/s] 57%|█████▋    | 7543/13184 [01:04<00:48, 117.30it/s] 57%|█████▋    | 7555/13184 [01:04<00:47, 117.36it/s] 57%|█████▋    | 7567/13184 [01:04<00:47, 117.20it/s] 57%|█████▋    | 7579/13184 [01:05<00:47, 117.07it/s] 58%|█████▊    | 7591/13184 [01:05<00:47, 117.50it/s] 58%|█████▊    | 7603/13184 [01:05<00:47, 117.60it/s] 58%|█████▊    | 7615/13184 [01:05<00:47, 117.72it/s] 58%|█████▊    | 7627/13184 [01:05<00:47, 118.07it/s] 58%|█████▊    | 7639/13184 [01:05<00:47, 117.83it/s] 58%|█████▊    | 7651/13184 [01:05<00:47, 117.54it/s] 58%|█████▊    | 7663/13184 [01:05<00:46, 118.06it/s] 58%|█████▊    | 7675/13184 [01:05<00:46, 117.90it/s] 58%|█████▊    | 7687/13184 [01:05<00:46, 117.10it/s] 58%|█████▊    | 7699/13184 [01:06<00:46, 116.90it/s] 58%|█████▊    | 7711/13184 [01:06<00:46, 117.13it/s] 59%|█████▊    | 7723/13184 [01:06<00:46, 117.13it/s] 59%|█████▊    | 7735/13184 [01:06<00:46, 117.76it/s] 59%|█████▉    | 7747/13184 [01:06<00:46, 117.87it/s] 59%|█████▉    | 7759/13184 [01:06<00:45, 118.37it/s] 59%|█████▉    | 7771/13184 [01:06<00:45, 117.97it/s] 59%|█████▉    | 7783/13184 [01:06<00:45, 117.53it/s] 59%|█████▉    | 7795/13184 [01:06<00:46, 117.13it/s] 59%|█████▉    | 7807/13184 [01:06<00:45, 117.10it/s] 59%|█████▉    | 7819/13184 [01:07<00:45, 117.13it/s] 59%|█████▉    | 7831/13184 [01:07<00:45, 117.61it/s] 59%|█████▉    | 7843/13184 [01:07<00:45, 117.70it/s] 60%|█████▉    | 7855/13184 [01:07<00:45, 117.52it/s] 60%|█████▉    | 7867/13184 [01:07<00:45, 117.94it/s] 60%|█████▉    | 7879/13184 [01:07<00:44, 118.08it/s] 60%|█████▉    | 7891/13184 [01:07<00:44, 118.09it/s] 60%|█████▉    | 7903/13184 [01:07<00:44, 117.84it/s] 60%|██████    | 7915/13184 [01:07<00:44, 118.10it/s] 60%|██████    | 7927/13184 [01:08<00:44, 118.65it/s] 60%|██████    | 7939/13184 [01:08<00:44, 118.46it/s] 60%|██████    | 7951/13184 [01:08<00:44, 118.39it/s] 60%|██████    | 7963/13184 [01:08<00:44, 117.74it/s] 60%|██████    | 7975/13184 [01:08<00:44, 118.22it/s] 61%|██████    | 7987/13184 [01:08<00:44, 117.25it/s] 61%|██████    | 7999/13184 [01:08<00:44, 116.22it/s] 61%|██████    | 8011/13184 [01:08<00:44, 115.84it/s] 61%|██████    | 8023/13184 [01:08<00:44, 115.57it/s] 61%|██████    | 8035/13184 [01:08<00:44, 115.85it/s] 61%|██████    | 8047/13184 [01:09<00:44, 115.79it/s] 61%|██████    | 8059/13184 [01:09<00:44, 116.06it/s] 61%|██████    | 8071/13184 [01:09<00:43, 116.44it/s] 61%|██████▏   | 8083/13184 [01:09<00:43, 116.85it/s] 61%|██████▏   | 8095/13184 [01:09<00:43, 117.40it/s] 61%|██████▏   | 8107/13184 [01:09<00:43, 118.07it/s] 62%|██████▏   | 8120/13184 [01:09<00:42, 118.65it/s] 62%|██████▏   | 8132/13184 [01:09<00:42, 118.08it/s] 62%|██████▏   | 8144/13184 [01:09<00:42, 117.32it/s] 62%|██████▏   | 8156/13184 [01:09<00:42, 116.95it/s] 62%|██████▏   | 8168/13184 [01:10<00:42, 116.92it/s] 62%|██████▏   | 8180/13184 [01:10<00:42, 116.72it/s] 62%|██████▏   | 8192/13184 [01:10<00:42, 116.40it/s] 62%|██████▏   | 8204/13184 [01:10<00:42, 116.13it/s] 62%|██████▏   | 8216/13184 [01:10<00:42, 116.37it/s] 62%|██████▏   | 8228/13184 [01:10<00:42, 117.02it/s] 62%|██████▎   | 8240/13184 [01:10<00:42, 117.59it/s] 63%|██████▎   | 8252/13184 [01:10<00:41, 118.02it/s] 63%|██████▎   | 8264/13184 [01:10<00:41, 118.36it/s] 63%|██████▎   | 8277/13184 [01:10<00:41, 119.15it/s] 63%|██████▎   | 8290/13184 [01:11<00:40, 119.59it/s] 63%|██████▎   | 8303/13184 [01:11<00:40, 120.33it/s] 63%|██████▎   | 8316/13184 [01:11<00:40, 121.14it/s] 63%|██████▎   | 8329/13184 [01:11<00:40, 120.97it/s] 63%|██████▎   | 8342/13184 [01:11<00:40, 119.09it/s] 63%|██████▎   | 8354/13184 [01:11<00:41, 117.30it/s] 63%|██████▎   | 8366/13184 [01:11<00:41, 116.25it/s] 64%|██████▎   | 8378/13184 [01:11<00:41, 115.36it/s] 64%|██████▎   | 8390/13184 [01:11<00:41, 115.50it/s] 64%|██████▎   | 8402/13184 [01:12<00:41, 115.49it/s] 64%|██████▍   | 8414/13184 [01:12<00:40, 116.67it/s] 64%|██████▍   | 8426/13184 [01:12<00:40, 117.28it/s] 64%|██████▍   | 8438/13184 [01:12<00:40, 117.64it/s] 64%|██████▍   | 8451/13184 [01:12<00:39, 118.36it/s] 64%|██████▍   | 8463/13184 [01:12<00:39, 118.25it/s] 64%|██████▍   | 8475/13184 [01:12<00:39, 118.32it/s] 64%|██████▍   | 8487/13184 [01:12<00:39, 118.10it/s] 64%|██████▍   | 8499/13184 [01:12<00:39, 117.81it/s] 65%|██████▍   | 8511/13184 [01:12<00:39, 117.96it/s] 65%|██████▍   | 8523/13184 [01:13<00:39, 118.04it/s] 65%|██████▍   | 8535/13184 [01:13<00:39, 118.49it/s] 65%|██████▍   | 8548/13184 [01:13<00:38, 119.09it/s] 65%|██████▍   | 8561/13184 [01:13<00:38, 120.65it/s] 65%|██████▌   | 8574/13184 [01:13<00:39, 117.65it/s] 65%|██████▌   | 8586/13184 [01:13<00:39, 116.82it/s] 65%|██████▌   | 8598/13184 [01:13<00:39, 116.78it/s] 65%|██████▌   | 8610/13184 [01:13<00:39, 116.43it/s] 65%|██████▌   | 8622/13184 [01:13<00:39, 116.62it/s] 65%|██████▌   | 8634/13184 [01:14<00:38, 117.33it/s] 66%|██████▌   | 8646/13184 [01:14<00:38, 117.28it/s] 66%|██████▌   | 8658/13184 [01:14<00:38, 117.08it/s] 66%|██████▌   | 8670/13184 [01:14<00:38, 116.97it/s] 66%|██████▌   | 8682/13184 [01:14<00:38, 117.20it/s] 66%|██████▌   | 8694/13184 [01:14<00:38, 117.72it/s] 66%|██████▌   | 8706/13184 [01:14<00:38, 117.42it/s] 66%|██████▌   | 8718/13184 [01:14<00:37, 117.75it/s] 66%|██████▌   | 8730/13184 [01:14<00:37, 118.14it/s] 66%|██████▋   | 8742/13184 [01:14<00:37, 118.07it/s] 66%|██████▋   | 8754/13184 [01:15<00:37, 118.02it/s] 66%|██████▋   | 8767/13184 [01:15<00:37, 118.98it/s] 67%|██████▋   | 8779/13184 [01:15<00:36, 119.27it/s] 67%|██████▋   | 8791/13184 [01:15<00:37, 118.40it/s] 67%|██████▋   | 8803/13184 [01:15<00:37, 117.96it/s] 67%|██████▋   | 8815/13184 [01:15<00:37, 117.27it/s] 67%|██████▋   | 8827/13184 [01:15<00:37, 117.03it/s] 67%|██████▋   | 8839/13184 [01:15<00:37, 117.06it/s] 67%|██████▋   | 8851/13184 [01:15<00:37, 116.99it/s] 67%|██████▋   | 8863/13184 [01:15<00:36, 117.45it/s] 67%|██████▋   | 8875/13184 [01:16<00:36, 117.71it/s] 67%|██████▋   | 8887/13184 [01:16<00:36, 118.22it/s] 67%|██████▋   | 8899/13184 [01:16<00:36, 118.17it/s] 68%|██████▊   | 8911/13184 [01:16<00:36, 118.28it/s] 68%|██████▊   | 8923/13184 [01:16<00:36, 118.06it/s] 68%|██████▊   | 8935/13184 [01:16<00:36, 117.72it/s] 68%|██████▊   | 8947/13184 [01:16<00:36, 117.62it/s] 68%|██████▊   | 8959/13184 [01:16<00:35, 117.80it/s] 68%|██████▊   | 8971/13184 [01:16<00:35, 117.98it/s] 68%|██████▊   | 8983/13184 [01:16<00:35, 117.75it/s] 68%|██████▊   | 8995/13184 [01:17<00:35, 118.23it/s] 68%|██████▊   | 9008/13184 [01:17<00:35, 119.17it/s] 68%|██████▊   | 9021/13184 [01:17<00:34, 119.89it/s] 69%|██████▊   | 9033/13184 [01:17<00:34, 119.91it/s] 69%|██████▊   | 9046/13184 [01:17<00:34, 120.81it/s] 69%|██████▊   | 9059/13184 [01:17<00:34, 121.30it/s] 69%|██████▉   | 9072/13184 [01:17<00:34, 119.83it/s] 69%|██████▉   | 9084/13184 [01:17<00:34, 119.43it/s] 69%|██████▉   | 9096/13184 [01:17<00:34, 119.29it/s] 69%|██████▉   | 9108/13184 [01:18<00:34, 118.41it/s] 69%|██████▉   | 9120/13184 [01:18<00:34, 117.52it/s] 69%|██████▉   | 9132/13184 [01:18<00:34, 117.04it/s] 69%|██████▉   | 9144/13184 [01:18<00:34, 116.91it/s] 69%|██████▉   | 9156/13184 [01:18<00:34, 117.08it/s] 70%|██████▉   | 9168/13184 [01:18<00:34, 117.44it/s] 70%|██████▉   | 9180/13184 [01:18<00:34, 117.54it/s] 70%|██████▉   | 9192/13184 [01:18<00:34, 117.33it/s] 70%|██████▉   | 9204/13184 [01:18<00:33, 117.32it/s] 70%|██████▉   | 9216/13184 [01:18<00:33, 117.03it/s] 70%|██████▉   | 9228/13184 [01:19<00:33, 117.47it/s] 70%|███████   | 9240/13184 [01:19<00:33, 117.72it/s] 70%|███████   | 9252/13184 [01:19<00:33, 118.26it/s] 70%|███████   | 9264/13184 [01:19<00:33, 118.52it/s] 70%|███████   | 9276/13184 [01:19<00:32, 118.87it/s] 70%|███████   | 9288/13184 [01:19<00:32, 118.73it/s] 71%|███████   | 9300/13184 [01:19<00:32, 117.81it/s] 71%|███████   | 9312/13184 [01:19<00:32, 117.87it/s] 71%|███████   | 9324/13184 [01:19<00:32, 117.90it/s] 71%|███████   | 9336/13184 [01:19<00:32, 117.97it/s] 71%|███████   | 9348/13184 [01:20<00:32, 118.10it/s] 71%|███████   | 9360/13184 [01:20<00:32, 118.22it/s] 71%|███████   | 9372/13184 [01:20<00:32, 118.51it/s] 71%|███████   | 9385/13184 [01:20<00:31, 119.57it/s] 71%|███████▏  | 9398/13184 [01:20<00:31, 120.53it/s] 71%|███████▏  | 9411/13184 [01:20<00:30, 121.75it/s] 71%|███████▏  | 9424/13184 [01:20<00:31, 119.01it/s] 72%|███████▏  | 9436/13184 [01:20<00:32, 116.68it/s] 72%|███████▏  | 9448/13184 [01:20<00:32, 116.29it/s] 72%|███████▏  | 9460/13184 [01:21<00:31, 116.50it/s] 72%|███████▏  | 9472/13184 [01:21<00:31, 117.10it/s] 72%|███████▏  | 9485/13184 [01:21<00:31, 118.79it/s] 72%|███████▏  | 9497/13184 [01:21<00:31, 118.44it/s] 72%|███████▏  | 9509/13184 [01:21<00:31, 118.49it/s] 72%|███████▏  | 9521/13184 [01:21<00:31, 118.01it/s] 72%|███████▏  | 9533/13184 [01:21<00:30, 118.07it/s] 72%|███████▏  | 9545/13184 [01:21<00:30, 118.34it/s] 72%|███████▏  | 9557/13184 [01:21<00:30, 118.53it/s] 73%|███████▎  | 9569/13184 [01:21<00:30, 118.42it/s] 73%|███████▎  | 9581/13184 [01:22<00:30, 118.38it/s] 73%|███████▎  | 9593/13184 [01:22<00:30, 118.42it/s] 73%|███████▎  | 9605/13184 [01:22<00:30, 118.09it/s] 73%|███████▎  | 9617/13184 [01:22<00:30, 118.18it/s] 73%|███████▎  | 9629/13184 [01:22<00:30, 118.39it/s] 73%|███████▎  | 9641/13184 [01:22<00:29, 118.12it/s] 73%|███████▎  | 9653/13184 [01:22<00:29, 117.73it/s] 73%|███████▎  | 9665/13184 [01:22<00:29, 117.80it/s] 73%|███████▎  | 9677/13184 [01:22<00:29, 117.86it/s] 73%|███████▎  | 9689/13184 [01:22<00:29, 118.14it/s] 74%|███████▎  | 9702/13184 [01:23<00:29, 119.20it/s] 74%|███████▎  | 9715/13184 [01:23<00:28, 119.89it/s] 74%|███████▍  | 9727/13184 [01:23<00:28, 119.34it/s] 74%|███████▍  | 9739/13184 [01:23<00:28, 118.83it/s] 74%|███████▍  | 9751/13184 [01:23<00:28, 118.76it/s] 74%|███████▍  | 9763/13184 [01:23<00:28, 118.38it/s] 74%|███████▍  | 9775/13184 [01:23<00:28, 117.99it/s] 74%|███████▍  | 9787/13184 [01:23<00:28, 117.44it/s] 74%|███████▍  | 9799/13184 [01:23<00:28, 117.68it/s] 74%|███████▍  | 9811/13184 [01:23<00:28, 117.81it/s] 75%|███████▍  | 9823/13184 [01:24<00:28, 117.42it/s] 75%|███████▍  | 9835/13184 [01:24<00:28, 117.63it/s] 75%|███████▍  | 9847/13184 [01:24<00:28, 117.72it/s] 75%|███████▍  | 9859/13184 [01:24<00:28, 117.82it/s] 75%|███████▍  | 9871/13184 [01:24<00:28, 117.86it/s] 75%|███████▍  | 9883/13184 [01:24<00:27, 118.25it/s] 75%|███████▌  | 9895/13184 [01:24<00:27, 118.39it/s] 75%|███████▌  | 9907/13184 [01:24<00:27, 118.66it/s] 75%|███████▌  | 9919/13184 [01:24<00:27, 118.55it/s] 75%|███████▌  | 9931/13184 [01:24<00:27, 118.50it/s] 75%|███████▌  | 9943/13184 [01:25<00:27, 118.48it/s] 76%|███████▌  | 9956/13184 [01:25<00:27, 119.00it/s] 76%|███████▌  | 9968/13184 [01:25<00:27, 118.86it/s] 76%|███████▌  | 9980/13184 [01:25<00:26, 118.89it/s] 76%|███████▌  | 9992/13184 [01:25<00:27, 118.18it/s] 76%|███████▌  | 10004/13184 [01:25<00:26, 118.20it/s] 76%|███████▌  | 10016/13184 [01:25<00:26, 118.13it/s] 76%|███████▌  | 10028/13184 [01:25<00:26, 118.32it/s] 76%|███████▌  | 10040/13184 [01:25<00:26, 118.53it/s] 76%|███████▌  | 10052/13184 [01:26<00:26, 117.83it/s] 76%|███████▋  | 10064/13184 [01:26<00:26, 118.00it/s] 76%|███████▋  | 10076/13184 [01:26<00:26, 117.89it/s] 77%|███████▋  | 10088/13184 [01:26<00:26, 117.87it/s] 77%|███████▋  | 10100/13184 [01:26<00:26, 117.90it/s] 77%|███████▋  | 10113/13184 [01:26<00:25, 118.60it/s] 77%|███████▋  | 10125/13184 [01:26<00:25, 118.45it/s] 77%|███████▋  | 10137/13184 [01:26<00:25, 118.20it/s] 77%|███████▋  | 10149/13184 [01:26<00:25, 117.84it/s] 77%|███████▋  | 10161/13184 [01:26<00:25, 117.71it/s] 77%|███████▋  | 10173/13184 [01:27<00:25, 117.32it/s] 77%|███████▋  | 10185/13184 [01:27<00:25, 116.76it/s] 77%|███████▋  | 10197/13184 [01:27<00:25, 116.17it/s] 77%|███████▋  | 10209/13184 [01:27<00:25, 116.49it/s] 78%|███████▊  | 10221/13184 [01:27<00:25, 116.66it/s] 78%|███████▊  | 10233/13184 [01:27<00:25, 116.66it/s] 78%|███████▊  | 10245/13184 [01:27<00:25, 117.06it/s] 78%|███████▊  | 10257/13184 [01:27<00:24, 117.41it/s] 78%|███████▊  | 10269/13184 [01:27<00:24, 117.14it/s] 78%|███████▊  | 10281/13184 [01:27<00:24, 116.82it/s] 78%|███████▊  | 10293/13184 [01:28<00:24, 116.88it/s] 78%|███████▊  | 10305/13184 [01:28<00:24, 116.64it/s] 78%|███████▊  | 10317/13184 [01:28<00:24, 116.49it/s] 78%|███████▊  | 10329/13184 [01:28<00:24, 116.26it/s] 78%|███████▊  | 10342/13184 [01:28<00:24, 117.52it/s] 79%|███████▊  | 10354/13184 [01:28<00:24, 117.60it/s] 79%|███████▊  | 10366/13184 [01:28<00:23, 117.78it/s] 79%|███████▊  | 10378/13184 [01:28<00:23, 117.49it/s] 79%|███████▉  | 10390/13184 [01:28<00:23, 117.52it/s] 79%|███████▉  | 10402/13184 [01:29<00:23, 117.73it/s] 79%|███████▉  | 10414/13184 [01:29<00:23, 117.55it/s] 79%|███████▉  | 10426/13184 [01:29<00:23, 117.61it/s] 79%|███████▉  | 10438/13184 [01:29<00:23, 117.46it/s] 79%|███████▉  | 10450/13184 [01:29<00:23, 117.37it/s] 79%|███████▉  | 10462/13184 [01:29<00:23, 117.75it/s] 79%|███████▉  | 10474/13184 [01:29<00:23, 117.60it/s] 80%|███████▉  | 10486/13184 [01:29<00:22, 117.93it/s] 80%|███████▉  | 10498/13184 [01:29<00:22, 118.30it/s] 80%|███████▉  | 10511/13184 [01:29<00:22, 118.90it/s] 80%|███████▉  | 10524/13184 [01:30<00:22, 119.22it/s] 80%|███████▉  | 10537/13184 [01:30<00:22, 119.64it/s] 80%|████████  | 10549/13184 [01:30<00:22, 119.59it/s] 80%|████████  | 10561/13184 [01:30<00:21, 119.39it/s] 80%|████████  | 10573/13184 [01:30<00:21, 119.57it/s] 80%|████████  | 10585/13184 [01:30<00:21, 119.64it/s] 80%|████████  | 10597/13184 [01:30<00:21, 119.51it/s] 80%|████████  | 10609/13184 [01:30<00:21, 119.56it/s] 81%|████████  | 10621/13184 [01:30<00:21, 119.24it/s] 81%|████████  | 10633/13184 [01:30<00:21, 119.03it/s] 81%|████████  | 10645/13184 [01:31<00:21, 118.42it/s] 81%|████████  | 10658/13184 [01:31<00:21, 118.98it/s] 81%|████████  | 10671/13184 [01:31<00:20, 119.72it/s] 81%|████████  | 10684/13184 [01:31<00:20, 120.72it/s] 81%|████████  | 10697/13184 [01:31<00:20, 119.80it/s] 81%|████████  | 10709/13184 [01:31<00:20, 119.55it/s] 81%|████████▏ | 10721/13184 [01:31<00:20, 118.26it/s] 81%|████████▏ | 10733/13184 [01:31<00:20, 117.68it/s] 82%|████████▏ | 10745/13184 [01:31<00:20, 116.90it/s] 82%|████████▏ | 10757/13184 [01:31<00:20, 116.77it/s] 82%|████████▏ | 10769/13184 [01:32<00:20, 116.33it/s] 82%|████████▏ | 10781/13184 [01:32<00:20, 116.57it/s] 82%|████████▏ | 10793/13184 [01:32<00:20, 116.26it/s] 82%|████████▏ | 10805/13184 [01:32<00:20, 116.15it/s] 82%|████████▏ | 10817/13184 [01:32<00:20, 116.17it/s] 82%|████████▏ | 10829/13184 [01:32<00:20, 116.20it/s] 82%|████████▏ | 10841/13184 [01:32<00:20, 116.78it/s] 82%|████████▏ | 10853/13184 [01:32<00:19, 117.25it/s] 82%|████████▏ | 10865/13184 [01:32<00:19, 117.59it/s] 83%|████████▎ | 10877/13184 [01:33<00:19, 117.22it/s] 83%|████████▎ | 10890/13184 [01:33<00:19, 118.16it/s] 83%|████████▎ | 10902/13184 [01:33<00:19, 118.54it/s] 83%|████████▎ | 10914/13184 [01:33<00:19, 118.43it/s] 83%|████████▎ | 10926/13184 [01:33<00:19, 117.90it/s] 83%|████████▎ | 10938/13184 [01:33<00:18, 118.45it/s] 83%|████████▎ | 10950/13184 [01:33<00:18, 118.67it/s] 83%|████████▎ | 10962/13184 [01:33<00:18, 118.53it/s] 83%|████████▎ | 10974/13184 [01:33<00:18, 118.42it/s] 83%|████████▎ | 10986/13184 [01:33<00:18, 118.30it/s] 83%|████████▎ | 10998/13184 [01:34<00:18, 118.24it/s] 84%|████████▎ | 11010/13184 [01:34<00:18, 117.98it/s] 84%|████████▎ | 11022/13184 [01:34<00:18, 118.02it/s] 84%|████████▎ | 11034/13184 [01:34<00:18, 118.07it/s] 84%|████████▍ | 11046/13184 [01:34<00:18, 118.04it/s] 84%|████████▍ | 11058/13184 [01:34<00:17, 118.15it/s] 84%|████████▍ | 11070/13184 [01:34<00:17, 117.71it/s] 84%|████████▍ | 11082/13184 [01:34<00:17, 117.92it/s] 84%|████████▍ | 11094/13184 [01:34<00:17, 117.50it/s] 84%|████████▍ | 11106/13184 [01:34<00:17, 117.45it/s] 84%|████████▍ | 11118/13184 [01:35<00:17, 118.01it/s] 84%|████████▍ | 11130/13184 [01:35<00:17, 118.09it/s] 85%|████████▍ | 11143/13184 [01:35<00:17, 118.74it/s] 85%|████████▍ | 11156/13184 [01:35<00:16, 119.30it/s] 85%|████████▍ | 11169/13184 [01:35<00:16, 119.79it/s] 85%|████████▍ | 11182/13184 [01:35<00:16, 120.43it/s] 85%|████████▍ | 11195/13184 [01:35<00:16, 120.32it/s] 85%|████████▌ | 11208/13184 [01:35<00:16, 119.76it/s] 85%|████████▌ | 11221/13184 [01:35<00:16, 119.85it/s] 85%|████████▌ | 11233/13184 [01:36<00:16, 119.19it/s] 85%|████████▌ | 11245/13184 [01:36<00:16, 118.48it/s] 85%|████████▌ | 11257/13184 [01:36<00:16, 118.11it/s] 85%|████████▌ | 11269/13184 [01:36<00:16, 117.94it/s] 86%|████████▌ | 11281/13184 [01:36<00:16, 117.34it/s] 86%|████████▌ | 11293/13184 [01:36<00:16, 117.39it/s] 86%|████████▌ | 11305/13184 [01:36<00:16, 117.00it/s] 86%|████████▌ | 11317/13184 [01:36<00:15, 117.31it/s] 86%|████████▌ | 11329/13184 [01:36<00:15, 117.35it/s] 86%|████████▌ | 11341/13184 [01:36<00:15, 117.47it/s] 86%|████████▌ | 11353/13184 [01:37<00:15, 117.50it/s] 86%|████████▌ | 11365/13184 [01:37<00:15, 118.02it/s] 86%|████████▋ | 11377/13184 [01:37<00:15, 117.58it/s] 86%|████████▋ | 11389/13184 [01:37<00:15, 117.48it/s] 86%|████████▋ | 11401/13184 [01:37<00:15, 117.20it/s] 87%|████████▋ | 11413/13184 [01:37<00:15, 117.25it/s] 87%|████████▋ | 11425/13184 [01:37<00:15, 117.17it/s] 87%|████████▋ | 11437/13184 [01:37<00:14, 117.83it/s] 87%|████████▋ | 11449/13184 [01:37<00:14, 117.50it/s] 87%|████████▋ | 11461/13184 [01:37<00:14, 117.08it/s] 87%|████████▋ | 11473/13184 [01:38<00:14, 117.02it/s] 87%|████████▋ | 11485/13184 [01:38<00:14, 116.29it/s] 87%|████████▋ | 11497/13184 [01:38<00:27, 61.45it/s]  87%|████████▋ | 11509/13184 [01:38<00:23, 71.19it/s] 87%|████████▋ | 11521/13184 [01:38<00:20, 80.32it/s] 87%|████████▋ | 11533/13184 [01:38<00:18, 88.30it/s] 88%|████████▊ | 11545/13184 [01:39<00:17, 94.80it/s] 88%|████████▊ | 11557/13184 [01:39<00:16, 100.18it/s] 88%|████████▊ | 11569/13184 [01:39<00:15, 104.02it/s] 88%|████████▊ | 11581/13184 [01:39<00:14, 106.89it/s] 88%|████████▊ | 11593/13184 [01:39<00:14, 109.84it/s] 88%|████████▊ | 11605/13184 [01:39<00:14, 112.57it/s] 88%|████████▊ | 11617/13184 [01:39<00:13, 114.04it/s] 88%|████████▊ | 11629/13184 [01:39<00:13, 115.44it/s] 88%|████████▊ | 11641/13184 [01:39<00:13, 116.42it/s] 88%|████████▊ | 11653/13184 [01:39<00:13, 117.37it/s] 88%|████████▊ | 11665/13184 [01:40<00:12, 117.00it/s] 89%|████████▊ | 11677/13184 [01:40<00:12, 116.53it/s] 89%|████████▊ | 11689/13184 [01:40<00:12, 116.52it/s] 89%|████████▉ | 11701/13184 [01:40<00:12, 116.60it/s] 89%|████████▉ | 11713/13184 [01:40<00:12, 116.06it/s] 89%|████████▉ | 11725/13184 [01:40<00:12, 116.16it/s] 89%|████████▉ | 11737/13184 [01:40<00:12, 116.09it/s] 89%|████████▉ | 11749/13184 [01:40<00:12, 116.12it/s] 89%|████████▉ | 11761/13184 [01:40<00:12, 116.09it/s] 89%|████████▉ | 11773/13184 [01:40<00:12, 116.15it/s] 89%|████████▉ | 11785/13184 [01:41<00:12, 116.19it/s] 89%|████████▉ | 11797/13184 [01:41<00:11, 116.22it/s] 90%|████████▉ | 11809/13184 [01:41<00:11, 116.50it/s] 90%|████████▉ | 11821/13184 [01:41<00:11, 116.37it/s] 90%|████████▉ | 11833/13184 [01:41<00:11, 116.13it/s] 90%|████████▉ | 11845/13184 [01:41<00:11, 116.00it/s] 90%|████████▉ | 11857/13184 [01:41<00:11, 116.24it/s] 90%|█████████ | 11869/13184 [01:41<00:11, 116.61it/s] 90%|█████████ | 11881/13184 [01:41<00:11, 116.17it/s] 90%|█████████ | 11893/13184 [01:41<00:11, 115.91it/s] 90%|█████████ | 11905/13184 [01:42<00:11, 115.60it/s] 90%|█████████ | 11917/13184 [01:42<00:10, 115.85it/s] 90%|█████████ | 11929/13184 [01:42<00:10, 116.58it/s] 91%|█████████ | 11941/13184 [01:42<00:10, 117.13it/s] 91%|█████████ | 11953/13184 [01:42<00:10, 117.29it/s] 91%|█████████ | 11965/13184 [01:42<00:10, 117.46it/s] 91%|█████████ | 11977/13184 [01:42<00:10, 117.50it/s] 91%|█████████ | 11989/13184 [01:42<00:10, 118.15it/s] 91%|█████████ | 12001/13184 [01:42<00:10, 117.55it/s] 91%|█████████ | 12014/13184 [01:43<00:09, 118.41it/s] 91%|█████████ | 12027/13184 [01:43<00:09, 119.57it/s] 91%|█████████▏| 12040/13184 [01:43<00:09, 120.73it/s] 91%|█████████▏| 12053/13184 [01:43<00:09, 121.61it/s] 92%|█████████▏| 12066/13184 [01:43<00:09, 122.28it/s] 92%|█████████▏| 12079/13184 [01:43<00:09, 122.09it/s] 92%|█████████▏| 12092/13184 [01:43<00:08, 121.85it/s] 92%|█████████▏| 12105/13184 [01:43<00:08, 121.30it/s] 92%|█████████▏| 12118/13184 [01:43<00:08, 120.56it/s] 92%|█████████▏| 12131/13184 [01:43<00:08, 120.47it/s] 92%|█████████▏| 12144/13184 [01:44<00:08, 119.86it/s] 92%|█████████▏| 12156/13184 [01:44<00:08, 119.79it/s] 92%|█████████▏| 12169/13184 [01:44<00:08, 120.39it/s] 92%|█████████▏| 12182/13184 [01:44<00:08, 120.46it/s] 92%|█████████▏| 12195/13184 [01:44<00:08, 120.44it/s] 93%|█████████▎| 12208/13184 [01:44<00:08, 119.67it/s] 93%|█████████▎| 12220/13184 [01:44<00:08, 119.39it/s] 93%|█████████▎| 12232/13184 [01:44<00:07, 119.02it/s] 93%|█████████▎| 12244/13184 [01:44<00:07, 119.11it/s] 93%|█████████▎| 12256/13184 [01:45<00:07, 119.07it/s] 93%|█████████▎| 12268/13184 [01:45<00:07, 119.10it/s] 93%|█████████▎| 12280/13184 [01:45<00:07, 118.14it/s] 93%|█████████▎| 12292/13184 [01:45<00:07, 118.10it/s] 93%|█████████▎| 12304/13184 [01:45<00:07, 117.90it/s] 93%|█████████▎| 12316/13184 [01:45<00:07, 118.21it/s] 94%|█████████▎| 12329/13184 [01:45<00:07, 118.90it/s] 94%|█████████▎| 12342/13184 [01:45<00:07, 119.43it/s] 94%|█████████▎| 12354/13184 [01:45<00:07, 118.36it/s] 94%|█████████▍| 12366/13184 [01:45<00:06, 117.31it/s] 94%|█████████▍| 12378/13184 [01:46<00:06, 117.51it/s] 94%|█████████▍| 12390/13184 [01:46<00:06, 117.80it/s] 94%|█████████▍| 12402/13184 [01:46<00:06, 118.23it/s] 94%|█████████▍| 12414/13184 [01:46<00:06, 117.75it/s] 94%|█████████▍| 12426/13184 [01:46<00:06, 117.39it/s] 94%|█████████▍| 12438/13184 [01:46<00:06, 117.70it/s] 94%|█████████▍| 12450/13184 [01:46<00:06, 117.54it/s] 95%|█████████▍| 12462/13184 [01:46<00:06, 117.70it/s] 95%|█████████▍| 12474/13184 [01:46<00:05, 118.36it/s] 95%|█████████▍| 12486/13184 [01:46<00:05, 118.79it/s] 95%|█████████▍| 12498/13184 [01:47<00:05, 118.66it/s] 95%|█████████▍| 12510/13184 [01:47<00:05, 118.87it/s] 95%|█████████▍| 12522/13184 [01:47<00:05, 118.90it/s] 95%|█████████▌| 12534/13184 [01:47<00:05, 118.81it/s] 95%|█████████▌| 12546/13184 [01:47<00:05, 118.68it/s] 95%|█████████▌| 12558/13184 [01:47<00:05, 118.67it/s] 95%|█████████▌| 12570/13184 [01:47<00:05, 118.82it/s] 95%|█████████▌| 12582/13184 [01:47<00:05, 118.55it/s] 96%|█████████▌| 12594/13184 [01:47<00:04, 118.27it/s] 96%|█████████▌| 12606/13184 [01:47<00:04, 117.87it/s] 96%|█████████▌| 12618/13184 [01:48<00:04, 117.90it/s] 96%|█████████▌| 12630/13184 [01:48<00:04, 117.85it/s] 96%|█████████▌| 12642/13184 [01:48<00:04, 117.77it/s] 96%|█████████▌| 12654/13184 [01:48<00:04, 117.90it/s] 96%|█████████▌| 12666/13184 [01:48<00:04, 118.07it/s] 96%|█████████▌| 12678/13184 [01:48<00:04, 118.31it/s] 96%|█████████▋| 12690/13184 [01:48<00:04, 118.50it/s] 96%|█████████▋| 12702/13184 [01:48<00:04, 118.24it/s] 96%|█████████▋| 12714/13184 [01:48<00:03, 117.86it/s] 97%|█████████▋| 12726/13184 [01:49<00:03, 117.00it/s] 97%|█████████▋| 12738/13184 [01:49<00:03, 116.60it/s] 97%|█████████▋| 12750/13184 [01:49<00:03, 116.41it/s] 97%|█████████▋| 12762/13184 [01:49<00:03, 117.00it/s] 97%|█████████▋| 12774/13184 [01:49<00:03, 117.53it/s] 97%|█████████▋| 12786/13184 [01:49<00:03, 117.57it/s] 97%|█████████▋| 12798/13184 [01:49<00:03, 117.89it/s] 97%|█████████▋| 12810/13184 [01:49<00:03, 118.03it/s] 97%|█████████▋| 12822/13184 [01:49<00:03, 118.27it/s] 97%|█████████▋| 12834/13184 [01:49<00:02, 118.58it/s] 97%|█████████▋| 12846/13184 [01:50<00:02, 118.63it/s] 98%|█████████▊| 12858/13184 [01:50<00:02, 118.52it/s] 98%|█████████▊| 12870/13184 [01:50<00:02, 118.83it/s] 98%|█████████▊| 12882/13184 [01:50<00:02, 119.14it/s] 98%|█████████▊| 12894/13184 [01:50<00:02, 119.26it/s] 98%|█████████▊| 12906/13184 [01:50<00:02, 118.89it/s] 98%|█████████▊| 12918/13184 [01:50<00:02, 117.75it/s] 98%|█████████▊| 12930/13184 [01:50<00:02, 117.82it/s] 98%|█████████▊| 12942/13184 [01:50<00:02, 117.77it/s] 98%|█████████▊| 12954/13184 [01:50<00:01, 117.51it/s] 98%|█████████▊| 12966/13184 [01:51<00:01, 117.33it/s] 98%|█████████▊| 12978/13184 [01:51<00:01, 117.50it/s] 99%|█████████▊| 12990/13184 [01:51<00:01, 116.98it/s] 99%|█████████▊| 13002/13184 [01:51<00:01, 116.98it/s] 99%|█████████▊| 13014/13184 [01:51<00:01, 116.95it/s] 99%|█████████▉| 13026/13184 [01:51<00:01, 116.63it/s] 99%|█████████▉| 13038/13184 [01:51<00:01, 116.87it/s] 99%|█████████▉| 13051/13184 [01:51<00:01, 117.90it/s] 99%|█████████▉| 13063/13184 [01:51<00:01, 118.32it/s] 99%|█████████▉| 13075/13184 [01:51<00:00, 118.54it/s] 99%|█████████▉| 13087/13184 [01:52<00:00, 118.00it/s] 99%|█████████▉| 13099/13184 [01:52<00:00, 118.24it/s] 99%|█████████▉| 13111/13184 [01:52<00:00, 118.20it/s]100%|█████████▉| 13123/13184 [01:52<00:00, 118.38it/s]100%|█████████▉| 13135/13184 [01:52<00:00, 118.46it/s]100%|█████████▉| 13147/13184 [01:52<00:00, 118.38it/s]100%|█████████▉| 13159/13184 [01:52<00:00, 118.38it/s]100%|█████████▉| 13171/13184 [01:52<00:00, 118.56it/s]100%|█████████▉| 13183/13184 [01:52<00:00, 118.52it/s]100%|██████████| 13184/13184 [01:52<00:00, 116.79it/s]
-2026-01-25 16:17:32 INFO ==> Loading data from /data/open_data/tiles-2018-processed/tiles-holdout/fitbit.
-  0%|          | 0/8818 [00:00<?, ?it/s]  0%|          | 13/8818 [00:00<01:12, 120.75it/s]  0%|          | 26/8818 [00:00<01:12, 120.83it/s]  0%|          | 39/8818 [00:00<01:12, 120.67it/s]  1%|          | 52/8818 [00:00<01:12, 121.13it/s]  1%|          | 65/8818 [00:00<01:12, 121.11it/s]  1%|          | 78/8818 [00:00<01:12, 120.80it/s]  1%|          | 91/8818 [00:00<01:12, 120.55it/s]  1%|          | 104/8818 [00:00<01:11, 121.06it/s]  1%|▏         | 117/8818 [00:00<01:12, 120.64it/s]  1%|▏         | 130/8818 [00:01<01:11, 120.69it/s]  2%|▏         | 143/8818 [00:01<01:11, 120.88it/s]  2%|▏         | 156/8818 [00:01<01:12, 120.21it/s]  2%|▏         | 169/8818 [00:01<01:12, 120.08it/s]  2%|▏         | 182/8818 [00:01<01:11, 120.06it/s]  2%|▏         | 195/8818 [00:01<01:11, 120.40it/s]  2%|▏         | 208/8818 [00:01<01:11, 120.61it/s]  3%|▎         | 221/8818 [00:01<01:11, 120.97it/s]  3%|▎         | 234/8818 [00:01<01:10, 121.32it/s]  3%|▎         | 247/8818 [00:02<01:10, 121.43it/s]  3%|▎         | 260/8818 [00:02<01:10, 121.80it/s]  3%|▎         | 273/8818 [00:02<01:10, 122.03it/s]  3%|▎         | 286/8818 [00:02<01:10, 121.61it/s]  3%|▎         | 299/8818 [00:02<01:10, 121.01it/s]  4%|▎         | 312/8818 [00:02<01:10, 120.82it/s]  4%|▎         | 325/8818 [00:02<01:09, 121.38it/s]  4%|▍         | 338/8818 [00:02<01:09, 121.48it/s]  4%|▍         | 351/8818 [00:02<01:09, 121.88it/s]  4%|▍         | 364/8818 [00:03<01:09, 121.90it/s]  4%|▍         | 377/8818 [00:03<01:09, 121.93it/s]  4%|▍         | 390/8818 [00:03<01:08, 122.26it/s]  5%|▍         | 403/8818 [00:03<01:08, 121.99it/s]  5%|▍         | 416/8818 [00:03<01:08, 121.91it/s]  5%|▍         | 429/8818 [00:03<01:08, 122.23it/s]  5%|▌         | 442/8818 [00:03<01:08, 122.25it/s]  5%|▌         | 455/8818 [00:03<01:08, 122.32it/s]  5%|▌         | 468/8818 [00:03<01:08, 122.26it/s]  5%|▌         | 481/8818 [00:03<01:08, 122.32it/s]  6%|▌         | 494/8818 [00:04<01:07, 122.84it/s]  6%|▌         | 507/8818 [00:04<01:07, 122.43it/s]  6%|▌         | 520/8818 [00:04<01:07, 122.62it/s]  6%|▌         | 533/8818 [00:04<01:07, 122.97it/s]  6%|▌         | 546/8818 [00:04<01:07, 122.91it/s]  6%|▋         | 559/8818 [00:04<01:07, 122.61it/s]  6%|▋         | 572/8818 [00:04<01:07, 122.00it/s]  7%|▋         | 585/8818 [00:04<01:07, 121.38it/s]  7%|▋         | 598/8818 [00:04<01:07, 121.23it/s]  7%|▋         | 611/8818 [00:05<01:07, 121.29it/s]  7%|▋         | 624/8818 [00:05<01:07, 121.58it/s]  7%|▋         | 637/8818 [00:05<01:07, 121.75it/s]  7%|▋         | 650/8818 [00:05<01:07, 121.81it/s]  8%|▊         | 663/8818 [00:05<01:06, 121.87it/s]  8%|▊         | 676/8818 [00:05<01:06, 122.09it/s]  8%|▊         | 689/8818 [00:05<01:06, 121.45it/s]  8%|▊         | 702/8818 [00:05<01:06, 121.33it/s]  8%|▊         | 715/8818 [00:05<01:06, 121.06it/s]  8%|▊         | 728/8818 [00:05<01:06, 121.24it/s]  8%|▊         | 741/8818 [00:06<01:06, 121.16it/s]  9%|▊         | 754/8818 [00:06<01:06, 121.04it/s]  9%|▊         | 767/8818 [00:06<01:06, 121.19it/s]  9%|▉         | 780/8818 [00:06<01:06, 120.96it/s]  9%|▉         | 793/8818 [00:06<01:06, 121.08it/s]  9%|▉         | 806/8818 [00:06<01:06, 121.22it/s]  9%|▉         | 819/8818 [00:06<01:05, 121.21it/s]  9%|▉         | 832/8818 [00:06<01:05, 121.40it/s] 10%|▉         | 845/8818 [00:06<01:05, 121.92it/s] 10%|▉         | 858/8818 [00:07<01:05, 122.20it/s] 10%|▉         | 871/8818 [00:07<01:05, 121.66it/s] 10%|█         | 884/8818 [00:07<01:05, 121.63it/s] 10%|█         | 897/8818 [00:07<01:05, 121.19it/s] 10%|█         | 910/8818 [00:07<01:05, 120.67it/s] 10%|█         | 923/8818 [00:07<01:05, 120.06it/s] 11%|█         | 936/8818 [00:07<01:05, 120.13it/s] 11%|█         | 949/8818 [00:07<01:05, 120.17it/s] 11%|█         | 962/8818 [00:07<01:05, 120.48it/s] 11%|█         | 975/8818 [00:08<01:04, 120.99it/s] 11%|█         | 988/8818 [00:08<01:04, 121.23it/s] 11%|█▏        | 1001/8818 [00:08<01:04, 121.64it/s] 11%|█▏        | 1014/8818 [00:08<01:04, 121.70it/s] 12%|█▏        | 1027/8818 [00:08<01:04, 121.68it/s] 12%|█▏        | 1040/8818 [00:08<01:03, 121.74it/s] 12%|█▏        | 1053/8818 [00:08<01:03, 121.49it/s] 12%|█▏        | 1066/8818 [00:08<01:03, 121.29it/s] 12%|█▏        | 1079/8818 [00:08<01:03, 121.49it/s] 12%|█▏        | 1092/8818 [00:08<01:03, 121.31it/s] 13%|█▎        | 1105/8818 [00:09<01:03, 121.27it/s] 13%|█▎        | 1118/8818 [00:09<01:03, 121.36it/s] 13%|█▎        | 1131/8818 [00:09<01:03, 120.84it/s] 13%|█▎        | 1144/8818 [00:09<01:03, 120.96it/s] 13%|█▎        | 1157/8818 [00:09<01:03, 120.55it/s] 13%|█▎        | 1170/8818 [00:09<01:03, 119.62it/s] 13%|█▎        | 1183/8818 [00:09<01:03, 120.22it/s] 14%|█▎        | 1196/8818 [00:09<01:03, 120.40it/s] 14%|█▎        | 1209/8818 [00:09<01:03, 120.70it/s] 14%|█▍        | 1222/8818 [00:10<01:03, 120.11it/s] 14%|█▍        | 1235/8818 [00:10<01:03, 119.83it/s] 14%|█▍        | 1248/8818 [00:10<01:02, 120.43it/s] 14%|█▍        | 1261/8818 [00:10<01:02, 120.05it/s] 14%|█▍        | 1274/8818 [00:10<01:03, 119.66it/s] 15%|█▍        | 1287/8818 [00:10<01:02, 119.78it/s] 15%|█▍        | 1300/8818 [00:10<01:02, 120.84it/s] 15%|█▍        | 1313/8818 [00:10<01:01, 121.40it/s] 15%|█▌        | 1326/8818 [00:10<01:01, 121.45it/s] 15%|█▌        | 1339/8818 [00:11<01:01, 121.29it/s] 15%|█▌        | 1352/8818 [00:11<01:01, 120.93it/s] 15%|█▌        | 1365/8818 [00:11<01:01, 120.55it/s] 16%|█▌        | 1378/8818 [00:11<01:01, 120.87it/s] 16%|█▌        | 1391/8818 [00:11<01:01, 121.39it/s] 16%|█▌        | 1404/8818 [00:11<01:01, 121.27it/s] 16%|█▌        | 1417/8818 [00:11<01:01, 121.27it/s] 16%|█▌        | 1430/8818 [00:11<01:00, 121.58it/s] 16%|█▋        | 1443/8818 [00:11<01:00, 121.54it/s] 17%|█▋        | 1456/8818 [00:12<01:00, 121.76it/s] 17%|█▋        | 1469/8818 [00:12<01:00, 121.43it/s] 17%|█▋        | 1482/8818 [00:12<01:00, 121.63it/s] 17%|█▋        | 1495/8818 [00:12<01:00, 121.54it/s] 17%|█▋        | 1508/8818 [00:12<00:59, 121.89it/s] 17%|█▋        | 1521/8818 [00:12<00:59, 121.93it/s] 17%|█▋        | 1534/8818 [00:12<00:59, 121.96it/s] 18%|█▊        | 1547/8818 [00:12<00:59, 121.31it/s] 18%|█▊        | 1560/8818 [00:12<00:59, 121.78it/s] 18%|█▊        | 1573/8818 [00:12<00:59, 121.59it/s] 18%|█▊        | 1586/8818 [00:13<00:59, 121.31it/s] 18%|█▊        | 1599/8818 [00:13<00:59, 120.83it/s] 18%|█▊        | 1612/8818 [00:13<00:59, 121.37it/s] 18%|█▊        | 1625/8818 [00:13<00:58, 122.02it/s] 19%|█▊        | 1638/8818 [00:13<00:58, 122.20it/s] 19%|█▊        | 1651/8818 [00:13<00:59, 121.26it/s] 19%|█▉        | 1664/8818 [00:13<00:59, 121.07it/s] 19%|█▉        | 1677/8818 [00:13<00:58, 121.32it/s] 19%|█▉        | 1690/8818 [00:13<00:58, 121.71it/s] 19%|█▉        | 1703/8818 [00:14<00:58, 121.45it/s] 19%|█▉        | 1716/8818 [00:14<00:58, 121.05it/s] 20%|█▉        | 1729/8818 [00:14<00:58, 120.58it/s] 20%|█▉        | 1742/8818 [00:14<00:59, 118.78it/s] 20%|█▉        | 1754/8818 [00:14<00:59, 118.60it/s] 20%|██        | 1767/8818 [00:14<00:59, 118.74it/s] 20%|██        | 1780/8818 [00:14<00:58, 119.72it/s] 20%|██        | 1793/8818 [00:14<00:58, 120.61it/s] 20%|██        | 1806/8818 [00:14<00:58, 120.78it/s] 21%|██        | 1819/8818 [00:15<00:57, 120.86it/s] 21%|██        | 1832/8818 [00:15<00:57, 121.02it/s] 21%|██        | 1845/8818 [00:15<00:57, 121.34it/s] 21%|██        | 1858/8818 [00:15<00:57, 120.92it/s] 21%|██        | 1871/8818 [00:15<00:57, 120.87it/s] 21%|██▏       | 1884/8818 [00:15<00:57, 121.12it/s] 22%|██▏       | 1897/8818 [00:15<00:57, 120.77it/s] 22%|██▏       | 1910/8818 [00:15<00:57, 121.13it/s] 22%|██▏       | 1923/8818 [00:15<00:56, 121.08it/s] 22%|██▏       | 1936/8818 [00:15<00:56, 121.06it/s] 22%|██▏       | 1949/8818 [00:16<00:56, 120.70it/s] 22%|██▏       | 1962/8818 [00:16<00:56, 120.83it/s] 22%|██▏       | 1975/8818 [00:16<00:56, 120.91it/s] 23%|██▎       | 1988/8818 [00:16<00:56, 120.78it/s] 23%|██▎       | 2001/8818 [00:16<00:56, 120.79it/s] 23%|██▎       | 2014/8818 [00:16<00:56, 120.90it/s] 23%|██▎       | 2027/8818 [00:16<00:55, 121.66it/s] 23%|██▎       | 2040/8818 [00:16<00:55, 121.99it/s] 23%|██▎       | 2053/8818 [00:16<00:55, 121.81it/s] 23%|██▎       | 2066/8818 [00:17<00:55, 122.03it/s] 24%|██▎       | 2079/8818 [00:17<00:55, 121.79it/s] 24%|██▎       | 2092/8818 [00:17<00:55, 121.65it/s] 24%|██▍       | 2105/8818 [00:17<00:55, 121.35it/s] 24%|██▍       | 2118/8818 [00:17<00:55, 121.61it/s] 24%|██▍       | 2131/8818 [00:17<00:55, 120.85it/s] 24%|██▍       | 2144/8818 [00:17<00:54, 121.41it/s] 24%|██▍       | 2157/8818 [00:17<00:54, 121.97it/s] 25%|██▍       | 2170/8818 [00:17<00:54, 121.75it/s] 25%|██▍       | 2183/8818 [00:18<00:54, 122.09it/s] 25%|██▍       | 2196/8818 [00:18<00:54, 121.84it/s] 25%|██▌       | 2209/8818 [00:18<00:54, 121.90it/s] 25%|██▌       | 2222/8818 [00:18<00:54, 122.08it/s] 25%|██▌       | 2235/8818 [00:18<00:54, 121.56it/s] 25%|██▌       | 2248/8818 [00:18<00:54, 121.22it/s] 26%|██▌       | 2261/8818 [00:18<00:53, 121.44it/s] 26%|██▌       | 2274/8818 [00:18<00:53, 121.78it/s] 26%|██▌       | 2287/8818 [00:18<00:53, 122.21it/s] 26%|██▌       | 2300/8818 [00:18<00:53, 122.52it/s] 26%|██▌       | 2313/8818 [00:19<00:53, 121.83it/s] 26%|██▋       | 2326/8818 [00:19<00:53, 121.27it/s] 27%|██▋       | 2339/8818 [00:19<00:53, 121.44it/s] 27%|██▋       | 2352/8818 [00:19<00:53, 121.80it/s] 27%|██▋       | 2365/8818 [00:19<00:53, 121.52it/s] 27%|██▋       | 2378/8818 [00:19<00:52, 121.65it/s] 27%|██▋       | 2391/8818 [00:19<00:53, 120.67it/s] 27%|██▋       | 2404/8818 [00:19<00:52, 121.09it/s] 27%|██▋       | 2417/8818 [00:19<00:52, 121.21it/s] 28%|██▊       | 2430/8818 [00:20<00:52, 121.31it/s] 28%|██▊       | 2443/8818 [00:20<00:52, 121.50it/s] 28%|██▊       | 2456/8818 [00:20<00:52, 121.49it/s] 28%|██▊       | 2469/8818 [00:20<00:52, 121.93it/s] 28%|██▊       | 2482/8818 [00:20<00:52, 121.67it/s] 28%|██▊       | 2495/8818 [00:20<00:51, 121.60it/s] 28%|██▊       | 2508/8818 [00:20<00:51, 122.22it/s] 29%|██▊       | 2521/8818 [00:20<00:51, 121.84it/s] 29%|██▊       | 2534/8818 [00:20<00:51, 122.43it/s] 29%|██▉       | 2547/8818 [00:20<00:51, 122.74it/s] 29%|██▉       | 2560/8818 [00:21<00:50, 122.89it/s] 29%|██▉       | 2573/8818 [00:21<00:50, 122.75it/s] 29%|██▉       | 2586/8818 [00:21<00:50, 122.41it/s] 29%|██▉       | 2599/8818 [00:21<00:50, 122.42it/s] 30%|██▉       | 2612/8818 [00:21<00:50, 122.30it/s] 30%|██▉       | 2625/8818 [00:21<00:50, 122.42it/s] 30%|██▉       | 2638/8818 [00:21<00:50, 122.66it/s] 30%|███       | 2651/8818 [00:21<00:50, 123.14it/s] 30%|███       | 2664/8818 [00:21<00:49, 123.16it/s] 30%|███       | 2677/8818 [00:22<00:49, 123.20it/s] 31%|███       | 2690/8818 [00:22<01:15, 81.59it/s]  31%|███       | 2703/8818 [00:22<01:07, 90.63it/s] 31%|███       | 2716/8818 [00:22<01:02, 98.08it/s] 31%|███       | 2729/8818 [00:22<00:58, 103.91it/s] 31%|███       | 2742/8818 [00:22<00:55, 108.72it/s] 31%|███       | 2755/8818 [00:22<00:54, 112.19it/s] 31%|███▏      | 2767/8818 [00:22<00:52, 114.23it/s] 32%|███▏      | 2779/8818 [00:23<01:16, 78.86it/s]  32%|███▏      | 2792/8818 [00:23<01:08, 88.29it/s] 32%|███▏      | 2804/8818 [00:23<01:03, 94.90it/s] 32%|███▏      | 2816/8818 [00:23<00:59, 100.53it/s] 32%|███▏      | 2828/8818 [00:23<00:57, 104.29it/s] 32%|███▏      | 2840/8818 [00:23<00:55, 107.81it/s] 32%|███▏      | 2852/8818 [00:23<00:54, 109.59it/s] 32%|███▏      | 2864/8818 [00:23<00:53, 111.59it/s] 33%|███▎      | 2876/8818 [00:24<00:52, 113.15it/s] 33%|███▎      | 2888/8818 [00:24<00:51, 114.43it/s] 33%|███▎      | 2900/8818 [00:24<00:51, 114.69it/s] 33%|███▎      | 2912/8818 [00:24<00:51, 114.79it/s] 33%|███▎      | 2924/8818 [00:24<00:51, 115.28it/s] 33%|███▎      | 2936/8818 [00:24<00:50, 115.46it/s] 33%|███▎      | 2948/8818 [00:24<00:51, 115.03it/s] 34%|███▎      | 2960/8818 [00:24<00:50, 115.07it/s] 34%|███▎      | 2972/8818 [00:24<00:50, 114.99it/s] 34%|███▍      | 2984/8818 [00:25<00:50, 115.35it/s] 34%|███▍      | 2996/8818 [00:25<00:50, 115.21it/s] 34%|███▍      | 3008/8818 [00:25<00:50, 115.65it/s] 34%|███▍      | 3020/8818 [00:25<00:50, 115.58it/s] 34%|███▍      | 3032/8818 [00:25<00:49, 115.80it/s] 35%|███▍      | 3044/8818 [00:25<00:49, 115.84it/s] 35%|███▍      | 3056/8818 [00:25<00:49, 116.80it/s] 35%|███▍      | 3069/8818 [00:25<00:48, 117.92it/s] 35%|███▍      | 3082/8818 [00:25<00:48, 119.11it/s] 35%|███▌      | 3095/8818 [00:25<00:47, 119.45it/s] 35%|███▌      | 3108/8818 [00:26<00:47, 119.98it/s] 35%|███▌      | 3121/8818 [00:26<00:47, 120.06it/s] 36%|███▌      | 3134/8818 [00:26<00:47, 120.40it/s] 36%|███▌      | 3147/8818 [00:26<00:47, 119.80it/s] 36%|███▌      | 3160/8818 [00:26<00:47, 120.28it/s] 36%|███▌      | 3173/8818 [00:26<00:46, 120.54it/s] 36%|███▌      | 3186/8818 [00:26<00:46, 119.97it/s] 36%|███▋      | 3199/8818 [00:26<00:46, 120.78it/s] 36%|███▋      | 3212/8818 [00:26<00:46, 121.36it/s] 37%|███▋      | 3225/8818 [00:27<00:46, 121.48it/s] 37%|███▋      | 3238/8818 [00:27<00:46, 121.26it/s] 37%|███▋      | 3251/8818 [00:27<00:45, 121.39it/s] 37%|███▋      | 3264/8818 [00:27<00:45, 121.45it/s] 37%|███▋      | 3277/8818 [00:27<00:45, 121.86it/s] 37%|███▋      | 3290/8818 [00:27<00:45, 121.89it/s] 37%|███▋      | 3303/8818 [00:27<00:44, 122.57it/s] 38%|███▊      | 3316/8818 [00:27<00:45, 122.20it/s] 38%|███▊      | 3329/8818 [00:27<00:44, 122.63it/s] 38%|███▊      | 3342/8818 [00:27<00:45, 121.68it/s] 38%|███▊      | 3355/8818 [00:28<00:45, 121.37it/s] 38%|███▊      | 3368/8818 [00:28<00:44, 121.58it/s] 38%|███▊      | 3381/8818 [00:28<00:44, 121.28it/s] 38%|███▊      | 3394/8818 [00:28<00:44, 120.77it/s] 39%|███▊      | 3407/8818 [00:28<00:44, 121.23it/s] 39%|███▉      | 3420/8818 [00:28<00:44, 121.18it/s] 39%|███▉      | 3433/8818 [00:28<00:44, 121.27it/s] 39%|███▉      | 3446/8818 [00:28<00:44, 121.86it/s] 39%|███▉      | 3459/8818 [00:28<00:43, 122.34it/s] 39%|███▉      | 3472/8818 [00:29<00:43, 122.36it/s] 40%|███▉      | 3485/8818 [00:29<00:43, 121.31it/s] 40%|███▉      | 3498/8818 [00:29<00:43, 121.56it/s] 40%|███▉      | 3511/8818 [00:29<00:43, 121.56it/s] 40%|███▉      | 3524/8818 [00:29<00:43, 121.47it/s] 40%|████      | 3537/8818 [00:29<00:43, 121.22it/s] 40%|████      | 3550/8818 [00:29<00:43, 121.60it/s] 40%|████      | 3563/8818 [00:29<00:43, 121.19it/s] 41%|████      | 3576/8818 [00:29<00:43, 121.47it/s] 41%|████      | 3589/8818 [00:30<00:43, 120.92it/s] 41%|████      | 3602/8818 [00:30<00:43, 120.03it/s] 41%|████      | 3615/8818 [00:30<00:43, 119.70it/s] 41%|████      | 3628/8818 [00:30<00:43, 119.81it/s] 41%|████▏     | 3641/8818 [00:30<00:42, 120.52it/s] 41%|████▏     | 3654/8818 [00:30<00:42, 120.68it/s] 42%|████▏     | 3667/8818 [00:30<00:42, 120.70it/s] 42%|████▏     | 3680/8818 [00:30<00:42, 120.89it/s] 42%|████▏     | 3693/8818 [00:30<00:42, 120.06it/s] 42%|████▏     | 3706/8818 [00:30<00:42, 119.43it/s] 42%|████▏     | 3719/8818 [00:31<00:42, 120.01it/s] 42%|████▏     | 3732/8818 [00:31<00:42, 120.17it/s] 42%|████▏     | 3745/8818 [00:31<00:42, 119.74it/s] 43%|████▎     | 3758/8818 [00:31<00:42, 120.22it/s] 43%|████▎     | 3771/8818 [00:31<00:41, 120.85it/s] 43%|████▎     | 3784/8818 [00:31<00:41, 120.69it/s] 43%|████▎     | 3797/8818 [00:31<00:41, 120.67it/s] 43%|████▎     | 3810/8818 [00:31<00:41, 120.44it/s] 43%|████▎     | 3823/8818 [00:31<00:41, 120.01it/s] 44%|████▎     | 3836/8818 [00:32<00:41, 120.65it/s] 44%|████▎     | 3849/8818 [00:32<00:41, 121.07it/s] 44%|████▍     | 3862/8818 [00:32<00:40, 120.99it/s] 44%|████▍     | 3875/8818 [00:32<00:40, 120.81it/s] 44%|████▍     | 3888/8818 [00:32<00:40, 120.64it/s] 44%|████▍     | 3901/8818 [00:32<00:40, 120.50it/s] 44%|████▍     | 3914/8818 [00:32<00:40, 120.47it/s] 45%|████▍     | 3927/8818 [00:32<00:40, 120.70it/s] 45%|████▍     | 3940/8818 [00:32<00:40, 120.93it/s] 45%|████▍     | 3953/8818 [00:33<00:40, 120.66it/s] 45%|████▍     | 3966/8818 [00:33<00:40, 120.76it/s] 45%|████▌     | 3979/8818 [00:33<00:40, 120.88it/s] 45%|████▌     | 3992/8818 [00:33<00:39, 122.04it/s] 45%|████▌     | 4005/8818 [00:33<00:39, 122.32it/s] 46%|████▌     | 4018/8818 [00:33<00:39, 122.11it/s] 46%|████▌     | 4031/8818 [00:33<00:39, 121.97it/s] 46%|████▌     | 4044/8818 [00:33<00:39, 121.51it/s] 46%|████▌     | 4057/8818 [00:33<00:39, 121.28it/s] 46%|████▌     | 4070/8818 [00:34<00:38, 121.75it/s] 46%|████▋     | 4083/8818 [00:34<00:39, 121.41it/s] 46%|████▋     | 4096/8818 [00:34<00:39, 121.06it/s] 47%|████▋     | 4109/8818 [00:34<00:38, 121.06it/s] 47%|████▋     | 4122/8818 [00:34<00:38, 120.61it/s] 47%|████▋     | 4135/8818 [00:34<00:38, 120.55it/s] 47%|████▋     | 4148/8818 [00:34<00:38, 120.72it/s] 47%|████▋     | 4161/8818 [00:34<00:38, 121.03it/s] 47%|████▋     | 4174/8818 [00:34<00:38, 120.67it/s] 47%|████▋     | 4187/8818 [00:34<00:38, 120.15it/s] 48%|████▊     | 4200/8818 [00:35<00:38, 120.39it/s] 48%|████▊     | 4213/8818 [00:35<00:38, 120.58it/s] 48%|████▊     | 4226/8818 [00:35<00:37, 121.03it/s] 48%|████▊     | 4239/8818 [00:35<00:37, 120.85it/s] 48%|████▊     | 4252/8818 [00:35<00:37, 121.06it/s] 48%|████▊     | 4265/8818 [00:35<00:37, 121.36it/s] 49%|████▊     | 4278/8818 [00:35<00:37, 121.36it/s] 49%|████▊     | 4291/8818 [00:35<00:37, 120.92it/s] 49%|████▉     | 4304/8818 [00:35<00:37, 121.10it/s] 49%|████▉     | 4317/8818 [00:36<00:37, 120.39it/s] 49%|████▉     | 4330/8818 [00:36<00:37, 120.19it/s] 49%|████▉     | 4343/8818 [00:36<00:37, 120.60it/s] 49%|████▉     | 4356/8818 [00:36<00:36, 121.01it/s] 50%|████▉     | 4369/8818 [00:36<00:36, 120.96it/s] 50%|████▉     | 4382/8818 [00:36<00:36, 120.78it/s] 50%|████▉     | 4395/8818 [00:36<00:36, 121.12it/s] 50%|████▉     | 4408/8818 [00:36<00:36, 121.47it/s] 50%|█████     | 4421/8818 [00:36<00:36, 120.66it/s] 50%|█████     | 4434/8818 [00:37<00:36, 121.11it/s] 50%|█████     | 4447/8818 [00:37<00:35, 121.88it/s] 51%|█████     | 4460/8818 [00:37<00:35, 121.29it/s] 51%|█████     | 4473/8818 [00:37<00:35, 121.68it/s] 51%|█████     | 4486/8818 [00:37<00:35, 121.47it/s] 51%|█████     | 4499/8818 [00:37<00:35, 121.58it/s] 51%|█████     | 4512/8818 [00:37<00:35, 121.53it/s] 51%|█████▏    | 4525/8818 [00:37<00:35, 121.16it/s] 51%|█████▏    | 4538/8818 [00:37<00:35, 121.31it/s] 52%|█████▏    | 4551/8818 [00:37<00:35, 121.38it/s] 52%|█████▏    | 4564/8818 [00:38<00:34, 122.00it/s] 52%|█████▏    | 4577/8818 [00:38<00:34, 122.07it/s] 52%|█████▏    | 4590/8818 [00:38<00:34, 122.11it/s] 52%|█████▏    | 4603/8818 [00:38<00:34, 121.20it/s] 52%|█████▏    | 4616/8818 [00:38<00:34, 121.20it/s] 52%|█████▏    | 4629/8818 [00:38<00:34, 120.39it/s] 53%|█████▎    | 4642/8818 [00:38<00:34, 120.03it/s] 53%|█████▎    | 4655/8818 [00:38<00:34, 119.17it/s] 53%|█████▎    | 4667/8818 [00:38<00:34, 119.15it/s] 53%|█████▎    | 4679/8818 [00:39<00:34, 118.39it/s] 53%|█████▎    | 4691/8818 [00:39<00:34, 118.83it/s] 53%|█████▎    | 4703/8818 [00:39<00:34, 118.90it/s] 53%|█████▎    | 4715/8818 [00:39<00:34, 119.05it/s] 54%|█████▎    | 4728/8818 [00:39<00:34, 120.11it/s] 54%|█████▍    | 4741/8818 [00:39<00:33, 120.42it/s] 54%|█████▍    | 4754/8818 [00:39<00:33, 120.54it/s] 54%|█████▍    | 4767/8818 [00:39<00:33, 120.66it/s] 54%|█████▍    | 4780/8818 [00:39<00:33, 120.48it/s] 54%|█████▍    | 4793/8818 [00:39<00:33, 120.64it/s] 55%|█████▍    | 4806/8818 [00:40<00:34, 115.46it/s] 55%|█████▍    | 4818/8818 [00:40<00:35, 113.08it/s] 55%|█████▍    | 4831/8818 [00:40<00:34, 115.43it/s] 55%|█████▍    | 4844/8818 [00:40<00:33, 117.30it/s] 55%|█████▌    | 4857/8818 [00:40<00:33, 118.48it/s] 55%|█████▌    | 4870/8818 [00:40<00:33, 119.33it/s] 55%|█████▌    | 4883/8818 [00:40<00:32, 119.86it/s] 56%|█████▌    | 4896/8818 [00:40<00:32, 120.68it/s] 56%|█████▌    | 4909/8818 [00:40<00:32, 120.96it/s] 56%|█████▌    | 4922/8818 [00:41<00:32, 120.82it/s] 56%|█████▌    | 4935/8818 [00:41<00:32, 120.97it/s] 56%|█████▌    | 4948/8818 [00:41<00:31, 121.08it/s] 56%|█████▋    | 4961/8818 [00:41<00:31, 120.65it/s] 56%|█████▋    | 4974/8818 [00:41<00:31, 120.83it/s] 57%|█████▋    | 4987/8818 [00:41<00:31, 121.36it/s] 57%|█████▋    | 5000/8818 [00:41<00:31, 121.64it/s] 57%|█████▋    | 5013/8818 [00:41<00:31, 121.38it/s] 57%|█████▋    | 5026/8818 [00:41<00:31, 120.84it/s] 57%|█████▋    | 5039/8818 [00:42<00:31, 120.63it/s] 57%|█████▋    | 5052/8818 [00:42<00:31, 121.02it/s] 57%|█████▋    | 5065/8818 [00:42<00:31, 120.86it/s] 58%|█████▊    | 5078/8818 [00:42<00:31, 120.35it/s] 58%|█████▊    | 5091/8818 [00:42<00:30, 120.67it/s] 58%|█████▊    | 5104/8818 [00:42<00:30, 120.50it/s] 58%|█████▊    | 5117/8818 [00:42<00:30, 120.12it/s] 58%|█████▊    | 5130/8818 [00:42<00:30, 119.77it/s] 58%|█████▊    | 5142/8818 [00:42<00:30, 118.98it/s] 58%|█████▊    | 5154/8818 [00:43<00:30, 118.88it/s] 59%|█████▊    | 5167/8818 [00:43<00:30, 119.29it/s] 59%|█████▊    | 5180/8818 [00:43<00:30, 119.79it/s] 59%|█████▉    | 5193/8818 [00:43<00:30, 120.66it/s] 59%|█████▉    | 5206/8818 [00:43<00:29, 121.42it/s] 59%|█████▉    | 5219/8818 [00:43<00:29, 121.91it/s] 59%|█████▉    | 5232/8818 [00:43<00:29, 121.81it/s] 59%|█████▉    | 5245/8818 [00:43<00:29, 121.69it/s] 60%|█████▉    | 5258/8818 [00:43<00:29, 121.17it/s] 60%|█████▉    | 5271/8818 [00:43<00:29, 120.27it/s] 60%|█████▉    | 5284/8818 [00:44<00:29, 120.37it/s] 60%|██████    | 5297/8818 [00:44<00:29, 120.58it/s] 60%|██████    | 5310/8818 [00:44<00:29, 120.23it/s] 60%|██████    | 5323/8818 [00:44<00:29, 120.14it/s] 61%|██████    | 5336/8818 [00:44<00:29, 119.93it/s] 61%|██████    | 5349/8818 [00:44<00:28, 120.07it/s] 61%|██████    | 5362/8818 [00:44<00:28, 120.17it/s] 61%|██████    | 5375/8818 [00:44<00:28, 119.24it/s] 61%|██████    | 5387/8818 [00:44<00:28, 119.29it/s] 61%|██████    | 5400/8818 [00:45<00:28, 119.88it/s] 61%|██████▏   | 5413/8818 [00:45<00:28, 120.63it/s] 62%|██████▏   | 5426/8818 [00:45<00:28, 119.79it/s] 62%|██████▏   | 5439/8818 [00:45<00:28, 119.94it/s] 62%|██████▏   | 5452/8818 [00:45<00:27, 120.31it/s] 62%|██████▏   | 5465/8818 [00:45<00:27, 120.22it/s] 62%|██████▏   | 5478/8818 [00:45<00:27, 120.81it/s] 62%|██████▏   | 5491/8818 [00:45<00:27, 120.88it/s] 62%|██████▏   | 5504/8818 [00:45<00:27, 120.91it/s] 63%|██████▎   | 5517/8818 [00:46<00:27, 120.74it/s] 63%|██████▎   | 5530/8818 [00:46<00:27, 120.48it/s] 63%|██████▎   | 5543/8818 [00:46<00:27, 120.50it/s] 63%|██████▎   | 5556/8818 [00:46<00:27, 120.79it/s] 63%|██████▎   | 5569/8818 [00:46<00:26, 120.82it/s] 63%|██████▎   | 5582/8818 [00:46<00:26, 120.48it/s] 63%|██████▎   | 5595/8818 [00:46<00:26, 119.98it/s] 64%|██████▎   | 5608/8818 [00:46<00:26, 120.32it/s] 64%|██████▎   | 5621/8818 [00:46<00:26, 120.58it/s] 64%|██████▍   | 5634/8818 [00:46<00:26, 120.18it/s] 64%|██████▍   | 5647/8818 [00:47<00:26, 120.75it/s] 64%|██████▍   | 5660/8818 [00:47<00:26, 120.95it/s] 64%|██████▍   | 5673/8818 [00:47<00:25, 121.44it/s] 64%|██████▍   | 5686/8818 [00:47<00:25, 121.57it/s] 65%|██████▍   | 5699/8818 [00:47<00:25, 121.92it/s] 65%|██████▍   | 5712/8818 [00:47<00:25, 121.95it/s] 65%|██████▍   | 5725/8818 [00:47<00:25, 121.47it/s] 65%|██████▌   | 5738/8818 [00:47<00:25, 121.44it/s] 65%|██████▌   | 5751/8818 [00:47<00:25, 120.89it/s] 65%|██████▌   | 5764/8818 [00:48<00:25, 121.03it/s] 66%|██████▌   | 5777/8818 [00:48<00:24, 121.65it/s] 66%|██████▌   | 5790/8818 [00:48<00:24, 122.07it/s] 66%|██████▌   | 5803/8818 [00:48<00:24, 122.40it/s] 66%|██████▌   | 5816/8818 [00:48<00:24, 122.50it/s] 66%|██████▌   | 5829/8818 [00:48<00:24, 122.31it/s] 66%|██████▋   | 5842/8818 [00:48<00:24, 122.00it/s] 66%|██████▋   | 5855/8818 [00:48<00:24, 121.00it/s] 67%|██████▋   | 5868/8818 [00:48<00:24, 121.17it/s] 67%|██████▋   | 5881/8818 [00:49<00:24, 120.87it/s] 67%|██████▋   | 5894/8818 [00:49<00:24, 120.96it/s] 67%|██████▋   | 5907/8818 [00:49<00:24, 120.89it/s] 67%|██████▋   | 5920/8818 [00:49<00:23, 120.83it/s] 67%|██████▋   | 5933/8818 [00:49<00:23, 120.57it/s] 67%|██████▋   | 5946/8818 [00:49<00:23, 120.59it/s] 68%|██████▊   | 5959/8818 [00:49<00:23, 120.16it/s] 68%|██████▊   | 5972/8818 [00:49<00:23, 119.69it/s] 68%|██████▊   | 5984/8818 [00:49<00:23, 119.34it/s] 68%|██████▊   | 5996/8818 [00:49<00:23, 118.89it/s] 68%|██████▊   | 6008/8818 [00:50<00:23, 118.36it/s] 68%|██████▊   | 6021/8818 [00:50<00:23, 119.07it/s] 68%|██████▊   | 6034/8818 [00:50<00:23, 119.52it/s] 69%|██████▊   | 6047/8818 [00:50<00:23, 119.93it/s] 69%|██████▊   | 6059/8818 [00:50<00:23, 119.64it/s] 69%|██████▉   | 6072/8818 [00:50<00:22, 119.83it/s] 69%|██████▉   | 6085/8818 [00:50<00:22, 120.30it/s] 69%|██████▉   | 6098/8818 [00:50<00:22, 120.41it/s] 69%|██████▉   | 6111/8818 [00:50<00:22, 120.60it/s] 69%|██████▉   | 6124/8818 [00:51<00:22, 120.70it/s] 70%|██████▉   | 6137/8818 [00:51<00:22, 120.75it/s] 70%|██████▉   | 6150/8818 [00:51<00:22, 120.95it/s] 70%|██████▉   | 6163/8818 [00:51<00:21, 121.25it/s] 70%|███████   | 6176/8818 [00:51<00:21, 121.42it/s] 70%|███████   | 6189/8818 [00:51<00:21, 121.64it/s] 70%|███████   | 6202/8818 [00:51<00:21, 121.10it/s] 70%|███████   | 6215/8818 [00:51<00:21, 120.66it/s] 71%|███████   | 6228/8818 [00:52<00:36, 71.85it/s]  71%|███████   | 6240/8818 [00:52<00:31, 80.93it/s] 71%|███████   | 6252/8818 [00:52<00:28, 89.16it/s] 71%|███████   | 6265/8818 [00:52<00:26, 96.91it/s] 71%|███████   | 6277/8818 [00:52<00:24, 102.58it/s] 71%|███████▏  | 6289/8818 [00:52<00:23, 106.93it/s] 71%|███████▏  | 6302/8818 [00:52<00:22, 110.96it/s] 72%|███████▏  | 6314/8818 [00:52<00:22, 113.12it/s] 72%|███████▏  | 6327/8818 [00:52<00:21, 115.25it/s] 72%|███████▏  | 6339/8818 [00:53<00:21, 116.58it/s] 72%|███████▏  | 6352/8818 [00:53<00:20, 117.71it/s] 72%|███████▏  | 6365/8818 [00:53<00:20, 119.17it/s] 72%|███████▏  | 6378/8818 [00:53<00:20, 120.28it/s] 72%|███████▏  | 6391/8818 [00:53<00:20, 120.71it/s] 73%|███████▎  | 6404/8818 [00:53<00:19, 120.77it/s] 73%|███████▎  | 6417/8818 [00:53<00:19, 121.56it/s] 73%|███████▎  | 6430/8818 [00:53<00:19, 121.57it/s] 73%|███████▎  | 6443/8818 [00:53<00:19, 120.97it/s] 73%|███████▎  | 6456/8818 [00:54<00:19, 121.10it/s] 73%|███████▎  | 6469/8818 [00:54<00:19, 121.23it/s] 74%|███████▎  | 6482/8818 [00:54<00:19, 121.48it/s] 74%|███████▎  | 6495/8818 [00:54<00:19, 121.62it/s] 74%|███████▍  | 6508/8818 [00:54<00:19, 121.46it/s] 74%|███████▍  | 6521/8818 [00:54<00:18, 121.50it/s] 74%|███████▍  | 6534/8818 [00:54<00:18, 121.10it/s] 74%|███████▍  | 6547/8818 [00:54<00:18, 121.07it/s] 74%|███████▍  | 6560/8818 [00:54<00:18, 120.13it/s] 75%|███████▍  | 6573/8818 [00:55<00:18, 120.09it/s] 75%|███████▍  | 6586/8818 [00:55<00:18, 119.71it/s] 75%|███████▍  | 6598/8818 [00:55<00:18, 119.09it/s] 75%|███████▍  | 6611/8818 [00:55<00:18, 119.70it/s] 75%|███████▌  | 6624/8818 [00:55<00:18, 120.30it/s] 75%|███████▌  | 6637/8818 [00:55<00:18, 120.91it/s] 75%|███████▌  | 6650/8818 [00:55<00:17, 120.97it/s] 76%|███████▌  | 6663/8818 [00:55<00:17, 121.11it/s] 76%|███████▌  | 6676/8818 [00:55<00:17, 121.16it/s] 76%|███████▌  | 6689/8818 [00:55<00:17, 121.04it/s] 76%|███████▌  | 6702/8818 [00:56<00:17, 121.64it/s] 76%|███████▌  | 6715/8818 [00:56<00:17, 121.68it/s] 76%|███████▋  | 6728/8818 [00:56<00:17, 121.86it/s] 76%|███████▋  | 6741/8818 [00:56<00:17, 121.52it/s] 77%|███████▋  | 6754/8818 [00:56<00:17, 121.17it/s] 77%|███████▋  | 6767/8818 [00:56<00:17, 120.50it/s] 77%|███████▋  | 6780/8818 [00:56<00:16, 120.17it/s] 77%|███████▋  | 6793/8818 [00:56<00:16, 119.80it/s] 77%|███████▋  | 6805/8818 [00:56<00:16, 119.27it/s] 77%|███████▋  | 6818/8818 [00:57<00:16, 119.69it/s] 77%|███████▋  | 6831/8818 [00:57<00:16, 119.87it/s] 78%|███████▊  | 6844/8818 [00:57<00:16, 120.50it/s] 78%|███████▊  | 6857/8818 [00:57<00:16, 120.36it/s] 78%|███████▊  | 6870/8818 [00:57<00:16, 120.53it/s] 78%|███████▊  | 6883/8818 [00:57<00:16, 120.32it/s] 78%|███████▊  | 6896/8818 [00:57<00:16, 119.89it/s] 78%|███████▊  | 6908/8818 [00:57<00:15, 119.49it/s] 78%|███████▊  | 6920/8818 [00:57<00:16, 118.42it/s] 79%|███████▊  | 6933/8818 [00:58<00:15, 119.03it/s] 79%|███████▉  | 6946/8818 [00:58<00:15, 119.52it/s] 79%|███████▉  | 6959/8818 [00:58<00:15, 119.87it/s] 79%|███████▉  | 6972/8818 [00:58<00:15, 119.81it/s] 79%|███████▉  | 6984/8818 [00:58<00:15, 119.86it/s] 79%|███████▉  | 6997/8818 [00:58<00:15, 120.33it/s] 79%|███████▉  | 7010/8818 [00:58<00:15, 120.17it/s] 80%|███████▉  | 7023/8818 [00:58<00:14, 120.44it/s] 80%|███████▉  | 7036/8818 [00:58<00:14, 120.61it/s] 80%|███████▉  | 7049/8818 [00:58<00:14, 120.74it/s] 80%|████████  | 7062/8818 [00:59<00:14, 120.79it/s] 80%|████████  | 7075/8818 [00:59<00:14, 120.57it/s] 80%|████████  | 7088/8818 [00:59<00:14, 120.91it/s] 81%|████████  | 7101/8818 [00:59<00:14, 120.52it/s] 81%|████████  | 7114/8818 [00:59<00:14, 119.70it/s] 81%|████████  | 7127/8818 [00:59<00:14, 120.14it/s] 81%|████████  | 7140/8818 [00:59<00:13, 120.18it/s] 81%|████████  | 7153/8818 [00:59<00:13, 120.65it/s] 81%|████████▏ | 7166/8818 [00:59<00:13, 121.24it/s] 81%|████████▏ | 7179/8818 [01:00<00:13, 121.21it/s] 82%|████████▏ | 7192/8818 [01:00<00:13, 122.03it/s] 82%|████████▏ | 7205/8818 [01:00<00:13, 122.18it/s] 82%|████████▏ | 7218/8818 [01:00<00:13, 122.56it/s] 82%|████████▏ | 7231/8818 [01:00<00:12, 122.16it/s] 82%|████████▏ | 7244/8818 [01:00<00:12, 122.16it/s] 82%|████████▏ | 7257/8818 [01:00<00:12, 121.58it/s] 82%|████████▏ | 7270/8818 [01:00<00:12, 121.65it/s] 83%|████████▎ | 7283/8818 [01:00<00:12, 121.46it/s] 83%|████████▎ | 7296/8818 [01:01<00:12, 121.52it/s] 83%|████████▎ | 7309/8818 [01:01<00:12, 121.64it/s] 83%|████████▎ | 7322/8818 [01:01<00:12, 121.80it/s] 83%|████████▎ | 7335/8818 [01:01<00:12, 121.45it/s] 83%|████████▎ | 7348/8818 [01:01<00:12, 121.32it/s] 83%|████████▎ | 7361/8818 [01:01<00:12, 121.17it/s] 84%|████████▎ | 7374/8818 [01:01<00:11, 121.97it/s] 84%|████████▍ | 7387/8818 [01:01<00:11, 122.28it/s] 84%|████████▍ | 7400/8818 [01:01<00:11, 122.32it/s] 84%|████████▍ | 7413/8818 [01:01<00:11, 122.39it/s] 84%|████████▍ | 7426/8818 [01:02<00:11, 122.47it/s] 84%|████████▍ | 7439/8818 [01:02<00:11, 121.88it/s] 85%|████████▍ | 7452/8818 [01:02<00:11, 121.51it/s] 85%|████████▍ | 7465/8818 [01:02<00:11, 120.95it/s] 85%|████████▍ | 7478/8818 [01:02<00:11, 121.36it/s] 85%|████████▍ | 7491/8818 [01:02<00:10, 121.49it/s] 85%|████████▌ | 7504/8818 [01:02<00:10, 121.68it/s] 85%|████████▌ | 7517/8818 [01:02<00:10, 122.17it/s] 85%|████████▌ | 7530/8818 [01:02<00:10, 122.38it/s] 86%|████████▌ | 7543/8818 [01:03<00:10, 122.13it/s] 86%|████████▌ | 7556/8818 [01:03<00:10, 121.59it/s] 86%|████████▌ | 7569/8818 [01:03<00:10, 121.00it/s] 86%|████████▌ | 7582/8818 [01:03<00:10, 121.32it/s] 86%|████████▌ | 7595/8818 [01:03<00:10, 121.13it/s] 86%|████████▋ | 7608/8818 [01:03<00:10, 120.81it/s] 86%|████████▋ | 7621/8818 [01:03<00:09, 121.36it/s] 87%|████████▋ | 7634/8818 [01:03<00:09, 120.87it/s] 87%|████████▋ | 7647/8818 [01:03<00:09, 121.24it/s] 87%|████████▋ | 7660/8818 [01:03<00:09, 120.82it/s] 87%|████████▋ | 7673/8818 [01:04<00:09, 120.85it/s] 87%|████████▋ | 7686/8818 [01:04<00:09, 121.03it/s] 87%|████████▋ | 7699/8818 [01:04<00:09, 121.17it/s] 87%|████████▋ | 7712/8818 [01:04<00:09, 121.28it/s] 88%|████████▊ | 7725/8818 [01:04<00:09, 121.23it/s] 88%|████████▊ | 7738/8818 [01:04<00:08, 121.50it/s] 88%|████████▊ | 7751/8818 [01:04<00:08, 122.01it/s] 88%|████████▊ | 7764/8818 [01:04<00:08, 122.36it/s] 88%|████████▊ | 7777/8818 [01:04<00:08, 122.42it/s] 88%|████████▊ | 7790/8818 [01:05<00:08, 121.87it/s] 88%|████████▊ | 7803/8818 [01:05<00:08, 113.48it/s] 89%|████████▊ | 7816/8818 [01:05<00:08, 115.70it/s] 89%|████████▉ | 7828/8818 [01:05<00:08, 116.79it/s] 89%|████████▉ | 7841/8818 [01:05<00:08, 118.02it/s] 89%|████████▉ | 7854/8818 [01:05<00:08, 118.88it/s] 89%|████████▉ | 7867/8818 [01:05<00:07, 119.37it/s] 89%|████████▉ | 7880/8818 [01:05<00:07, 119.88it/s] 90%|████████▉ | 7893/8818 [01:05<00:07, 120.47it/s] 90%|████████▉ | 7906/8818 [01:06<00:07, 120.44it/s] 90%|████████▉ | 7919/8818 [01:06<00:07, 120.47it/s] 90%|████████▉ | 7932/8818 [01:06<00:07, 120.95it/s] 90%|█████████ | 7945/8818 [01:06<00:07, 120.87it/s] 90%|█████████ | 7958/8818 [01:06<00:07, 120.82it/s] 90%|█████████ | 7971/8818 [01:06<00:07, 120.21it/s] 91%|█████████ | 7984/8818 [01:06<00:07, 118.84it/s] 91%|█████████ | 7996/8818 [01:06<00:06, 117.73it/s] 91%|█████████ | 8008/8818 [01:06<00:06, 117.75it/s] 91%|█████████ | 8021/8818 [01:07<00:06, 118.72it/s] 91%|█████████ | 8034/8818 [01:07<00:06, 119.16it/s] 91%|█████████▏| 8047/8818 [01:07<00:06, 119.53it/s] 91%|█████████▏| 8060/8818 [01:07<00:06, 120.04it/s] 92%|█████████▏| 8073/8818 [01:07<00:06, 119.91it/s] 92%|█████████▏| 8086/8818 [01:07<00:06, 120.97it/s] 92%|█████████▏| 8099/8818 [01:07<00:05, 121.35it/s] 92%|█████████▏| 8112/8818 [01:07<00:05, 121.63it/s] 92%|█████████▏| 8125/8818 [01:07<00:05, 121.09it/s] 92%|█████████▏| 8138/8818 [01:07<00:05, 121.40it/s] 92%|█████████▏| 8151/8818 [01:08<00:05, 120.88it/s] 93%|█████████▎| 8164/8818 [01:08<00:05, 121.19it/s] 93%|█████████▎| 8177/8818 [01:08<00:05, 121.51it/s] 93%|█████████▎| 8190/8818 [01:08<00:05, 121.23it/s] 93%|█████████▎| 8203/8818 [01:08<00:05, 121.04it/s] 93%|█████████▎| 8216/8818 [01:08<00:04, 121.87it/s] 93%|█████████▎| 8229/8818 [01:08<00:04, 122.03it/s] 93%|█████████▎| 8242/8818 [01:08<00:04, 121.93it/s] 94%|█████████▎| 8255/8818 [01:08<00:04, 122.46it/s] 94%|█████████▍| 8268/8818 [01:09<00:04, 122.33it/s] 94%|█████████▍| 8281/8818 [01:09<00:04, 122.17it/s] 94%|█████████▍| 8294/8818 [01:09<00:04, 122.25it/s] 94%|█████████▍| 8307/8818 [01:09<00:04, 122.05it/s] 94%|█████████▍| 8320/8818 [01:09<00:04, 121.95it/s] 94%|█████████▍| 8333/8818 [01:09<00:03, 121.56it/s] 95%|█████████▍| 8346/8818 [01:09<00:03, 121.68it/s] 95%|█████████▍| 8359/8818 [01:09<00:03, 121.41it/s] 95%|█████████▍| 8372/8818 [01:09<00:03, 121.37it/s] 95%|█████████▌| 8385/8818 [01:10<00:03, 121.20it/s] 95%|█████████▌| 8398/8818 [01:10<00:03, 121.12it/s] 95%|█████████▌| 8411/8818 [01:10<00:03, 120.87it/s] 96%|█████████▌| 8424/8818 [01:10<00:03, 120.59it/s] 96%|█████████▌| 8437/8818 [01:10<00:03, 120.95it/s] 96%|█████████▌| 8450/8818 [01:10<00:03, 121.04it/s] 96%|█████████▌| 8463/8818 [01:10<00:02, 120.83it/s] 96%|█████████▌| 8476/8818 [01:10<00:02, 120.28it/s] 96%|█████████▋| 8489/8818 [01:10<00:02, 119.95it/s] 96%|█████████▋| 8501/8818 [01:10<00:02, 119.81it/s] 97%|█████████▋| 8513/8818 [01:11<00:02, 118.68it/s] 97%|█████████▋| 8526/8818 [01:11<00:02, 119.32it/s] 97%|█████████▋| 8539/8818 [01:11<00:02, 120.42it/s] 97%|█████████▋| 8552/8818 [01:11<00:02, 120.73it/s] 97%|█████████▋| 8565/8818 [01:11<00:02, 121.07it/s] 97%|█████████▋| 8578/8818 [01:11<00:01, 121.04it/s] 97%|█████████▋| 8591/8818 [01:11<00:01, 121.35it/s] 98%|█████████▊| 8604/8818 [01:11<00:01, 122.02it/s] 98%|█████████▊| 8617/8818 [01:11<00:01, 121.72it/s] 98%|█████████▊| 8630/8818 [01:12<00:01, 121.79it/s] 98%|█████████▊| 8643/8818 [01:12<00:01, 122.03it/s] 98%|█████████▊| 8656/8818 [01:12<00:01, 122.09it/s] 98%|█████████▊| 8669/8818 [01:12<00:01, 122.10it/s] 98%|█████████▊| 8682/8818 [01:12<00:01, 122.32it/s] 99%|█████████▊| 8695/8818 [01:12<00:01, 121.92it/s] 99%|█████████▉| 8708/8818 [01:12<00:00, 121.78it/s] 99%|█████████▉| 8721/8818 [01:12<00:00, 121.25it/s] 99%|█████████▉| 8734/8818 [01:12<00:00, 120.77it/s] 99%|█████████▉| 8747/8818 [01:13<00:00, 120.98it/s] 99%|█████████▉| 8760/8818 [01:13<00:00, 121.02it/s] 99%|█████████▉| 8773/8818 [01:13<00:00, 120.89it/s]100%|█████████▉| 8786/8818 [01:13<00:00, 120.24it/s]100%|█████████▉| 8799/8818 [01:13<00:00, 119.99it/s]100%|█████████▉| 8812/8818 [01:13<00:00, 119.78it/s]100%|██████████| 8818/8818 [01:13<00:00, 119.82it/s]
-2026-01-25 16:19:19 INFO ==> Trainable params: 0.45 M
-2026-01-25 16:19:19 INFO ==> Training start: 2026-01-25_16:19:19.
-2026-01-25 16:19:19 INFO ==> Epoch 1/50
-2026-01-25 16:19:43 INFO ==> Epoch 1, step 100 | loss 0.6253157258033752
-2026-01-25 16:20:06 INFO ==> Epoch 1, step 200 | loss 0.4923246204853058
-2026-01-25 16:20:28 INFO ==> Epoch 1, step 300 | loss 0.5384535789489746
-2026-01-25 16:20:32 INFO ==> Epoch 1, step 323 | loss 0.5606201887130737
-2026-01-25 16:20:32 INFO ==> Train loss: 0.5859
-2026-01-25 16:20:37 INFO ==> [val] Step 36 | Loss 0.4318
-2026-01-25 16:20:37 INFO ==> Validation loss: 0.4169
-2026-01-25 16:20:37 INFO ==> Epoch 2/50
-2026-01-25 16:21:00 INFO ==> Epoch 2, step 100 | loss 0.5227842926979065
-2026-01-25 16:21:23 INFO ==> Epoch 2, step 200 | loss 0.4821045994758606
-2026-01-25 16:21:45 INFO ==> Epoch 2, step 300 | loss 0.5269217491149902
-2026-01-25 16:21:49 INFO ==> Epoch 2, step 323 | loss 0.4762973487377167
-2026-01-25 16:21:49 INFO ==> Train loss: 0.4981
-2026-01-25 16:21:54 INFO ==> [val] Step 36 | Loss 0.2533
-2026-01-25 16:21:54 INFO ==> Validation loss: 0.2504
-2026-01-25 16:21:54 INFO ==> Epoch 3/50
-2026-01-25 16:22:17 INFO ==> Epoch 3, step 100 | loss 0.4714587926864624
-2026-01-25 16:22:39 INFO ==> Epoch 3, step 200 | loss 0.4534391760826111
-2026-01-25 16:23:02 INFO ==> Epoch 3, step 300 | loss 0.4848777949810028
-2026-01-25 16:23:06 INFO ==> Epoch 3, step 323 | loss 0.4632910192012787
-2026-01-25 16:23:06 INFO ==> Train loss: 0.4781
-2026-01-25 16:23:11 INFO ==> [val] Step 36 | Loss 0.2180
-2026-01-25 16:23:11 INFO ==> Validation loss: 0.2170
-2026-01-25 16:23:11 INFO ==> Epoch 4/50
-2026-01-25 16:23:34 INFO ==> Epoch 4, step 100 | loss 0.5264827609062195
-2026-01-25 16:23:56 INFO ==> Epoch 4, step 200 | loss 0.4463673532009125
-2026-01-25 16:24:19 INFO ==> Epoch 4, step 300 | loss 0.45914226770401
-2026-01-25 16:24:23 INFO ==> Epoch 4, step 323 | loss 0.4973186254501343
-2026-01-25 16:24:23 INFO ==> Train loss: 0.4698
-2026-01-25 16:24:28 INFO ==> [val] Step 36 | Loss 0.1847
-2026-01-25 16:24:28 INFO ==> Validation loss: 0.1757
-2026-01-25 16:24:28 INFO ==> Epoch 5/50
-2026-01-25 16:24:51 INFO ==> Epoch 5, step 100 | loss 0.4459221363067627
-2026-01-25 16:25:14 INFO ==> Epoch 5, step 200 | loss 0.4974566400051117
-2026-01-25 16:25:36 INFO ==> Epoch 5, step 300 | loss 0.42670297622680664
-2026-01-25 16:25:41 INFO ==> Epoch 5, step 323 | loss 0.4015977382659912
-2026-01-25 16:25:41 INFO ==> Train loss: 0.4639
-2026-01-25 16:25:45 INFO ==> [val] Step 36 | Loss 0.1832
-2026-01-25 16:25:45 INFO ==> Validation loss: 0.2073
-2026-01-25 16:25:45 INFO ==> Epoch 6/50
-2026-01-25 16:26:09 INFO ==> Epoch 6, step 100 | loss 0.48085591197013855
-2026-01-25 16:26:31 INFO ==> Epoch 6, step 200 | loss 0.4634159207344055
-2026-01-25 16:26:53 INFO ==> Epoch 6, step 300 | loss 0.47020578384399414
-2026-01-25 16:26:58 INFO ==> Epoch 6, step 323 | loss 0.3714679479598999
-2026-01-25 16:26:58 INFO ==> Train loss: 0.4619
-2026-01-25 16:27:03 INFO ==> [val] Step 36 | Loss 0.1365
-2026-01-25 16:27:03 INFO ==> Validation loss: 0.1422
-2026-01-25 16:27:03 INFO ==> Epoch 7/50
-2026-01-25 16:27:26 INFO ==> Epoch 7, step 100 | loss 0.5198873281478882
-2026-01-25 16:27:49 INFO ==> Epoch 7, step 200 | loss 0.45952531695365906
-2026-01-25 16:28:15 INFO ==> Epoch 7, step 300 | loss 0.4353906512260437
-2026-01-25 16:28:28 INFO ==> Epoch 7, step 323 | loss 0.4600706994533539
-2026-01-25 16:28:28 INFO ==> Train loss: 0.4550
-2026-01-25 16:28:37 INFO ==> [val] Step 36 | Loss 0.1423
-2026-01-25 16:28:37 INFO ==> Validation loss: 0.1278
-2026-01-25 16:28:37 INFO ==> Epoch 8/50
-2026-01-25 16:29:00 INFO ==> Epoch 8, step 100 | loss 0.43988242745399475
-2026-01-25 16:29:23 INFO ==> Epoch 8, step 200 | loss 0.44027575850486755
-2026-01-25 16:29:44 INFO ==> Epoch 8, step 300 | loss 0.4780116379261017
-2026-01-25 16:29:50 INFO ==> Epoch 8, step 323 | loss 0.44168752431869507
-2026-01-25 16:29:50 INFO ==> Train loss: 0.4489
-2026-01-25 16:29:54 INFO ==> [val] Step 36 | Loss 0.1346
-2026-01-25 16:29:54 INFO ==> Validation loss: 0.1391
-2026-01-25 16:29:54 INFO ==> Epoch 9/50
-2026-01-25 16:30:17 INFO ==> Epoch 9, step 100 | loss 0.38333848118782043
-2026-01-25 16:30:40 INFO ==> Epoch 9, step 200 | loss 0.4727422297000885
-2026-01-25 16:31:02 INFO ==> Epoch 9, step 300 | loss 0.4937680661678314
-2026-01-25 16:31:07 INFO ==> Epoch 9, step 323 | loss 0.43741071224212646
-2026-01-25 16:31:07 INFO ==> Train loss: 0.4492
-2026-01-25 16:31:12 INFO ==> [val] Step 36 | Loss 0.1428
-2026-01-25 16:31:12 INFO ==> Validation loss: 0.1383
-2026-01-25 16:31:12 INFO ==> Epoch 10/50
-2026-01-25 16:31:36 INFO ==> Epoch 10, step 100 | loss 0.46921756863594055
-2026-01-25 16:31:58 INFO ==> Epoch 10, step 200 | loss 0.4249385595321655
-2026-01-25 16:32:20 INFO ==> Epoch 10, step 300 | loss 0.4066317677497864
-2026-01-25 16:32:25 INFO ==> Epoch 10, step 323 | loss 0.49164465069770813
-2026-01-25 16:32:25 INFO ==> Train loss: 0.4438
-2026-01-25 16:32:30 INFO ==> [val] Step 36 | Loss 0.1249
-2026-01-25 16:32:30 INFO ==> Validation loss: 0.1293
-2026-01-25 16:32:30 INFO ==> Epoch 11/50
-2026-01-25 16:32:53 INFO ==> Epoch 11, step 100 | loss 0.45564424991607666
-2026-01-25 16:33:15 INFO ==> Epoch 11, step 200 | loss 0.40549901127815247
-2026-01-25 16:33:37 INFO ==> Epoch 11, step 300 | loss 0.48532071709632874
-2026-01-25 16:33:42 INFO ==> Epoch 11, step 323 | loss 0.3845072388648987
-2026-01-25 16:33:42 INFO ==> Train loss: 0.4404
-2026-01-25 16:33:47 INFO ==> [val] Step 36 | Loss 0.1513
-2026-01-25 16:33:47 INFO ==> Validation loss: 0.1501
-2026-01-25 16:33:47 INFO ==> Epoch 12/50
-2026-01-25 16:34:10 INFO ==> Epoch 12, step 100 | loss 0.3733275532722473
-2026-01-25 16:34:33 INFO ==> Epoch 12, step 200 | loss 0.4078509211540222
-2026-01-25 16:34:55 INFO ==> Epoch 12, step 300 | loss 0.3572872579097748
-2026-01-25 16:35:00 INFO ==> Epoch 12, step 323 | loss 0.4104333817958832
-2026-01-25 16:35:00 INFO ==> Train loss: 0.4375
-2026-01-25 16:35:04 INFO ==> [val] Step 36 | Loss 0.1206
-2026-01-25 16:35:04 INFO ==> Validation loss: 0.1159
-2026-01-25 16:35:04 INFO ==> Epoch 13/50
-2026-01-25 16:35:27 INFO ==> Epoch 13, step 100 | loss 0.428487628698349
-2026-01-25 16:35:52 INFO ==> Epoch 13, step 200 | loss 0.5026696920394897
-2026-01-25 16:36:24 INFO ==> Epoch 13, step 300 | loss 0.39512279629707336
-2026-01-25 16:36:34 INFO ==> Epoch 13, step 323 | loss 0.48173999786376953
-2026-01-25 16:36:34 INFO ==> Train loss: 0.4370
-2026-01-25 16:36:43 INFO ==> [val] Step 36 | Loss 0.1004
-2026-01-25 16:36:43 INFO ==> Validation loss: 0.1011
-2026-01-25 16:36:43 INFO ==> Epoch 14/50
-2026-01-25 16:37:26 INFO ==> Epoch 14, step 100 | loss 0.4406774342060089
-2026-01-25 16:38:08 INFO ==> Epoch 14, step 200 | loss 0.3994199335575104
-2026-01-25 16:38:48 INFO ==> Epoch 14, step 300 | loss 0.4671071767807007
-2026-01-25 16:38:57 INFO ==> Epoch 14, step 323 | loss 0.335012823343277
-2026-01-25 16:38:57 INFO ==> Train loss: 0.4380
-2026-01-25 16:39:07 INFO ==> [val] Step 36 | Loss 0.1118
-2026-01-25 16:39:07 INFO ==> Validation loss: 0.1121
-2026-01-25 16:39:07 INFO ==> Epoch 15/50
-2026-01-25 16:39:49 INFO ==> Epoch 15, step 100 | loss 0.45041874051094055
-2026-01-25 16:40:30 INFO ==> Epoch 15, step 200 | loss 0.40081867575645447
-2026-01-25 16:41:11 INFO ==> Epoch 15, step 300 | loss 0.442831426858902
-2026-01-25 16:41:21 INFO ==> Epoch 15, step 323 | loss 0.5575104355812073
-2026-01-25 16:41:21 INFO ==> Train loss: 0.4315
-2026-01-25 16:41:30 INFO ==> [val] Step 36 | Loss 0.1137
-2026-01-25 16:41:30 INFO ==> Validation loss: 0.1056
-2026-01-25 16:41:30 INFO ==> Epoch 16/50
-2026-01-25 16:42:12 INFO ==> Epoch 16, step 100 | loss 0.46132516860961914
-2026-01-25 16:42:53 INFO ==> Epoch 16, step 200 | loss 0.4705173075199127
-2026-01-25 16:43:34 INFO ==> Epoch 16, step 300 | loss 0.411037802696228
-2026-01-25 16:43:44 INFO ==> Epoch 16, step 323 | loss 0.306132435798645
-2026-01-25 16:43:44 INFO ==> Train loss: 0.4301
-2026-01-25 16:43:53 INFO ==> [val] Step 36 | Loss 0.1242
-2026-01-25 16:43:53 INFO ==> Validation loss: 0.1160
-2026-01-25 16:43:53 INFO ==> Epoch 17/50
-2026-01-25 16:44:34 INFO ==> Epoch 17, step 100 | loss 0.3924669921398163
-2026-01-25 16:45:17 INFO ==> Epoch 17, step 200 | loss 0.3994802236557007
-2026-01-25 16:45:57 INFO ==> Epoch 17, step 300 | loss 0.3874472677707672
-2026-01-25 16:46:07 INFO ==> Epoch 17, step 323 | loss 0.40329650044441223
-2026-01-25 16:46:07 INFO ==> Train loss: 0.4345
-2026-01-25 16:46:17 INFO ==> [val] Step 36 | Loss 0.1437
-2026-01-25 16:46:17 INFO ==> Validation loss: 0.1402
-2026-01-25 16:46:17 INFO ==> Epoch 18/50
-2026-01-25 16:46:57 INFO ==> Epoch 18, step 100 | loss 0.3666476905345917
-2026-01-25 16:47:40 INFO ==> Epoch 18, step 200 | loss 0.455156534910202
-2026-01-25 16:48:21 INFO ==> Epoch 18, step 300 | loss 0.4049852788448334
-2026-01-25 16:48:30 INFO ==> Epoch 18, step 323 | loss 0.30210405588150024
-2026-01-25 16:48:30 INFO ==> Train loss: 0.4310
-2026-01-25 16:48:39 INFO ==> [val] Step 36 | Loss 0.1007
-2026-01-25 16:48:39 INFO ==> Validation loss: 0.0976
-2026-01-25 16:48:39 INFO ==> Epoch 19/50
-2026-01-25 16:49:21 INFO ==> Epoch 19, step 100 | loss 0.43685978651046753
-2026-01-25 16:50:03 INFO ==> Epoch 19, step 200 | loss 0.39913222193717957
-2026-01-25 16:50:43 INFO ==> Epoch 19, step 300 | loss 0.39132896065711975
-2026-01-25 16:50:52 INFO ==> Epoch 19, step 323 | loss 0.3416227698326111
-2026-01-25 16:50:52 INFO ==> Train loss: 0.4280
-2026-01-25 16:51:02 INFO ==> [val] Step 36 | Loss 0.1094
-2026-01-25 16:51:02 INFO ==> Validation loss: 0.0991
-2026-01-25 16:51:02 INFO ==> Epoch 20/50
-2026-01-25 16:51:44 INFO ==> Epoch 20, step 100 | loss 0.391482412815094
-2026-01-25 16:52:26 INFO ==> Epoch 20, step 200 | loss 0.4382392466068268
-2026-01-25 16:53:06 INFO ==> Epoch 20, step 300 | loss 0.4676586389541626
-2026-01-25 16:53:15 INFO ==> Epoch 20, step 323 | loss 0.4573962390422821
-2026-01-25 16:53:15 INFO ==> Train loss: 0.4298
-2026-01-25 16:53:25 INFO ==> [val] Step 36 | Loss 0.0941
-2026-01-25 16:53:25 INFO ==> Validation loss: 0.0970
-2026-01-25 16:53:25 INFO ==> Epoch 21/50
-2026-01-25 16:54:08 INFO ==> Epoch 21, step 100 | loss 0.4128990173339844
-2026-01-25 16:54:50 INFO ==> Epoch 21, step 200 | loss 0.4158303737640381
-2026-01-25 16:55:29 INFO ==> Epoch 21, step 300 | loss 0.36637210845947266
-2026-01-25 16:55:39 INFO ==> Epoch 21, step 323 | loss 0.3672264516353607
-2026-01-25 16:55:39 INFO ==> Train loss: 0.4279
-2026-01-25 16:55:49 INFO ==> [val] Step 36 | Loss 0.0987
-2026-01-25 16:55:49 INFO ==> Validation loss: 0.0959
-2026-01-25 16:55:49 INFO ==> Epoch 22/50
-2026-01-25 16:56:31 INFO ==> Epoch 22, step 100 | loss 0.4478706419467926
-2026-01-25 16:57:12 INFO ==> Epoch 22, step 200 | loss 0.40993815660476685
-2026-01-25 16:57:53 INFO ==> Epoch 22, step 300 | loss 0.3864888548851013
-2026-01-25 16:58:03 INFO ==> Epoch 22, step 323 | loss 0.3548389673233032
-2026-01-25 16:58:03 INFO ==> Train loss: 0.4272
-2026-01-25 16:58:12 INFO ==> [val] Step 36 | Loss 0.1031
-2026-01-25 16:58:12 INFO ==> Validation loss: 0.0983
-2026-01-25 16:58:12 INFO ==> Epoch 23/50
-2026-01-25 16:58:54 INFO ==> Epoch 23, step 100 | loss 0.4892556071281433
-2026-01-25 16:59:35 INFO ==> Epoch 23, step 200 | loss 0.4599980413913727
-2026-01-25 17:00:16 INFO ==> Epoch 23, step 300 | loss 0.36449187994003296
-2026-01-25 17:00:26 INFO ==> Epoch 23, step 323 | loss 0.4925306737422943
-2026-01-25 17:00:26 INFO ==> Train loss: 0.4252
-2026-01-25 17:00:35 INFO ==> [val] Step 36 | Loss 0.1120
-2026-01-25 17:00:35 INFO ==> Validation loss: 0.1031
-2026-01-25 17:00:35 INFO ==> Epoch 24/50
-2026-01-25 17:01:15 INFO ==> Epoch 24, step 100 | loss 0.39314931631088257
-2026-01-25 17:01:58 INFO ==> Epoch 24, step 200 | loss 0.4540003538131714
-2026-01-25 17:02:39 INFO ==> Epoch 24, step 300 | loss 0.442949503660202
-2026-01-25 17:02:49 INFO ==> Epoch 24, step 323 | loss 0.4561333656311035
-2026-01-25 17:02:49 INFO ==> Train loss: 0.4285
-2026-01-25 17:02:58 INFO ==> [val] Step 36 | Loss 0.0918
-2026-01-25 17:02:58 INFO ==> Validation loss: 0.0945
-2026-01-25 17:02:58 INFO ==> Epoch 25/50
-2026-01-25 17:03:39 INFO ==> Epoch 25, step 100 | loss 0.42510986328125
-2026-01-25 17:04:22 INFO ==> Epoch 25, step 200 | loss 0.45224571228027344
-2026-01-25 17:05:02 INFO ==> Epoch 25, step 300 | loss 0.4136728048324585
-2026-01-25 17:05:12 INFO ==> Epoch 25, step 323 | loss 0.39748507738113403
-2026-01-25 17:05:12 INFO ==> Train loss: 0.4251
-2026-01-25 17:05:20 INFO ==> [val] Step 36 | Loss 0.0970
-2026-01-25 17:05:20 INFO ==> Validation loss: 0.0974
-2026-01-25 17:05:20 INFO ==> Epoch 26/50
-2026-01-25 17:06:02 INFO ==> Epoch 26, step 100 | loss 0.39116573333740234
-2026-01-25 17:06:45 INFO ==> Epoch 26, step 200 | loss 0.3778318166732788
-2026-01-25 17:07:25 INFO ==> Epoch 26, step 300 | loss 0.4211800694465637
-2026-01-25 17:07:33 INFO ==> Epoch 26, step 323 | loss 0.4764585793018341
-2026-01-25 17:07:33 INFO ==> Train loss: 0.4260
-2026-01-25 17:07:43 INFO ==> [val] Step 36 | Loss 0.0808
-2026-01-25 17:07:43 INFO ==> Validation loss: 0.0839
-2026-01-25 17:07:43 INFO ==> Epoch 27/50
-2026-01-25 17:08:26 INFO ==> Epoch 27, step 100 | loss 0.40858736634254456
-2026-01-25 17:09:08 INFO ==> Epoch 27, step 200 | loss 0.4039366841316223
-2026-01-25 17:09:47 INFO ==> Epoch 27, step 300 | loss 0.42154261469841003
-2026-01-25 17:09:57 INFO ==> Epoch 27, step 323 | loss 0.357643723487854
-2026-01-25 17:09:57 INFO ==> Train loss: 0.4253
-2026-01-25 17:10:07 INFO ==> [val] Step 36 | Loss 0.0789
-2026-01-25 17:10:07 INFO ==> Validation loss: 0.0909
-2026-01-25 17:10:07 INFO ==> Epoch 28/50
-2026-01-25 17:10:49 INFO ==> Epoch 28, step 100 | loss 0.4246028661727905
-2026-01-25 17:11:31 INFO ==> Epoch 28, step 200 | loss 0.41202816367149353
-2026-01-25 17:12:11 INFO ==> Epoch 28, step 300 | loss 0.5046011805534363
-2026-01-25 17:12:21 INFO ==> Epoch 28, step 323 | loss 0.3898555338382721
-2026-01-25 17:12:21 INFO ==> Train loss: 0.4235
-2026-01-25 17:12:30 INFO ==> [val] Step 36 | Loss 0.0964
-2026-01-25 17:12:30 INFO ==> Validation loss: 0.0875
-2026-01-25 17:12:30 INFO ==> Epoch 29/50
-2026-01-25 17:13:12 INFO ==> Epoch 29, step 100 | loss 0.4124559164047241
-2026-01-25 17:13:53 INFO ==> Epoch 29, step 200 | loss 0.4179306626319885
-2026-01-25 17:14:34 INFO ==> Epoch 29, step 300 | loss 0.406368613243103
-2026-01-25 17:14:44 INFO ==> Epoch 29, step 323 | loss 0.4756842851638794
-2026-01-25 17:14:44 INFO ==> Train loss: 0.4222
-2026-01-25 17:14:54 INFO ==> [val] Step 36 | Loss 0.0957
-2026-01-25 17:14:54 INFO ==> Validation loss: 0.0904
-2026-01-25 17:14:54 INFO ==> Epoch 30/50
-2026-01-25 17:15:36 INFO ==> Epoch 30, step 100 | loss 0.5435023307800293
-2026-01-25 17:16:16 INFO ==> Epoch 30, step 200 | loss 0.46602872014045715
-2026-01-25 17:16:58 INFO ==> Epoch 30, step 300 | loss 0.46312206983566284
-2026-01-25 17:17:07 INFO ==> Epoch 30, step 323 | loss 0.4002578854560852
-2026-01-25 17:17:07 INFO ==> Train loss: 0.4228
-2026-01-25 17:17:16 INFO ==> [val] Step 36 | Loss 0.1020
-2026-01-25 17:17:16 INFO ==> Validation loss: 0.0981
-2026-01-25 17:17:16 INFO ==> Epoch 31/50
-2026-01-25 17:17:57 INFO ==> Epoch 31, step 100 | loss 0.42166867852211
-2026-01-25 17:18:40 INFO ==> Epoch 31, step 200 | loss 0.4247295558452606
-2026-01-25 17:19:21 INFO ==> Epoch 31, step 300 | loss 0.37559664249420166
-2026-01-25 17:19:30 INFO ==> Epoch 31, step 323 | loss 0.29931381344795227
-2026-01-25 17:19:30 INFO ==> Train loss: 0.4232
-2026-01-25 17:19:40 INFO ==> [val] Step 36 | Loss 0.0924
-2026-01-25 17:19:40 INFO ==> Validation loss: 0.0873
-2026-01-25 17:19:40 INFO ==> Epoch 32/50
-2026-01-25 17:20:21 INFO ==> Epoch 32, step 100 | loss 0.4243945777416229
-2026-01-25 17:21:03 INFO ==> Epoch 32, step 200 | loss 0.4926843047142029
-2026-01-25 17:21:44 INFO ==> Epoch 32, step 300 | loss 0.3777460753917694
-2026-01-25 17:21:54 INFO ==> Epoch 32, step 323 | loss 0.5138930678367615
-2026-01-25 17:21:54 INFO ==> Train loss: 0.4200
-2026-01-25 17:22:02 INFO ==> [val] Step 36 | Loss 0.0835
-2026-01-25 17:22:02 INFO ==> Validation loss: 0.0934
-2026-01-25 17:22:02 INFO ==> Epoch 33/50
-2026-01-25 17:22:44 INFO ==> Epoch 33, step 100 | loss 0.4112894833087921
-2026-01-25 17:23:27 INFO ==> Epoch 33, step 200 | loss 0.41148391366004944
-2026-01-25 17:24:07 INFO ==> Epoch 33, step 300 | loss 0.4078674018383026
-2026-01-25 17:24:15 INFO ==> Epoch 33, step 323 | loss 0.4720640182495117
-2026-01-25 17:24:15 INFO ==> Train loss: 0.4208
-2026-01-25 17:24:25 INFO ==> [val] Step 36 | Loss 0.0762
-2026-01-25 17:24:25 INFO ==> Validation loss: 0.0815
-2026-01-25 17:24:25 INFO ==> Epoch 34/50
-2026-01-25 17:25:08 INFO ==> Epoch 34, step 100 | loss 0.4288330674171448
-2026-01-25 17:25:50 INFO ==> Epoch 34, step 200 | loss 0.44573497772216797
-2026-01-25 17:26:29 INFO ==> Epoch 34, step 300 | loss 0.4092368185520172
-2026-01-25 17:26:39 INFO ==> Epoch 34, step 323 | loss 0.3323667347431183
-2026-01-25 17:26:39 INFO ==> Train loss: 0.4229
-2026-01-25 17:26:49 INFO ==> [val] Step 36 | Loss 0.0836
-2026-01-25 17:26:49 INFO ==> Validation loss: 0.0859
-2026-01-25 17:26:49 INFO ==> Epoch 35/50
-2026-01-25 17:27:31 INFO ==> Epoch 35, step 100 | loss 0.44877153635025024
-2026-01-25 17:28:13 INFO ==> Epoch 35, step 200 | loss 0.4309765696525574
-2026-01-25 17:28:53 INFO ==> Epoch 35, step 300 | loss 0.4275261461734772
-2026-01-25 17:29:02 INFO ==> Epoch 35, step 323 | loss 0.4029194414615631
-2026-01-25 17:29:02 INFO ==> Train loss: 0.4219
-2026-01-25 17:29:12 INFO ==> [val] Step 36 | Loss 0.0838
-2026-01-25 17:29:12 INFO ==> Validation loss: 0.0916
-2026-01-25 17:29:12 INFO ==> Epoch 36/50
-2026-01-25 17:29:54 INFO ==> Epoch 36, step 100 | loss 0.4127059280872345
-2026-01-25 17:30:35 INFO ==> Epoch 36, step 200 | loss 0.4209592342376709
-2026-01-25 17:31:16 INFO ==> Epoch 36, step 300 | loss 0.34805139899253845
-2026-01-25 17:31:26 INFO ==> Epoch 36, step 323 | loss 0.3268907070159912
-2026-01-25 17:31:26 INFO ==> Train loss: 0.4186
-2026-01-25 17:31:36 INFO ==> [val] Step 36 | Loss 0.0985
-2026-01-25 17:31:36 INFO ==> Validation loss: 0.0820
-2026-01-25 17:31:36 INFO ==> Epoch 37/50
-2026-01-25 17:32:18 INFO ==> Epoch 37, step 100 | loss 0.4121687710285187
-2026-01-25 17:32:58 INFO ==> Epoch 37, step 200 | loss 0.44805723428726196
-2026-01-25 17:33:40 INFO ==> Epoch 37, step 300 | loss 0.4195196330547333
-2026-01-25 17:33:49 INFO ==> Epoch 37, step 323 | loss 0.4519731402397156
-2026-01-25 17:33:49 INFO ==> Train loss: 0.4197
-2026-01-25 17:33:58 INFO ==> [val] Step 36 | Loss 0.0935
-2026-01-25 17:33:58 INFO ==> Validation loss: 0.0892
-2026-01-25 17:33:58 INFO ==> Epoch 38/50
-2026-01-25 17:34:39 INFO ==> Epoch 38, step 100 | loss 0.4348357021808624
-2026-01-25 17:35:22 INFO ==> Epoch 38, step 200 | loss 0.3651760220527649
-2026-01-25 17:36:02 INFO ==> Epoch 38, step 300 | loss 0.4076855182647705
-2026-01-25 17:36:12 INFO ==> Epoch 38, step 323 | loss 0.518659770488739
-2026-01-25 17:36:12 INFO ==> Train loss: 0.4184
-2026-01-25 17:36:22 INFO ==> [val] Step 36 | Loss 0.0945
-2026-01-25 17:36:22 INFO ==> Validation loss: 0.0881
-2026-01-25 17:36:22 INFO ==> Epoch 39/50
-2026-01-25 17:37:02 INFO ==> Epoch 39, step 100 | loss 0.3728477656841278
-2026-01-25 17:37:45 INFO ==> Epoch 39, step 200 | loss 0.41469860076904297
-2026-01-25 17:38:26 INFO ==> Epoch 39, step 300 | loss 0.42259183526039124
-2026-01-25 17:38:36 INFO ==> Epoch 39, step 323 | loss 0.3824846148490906
-2026-01-25 17:38:36 INFO ==> Train loss: 0.4150
-2026-01-25 17:38:44 INFO ==> [val] Step 36 | Loss 0.0699
-2026-01-25 17:38:44 INFO ==> Validation loss: 0.0802
-2026-01-25 17:38:44 INFO ==> Epoch 40/50
-2026-01-25 17:39:26 INFO ==> Epoch 40, step 100 | loss 0.45965415239334106
-2026-01-25 17:40:08 INFO ==> Epoch 40, step 200 | loss 0.4002833962440491
-2026-01-25 17:40:48 INFO ==> Epoch 40, step 300 | loss 0.4034571349620819
-2026-01-25 17:40:57 INFO ==> Epoch 40, step 323 | loss 0.3086305856704712
-2026-01-25 17:40:57 INFO ==> Train loss: 0.4162
-2026-01-25 17:41:07 INFO ==> [val] Step 36 | Loss 0.0888
-2026-01-25 17:41:07 INFO ==> Validation loss: 0.0921
-2026-01-25 17:41:07 INFO ==> Epoch 41/50
-2026-01-25 17:41:49 INFO ==> Epoch 41, step 100 | loss 0.3725511431694031
-2026-01-25 17:42:32 INFO ==> Epoch 41, step 200 | loss 0.48888230323791504
-2026-01-25 17:43:11 INFO ==> Epoch 41, step 300 | loss 0.4764893651008606
-2026-01-25 17:43:21 INFO ==> Epoch 41, step 323 | loss 0.4464501440525055
-2026-01-25 17:43:21 INFO ==> Train loss: 0.4195
-2026-01-25 17:43:30 INFO ==> [val] Step 36 | Loss 0.0933
-2026-01-25 17:43:30 INFO ==> Validation loss: 0.0900
-2026-01-25 17:43:30 INFO ==> Epoch 42/50
-2026-01-25 17:44:13 INFO ==> Epoch 42, step 100 | loss 0.4001443684101105
-2026-01-25 17:44:55 INFO ==> Epoch 42, step 200 | loss 0.4915989339351654
-2026-01-25 17:45:34 INFO ==> Epoch 42, step 300 | loss 0.40322715044021606
-2026-01-25 17:45:44 INFO ==> Epoch 42, step 323 | loss 0.5227991938591003
-2026-01-25 17:45:44 INFO ==> Train loss: 0.4164
-2026-01-25 17:45:54 INFO ==> [val] Step 36 | Loss 0.0761
-2026-01-25 17:45:54 INFO ==> Validation loss: 0.0805
-2026-01-25 17:45:54 INFO ==> Epoch 43/50
-2026-01-25 17:46:36 INFO ==> Epoch 43, step 100 | loss 0.40257370471954346
-2026-01-25 17:47:17 INFO ==> Epoch 43, step 200 | loss 0.401644229888916
-2026-01-25 17:47:58 INFO ==> Epoch 43, step 300 | loss 0.43049466609954834
-2026-01-25 17:48:08 INFO ==> Epoch 43, step 323 | loss 0.4000641107559204
-2026-01-25 17:48:08 INFO ==> Train loss: 0.4179
-2026-01-25 17:48:17 INFO ==> [val] Step 36 | Loss 0.0741
-2026-01-25 17:48:17 INFO ==> Validation loss: 0.0825
-2026-01-25 17:48:17 INFO ==> Epoch 44/50
-2026-01-25 17:48:59 INFO ==> Epoch 44, step 100 | loss 0.4226502478122711
-2026-01-25 17:49:40 INFO ==> Epoch 44, step 200 | loss 0.35868945717811584
-2026-01-25 17:50:21 INFO ==> Epoch 44, step 300 | loss 0.4090218245983124
-2026-01-25 17:50:31 INFO ==> Epoch 44, step 323 | loss 0.2961331307888031
-2026-01-25 17:50:31 INFO ==> Train loss: 0.4186
-2026-01-25 17:50:40 INFO ==> [val] Step 36 | Loss 0.0846
-2026-01-25 17:50:40 INFO ==> Validation loss: 0.0838
-2026-01-25 17:50:40 INFO ==> Epoch 45/50
-2026-01-25 17:51:21 INFO ==> Epoch 45, step 100 | loss 0.3852405250072479
-2026-01-25 17:52:04 INFO ==> Epoch 45, step 200 | loss 0.44851553440093994
-2026-01-25 17:52:44 INFO ==> Epoch 45, step 300 | loss 0.3912004232406616
-2026-01-25 17:52:54 INFO ==> Epoch 45, step 323 | loss 0.3974657654762268
-2026-01-25 17:52:54 INFO ==> Train loss: 0.4140
-2026-01-25 17:53:04 INFO ==> [val] Step 36 | Loss 0.0807
-2026-01-25 17:53:04 INFO ==> Validation loss: 0.0823
-2026-01-25 17:53:04 INFO ==> Epoch 46/50
-2026-01-25 17:53:44 INFO ==> Epoch 46, step 100 | loss 0.4542931020259857
-2026-01-25 17:54:27 INFO ==> Epoch 46, step 200 | loss 0.4045274555683136
-2026-01-25 17:55:08 INFO ==> Epoch 46, step 300 | loss 0.4137710630893707
-2026-01-25 17:55:17 INFO ==> Epoch 46, step 323 | loss 0.29055047035217285
-2026-01-25 17:55:17 INFO ==> Train loss: 0.4186
-2026-01-25 17:55:26 INFO ==> [val] Step 36 | Loss 0.0942
-2026-01-25 17:55:26 INFO ==> Validation loss: 0.0898
-2026-01-25 17:55:26 INFO ==> Epoch 47/50
-2026-01-25 17:56:08 INFO ==> Epoch 47, step 100 | loss 0.40548521280288696
-2026-01-25 17:56:50 INFO ==> Epoch 47, step 200 | loss 0.35973137617111206
-2026-01-25 17:57:30 INFO ==> Epoch 47, step 300 | loss 0.4445992112159729
-2026-01-25 17:57:39 INFO ==> Epoch 47, step 323 | loss 0.46283358335494995
-2026-01-25 17:57:39 INFO ==> Train loss: 0.4161
-2026-01-25 17:57:49 INFO ==> [val] Step 36 | Loss 0.0938
-2026-01-25 17:57:49 INFO ==> Validation loss: 0.0912
-2026-01-25 17:57:49 INFO ==> Epoch 48/50
-2026-01-25 17:58:31 INFO ==> Epoch 48, step 100 | loss 0.40840476751327515
-2026-01-25 17:59:13 INFO ==> Epoch 48, step 200 | loss 0.4012322425842285
-2026-01-25 17:59:53 INFO ==> Epoch 48, step 300 | loss 0.45467647910118103
-2026-01-25 18:00:02 INFO ==> Epoch 48, step 323 | loss 0.35971713066101074
-2026-01-25 18:00:02 INFO ==> Train loss: 0.4179
-2026-01-25 18:00:12 INFO ==> [val] Step 36 | Loss 0.0939
-2026-01-25 18:00:12 INFO ==> Validation loss: 0.0864
-2026-01-25 18:00:12 INFO ==> Epoch 49/50
-2026-01-25 18:00:55 INFO ==> Epoch 49, step 100 | loss 0.3942795693874359
-2026-01-25 18:01:37 INFO ==> Epoch 49, step 200 | loss 0.42787688970565796
-2026-01-25 18:02:16 INFO ==> Epoch 49, step 300 | loss 0.3560938537120819
-2026-01-25 18:02:26 INFO ==> Epoch 49, step 323 | loss 0.46614864468574524
-2026-01-25 18:02:26 INFO ==> Train loss: 0.4147
-2026-01-25 18:02:35 INFO ==> [val] Step 36 | Loss 0.0883
-2026-01-25 18:02:35 INFO ==> Validation loss: 0.0892
-2026-01-25 18:02:35 INFO ==> Epoch 50/50
-2026-01-25 18:03:17 INFO ==> Epoch 50, step 100 | loss 0.4044782817363739
-2026-01-25 18:03:54 INFO ==> Epoch 50, step 200 | loss 0.40250423550605774
-2026-01-25 18:04:25 INFO ==> Epoch 50, step 300 | loss 0.3728770315647125
-2026-01-25 18:04:31 INFO ==> Epoch 50, step 323 | loss 0.507794976234436
-2026-01-25 18:04:31 INFO ==> Train loss: 0.4161
-2026-01-25 18:04:37 INFO ==> [val] Step 36 | Loss 0.0810
-2026-01-25 18:04:37 INFO ==> Validation loss: 0.0797
-2026-01-25 18:04:42 INFO ==> [test] Step 34 | Loss 0.4191
-2026-01-25 18:04:42 INFO ==> Validation loss: 0.4246
-2026-01-25 18:04:42 INFO ==> Training end: 2026-01-25_18:04:42. Elapsed time: 105:22.
-wandb: uploading artifact s4-mae; updating run metadata
-wandb: uploading artifact s4-mae
-wandb: 
-wandb: Run history:
-wandb:  test_loss ▁
-wandb: train_loss ▇▇█▃▇▇▇▃▄▂▄▄▅▄▄▃▄▅▆▄▅▅▄▄▇▅▂▆█▅▆▄▁▇▇▄▄▄▃▄
-wandb:   val_loss █▅▄▃▃▂▂▂▃▂▂▂▂▂▂▁▂▂▂▁▁▁▂▁▂▁▁▁▁▂▁▁▁▁▁▁▁▁▁▁
-wandb: 
-wandb: Run summary:
-wandb:  test_loss 0.4191
-wandb: train_loss 0.50779
-wandb:   val_loss 0.08095
-wandb: 
-wandb: 🚀 View run S4 at: https://wandb.ai/emilyzho-usc/ssl-s4/runs/juasp6a0
-wandb: ⭐️ View project at: https://wandb.ai/emilyzho-usc/ssl-s4
-wandb: Synced 5 W&B file(s), 0 media file(s), 2 artifact file(s) and 0 other file(s)
-wandb: Find logs at: ./wandb/run-20260125_161444-juasp6a0/logs
 Starting training...
 Model saved as /home/emilyzho/ssl-physio/models/reconstruction/s4-mae_70.pt. Exiting.

@@ -11,14 +11,15 @@ import numpy as np
 
 from torchinfo import summary
 
-sys.path.append(os.path.join(USER_ROOT, "ssl-physio", "src", "s4-models"))
+sys.path.append(os.path.join(USER_ROOT, "ssl-physio", "src", "s4_models"))
 from linear_classifier import CNN, LogisticRegressionHead
 from regressor import Regressor
 
 from mamba_ssm import Mamba
 
+
 class PatchMasking(nn.Module):
-    def __init__(self, ratio: float=0.3, patch_size: float=0.02, device: str="cuda"):
+    def __init__(self, ratio: float=0.3, patch_size: float=0.02, device: str="cuda:1"):
         super().__init__()
 
         self.ratio = ratio
@@ -225,7 +226,6 @@ class MambaModel(nn.Module):
             pooling=False
     ):
         super().__init__()
-
         self.encoder = nn.Linear(d_input, d_model, bias=False)
         
         self.mamba_layers = nn.ModuleList()
@@ -272,7 +272,8 @@ class MambaMAE(nn.Module):
             n_layers_seq: int=6,
             mask_ratio=0.25,
             classification=False,
-            verbose=False
+            verbose=False, 
+            device="cuda"
     ):
         
         super(MambaMAE, self).__init__()
@@ -293,7 +294,7 @@ class MambaMAE(nn.Module):
             enc_out_dim = d_input
             seq_dim = d_model
 
-        self.mask = PatchMasking(mask_ratio)
+        self.mask = PatchMasking(mask_ratio, device=device)
 
         self.seq_model = MambaModel(
             d_input=enc_out_dim, d_model=d_model, d_state=16, expand=2, n_layers=n_layers_seq
@@ -315,7 +316,7 @@ class MambaMAE(nn.Module):
                 verbose=verbose
             )
         else: 
-            print("Setting decoder to identity mapping.")
+            # print("Setting decoder to identity mapping.")
             self.decoder = nn.Identity()
         
         if classification in ["finetune"]:
@@ -328,6 +329,7 @@ class MambaMAE(nn.Module):
                 d_input=seq_output.shape[1],
                 sequence_len=seq_output.shape[2]
             )
+            self.decoder = nn.Identity()
         elif classification == "lin_probe":
             dummy_input = torch.randn(1, d_input, 1440)
             conv_output = self.encoder(dummy_input.clone())
@@ -338,9 +340,11 @@ class MambaMAE(nn.Module):
                 d_input=seq_output.shape[1],
                 sequence_len=seq_output.shape[2]
             )
+            self.decoder = nn.Identity()
         else:
             self.cls_head = None
 
+        self.device = device
         self.verbose = verbose
     
     def forward(self, x, mask_ratio=None):

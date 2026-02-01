@@ -1,5 +1,0 @@
-,test_bpm_loss,test_bpm_loss,test_bpm_loss,test_bpm_loss,test_steps_loss,test_steps_loss,test_steps_loss,test_steps_loss,test_both_loss,test_both_loss,test_both_loss,test_both_loss
-,mean,std,min,max,mean,std,min,max,mean,std,min,max
-model_type,,,,,,,,,,,,
-cnn,5.09,0.77,4.2,7.65,7457.17,799.64,5787.77,8706.86,159.31,1.48,156.38,162.11
-nn,5.27,0.85,4.11,7.46,3484.92,569.32,2725.91,5080.27,139.75,10.97,115.28,155.35

@@ -10,7 +10,7 @@ paths = [
         USER_ROOT, "ssl-physio", "src", "mamba"
     ),
     os.path.join(
-        USER_ROOT, "ssl-physio", "src", "s4-models"
+        USER_ROOT, "ssl-physio", "src", "s4_models"
     ),
     os.path.join(
         USER_ROOT, "ssl-physio", "src", "trainers"
@@ -48,9 +48,9 @@ from mamba_mae import MambaMAE
 # Define logging console
 import logging
 logging.basicConfig(
-    format="%(asctime)s %(levelname)-3s ==> %(message)s", 
+    format="%(message)s", 
     level=logging.INFO, 
-    datefmt="%Y-%m-%d %H:%M:%S"
+    # datefmt="%Y-%m-%d %H:%M:%S"
 )
 
 # Paths 
@@ -76,9 +76,11 @@ if __name__ == "__main__":
     # Read arguments -----------------------------------------------------------------------------------------------
     parser = argparse.ArgumentParser(description="Script for Mamba-MAE pre-training.")
     parser.add_argument("--debug", "-d", action="store_true", default=False)
-    parser.add_argument("--mask_ratio", "-m", type=float, default=None)
+    parser.add_argument("--device", "-dev", type=str, default="cuda:1")
+    parser.add_argument("--mask_ratio", "-m", type=float, default=0.1)
     args = parser.parse_args()
     debug = args.debug
+    device = args.device
     mask_ratio = args.mask_ratio
 
     config_path = os.path.join(SSL_ROOT, "config", "mamba_config.json")
@@ -93,9 +95,9 @@ if __name__ == "__main__":
     pprint.pprint(model_params)
 
     # Find device
-    device = torch.device("cuda:0") if torch.cuda.is_available() else "cpu"
+    device = torch.device(device) if torch.cuda.is_available() else "cpu"
     if torch.cuda.is_available():
-        torch.set_default_device("cuda:0")
+        torch.set_default_device(device)
         print("Default device set to CUDA.")
     else:
         print("CUDA not available.")
@@ -138,7 +140,8 @@ if __name__ == "__main__":
     # Setting up models -----------------------------------------------------------------------------------------------
     model = MambaMAE(
         **model_params,
-        classification=False
+        classification=False,
+        device=device
     ).to(device)
     summary(model, input_size=(1, model_params["d_input"], 1440))
 
@@ -152,13 +155,7 @@ if __name__ == "__main__":
     window_size = training_params["window_size"]    # Window size for moving average 
     label_type = None
 
-    pretrain_dataloader, val_dataloader, test_dataloader = get_pretrain_eval_dataloaders(
-        signal_columns, label_type=label_type,
-        scale="mean", window_size=15, 
-        batch_size=32, train_test_split=0.9,
-        device=device, debug=debug,
-        random_seed=42
-    )
+    pretrain_dataloader, val_dataloader, test_dataloader = get_pretrain_eval_dataloaders(device=device)
 
     num_train_samples = len(pretrain_dataloader.dataset)
     steps_per_train_epoch = math.ceil(num_train_samples / batch_size)

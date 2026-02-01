@@ -13,10 +13,10 @@
         "d_input": 2,
         "d_model": 128,
         "d_output": 128,
-        "enc_hidden_dims": null,
+        "enc_hidden_dims": [32, 64, 128],
         "dec_hidden_dims": [128, 64, 32],
         "n_layers_s4": 6,
-        "mask_ratio": 0.7,
+        "mask_ratio": 0.1,
         "verbose": false
     }
 }

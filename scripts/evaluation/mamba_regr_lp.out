@@ -1,0 +1,592 @@
+nohup: ignoring input
+CUDA extension for structured kernels (Cauchy and Vandermonde multiplication) not found. Install by going to extensions/kernels/ and running `python setup.py install`, for improved speed and memory efficiency. Note that the kernel changed for state-spaces 4.0 and must be recompiled.
+Falling back on slow Cauchy and Vandermonde kernel. Install at least one of pykeops or the CUDA extension for better speed and memory efficiency.
+============================================================
+10% masking
+============================================================
+------------------------------------------------------------
+RestingHeartRate
+------------------------------------------------------------
+Training on 772 samples, testing on 293.
+MSE | MAE | R: 0.06655167867733193 0.21097573940827594 PearsonRResult(statistic=np.float64(0.10619449752049391), pvalue=np.float64(0.06950507073801722))
+------------------------------------------------------------
+Training on 826 samples, testing on 239.
+MSE | MAE | R: 0.08366738926637353 0.2375570949771442 PearsonRResult(statistic=np.float64(0.04286831896400024), pvalue=np.float64(0.5095382287663489))
+------------------------------------------------------------
+Training on 870 samples, testing on 195.
+MSE | MAE | R: 0.055635872575516415 0.19017411836998754 PearsonRResult(statistic=np.float64(0.09005030921995902), pvalue=np.float64(0.21059005326972696))
+------------------------------------------------------------
+Training on 884 samples, testing on 181.
+MSE | MAE | R: 0.060443604739277866 0.20137310970261316 PearsonRResult(statistic=np.float64(0.08814922785652837), pvalue=np.float64(0.23799669745090019))
+------------------------------------------------------------
+Training on 908 samples, testing on 157.
+MSE | MAE | R: 0.03853761259571113 0.15923541457367887 PearsonRResult(statistic=np.float64(0.02053622507316631), pvalue=np.float64(0.7985000248732903))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.060967231570842176 0.19986309540633992 0.06955971572682958 0.36522601501965674
+------------------------------------------------------------
+NumberSteps
+------------------------------------------------------------
+Training on 784 samples, testing on 294.
+MSE | MAE | R: 0.06629116316948572 0.20196952321696157 PearsonRResult(statistic=np.float64(0.02960593872662398), pvalue=np.float64(0.6131484369639337))
+------------------------------------------------------------
+Training on 836 samples, testing on 242.
+MSE | MAE | R: 0.05649969446886165 0.18885409016307278 PearsonRResult(statistic=np.float64(0.0707535354703285), pvalue=np.float64(0.2729289378659943))
+------------------------------------------------------------
+Training on 880 samples, testing on 198.
+MSE | MAE | R: 0.05132400002443017 0.18199341074696207 PearsonRResult(statistic=np.float64(0.06623107821276075), pvalue=np.float64(0.3538893829397595))
+------------------------------------------------------------
+Training on 894 samples, testing on 184.
+MSE | MAE | R: 0.04377246968897417 0.16490231999804517 PearsonRResult(statistic=np.float64(0.10123087662983302), pvalue=np.float64(0.1715251314837637))
+------------------------------------------------------------
+Training on 918 samples, testing on 160.
+MSE | MAE | R: 0.054397525750884045 0.17909671200511607 PearsonRResult(statistic=np.float64(0.09482670655983957), pvalue=np.float64(0.23296394334207843))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.054456970620527144 0.18336321122603155 0.07252962711987716 0.32889116651910594
+------------------------------------------------------------
+SleepMinutesAsleep
+------------------------------------------------------------
+Training on 789 samples, testing on 298.
+MSE | MAE | R: 0.036458066137465286 0.14728725339142068 PearsonRResult(statistic=np.float64(0.12906527438830825), pvalue=np.float64(0.02588220061070349))
+------------------------------------------------------------
+Training on 842 samples, testing on 245.
+MSE | MAE | R: 0.04220637052155448 0.16165879563618107 PearsonRResult(statistic=np.float64(0.2933932436545509), pvalue=np.float64(2.981783003769102e-06))
+------------------------------------------------------------
+Training on 889 samples, testing on 198.
+MSE | MAE | R: 0.032779068202723284 0.14142256538284728 PearsonRResult(statistic=np.float64(0.039633325335292666), pvalue=np.float64(0.5793207486404212))
+------------------------------------------------------------
+Training on 902 samples, testing on 185.
+MSE | MAE | R: 0.033787321798949166 0.14446590831819292 PearsonRResult(statistic=np.float64(0.04770933435555898), pvalue=np.float64(0.5190009314801705))
+------------------------------------------------------------
+Training on 926 samples, testing on 161.
+MSE | MAE | R: 0.02875847258664336 0.13893373479732948 PearsonRResult(statistic=np.float64(0.283708188894762), pvalue=np.float64(0.00026528673848171485))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.03479785984946711 0.14675365150519432 0.15870187332569458 0.22489442985055613
+============================================================
+30% masking
+============================================================
+------------------------------------------------------------
+RestingHeartRate
+------------------------------------------------------------
+Training on 772 samples, testing on 293.
+MSE | MAE | R: 0.0718660948439328 0.2116624933833826 PearsonRResult(statistic=np.float64(-0.021615223590994683), pvalue=np.float64(0.712534360245675))
+------------------------------------------------------------
+Training on 826 samples, testing on 239.
+MSE | MAE | R: 0.05887031097413657 0.18804714804136827 PearsonRResult(statistic=np.float64(0.29772517155867956), pvalue=np.float64(2.7958905833302035e-06))
+------------------------------------------------------------
+Training on 870 samples, testing on 195.
+MSE | MAE | R: 0.04557489948150962 0.1694174108342228 PearsonRResult(statistic=np.float64(0.22569798069260105), pvalue=np.float64(0.001511462390458154))
+------------------------------------------------------------
+Training on 884 samples, testing on 181.
+MSE | MAE | R: 0.06070785099632538 0.20354841495398146 PearsonRResult(statistic=np.float64(-0.02610424720548043), pvalue=np.float64(0.727222156673532))
+------------------------------------------------------------
+Training on 908 samples, testing on 157.
+MSE | MAE | R: 0.07814556232691698 0.23744157916336978 PearsonRResult(statistic=np.float64(0.03405875939910462), pvalue=np.float64(0.6719540686704952))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.06303294372456428 0.202023409275265 0.10195248817078202 0.42264496877414875
+------------------------------------------------------------
+NumberSteps
+------------------------------------------------------------
+Training on 784 samples, testing on 294.
+MSE | MAE | R: 0.0563777614696974 0.19132775805239377 PearsonRResult(statistic=np.float64(-0.04991798480674425), pvalue=np.float64(0.393769837415714))
+------------------------------------------------------------
+Training on 836 samples, testing on 242.
+MSE | MAE | R: 0.04871922255676676 0.17317003353109017 PearsonRResult(statistic=np.float64(0.06440028897549094), pvalue=np.float64(0.3184334211403181))
+------------------------------------------------------------
+Training on 880 samples, testing on 198.
+MSE | MAE | R: 0.04768080521215838 0.16833854889908678 PearsonRResult(statistic=np.float64(-0.05646108371101519), pvalue=np.float64(0.42948215647272014))
+------------------------------------------------------------
+Training on 894 samples, testing on 184.
+MSE | MAE | R: 0.04012796543118736 0.1578264101423286 PearsonRResult(statistic=np.float64(0.019011002211267), pvalue=np.float64(0.7978399993704335))
+------------------------------------------------------------
+Training on 918 samples, testing on 160.
+MSE | MAE | R: 0.04356353846304012 0.15803175035498393 PearsonRResult(statistic=np.float64(0.15435562052944765), pvalue=np.float64(0.051313509633724524))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.04729385862657 0.16973890019597665 0.02627756863968923 0.398167784806582
+------------------------------------------------------------
+SleepMinutesAsleep
+------------------------------------------------------------
+Training on 789 samples, testing on 298.
+Default device set to CUDA.
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+MambaMAE                                 --
+├─ConvEncoder: 1-1                       --
+│    └─ModuleList: 2-1                   --
+│    │    └─BlockConv: 3-1               (288)
+│    │    └─BlockConv: 3-2               (6,336)
+│    │    └─BlockConv: 3-3               (24,960)
+├─PatchMasking: 1-2                      --
+├─MambaModel: 1-3                        --
+│    └─Linear: 2-2                       (16,384)
+│    └─ModuleList: 2-3                   --
+│    │    └─MambaBlock: 3-4              (116,736)
+│    │    └─MambaBlock: 3-5              (116,736)
+│    │    └─MambaBlock: 3-6              (116,736)
+│    │    └─MambaBlock: 3-7              (116,736)
+│    │    └─MambaBlock: 3-8              (116,736)
+│    │    └─MambaBlock: 3-9              (116,736)
+│    └─Identity: 2-4                     --
+├─LayerNorm: 1-4                         (256)
+├─Identity: 1-5                          --
+├─LogisticRegressionHead: 1-6            --
+│    └─Linear: 2-5                       23,041
+=================================================================
+Total params: 771,681
+Trainable params: 23,041
+Non-trainable params: 748,640
+=================================================================
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+MambaMAE                                 --
+├─ConvEncoder: 1-1                       --
+│    └─ModuleList: 2-1                   --
+│    │    └─BlockConv: 3-1               (288)
+│    │    └─BlockConv: 3-2               (6,336)
+│    │    └─BlockConv: 3-3               (24,960)
+├─PatchMasking: 1-2                      --
+├─MambaModel: 1-3                        --
+│    └─Linear: 2-2                       (16,384)
+│    └─ModuleList: 2-3                   --
+│    │    └─MambaBlock: 3-4              (116,736)
+│    │    └─MambaBlock: 3-5              (116,736)
+│    │    └─MambaBlock: 3-6              (116,736)
+│    │    └─MambaBlock: 3-7              (116,736)
+│    │    └─MambaBlock: 3-8              (116,736)
+│    │    └─MambaBlock: 3-9              (116,736)
+│    └─Identity: 2-4                     --
+├─LayerNorm: 1-4                         (256)
+├─Identity: 1-5                          --
+├─LogisticRegressionHead: 1-6            --
+│    └─Linear: 2-5                       23,041
+=================================================================
+Total params: 771,681
+Trainable params: 23,041
+Non-trainable params: 748,640
+=================================================================
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+MambaMAE                                 --
+├─ConvEncoder: 1-1                       --
+│    └─ModuleList: 2-1                   --
+│    │    └─BlockConv: 3-1               (288)
+│    │    └─BlockConv: 3-2               (6,336)
+│    │    └─BlockConv: 3-3               (24,960)
+├─PatchMasking: 1-2                      --
+├─MambaModel: 1-3                        --
+│    └─Linear: 2-2                       (16,384)
+│    └─ModuleList: 2-3                   --
+│    │    └─MambaBlock: 3-4              (116,736)
+│    │    └─MambaBlock: 3-5              (116,736)
+│    │    └─MambaBlock: 3-6              (116,736)
+│    │    └─MambaBlock: 3-7              (116,736)
+│    │    └─MambaBlock: 3-8              (116,736)
+│    │    └─MambaBlock: 3-9              (116,736)
+│    └─Identity: 2-4                     --
+├─LayerNorm: 1-4                         (256)
+├─Identity: 1-5                          --
+├─LogisticRegressionHead: 1-6            --
+│    └─Linear: 2-5                       23,041
+=================================================================
+Total params: 771,681
+Trainable params: 23,041
+Non-trainable params: 748,640
+=================================================================
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+MambaMAE                                 --
+├─ConvEncoder: 1-1                       --
+│    └─ModuleList: 2-1                   --
+│    │    └─BlockConv: 3-1               (288)
+│    │    └─BlockConv: 3-2               (6,336)
+│    │    └─BlockConv: 3-3               (24,960)
+├─PatchMasking: 1-2                      --
+├─MambaModel: 1-3                        --
+│    └─Linear: 2-2                       (16,384)
+│    └─ModuleList: 2-3                   --
+│    │    └─MambaBlock: 3-4              (116,736)
+│    │    └─MambaBlock: 3-5              (116,736)
+│    │    └─MambaBlock: 3-6              (116,736)
+│    │    └─MambaBlock: 3-7              (116,736)
+│    │    └─MambaBlock: 3-8              (116,736)
+│    │    └─MambaBlock: 3-9              (116,736)
+│    └─Identity: 2-4                     --
+├─LayerNorm: 1-4                         (256)
+├─Identity: 1-5                          --
+├─LogisticRegressionHead: 1-6            --
+│    └─Linear: 2-5                       23,041
+=================================================================
+Total params: 771,681
+Trainable params: 23,041
+Non-trainable params: 748,640
+=================================================================
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+MambaMAE                                 --
+├─ConvEncoder: 1-1                       --
+│    └─ModuleList: 2-1                   --
+│    │    └─BlockConv: 3-1               (288)
+│    │    └─BlockConv: 3-2               (6,336)
+│    │    └─BlockConv: 3-3               (24,960)
+├─PatchMasking: 1-2                      --
+├─MambaModel: 1-3                        --
+│    └─Linear: 2-2                       (16,384)
+│    └─ModuleList: 2-3                   --
+│    │    └─MambaBlock: 3-4              (116,736)
+│    │    └─MambaBlock: 3-5              (116,736)
+│    │    └─MambaBlock: 3-6              (116,736)
+│    │    └─MambaBlock: 3-7              (116,736)
+│    │    └─MambaBlock: 3-8              (116,736)
+│    │    └─MambaBlock: 3-9              (116,736)
+│    └─Identity: 2-4                     --
+├─LayerNorm: 1-4                         (256)
+├─Identity: 1-5                          --
+├─LogisticRegressionHead: 1-6            --
+│    └─Linear: 2-5                       23,041
+=================================================================
+Total params: 771,681
+Trainable params: 23,041
+Non-trainable params: 748,640
+=================================================================
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+MambaMAE                                 --
+├─ConvEncoder: 1-1                       --
+│    └─ModuleList: 2-1                   --
+│    │    └─BlockConv: 3-1               (288)
+│    │    └─BlockConv: 3-2               (6,336)
+│    │    └─BlockConv: 3-3               (24,960)
+├─PatchMasking: 1-2                      --
+├─MambaModel: 1-3                        --
+│    └─Linear: 2-2                       (16,384)
+│    └─ModuleList: 2-3                   --
+│    │    └─MambaBlock: 3-4              (116,736)
+│    │    └─MambaBlock: 3-5              (116,736)
+│    │    └─MambaBlock: 3-6              (116,736)
+│    │    └─MambaBlock: 3-7              (116,736)
+│    │    └─MambaBlock: 3-8              (116,736)
+│    │    └─MambaBlock: 3-9              (116,736)
+│    └─Identity: 2-4                     --
+├─LayerNorm: 1-4                         (256)
+├─Identity: 1-5                          --
+├─LogisticRegressionHead: 1-6            --
+│    └─Linear: 2-5                       23,041
+=================================================================
+Total params: 771,681
+Trainable params: 23,041
+Non-trainable params: 748,640
+=================================================================MSE | MAE | R: 0.03021953927652279 0.1398022025125435 PearsonRResult(statistic=np.float64(0.1467340560002683), pvalue=np.float64(0.011208873596573658))
+------------------------------------------------------------
+Training on 842 samples, testing on 245.
+MSE | MAE | R: 0.036481150114829816 0.14222324305772843 PearsonRResult(statistic=np.float64(0.22161781070523082), pvalue=np.float64(0.00047462402006101295))
+------------------------------------------------------------
+Training on 889 samples, testing on 198.
+MSE | MAE | R: 0.023129443206014077 0.11658978748550373 PearsonRResult(statistic=np.float64(0.13902925436575841), pvalue=np.float64(0.05076915984884963))
+------------------------------------------------------------
+Training on 902 samples, testing on 185.
+MSE | MAE | R: 0.01941591056822031 0.10785843609612826 PearsonRResult(statistic=np.float64(0.38232470042087774), pvalue=np.float64(7.857655971667244e-08))
+------------------------------------------------------------
+Training on 926 samples, testing on 161.
+MSE | MAE | R: 0.026626480574551137 0.12682551241832168 PearsonRResult(statistic=np.float64(0.23771649039887124), pvalue=np.float64(0.002393975135476112))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.027174504748027628 0.12665983631404512 0.2254844623782013 0.012969342235504024
+============================================================
+50% masking
+============================================================
+------------------------------------------------------------
+RestingHeartRate
+------------------------------------------------------------
+Training on 772 samples, testing on 293.
+MSE | MAE | R: 0.0770794959358257 0.22091419869524578 PearsonRResult(statistic=np.float64(0.014549817829255619), pvalue=np.float64(0.8041334090188853))
+------------------------------------------------------------
+Training on 826 samples, testing on 239.
+MSE | MAE | R: 0.0721804172247168 0.2182693581777893 PearsonRResult(statistic=np.float64(0.17711837437181166), pvalue=np.float64(0.00604061049434931))
+------------------------------------------------------------
+Training on 870 samples, testing on 195.
+MSE | MAE | R: 0.057061123418988814 0.19528301960159827 PearsonRResult(statistic=np.float64(0.03369365680017421), pvalue=np.float64(0.6400605640180397))
+------------------------------------------------------------
+Training on 884 samples, testing on 181.
+MSE | MAE | R: 0.08604446839441723 0.23741244344055615 PearsonRResult(statistic=np.float64(-0.10384018156873805), pvalue=np.float64(0.16419158941425302))
+------------------------------------------------------------
+Training on 908 samples, testing on 157.
+MSE | MAE | R: 0.08684931060295459 0.23553241056410537 PearsonRResult(statistic=np.float64(-0.015733610055342725), pvalue=np.float64(0.8449402503116071))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.07584296311538062 0.22148228609585896 0.02115761147543215 0.4918732846514269
+------------------------------------------------------------
+NumberSteps
+------------------------------------------------------------
+Training on 784 samples, testing on 294.
+MSE | MAE | R: 0.07144975375482991 0.21344306582124523 PearsonRResult(statistic=np.float64(0.021786030531290062), pvalue=np.float64(0.7098888159681604))
+------------------------------------------------------------
+Training on 836 samples, testing on 242.
+MSE | MAE | R: 0.049939338559398895 0.1735010089089806 PearsonRResult(statistic=np.float64(0.08279833065651807), pvalue=np.float64(0.19929040040553322))
+------------------------------------------------------------
+Training on 880 samples, testing on 198.
+MSE | MAE | R: 0.06702458156433566 0.21360649214738717 PearsonRResult(statistic=np.float64(0.031118819507605526), pvalue=np.float64(0.6634074104278864))
+------------------------------------------------------------
+Training on 894 samples, testing on 184.
+MSE | MAE | R: 0.05569316984601789 0.18599138213305383 PearsonRResult(statistic=np.float64(0.08720382617993139), pvalue=np.float64(0.23916643676929586))
+------------------------------------------------------------
+Training on 918 samples, testing on 160.
+MSE | MAE | R: 0.07954814488446782 0.22180511520810495 PearsonRResult(statistic=np.float64(-0.14282752641535987), pvalue=np.float64(0.07158875014109957))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.06473099772181004 0.20166941284375434 0.016015896091997033 0.3766683627423951
+------------------------------------------------------------
+SleepMinutesAsleep
+------------------------------------------------------------
+Training on 789 samples, testing on 298.
+MSE | MAE | R: 0.037483717121311017 0.15565665404801848 PearsonRResult(statistic=np.float64(0.32033069899015953), pvalue=np.float64(1.5470205411791117e-08))
+------------------------------------------------------------
+Training on 842 samples, testing on 245.
+MSE | MAE | R: 0.04608368002937772 0.17105887887295 PearsonRResult(statistic=np.float64(0.2225620677208844), pvalue=np.float64(0.00044817824057456887))
+------------------------------------------------------------
+Training on 889 samples, testing on 198.
+MSE | MAE | R: 0.039162088471957575 0.15686543099198205 PearsonRResult(statistic=np.float64(0.276452277692917), pvalue=np.float64(8.063325417591035e-05))
+------------------------------------------------------------
+Training on 902 samples, testing on 185.
+MSE | MAE | R: 0.036832130663987654 0.1518835619370852 PearsonRResult(statistic=np.float64(0.16038330513849783), pvalue=np.float64(0.029198181655448692))
+------------------------------------------------------------
+Training on 926 samples, testing on 161.
+MSE | MAE | R: 0.029152479652883843 0.1342683003407269 PearsonRResult(statistic=np.float64(0.3540325363227397), pvalue=np.float64(4.079757053080478e-06))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.03774281918790356 0.1539465652381525 0.2667521771730397 0.005946217675491533
+============================================================
+70% masking
+============================================================
+------------------------------------------------------------
+RestingHeartRate
+------------------------------------------------------------
+Training on 772 samples, testing on 293.
+MSE | MAE | R: 0.06672900279924766 0.21108895122360724 PearsonRResult(statistic=np.float64(-0.011551008264813898), pvalue=np.float64(0.8439192542198531))
+------------------------------------------------------------
+Training on 826 samples, testing on 239.
+MSE | MAE | R: 0.06908762443418824 0.20158290417097693 PearsonRResult(statistic=np.float64(0.23523737086638866), pvalue=np.float64(0.00024327387459866854))
+------------------------------------------------------------
+Training on 870 samples, testing on 195.
+MSE | MAE | R: 0.041350424906028964 0.16791938447374904 PearsonRResult(statistic=np.float64(0.04423137941892602), pvalue=np.float64(0.5392238358824367))
+------------------------------------------------------------
+Training on 884 samples, testing on 181.
+MSE | MAE | R: 0.05426099513087471 0.19077593654833225 PearsonRResult(statistic=np.float64(0.08650123338363991), pvalue=np.float64(0.2469195037844813))
+------------------------------------------------------------
+Training on 908 samples, testing on 157.
+MSE | MAE | R: 0.059706047844217285 0.20259583749599433 PearsonRResult(statistic=np.float64(-0.007740056950427527), pvalue=np.float64(0.9233545227136362))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.058226819022911366 0.19479260278253197 0.06933578369074264 0.5107320780950012
+------------------------------------------------------------
+NumberSteps
+------------------------------------------------------------
+Training on 784 samples, testing on 294.
+MSE | MAE | R: 0.05855504146841034 0.19337623564724327 PearsonRResult(statistic=np.float64(0.02765947416674018), pvalue=np.float64(0.636690404900308))
+------------------------------------------------------------
+Training on 836 samples, testing on 242.
+MSE | MAE | R: 0.04662557332186543 0.17089002919908783 PearsonRResult(statistic=np.float64(0.07226623726058283), pvalue=np.float64(0.26278068662008947))
+------------------------------------------------------------
+Training on 880 samples, testing on 198.
+MSE | MAE | R: 0.0475841903307489 0.16973737544465925 PearsonRResult(statistic=np.float64(0.018833082495570686), pvalue=np.float64(0.7922804937098564))
+------------------------------------------------------------
+Training on 894 samples, testing on 184.
+MSE | MAE | R: 0.03798016861176099 0.15262692261364355 PearsonRResult(statistic=np.float64(0.09253742478200762), pvalue=np.float64(0.2115308562785121))
+------------------------------------------------------------
+Training on 918 samples, testing on 160.
+MSE | MAE | R: 0.05235589058093075 0.17823047138703643 PearsonRResult(statistic=np.float64(-0.06268152331913616), pvalue=np.float64(0.43103393847924115))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.04862017286274328 0.17297220685833406 0.02972293907715303 0.4668632759976014
+------------------------------------------------------------
+SleepMinutesAsleep
+------------------------------------------------------------
+Training on 789 samples, testing on 298.
+
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+MambaMAE                                 --
+├─ConvEncoder: 1-1                       --
+│    └─ModuleList: 2-1                   --
+│    │    └─BlockConv: 3-1               (288)
+│    │    └─BlockConv: 3-2               (6,336)
+│    │    └─BlockConv: 3-3               (24,960)
+├─PatchMasking: 1-2                      --
+├─MambaModel: 1-3                        --
+│    └─Linear: 2-2                       (16,384)
+│    └─ModuleList: 2-3                   --
+│    │    └─MambaBlock: 3-4              (116,736)
+│    │    └─MambaBlock: 3-5              (116,736)
+│    │    └─MambaBlock: 3-6              (116,736)
+│    │    └─MambaBlock: 3-7              (116,736)
+│    │    └─MambaBlock: 3-8              (116,736)
+│    │    └─MambaBlock: 3-9              (116,736)
+│    └─Identity: 2-4                     --
+├─LayerNorm: 1-4                         (256)
+├─Identity: 1-5                          --
+├─LogisticRegressionHead: 1-6            --
+│    └─Linear: 2-5                       23,041
+=================================================================
+Total params: 771,681
+Trainable params: 23,041
+Non-trainable params: 748,640
+=================================================================
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+MambaMAE                                 --
+├─ConvEncoder: 1-1                       --
+│    └─ModuleList: 2-1                   --
+│    │    └─BlockConv: 3-1               (288)
+│    │    └─BlockConv: 3-2               (6,336)
+│    │    └─BlockConv: 3-3               (24,960)
+├─PatchMasking: 1-2                      --
+├─MambaModel: 1-3                        --
+│    └─Linear: 2-2                       (16,384)
+│    └─ModuleList: 2-3                   --
+│    │    └─MambaBlock: 3-4              (116,736)
+│    │    └─MambaBlock: 3-5              (116,736)
+│    │    └─MambaBlock: 3-6              (116,736)
+│    │    └─MambaBlock: 3-7              (116,736)
+│    │    └─MambaBlock: 3-8              (116,736)
+│    │    └─MambaBlock: 3-9              (116,736)
+│    └─Identity: 2-4                     --
+├─LayerNorm: 1-4                         (256)
+├─Identity: 1-5                          --
+├─LogisticRegressionHead: 1-6            --
+│    └─Linear: 2-5                       23,041
+=================================================================
+Total params: 771,681
+Trainable params: 23,041
+Non-trainable params: 748,640
+=================================================================
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+MambaMAE                                 --
+├─ConvEncoder: 1-1                       --
+│    └─ModuleList: 2-1                   --
+│    │    └─BlockConv: 3-1               (288)
+│    │    └─BlockConv: 3-2               (6,336)
+│    │    └─BlockConv: 3-3               (24,960)
+├─PatchMasking: 1-2                      --
+├─MambaModel: 1-3                        --
+│    └─Linear: 2-2                       (16,384)
+│    └─ModuleList: 2-3                   --
+│    │    └─MambaBlock: 3-4              (116,736)
+│    │    └─MambaBlock: 3-5              (116,736)
+│    │    └─MambaBlock: 3-6              (116,736)
+│    │    └─MambaBlock: 3-7              (116,736)
+│    │    └─MambaBlock: 3-8              (116,736)
+│    │    └─MambaBlock: 3-9              (116,736)
+│    └─Identity: 2-4                     --
+├─LayerNorm: 1-4                         (256)
+├─Identity: 1-5                          --
+├─LogisticRegressionHead: 1-6            --
+│    └─Linear: 2-5                       23,041
+=================================================================
+Total params: 771,681
+Trainable params: 23,041
+Non-trainable params: 748,640
+=================================================================
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+MambaMAE                                 --
+├─ConvEncoder: 1-1                       --
+│    └─ModuleList: 2-1                   --
+│    │    └─BlockConv: 3-1               (288)
+│    │    └─BlockConv: 3-2               (6,336)
+│    │    └─BlockConv: 3-3               (24,960)
+├─PatchMasking: 1-2                      --
+├─MambaModel: 1-3                        --
+│    └─Linear: 2-2                       (16,384)
+│    └─ModuleList: 2-3                   --
+│    │    └─MambaBlock: 3-4              (116,736)
+│    │    └─MambaBlock: 3-5              (116,736)
+│    │    └─MambaBlock: 3-6              (116,736)
+│    │    └─MambaBlock: 3-7              (116,736)
+│    │    └─MambaBlock: 3-8              (116,736)
+│    │    └─MambaBlock: 3-9              (116,736)
+│    └─Identity: 2-4                     --
+├─LayerNorm: 1-4                         (256)
+├─Identity: 1-5                          --
+├─LogisticRegressionHead: 1-6            --
+│    └─Linear: 2-5                       23,041
+=================================================================
+Total params: 771,681
+Trainable params: 23,041
+Non-trainable params: 748,640
+=================================================================
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+MambaMAE                                 --
+├─ConvEncoder: 1-1                       --
+│    └─ModuleList: 2-1                   --
+│    │    └─BlockConv: 3-1               (288)
+│    │    └─BlockConv: 3-2               (6,336)
+│    │    └─BlockConv: 3-3               (24,960)
+├─PatchMasking: 1-2                      --
+├─MambaModel: 1-3                        --
+│    └─Linear: 2-2                       (16,384)
+│    └─ModuleList: 2-3                   --
+│    │    └─MambaBlock: 3-4              (116,736)
+│    │    └─MambaBlock: 3-5              (116,736)
+│    │    └─MambaBlock: 3-6              (116,736)
+│    │    └─MambaBlock: 3-7              (116,736)
+│    │    └─MambaBlock: 3-8              (116,736)
+│    │    └─MambaBlock: 3-9              (116,736)
+│    └─Identity: 2-4                     --
+├─LayerNorm: 1-4                         (256)
+├─Identity: 1-5                          --
+├─LogisticRegressionHead: 1-6            --
+│    └─Linear: 2-5                       23,041
+=================================================================
+Total params: 771,681
+Trainable params: 23,041
+Non-trainable params: 748,640
+=================================================================
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+MambaMAE                                 --
+├─ConvEncoder: 1-1                       --
+│    └─ModuleList: 2-1                   --
+│    │    └─BlockConv: 3-1               (288)
+│    │    └─BlockConv: 3-2               (6,336)
+│    │    └─BlockConv: 3-3               (24,960)
+├─PatchMasking: 1-2                      --
+├─MambaModel: 1-3                        --
+│    └─Linear: 2-2                       (16,384)
+│    └─ModuleList: 2-3                   --
+│    │    └─MambaBlock: 3-4              (116,736)
+│    │    └─MambaBlock: 3-5              (116,736)
+│    │    └─MambaBlock: 3-6              (116,736)
+│    │    └─MambaBlock: 3-7              (116,736)
+│    │    └─MambaBlock: 3-8              (116,736)
+│    │    └─MambaBlock: 3-9              (116,736)
+│    └─Identity: 2-4                     --
+├─LayerNorm: 1-4                         (256)
+├─Identity: 1-5                          --
+├─LogisticRegressionHead: 1-6            --
+│    └─Linear: 2-5                       23,041
+=================================================================
+Total params: 771,681
+Trainable params: 23,041
+Non-trainable params: 748,640
+=================================================================MSE | MAE | R: 0.02549317336688509 0.12658518567630983 PearsonRResult(statistic=np.float64(0.2810862750469285), pvalue=np.float64(8.151947779258944e-07))
+------------------------------------------------------------
+Training on 842 samples, testing on 245.
+MSE | MAE | R: 0.039132884537105346 0.14866965310454983 PearsonRResult(statistic=np.float64(0.26401300851388027), pvalue=np.float64(2.8412451960672445e-05))
+------------------------------------------------------------
+Training on 889 samples, testing on 198.
+MSE | MAE | R: 0.02517133181884702 0.12276322436639985 PearsonRResult(statistic=np.float64(0.12399197607779548), pvalue=np.float64(0.08178928422714789))
+------------------------------------------------------------
+Training on 902 samples, testing on 185.
+MSE | MAE | R: 0.026476339231510458 0.13367619903738773 PearsonRResult(statistic=np.float64(0.22372348146610269), pvalue=np.float64(0.00220421331529009))
+------------------------------------------------------------
+Training on 926 samples, testing on 161.
+MSE | MAE | R: 0.023026665164058557 0.11921306744178291 PearsonRResult(statistic=np.float64(0.2967045891357576), pvalue=np.float64(0.00013245395712607595))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.027860078823681293 0.13018146592528604 0.2379038660480929 0.016831035829260533
+

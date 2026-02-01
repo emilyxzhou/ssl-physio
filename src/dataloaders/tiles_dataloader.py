@@ -40,9 +40,9 @@ from utils import normalize_list, stratified_group_split
 # Define logging console
 import logging
 logging.basicConfig(
-    format="%(asctime)s %(levelname)-3s ==> %(message)s", 
+    format="%(message)s", 
     level=logging.INFO, 
-    datefmt="%Y-%m-%d %H:%M:%S"
+    # datefmt="%Y-%m-%d %H:%M:%S"
 )
 
 
@@ -230,11 +230,9 @@ def load_tiles_holdout(
 
 
 def get_pretrain_eval_dataloaders(
-        signal_columns, label_type=None,
-        scale="mean", window_size=15, 
-        batch_size=32, train_test_split=None,
-        device="cuda", debug=True,
-        random_seed=42, verbose=False
+        batch_size=32, 
+        device="cuda", 
+        random_seed=42
     ):
     """
     Docstring for get_pretrain_eval_dataloaders
@@ -254,81 +252,44 @@ def get_pretrain_eval_dataloaders(
     :param debug: Description
     :param random_seed: Description
     """
-    subject_ids_open, dates_open, data_open = load_tiles_open(
-        signal_columns=signal_columns,
-        scale=scale, window_size=window_size, debug=debug
-    )
-    subject_ids_holdout, dates_holdout, data_holdout = load_tiles_holdout(
-        signal_columns=signal_columns,
-        scale=scale, window_size=window_size, debug=debug
-    )
-
-    if label_type is None:
-        labels_open = [-1 for _ in range(len(subject_ids_open))]
-        labels_holdout = [-1 for _ in range(len(subject_ids_holdout))]
-    elif label_type in ["shift", "age", "sex", "anxiety", "stress"]:
-        labels_open = generate_binary_labels(subject_ids_open, dates_open, version="open", label_type=label_type)
-        labels_holdout = generate_binary_labels(subject_ids_holdout, dates_holdout, version="holdout", label_type=label_type)
-    else:
-        labels_open = generate_continuous_labels_day(subject_ids_open, dates_open, version="open", label_type=label_type, debug=debug)
-        labels_holdout = generate_continuous_labels_day(subject_ids_holdout, dates_holdout, version="holdout", label_type=label_type, debug=debug)
-
-    num_subjects_total = len(subject_ids_open) + len(subject_ids_holdout)
-    num_pretrain = int(num_subjects_total * 10 / 11)
-    num_eval = num_subjects_total - num_pretrain
-    if verbose: logging.info(f"# samples for pretraining: {num_pretrain} | evaluation: {num_eval}")
-
-    # Combine into one DataFrame to maintain order
-    full_dataset = pd.DataFrame({
-        'ID': subject_ids_open+subject_ids_holdout,
-        'Dates': dates_open+dates_holdout,
-        'Data': data_open+data_holdout,
-        'Labels': labels_open+labels_holdout
+    subject_ids, dates, data = get_data_from_splits("pretrain")
+    train_dataset = pd.DataFrame({
+        'ID': subject_ids,
+        'Date': dates,
+        'Data': data
     })
-    full_dataset = full_dataset.sort_values(by='ID')
 
     gss = GroupShuffleSplit(n_splits=1, test_size=1/11, random_state=random_seed)
+    train_indices, test_indices = next(gss.split(train_dataset, groups=train_dataset['ID']))
+    train_df = train_dataset.iloc[train_indices]
+    test_df = train_dataset.iloc[test_indices]
 
-    for train_idx, test_idx in gss.split(full_dataset['Data'], full_dataset['Labels'], groups=full_dataset['ID']):
-        train_set = full_dataset.loc[train_idx]
-        test_set = full_dataset.loc[test_idx]
+    pretrain_subject_ids = train_df['ID'].tolist()
+    pretrain_dates = train_df['Date'].tolist()
+    pretrain_data = train_df['Data'].tolist()
+    pretrain_labels = [-1 for _ in range(len(pretrain_subject_ids))]
 
-    pretrain_subject_ids = train_set['ID'].to_list()
-    test_subject_ids = test_set['ID'].to_list()
-    pretrain_data = train_set['Data'].to_list()
-    test_data = test_set['Data'].to_list()
-    pretrain_dates = train_set['Dates'].to_list()
-    test_dates = test_set['Dates'].to_list()
-    pretrain_labels = train_set['Labels'].to_list()
-    test_labels = test_set['Labels'].to_list()
+    val_subject_ids = test_df['ID'].tolist()
+    val_dates = test_df['Date'].tolist()
+    val_data = test_df['Data'].tolist()
+    val_labels = [-1 for _ in range(len(val_subject_ids))]
 
-    tiles_pretrain = TilesDataset(pretrain_subject_ids, pretrain_data, pretrain_labels)
-    tiles_test = TilesDataset(test_subject_ids, test_data, test_labels)
+    test_subject_ids, test_dates, test_data = get_data_from_splits("test")
+    test_labels = [-1 for _ in range(len(test_subject_ids))]
 
-    if train_test_split is not None:
-        total_size = len(tiles_pretrain)
-        train_size = int(train_test_split * total_size) 
-        test_size = total_size - train_size
-        generator = torch.Generator(device=device).manual_seed(random_seed)
-        tiles_pretrain, tiles_eval = random_split(tiles_pretrain, [train_size, test_size], generator=generator)
+    pretrain_dataset = TilesDataset(pretrain_subject_ids, pretrain_data, pretrain_labels)
+    pretrain_dataloader = DataLoader(pretrain_dataset, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
 
-        pretrain_dataloader = DataLoader(tiles_pretrain, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
-        eval_dataloader = DataLoader(tiles_eval, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
-        test_dataloader = DataLoader(tiles_test, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
-    else: 
-        pretrain_dataloader = DataLoader(tiles_pretrain, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
-        eval_dataloader = None
-        test_dataloader = DataLoader(tiles_test, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
+    val_dataset = TilesDataset(val_subject_ids, val_data, val_labels)
+    val_dataloader = DataLoader(val_dataset, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
 
-    if debug: 
-        # return pretrain_dataloader, eval_dataloader, test_dataloader, pretrain_subject_ids, test_subject_ids, pretrain_dates, test_dates
-        return pretrain_dataloader, eval_dataloader, test_dataloader
+    test_dataset = TilesDataset(test_subject_ids, test_data, test_labels)
+    test_dataloader = DataLoader(test_dataset, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
 
-    # return pretrain_dataloader, eval_dataloader, test_dataloader, pretrain_subject_ids, test_subject_ids, pretrain_dates, test_dates
-    return pretrain_dataloader, eval_dataloader, test_dataloader
+    return pretrain_dataloader, val_dataloader, test_dataloader
 
 
-def generate_binary_labels(subject_ids, dates, version="open", label_type="age"):
+def generate_binary_labels(subject_ids, dates, version="open", label_type="age", verbose=False):
     # NOTE: `version` is no longer used; keeping it for backwards compatibility
     """
     Generate corresponding binary labels from demographics and EMAs for the given lists of subject IDs and dates.
@@ -392,6 +353,11 @@ def generate_binary_labels(subject_ids, dates, version="open", label_type="age")
             # print(type(label_df["Date"].iloc[0]))
             # print(label_df["Date"].iloc[0])
 
+    label_df = label_df[label_df['ID'].isin(set(subject_ids))].reset_index(drop=True)
+    # if verbose:
+    #     with pd.option_context('display.max_rows', None):
+    #         print(label_df[['ID', 'Date', label_col]])
+
     subject_labels = {subject_id: [] for subject_id in list(set(subject_ids))}
     for i in range(len(subject_ids)):
         subject_id = subject_ids[i]
@@ -448,13 +414,15 @@ def generate_continuous_labels_day(subject_ids, dates, version="open", label_typ
         - The following are obtained from the daily summary files located at '/data1/tiantiaf/tiles-opendata/tiles-phase1-opendataset-holdout/fitbit/daily-summary/{subject_ID}'
         - "NumberSteps", "RestingHeartRate", "SleepMinutesAsleep"
     """
-    if label_type is not list: label_type = [label_type]
-    labels = {label: [] for label in label_type}
+    if type(label_types) is not list: label_types = [label_types]
+    labels = {label: [] for label in label_types}
 
-    if label_type in ["RMSStdDev_ms", "RRPeakCoverage", "SDNN_ms", "RR0 ", "bpm", "level"]:
-        label_subset = list(set(label_type).intersection(("RMSStdDev_ms", "RRPeakCoverage", "SDNN_ms", "RR0 ", "bpm", "level")))
-        open_data = get_data_daily(constants.TILES_OPEN_FITBIT_BASE_FOLDER, debug=debug)
-        holdout_data = get_data_daily(constants.TILES_HOLDOUT_FITBIT_BASE_FOLDER, debug=debug)
+    daily_labels = list(set(label_types).intersection(("RMSStdDev_ms", "RRPeakCoverage", "SDNN_ms", "RR0 ", "bpm", "level")))
+    summary_labels = list(set(label_types).intersection(("RestingHeartRate", "SleepMinutesAsleep", "NumberSteps")))
+
+    if len(daily_labels) > 0:
+        open_data = get_data_daily(constants.TILES_OPEN_FITBIT_BASE_FOLDER, debug=False)
+        holdout_data = get_data_daily(constants.TILES_HOLDOUT_FITBIT_BASE_FOLDER, debug=False)
         daily_data = pd.concat([open_data, holdout_data], axis=0).reset_index(drop=True)
 
         for i in range(len(subject_ids)):
@@ -462,16 +430,23 @@ def generate_continuous_labels_day(subject_ids, dates, version="open", label_typ
             date = dates[i]
             next_day = date + datetime.timedelta(days=1)
             if next_day in daily_data["Date"].values:
-                for label_type in label_subset:
+                for label_type in daily_labels:
                     try:
                         label = daily_data.loc[(daily_data["ID"] == subject_id ) & (daily_data["Date"] == next_day), label_type].item()
                     except Exception as e: 
                         label = np.nan
-            else: label = np.nan
-            labels.append(label)
+                    labels[label_type].append(label)
+            else: 
+                for label_type in daily_labels:
+                    labels[label_type].append(np.nan)
             
+<<<<<<< HEAD
     else:    # "RestingHeartRate", "SleepMinutesAsleep", "NumberSteps"
         summary_files = glob.glob("/data1/tiantiaf/tiles-opendata/tiles-phase1-*/fitbit/daily-summary/*")
+=======
+    if len(summary_labels) > 0:
+        summary_files = glob.glob("/data/tiantiaf/tiles-opendataset/tiles-phase1-*/fitbit/daily-summary/*")
+>>>>>>> 26b9a0b46a2aa211bf3764c21e19968ba0bd5567
         summary_dfs = []
         for fp in summary_files:
             subject_id = fp.split("/")[-1].split(".")[0]
@@ -489,19 +464,24 @@ def generate_continuous_labels_day(subject_ids, dates, version="open", label_typ
             subject_id = subject_ids[i]
             date = dates[i]
             next_day = date + datetime.timedelta(days=1)
-            if label_type in ["RestingHeartRate", "NumberSteps"]:
-                try: 
-                    label = summary_dfs[(summary_dfs["ID"] == subject_id) & (summary_dfs["Date"] == next_day)][label_type].iloc[0]
-                except Exception as e: 
-                    label = np.nan
-            else:    # "SleepMinutesAsleep"
-                try:
-                    label = summary_dfs[(summary_dfs["ID"] == subject_id) & (summary_dfs["Date"] == date)][label_type].iloc[0]
-                except Exception as e: 
-                    label = np.nan
-            labels.append(label)
+            for label_type in summary_labels:
+                if label_type in ["RestingHeartRate", "NumberSteps"]:
+                    try: 
+                        label = summary_dfs[(summary_dfs["ID"] == subject_id) & (summary_dfs["Date"] == next_day)][label_type].iloc[0]
+                    except Exception as e: 
+                        label = np.nan
+                else:    # "SleepMinutesAsleep"
+                    try:
+                        label = summary_dfs[(summary_dfs["ID"] == subject_id) & (summary_dfs["Date"] == date)][label_type].iloc[0]
+                    except Exception as e: 
+                        label = np.nan
+                labels[label_type].append(label)
 
-    labels = normalize_list(labels)
+    for label_type in labels.keys():
+        labels[label_type] = normalize_list(labels[label_type])
+
+    # Backwards compatibility
+    if len(list(labels.keys())) == 1: return labels[list(labels.keys())[0]]
 
     return labels
 
@@ -544,7 +524,7 @@ def get_dataloaders(
     elif label_type in ["shift", "age", "sex", "anxiety", "stress"]:
         labels = generate_binary_labels(subject_ids, dates, version=version, label_type=label_type)
     else:
-        labels = generate_continuous_labels_day(subject_ids, dates, version=version, label_type=label_type, debug=debug)
+        labels = generate_continuous_labels_day(subject_ids, dates, version=version, label_types=label_type, debug=debug)
 
     if test_size > 0:
         unique_subjects = list(set(subject_ids))
@@ -643,6 +623,38 @@ def get_data_from_splits(split="test"):
     return subject_ids, dates, data
 
 
+def get_embeddings_from_file(model_type, mask_pct, method="mean", encoder="cnn"):
+    """
+    Final embeddings obtained via mean pool over sequence length to get single embedding per day
+    
+    :param model_type: s4, mamba
+    :param mask_pct: (int) 10, 30, 50, 70
+    """
+    extension = f"_{method}"
+    if encoder is not None: extension += f"_{encoder}"
+
+    embeddings_dir = f"/data1/emilyzho/tiles-2018-processed/tiles-test/embeddings/{model_type}/masking_{mask_pct}{extension}"
+    embeddings_file = os.path.join(embeddings_dir, "embeddings.npy")
+    index_file = os.path.join(embeddings_dir, "index.json")
+    embeddings_list = np.load(embeddings_file)
+    with open(index_file) as f:
+        index = json.load(f)
+
+    subject_ids = []
+    dates = []
+    embeddings = []
+
+    for i in range(len(index)):
+        entry = index[i]
+        emb = embeddings_list[entry["row"]]  # shape (128,)
+        subject_ids.append(entry["user"])
+        date = entry["date"]
+        date = datetime.datetime.strptime(date, "%Y-%m-%d").date()
+        dates.append(date)
+        embeddings.append(emb)
+
+    return subject_ids, dates, embeddings
+
 if __name__ == "__main__":
     signal_columns = [
         # "RMSStdDev_ms", "RRPeakCoverage", 
@@ -665,57 +677,38 @@ if __name__ == "__main__":
         constants.Labels.STEPS,
         constants.Labels.SLEEP_MINS
     ]
-    debug = True
+    debug = False
 
-# Test TILES-2018 open dataset --------------------------------------------------------------------
-    # subject_ids, dates, data = load_tiles_open(
-    #     signal_columns=signal_columns,
-    #     scale=scale, window_size=window_size, debug=debug
-    # )
-
-    # labels = generate_binary_labels(subject_ids, dates, version="open", label_type=label_type)
-
-# Test TILES-2018 held-out dataset ----------------------------------------------------------------
-    # subject_ids, dates, data = load_tiles_holdout(
-    #     signal_columns=signal_columns,
-    #     scale=scale, window_size=window_size, debug=debug
-    # )
-
-    # labels = generate_binary_labels(subject_ids, dates, version="holdout", label_type=label_type)
-    # print(labels)
-
-# Use combined open and held-out sets for pre-training and evaluation splits; 90%/10%
-    # train_subjects = []
-    # test_subjects = []
-    # for _ in range(10):
-    #     pretrain_dataloader, eval_dataloader, test_dataloader, pretrain_subject_ids, test_subject_ids = get_pretrain_eval_dataloaders(
-    #         signal_columns, label_type=None,
-    #         scale="mean", window_size=0, 
-    #         batch_size=32, train_test_split=0.8,
-    #         device="cpu", debug=True,
-    #         random_seed=42
-    #     )
-    #     train_subjects.append(pretrain_subject_ids)
-    #     test_subjects.append(test_subject_ids)
-
-    # are_equal = all(lst == train_subjects[0] for lst in train_subjects)
-    # print(f"All training subjects equal: {are_equal}")
-    # are_equal = all(lst == test_subjects[0] for lst in test_subjects)
-    # print(f"All test subjects equal: {are_equal}")
 
 # Save test subject IDs to file -------------------------------------------------------------------
     # import json
 
-    # pretrain_dataloader, eval_dataloader, test_dataloader, pretrain_subject_ids, test_subject_ids, pretrain_dates, test_dates = get_pretrain_eval_dataloaders(
-    #     signal_columns, label_type=None,
-    #     scale="mean", window_size=0, 
-    #     batch_size=32, train_test_split=0.8,
-    #     device="cpu", debug=False,
-    #     random_seed=42
+    # subject_ids_open, dates_open, data_open = load_tiles_open(
+    #     signal_columns=signal_columns,
+    #     scale=scale, window_size=window_size, debug=debug
     # )
+    # subject_ids_holdout, dates_holdout, data_holdout = load_tiles_holdout(
+    #     signal_columns=signal_columns,
+    #     scale=scale, window_size=window_size, debug=debug
+    # )
+    # df = pd.DataFrame({
+    #     'ID': subject_ids_open+subject_ids_holdout,
+    #     'Date': dates_open+dates_holdout
+    # })
 
-    # train_set = pd.DataFrame({'ID': pretrain_subject_ids, 'Dates': pretrain_dates})
-    # test_set = pd.DataFrame({'ID': test_subject_ids, 'Dates': test_dates})
+    # test_ratio = 1 / 11
+    # gss = GroupShuffleSplit(n_splits=1, test_size=test_ratio, random_state=42)
+    # train_indices, test_indices = next(gss.split(df, groups=df['ID']))
+    # train_df = df.iloc[train_indices]
+    # test_df = df.iloc[test_indices]
+
+    # pretrain_subject_ids = train_df['ID'].tolist()
+    # pretrain_dates = train_df['Date'].tolist()
+    # test_subject_ids = test_df['ID'].tolist()
+    # test_dates = test_df['Date'].tolist()
+
+    # train_set = pd.DataFrame({'ID': pretrain_subject_ids, 'Date': pretrain_dates})
+    # test_set = pd.DataFrame({'ID': test_subject_ids, 'Date': test_dates})
     # out = {
     #     "pretrain": {},
     #     "test": {}
@@ -723,13 +716,13 @@ if __name__ == "__main__":
 
     # unique_pretraining_subjects = train_set['ID'].unique().tolist()
     # for subject_id in unique_pretraining_subjects:
-    #     dates = train_set[train_set['ID'] == subject_id]['Dates'].tolist()
+    #     dates = train_set[train_set['ID'] == subject_id]['Date'].tolist()
     #     dates = [d.strftime("%Y-%m-%d") for d in dates]
     #     out["pretrain"][subject_id] = dates
 
     # unique_test_subjects = test_set['ID'].unique().tolist()
     # for subject_id in unique_test_subjects:
-    #     dates = test_set[test_set['ID'] == subject_id]['Dates'].tolist()
+    #     dates = test_set[test_set['ID'] == subject_id]['Date'].tolist()
     #     dates = [d.strftime("%Y-%m-%d") for d in dates]
     #     out["test"][subject_id] = dates
 
@@ -737,13 +730,58 @@ if __name__ == "__main__":
     #     json.dump(out, f, indent=4)
 
 # Test updated label generation functions
-    debug = False
-    subject_ids, dates, data = get_data_from_splits()
+    # debug = False
+    # subject_ids, dates, data = get_data_from_splits()
+    # label_types = ['NumberSteps', 'RestingHeartRate', 'SleepMinutesAsleep']
+    
+    # all_labels = generate_continuous_labels_day(subject_ids, dates, label_types=label_types)
+    # for label_type in label_types:
+    #     labels = all_labels[label_type]
+    #     nan_indices = [i for i in range(len(labels)) if np.isnan(labels[i])]
+    #     nan_indices.sort(reverse=True)
+    #     for i in nan_indices:
+    #         subject_ids.pop(i)
+    #         data.pop(i)
+    #         labels.pop(i)
 
-    for label_type in ['SDNN_ms', 'RMSStdDev_ms']:
-        labels = generate_continuous_labels_day(subject_ids, dates, label_type=label_type)
-    #     print(labels[0:200])
+    #     print(labels[0:100])
 
-    # for label_type in ["shift"]:
+    # for label_type in ['shift']:
+    #     labels = generate_
+    # s(subject_ids, dates, label_type=label_type)
+    #     print(labels[0:200]) 
+
+# Test loading directly from embedding .npy files
+    # subject_ids, dates, data = get_embeddings_from_file("s4", 30, method="raw", encoder="cnn")
+
+    # binary_labels = ["age", "shift", "anxiety", "stress"]
+    # continuous_labels = ["NumberSteps", "RestingHeartRate", "SleepMinutesAsleep"]
+
+    # for label_type in binary_labels[0:1]:
+    #     logging.info(f"Label: {label_type} " + "-"*60)
     #     labels = generate_binary_labels(subject_ids, dates, label_type=label_type)
-    #     print(labels[0:200])
+    #     subject_ids = np.asarray(subject_ids)
+    #     data = np.asarray(data)
+    #     labels = np.asarray(labels)
+
+    #     unique_values, counts = np.unique(labels, return_counts=True)
+    #     print("Unique values:", unique_values)
+    #     print("Counts:", counts)
+    #     print(f"Embedding shape: {data[0].shape}")
+
+    subject_ids, dates, data = get_data_from_splits("test")
+    train_dataset = pd.DataFrame({
+        'ID': subject_ids,
+        'Date': dates,
+        'Data': data
+    })
+
+    gss = GroupShuffleSplit(n_splits=1, test_size=1/2, random_state=42)
+    train_indices, test_indices = next(gss.split(train_dataset, groups=train_dataset['ID']))
+    train_df = train_dataset.iloc[train_indices]
+    test_df = train_dataset.iloc[test_indices]
+
+    pretrain_subject_ids = train_df['ID'].tolist()
+    pretrain_dates = train_df['Date'].tolist()
+    pretrain_data = train_df['Data'].tolist()
+    print(type(pretrain_data[0]))

@@ -11,7 +11,7 @@ paths = [
         USER_ROOT, "ssl-physio", "src", "dataloaders"
     ),
     os.path.join(
-        USER_ROOT, "ssl-physio", "src", "s4-models"
+        USER_ROOT, "ssl-physio", "src", "s4_models"
     ),
     os.path.join(
         USER_ROOT, "ssl-physio", "src", "trainers"
@@ -26,12 +26,9 @@ sys.path.append(physio_data_path)
 
 import json
 import logging
-import math
 import numpy as np
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-import yaml
 
 import constants
 
@@ -40,7 +37,7 @@ from datetime import datetime
 from imblearn.over_sampling import RandomOverSampler
 from pathlib import Path
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score, recall_score, roc_auc_score
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import StratifiedGroupKFold
 from torch import optim
 from torch.utils.data import DataLoader
 from torchinfo import summary
@@ -51,12 +48,22 @@ from utils import get_kfold_loaders
 
 from linear_classifier import CNN
 
+import warnings
+from sklearn.exceptions import UndefinedMetricWarning
+from scipy.stats import ConstantInputWarning
+warnings.simplefilter(action="ignore", category=FutureWarning)
+warnings.filterwarnings(action="ignore", category=ConstantInputWarning, message="An input array is constant; the correlation coefficient is not defined.")
+warnings.filterwarnings(action="ignore", category=UndefinedMetricWarning, message="Only one class is present in y_true. ROC AUC score is not defined in that case.")
+warnings.filterwarnings(action="ignore", category=UserWarning, message="A single label was found in 'y_true' and 'y_pred'. For the confusion matrix to have the correct shape, use the 'labels' parameter to pass all known labels.")
+warnings.filterwarnings(action="ignore", category=UserWarning, message="y_pred contains classes not in y_true")
+
+
 # Define logging console
 import logging
 logging.basicConfig(
-    format="%(asctime)s %(levelname)-3s ==> %(message)s", 
+    format="%(message)s", 
     level=logging.INFO, 
-    datefmt="%Y-%m-%d %H:%M:%S"
+    # datefmt="%Y-%m-%d %H:%M:%S"
 )
 
 SSL_ROOT = os.path.join(USER_ROOT, "ssl-physio")
@@ -120,7 +127,7 @@ def validate_epoch(
     dataloader, 
     model, 
     device,
-    epoch,
+    epoch
 ):
     model.eval()
     criterion = nn.BCEWithLogitsLoss()
@@ -167,11 +174,10 @@ def validate_epoch(
 
 if __name__ == "__main__":
     debug = False
-
     # Find device
-    device = torch.device("cuda:0") if torch.cuda.is_available() else "cpu"
+    device = torch.device("cuda:1") if torch.cuda.is_available() else "cpu"
     if torch.cuda.is_available():
-        torch.set_default_device("cuda:0")
+        torch.set_default_device("cuda:1")
         print("Default device set to CUDA.")
     else:
         print("CUDA not available.")
@@ -198,7 +204,7 @@ if __name__ == "__main__":
     ]
 
     for label_type in label_types:
-        logging.info(f"Label: {label_type} " + "-"*80)
+        logging.info(f"Label: {label_type} " + "-"*60)
 
         results = {
             "splits": {
@@ -229,61 +235,76 @@ if __name__ == "__main__":
 
         subject_ids, dates, data = get_data_from_splits()
         labels = generate_binary_labels(subject_ids, dates, label_type=label_type)
-        tiles_test = TilesDataset(subject_ids, data, labels)
-        test_dataloader = DataLoader(tiles_test, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
 
-        folds = get_kfold_loaders(test_dataloader)
+        subject_ids = np.asarray(subject_ids)
+        data = np.asarray(data)
+        labels = np.asarray(labels)
 
-        for fold_idx, (train_dataloader, test_dataloader) in enumerate(folds):
+        group_kfold = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=13)
 
-            train_arr = np.array(train_dataloader.dataset.dataset.labels)
-            train_counts = Counter(train_arr)
+        for i, (train_index, test_index) in enumerate(group_kfold.split(data, labels, subject_ids)):
+            train_subject_ids = subject_ids[train_index].tolist()
+            train_data = []
+            for idx in train_index: train_data.append(data[idx])
+            train_labels = labels[train_index]
+            train_counts = Counter(train_labels)
             train_counts = list(train_counts.items())
-            test_arr = np.array(test_dataloader.dataset.dataset.labels)
-            test_counts = Counter(test_arr)
-            test_counts = list(test_counts.items())
+            train_labels = train_labels.tolist()
 
-            results["splits"]["train_size"].append(train_arr.size)
-            results["splits"]["test_size"].append(test_arr.size)
+            test_subject_ids = subject_ids[test_index].tolist()
+            test_data = []
+            for idx in test_index: test_data.append(data[idx])
+            test_labels = labels[test_index]
+            test_counts = Counter(test_labels)
+            test_counts = list(test_counts.items())
+            test_labels = test_labels.tolist()
+
+            train_dataset = TilesDataset(train_subject_ids, train_data, train_labels)
+            train_dataloader = DataLoader(train_dataset, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
+            test_dataset = TilesDataset(test_subject_ids, test_data, test_labels)
+            test_dataloader = DataLoader(test_dataset, batch_size=batch_size, num_workers=0, shuffle=False, generator=torch.Generator(device=device))
+
+            results["splits"]["train_size"].append(len(train_labels))
+            results["splits"]["test_size"].append(len(test_labels))
             results["splits"]["train_labels"][0].append(train_counts[0][1])
             results["splits"]["train_labels"][1].append(train_counts[1][1])
             results["splits"]["test_labels"][0].append(test_counts[0][1])
             results["splits"]["test_labels"][1].append(test_counts[1][1])
 
-        # Load model ------------------------------------------------------------------------------------------------
-        model = CNN(d_input=len(signal_columns))
-        if fold_idx == 0: summary(model)
+            # Load model ------------------------------------------------------------------------------------------------
+            model = CNN(d_input=len(signal_columns))
+            if i == 0: summary(model)
 
-        optimizer = optim.AdamW(
-            model.parameters(),
-            # lr=5e-3,
-            lr=1e-5,
-            # weight_decay=1e-4,
-            # betas=(0.9, 0.95)
-        )
-
-        for epoch in range(epochs):
-            acc, bacc, f1, auc = train_epoch(
-                train_dataloader, model, device, optimizer, epoch=epoch
+            optimizer = optim.AdamW(
+                model.parameters(),
+                # lr=5e-3,
+                lr=1e-5,
+                # weight_decay=1e-4,
+                # betas=(0.9, 0.95)
             )
-            results["train"]["ACC"].append(acc)
-            results["train"]["bACC"].append(bacc)
-            results["train"]["F1"].append(f1)
-            results["train"]["AUC"].append(auc)
-            
-        acc, bacc, f1, auc = validate_epoch(
-            test_dataloader, model, device, epoch=0
-        )
 
-        # logging.info(f"Training labels: {train_counts}")
-        # logging.info(f"Testing labels: {test_counts}")
+            for epoch in range(epochs):
+                acc, bacc, f1, auc = train_epoch(
+                    train_dataloader, model, device, optimizer, epoch=epoch
+                )
+                results["train"]["ACC"].append(acc)
+                results["train"]["bACC"].append(bacc)
+                results["train"]["F1"].append(f1)
+                results["train"]["AUC"].append(auc)
+                
+            acc, bacc, f1, auc = validate_epoch(
+                test_dataloader, model, device, epoch=0
+            )
 
-        results["test"]["ACC"].append(acc)
-        results["test"]["bACC"].append(bacc)
-        results["test"]["F1"].append(f1)
-        results["test"]["AUC"].append(auc)
+            # logging.info(f"Training labels: {train_counts}")
+            # logging.info(f"Testing labels: {test_counts}")
 
-    logging.info(f"Average ACC | bACC | F1 | AUC: {np.mean(results["test"]["ACC"])} {np.mean(results["test"]["bACC"])} {np.mean(results["test"]["F1"])} {np.mean(results["test"]["AUC"])}")
-    RESULTS_FILE = os.path.join(SSL_ROOT, "results", "baselines", "classification", f"cnn_{label_type}.json")
-    with open(RESULTS_FILE, "w") as json_file:
-        json.dump(results, json_file, indent=4)
+            results["test"]["ACC"].append(acc)
+            results["test"]["bACC"].append(bacc)
+            results["test"]["F1"].append(f1)
+            results["test"]["AUC"].append(auc)
+
+        logging.info(f"Average ACC | bACC | F1 | AUC: {np.mean(results["test"]["ACC"])} {np.mean(results["test"]["bACC"])} {np.mean(results["test"]["F1"])} {np.mean(results["test"]["AUC"])}")
+        RESULTS_FILE = os.path.join(SSL_ROOT, "results", "baselines", "classification", f"cnn_{label_type}.json")
+        with open(RESULTS_FILE, "w") as json_file:
+            json.dump(results, json_file, indent=4)
