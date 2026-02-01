@@ -2,3 +2,4 @@
 *.pyc
 embedding_sequencers_results/
 wandb/
+context_windows_results/
