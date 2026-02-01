@@ -64,10 +64,11 @@ def get_results_stats():
         }
     }
 
-    class_results_files = glob.glob('/home/emilyzho/ssl-physio/results/*/classification/*.json')
-    for file in class_results_files:
+    results_files = glob.glob('/home/emilyzho/ssl-physio/results/*/classification/*.json')
+    for file in results_files:
         file_metadata = file.split('/')[-1].split('.')[0].rsplit('_', 1)
         model_name = file_metadata[0]
+        if "_probe" in model_name: model_name = model_name.replace("_probe", "probe")
         label = file_metadata[1]
         with open(file, 'r') as f:
             res = json.load(f)
@@ -124,10 +125,11 @@ def get_results_stats():
         }
     }
 
-    class_results_files = glob.glob('/home/emilyzho/ssl-physio/results/*/regression/*.json')
-    for file in class_results_files:
+    results_files = glob.glob('/home/emilyzho/ssl-physio/results/*/regression/*.json')
+    for file in results_files:
         file_metadata = file.split('/')[-1].split('.')[0].rsplit('_', 1)
         model_name = file_metadata[0]
+        if "_probe" in model_name: model_name = model_name.replace("_probe", "probe")
         label = file_metadata[1]
         with open(file, 'r') as f:
             res = json.load(f)
