@@ -1,0 +1,35 @@
+nohup: ignoring input
+2026-01-31 22:13:56 WARNING ==> CUDA extension for structured kernels (Cauchy and Vandermonde multiplication) not found. Install by going to extensions/kernels/ and running `python setup.py install`, for improved speed and memory efficiency. Note that the kernel changed for state-spaces 4.0 and must be recompiled.
+2026-01-31 22:13:56 WARNING ==> Falling back on slow Cauchy and Vandermonde kernel. Install at least one of pykeops or the CUDA extension for better speed and memory efficiency.
+2026-01-31 22:13:57 INFO ==> 
+Default device set to CUDA.
+2026-01-31 22:13:57 INFO ==> ==================================================
+2026-01-31 22:13:57 INFO ==> s4 | 10% masking | Encoder: cnn
+2026-01-31 22:13:57 INFO ==> ==================================================
+2026-01-31 22:13:57 INFO ==> --------------------------------------------------
+2026-01-31 22:13:57 INFO ==> Label: age
+2026-01-31 22:13:57 INFO ==> --------------------------------------------------
+2026-01-31 22:13:57 INFO ==> Starting at 2026-01-31 22:13:57
+2026-01-31 22:13:57 INFO ==> Training on 847 samples, testing on 240.
+2026-01-31 22:14:36 INFO ==> Training on 872 samples, testing on 215.
+2026-01-31 22:15:16 INFO ==> Training on 879 samples, testing on 208.
+2026-01-31 22:15:56 INFO ==> Training on 879 samples, testing on 208.
+2026-01-31 22:16:36 INFO ==> Training on 871 samples, testing on 216.
+2026-01-31 22:17:15 INFO ==> Average ACC | bACC | F1 | AUC: 0.5639826409593851 0.4737920214912116 0.46908834926427545 0.47812606880657366
+2026-01-31 22:17:15 INFO ==> --------------------------------------------------
+2026-01-31 22:17:15 INFO ==> Label: shift
+2026-01-31 22:17:15 INFO ==> --------------------------------------------------
+2026-01-31 22:17:15 INFO ==> Starting at 2026-01-31 22:17:15
+2026-01-31 22:17:16 INFO ==> Training on 886 samples, testing on 201.
+2026-01-31 22:17:56 INFO ==> Training on 865 samples, testing on 222.
+2026-01-31 22:18:36 INFO ==> Training on 885 samples, testing on 202.
+2026-01-31 22:19:16 INFO ==> Training on 836 samples, testing on 251.
+2026-01-31 22:19:55 INFO ==> Training on 876 samples, testing on 211.
+2026-01-31 22:20:35 INFO ==> Average ACC | bACC | F1 | AUC: 0.9080340199084569 0.7663946798815221 0.7705547613084952 0.857110054548135
+2026-01-31 22:20:35 INFO ==> --------------------------------------------------
+2026-01-31 22:20:35 INFO ==> Label: anxiety
+2026-01-31 22:20:35 INFO ==> --------------------------------------------------
+2026-01-31 22:20:35 INFO ==> Starting at 2026-01-31 22:20:35
+2026-01-31 22:20:35 INFO ==> Training on 850 samples, testing on 237.
+2026-01-31 22:21:11 INFO ==> Training on 884 samples, testing on 203.
+2026-01-31 22:21:46 INFO ==> Training on 883 samples, testing on 204.

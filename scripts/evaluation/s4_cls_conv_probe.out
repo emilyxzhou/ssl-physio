@@ -1,0 +1,2048 @@
+nohup: ignoring input
+CUDA extension for structured kernels (Cauchy and Vandermonde multiplication) not found. Install by going to extensions/kernels/ and running `python setup.py install`, for improved speed and memory efficiency. Note that the kernel changed for state-spaces 4.0 and must be recompiled.
+Falling back on slow Cauchy and Vandermonde kernel. Install at least one of pykeops or the CUDA extension for better speed and memory efficiency.
+============================================================
+10% masking
+============================================================
+------------------------------------------------------------
+age
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.5666666666666667 0.47058823529411764 0.4460227272727273 0.45810246679316885
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.5813953488372093 0.49384236453201974 0.49003795066413663 0.5422167487684728
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6346153846153846 0.524854965305426 0.5247715247715248 0.6036855875327038
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.5288461538461539 0.4063063063063063 0.40131578947368424 0.4640765765765766
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6064814814814815 0.507051282051282 0.507074395253309 0.4922542735042735
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.5836010070893791 0.4805286306978303 0.4738444774870764 0.5120671306350391
+------------------------------------------------------------
+shift
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.9353233830845771 0.7669977081741788 0.7584357955070722 0.8420550038197098
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.8963963963963963 0.7185855263157894 0.753607103218646 0.9338815789473685
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.9405940594059405 0.656140350877193 0.684375 0.9
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.8406374501992032 0.723470922459893 0.753921568627451 0.8213151737967914
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.919431279620853 0.7646616541353384 0.7703732155431791 0.8205513784461153
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.9064765137413942 0.7259712323924784 0.7441425365792697 0.863560627001997
+------------------------------------------------------------
+anxiety
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+Default device set to CUDA.
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================ACC | bACC | F1 | AUC: 0.6118143459915611 0.46119085592769804 0.4483910139647845 0.4587985114300904
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6354679802955665 0.48803763440860215 0.48779323513366063 0.44899193548387095
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6519607843137255 0.5055555555555555 0.48983832904793767 0.5216435185185185
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6265560165975104 0.5030330603579012 0.4557908470493777 0.41886563542614497
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6782178217821783 0.5171923314780458 0.5071876290207559 0.5328385899814471
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.6408033897961084 0.4950018875455605 0.4778002108433033 0.47622763816801444
+------------------------------------------------------------
+stress
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6147186147186147 0.4907570422535211 0.47868752694170447 0.5158010563380282
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6218905472636815 0.48950729927007297 0.46437587657784013 0.4858576642335766
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.5969387755102041 0.4941520467836257 0.4861788617886179 0.5094283327366034
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.691304347826087 0.5436067997043607 0.5362244753060124 0.4788433111603843
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6419213973799127 0.49875373878364904 0.4967302744425386 0.4548354935194417
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.6333547365397001 0.5033553853590459 0.4924394030113427 0.4889531715976069
+============================================================
+30% masking
+============================================================
+------------------------------------------------------------
+age
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.525 0.43567362428842504 0.4151846785225718 0.4191271347248577
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.5488372093023256 0.4770935960591133 0.4763339610797238 0.45733990147783254
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6730769230769231 0.572176089182118 0.5747955747955749 0.5996473666249573
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6346153846153846 0.5153153153153153 0.5128205128205128 0.5860923423423423
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.5925925925925926 0.4615384615384615 0.45679012345679015 0.43274572649572646
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.5948244219174452 0.4923594172766867 0.4871849701350347 0.49899049433314324
+------------------------------------------------------------
+shift
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================ACC | bACC | F1 | AUC: 0.9402985074626866 0.8027119938884645 0.7838709677419355 0.8426279602750191
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.9234234234234234 0.799342105263158 0.8289133686930504 0.9133223684210526
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.9504950495049505 0.7394736842105263 0.7596382674916706 0.868421052631579
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.848605577689243 0.7493733288770054 0.775850723820267 0.8488887032085563
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.919431279620853 0.7646616541353384 0.7703732155431791 0.8528822055137845
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.9164507675402312 0.7711125532748986 0.7837293086580205 0.8652284580099983
+------------------------------------------------------------
+anxiety
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6160337552742616 0.4780701754385965 0.4713063515799279 0.45946305156831474
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.7044334975369458 0.5475806451612903 0.5496894409937888 0.5071236559139786
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6176470588235294 0.49583333333333335 0.4901960784313726 0.4478009259259259
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6307053941908713 0.5062177737336973 0.4581533409119616 0.4671671216257204
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6435643564356436 0.48200371057513913 0.46818780166739804 0.5235621521335807
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.6424768124522504 0.5019411276484114 0.4875066027168898 0.48102338143350404
+------------------------------------------------------------
+stress
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.5714285714285714 0.47125880281690136 0.4676304211187932 0.5051936619718309
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6467661691542289 0.528569799270073 0.5176271759337502 0.5544023722627737
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.5918367346938775 0.4820384294068505 0.46991210277214335 0.4832318892469269
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6347826086956522 0.5266075388026608 0.5264705882352941 0.5066980783444198
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.611353711790393 0.46709870388833497 0.4642359559422728 0.4797607178464607
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.6112335591525446 0.4951146548369641 0.4891752488004507 0.5058573439344823
+============================================================
+50% masking
+============================================================
+------------------------------------------------------------
+age
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================ACC | bACC | F1 | AUC: 0.5375 0.4612903225806452 0.4515697375193001 0.4287666034155597
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6046511627906976 0.5147783251231527 0.5112198775040788 0.568768472906404
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.625 0.5335001706290524 0.5337931034482759 0.5673984757137982
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.5721153846153846 0.44166666666666665 0.43310365947021895 0.4803490990990991
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6203703703703703 0.5217948717948718 0.5219691244737126 0.5514957264957265
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.5919273835552905 0.49460607135887774 0.49033110048311723 0.5193556755261175
+------------------------------------------------------------
+shift
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.9502487562189055 0.9071810542398777 0.8393542199488491 0.920550038197097
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.9594594594594594 0.8983552631578947 0.9144801609382356 0.9541118421052631
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.9455445544554455 0.736842105263158 0.7464338696793336 0.9263157894736842
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.8725099601593626 0.7654161096256684 0.8031372549019609 0.9118900401069518
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.9478672985781991 0.8439849624060151 0.8514179629985277 0.8726817042606516
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.9351260057742744 0.8303558989385229 0.8309646936933813 0.9171098828287295
+------------------------------------------------------------
+anxiety
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6118143459915611 0.4937533227006911 0.49226900149031294 0.4764309764309764
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6354679802955665 0.5168010752688172 0.5155443756449949 0.4854838709677419
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6372549019607843 0.5097222222222222 0.5030941408821593 0.4789930555555556
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6390041493775933 0.5236578707916287 0.4908574342536607 0.5481877464361542
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6237623762376238 0.5252937538651825 0.5252937538651825 0.5587507730364873
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.6294607507726259 0.5138456489697084 0.5054117412272621 0.5095692844853831
+------------------------------------------------------------
+stress
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================ACC | bACC | F1 | AUC: 0.5930735930735931 0.4908010563380282 0.4871031746031746 0.5132922535211267
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6069651741293532 0.5118613138686132 0.5084053125290239 0.5502395072992701
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6530612244897959 0.5772765246449457 0.5794522276915309 0.5660580021482277
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6434782608695652 0.5010162601626016 0.4906006914433881 0.5014781966001478
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6462882096069869 0.4850947158524427 0.47809572043555326 0.5581256231306082
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.6285732924338587 0.5132099741733263 0.5087314253405342 0.5378387165398761
+============================================================
+70% masking
+============================================================
+------------------------------------------------------------
+age
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.5333333333333333 0.4580645161290323 0.44877368550570096 0.42740037950664134
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.5953488372093023 0.5189655172413793 0.5182724252491695 0.5648275862068965
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.625 0.5130246843362529 0.5122655122655122 0.4903878967125469
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6201923076923077 0.5002252252252253 0.496799877507273 0.545777027027027
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6388888888888888 0.514102564102564 0.5124435698576224 0.5439102564102564
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.6025526734247664 0.5008765014068908 0.4977110140770556 0.5144606291726737
+------------------------------------------------------------
+shift
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.945273631840796 0.8053857906799083 0.795599519275215 0.8808250572956455
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.9279279279279279 0.8539473684210526 0.8539473684210526 0.975
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.9455445544554455 0.6978070175438597 0.7237349247793112 0.8903508771929824
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.848605577689243 0.7339572192513368 0.7662254901960784 0.8643465909090909
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.933649289099526 0.793734335839599 0.8066753926701571 0.856265664160401
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.9202001962025879 0.7769663463471513 0.7892365390683629 0.8933576379116239
+------------------------------------------------------------
+anxiety
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================ACC | bACC | F1 | AUC: 0.6329113924050633 0.5223285486443381 0.5224098394830102 0.5047403863193337
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6354679802955665 0.5096102150537635 0.5090849673202614 0.47379032258064524
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6029411764705882 0.5 0.4987714987714988 0.502662037037037
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6182572614107884 0.5021989687594783 0.46496138996138997 0.48756445253260544
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6386138613861386 0.47860235003092144 0.4653178142789804 0.48373531230674083
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.625638334393629 0.5025480164977003 0.4921091019630282 0.49049850215527246
+------------------------------------------------------------
+stress
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6190476190476191 0.544806338028169 0.5453569511540526 0.5082746478873239
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6318407960199005 0.505132299270073 0.4862531085935341 0.5586222627737226
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6173469387755102 0.5384294068504595 0.5385339821064197 0.5375939849624061
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.6391304347826087 0.493440502586844 0.48084088004133696 0.5263303769401331
+------------------------------------------------------------
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+ACC | bACC | F1 | AUC: 0.5807860262008734 0.46864406779661016 0.4691906509561522 0.5265204386839482
+------------------------------------------------------------
+Average ACC | bACC | F1 | AUC: 0.6176303629653024 0.5100905229064312 0.5040351145702991 0.5314683422495067
+
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      (66,048)
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 149,601
+Non-trainable params: 462,432
+======================================================================

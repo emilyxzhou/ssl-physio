@@ -10,7 +10,7 @@ paths = [
         USER_ROOT, "ssl-physio", "src", "dataloaders"
     ),
     os.path.join(
-        USER_ROOT, "ssl-physio", "src", "s4-models"
+        USER_ROOT, "ssl-physio", "src", "s4_models"
     ),
     os.path.join(
         USER_ROOT, "ssl-physio", "src", "trainers"
@@ -38,7 +38,9 @@ import constants
 from collections import Counter
 from datetime import datetime
 from imblearn.over_sampling import RandomOverSampler
+from scipy.stats import ConstantInputWarning
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score, recall_score, roc_auc_score
+from sklearn.model_selection import StratifiedGroupKFold
 from torch import optim
 from torch.utils.data import DataLoader
 from torchinfo import summary
@@ -46,16 +48,24 @@ from tqdm import tqdm
 
 from s4_mae import S4MAE
 from trainer import Trainer
-from tiles_dataloader import get_pretrain_eval_dataloaders
+from tiles_dataloader import TilesDataset, get_data_from_splits, generate_binary_labels
 from utils import stratified_group_split, get_kfold_loaders
+
+import warnings
+from sklearn.exceptions import UndefinedMetricWarning
+warnings.simplefilter(action="ignore", category=FutureWarning)
+warnings.filterwarnings(action="ignore", category=ConstantInputWarning, message="An input array is constant; the correlation coefficient is not defined.")
+warnings.filterwarnings(action="ignore", category=UndefinedMetricWarning, message="Only one class is present in y_true. ROC AUC score is not defined in that case.")
+warnings.filterwarnings(action="ignore", category=UserWarning, message="A single label was found in 'y_true' and 'y_pred'. For the confusion matrix to have the correct shape, use the 'labels' parameter to pass all known labels.")
+warnings.filterwarnings(action="ignore", category=UserWarning, message="y_pred contains classes not in y_true")
 
 
 # Define logging console
 import logging
 logging.basicConfig(
-    format="%(asctime)s %(levelname)-3s ==> %(message)s", 
+    format="%(message)s", 
     level=logging.INFO, 
-    datefmt="%Y-%m-%d %H:%M:%S"
+    # datefmt="%Y-%m-%d %H:%M:%S"
 )
 
 os.environ["S4_FAST_CAUCHY"] = "0"
@@ -65,17 +75,14 @@ os.environ["S4_BACKEND"] = "keops"   # or "keops" if you installed pykeops
 SSL_ROOT = os.path.join(USER_ROOT, "ssl-physio")
 
 
-def load_model(checkpoint_path, config_path, classification=False):
+def load_model(checkpoint_path, model_params, classification=False, device="cuda:1"):
     # Read arguments -----------------------------------------------------------------------------------------------
-    config = json.load(open(config_path, "r"))
-    model_params = config["model_params"]
-    if model_params["dec_hidden_dims"] is not None: model_params["d_model"] = model_params["dec_hidden_dims"][0]
-
-    checkpoint = torch.load(checkpoint_path, map_location="cpu")
+    checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=True)
 
     model = S4MAE(
         **model_params,
-        classification=classification
+        classification=classification,
+        device=device
     ).to(device)
 
     # Load weights
@@ -101,7 +108,8 @@ def train_epoch(
     optimizer,
     epoch
 ):
-    model.train()
+    model.eval()
+    model.cls_head.train()
     criterion = nn.BCEWithLogitsLoss()
     total_labels = []
     total_preds = []
@@ -155,6 +163,7 @@ def validate_epoch(
     epoch
 ):
     model.eval()
+    model.cls_head.eval()
     criterion = nn.BCEWithLogitsLoss()
     total_labels = []
     total_preds = []
@@ -201,16 +210,18 @@ if __name__ == "__main__":
     # Read arguments -----------------------------------------------------------------------------------------------
     parser = argparse.ArgumentParser(description="Script for S4-MAE downstream classification.")
     parser.add_argument("--debug", "-d", type=str, default=False)
-    parser.add_argument("--classification", "-c", type=str, default="lin_probe")
+    parser.add_argument("--classification", "-c", type=str, default="finetune")
+    parser.add_argument("--device", "-dev", type=str, default="cuda:1")
     args = parser.parse_args()
     debug = args.debug
     classification = args.classification
-    unfreeze_s4 = (classification != "lin_probe")
+    unfreeze_seq = (classification != "lin_probe")
+    device = args.device
 
     # Find device
-    device = torch.device("cuda:0") if torch.cuda.is_available() else "cpu"
+    device = torch.device(device) if torch.cuda.is_available() else "cpu"
     if torch.cuda.is_available():
-        torch.set_default_device("cuda:0")
+        torch.set_default_device(device)
         print("Default device set to CUDA.")
     else:
         print("CUDA not available.")
@@ -220,10 +231,14 @@ if __name__ == "__main__":
     config = json.load(open(config_path, "r"))
     training_params = config["training_params"]
     model_params = config["model_params"]
+    if model_params["dec_hidden_dims"] is not None: model_params["d_model"] = model_params["dec_hidden_dims"][0]
+    model_params["mask_ratio"] = 0.0
 
-    for mask_ratio in [0.1, 0.3, 0.5, 0.7]:
-        logging.info(f"Mask ratio: {mask_ratio} " + "-"*120)
-        MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_{int(mask_ratio*100)}.pt"
+    for mask_pct in [10, 30, 50, 70]:
+        logging.info("="*60)
+        logging.info(f"{mask_pct}% masking")
+        logging.info("="*60)
+        MODEL_SAVE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction/s4-mae_{mask_pct}.pt"
 
         # Define parameters ----------------------------------------------------------------------------------------------------
         # Training variables
@@ -243,7 +258,9 @@ if __name__ == "__main__":
         ]
         
         for label_type in label_types:
-            logging.info(f"Label: {label_type} " + "-"*80)
+            logging.info("-"*60)
+            logging.info(f"{label_type}")
+            logging.info("-"*60)
 
             results = {
                 "splits": {
@@ -272,54 +289,64 @@ if __name__ == "__main__":
                 }
             }
 
-            _, _, test_dataloader = get_pretrain_eval_dataloaders(
-                signal_columns, label_type=label_type,
-                scale="mean", window_size=15, 
-                batch_size=32, train_test_split=0.9,
-                device=device, debug=debug,
-                random_seed=42
-            )
+            subject_ids, dates, data = get_data_from_splits()
+            labels = generate_binary_labels(subject_ids, dates, label_type=label_type)
 
-            folds = get_kfold_loaders(test_dataloader)
+            subject_ids = np.asarray(subject_ids)
+            data = np.asarray(data)
+            labels = np.asarray(labels)
 
-            for fold_idx, (train_dataloader, test_dataloader) in enumerate(folds):
+            group_kfold = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=13)
 
-                # train_arr = np.array(train_dataloader.dataset.labels)
-                # train_counts = Counter(train_arr)
-                # train_counts = list(train_counts.items())
-                # test_arr = np.array(test_dataloader.dataset.labels)
-                # test_counts = Counter(test_arr)
-                # test_counts = list(test_counts.items())
+            for i, (train_index, test_index) in enumerate(group_kfold.split(data, labels, subject_ids)):
+                train_subject_ids = subject_ids[train_index].tolist()
+                train_data = []
+                for idx in train_index: train_data.append(data[idx])
+                train_labels = labels[train_index]
+                train_counts = Counter(train_labels)
+                train_counts = list(train_counts.items())
+                train_labels = train_labels.tolist()
 
-                # results["splits"]["train_size"].append(train_arr.size)
-                # results["splits"]["test_size"].append(test_arr.size)
-                # results["splits"]["train_labels"][0].append(train_counts[0][1])
-                # results["splits"]["train_labels"][1].append(train_counts[1][1])
-                # results["splits"]["test_labels"][0].append(test_counts[0][1])
-                # results["splits"]["test_labels"][1].append(test_counts[1][1])
+                test_subject_ids = subject_ids[test_index].tolist()
+                test_data = []
+                for idx in test_index: test_data.append(data[idx])
+                test_labels = labels[test_index]
+                test_counts = Counter(test_labels)
+                test_counts = list(test_counts.items())
+                test_labels = test_labels.tolist()
 
-                num_train_samples = len(train_dataloader)
-                num_test_samples = len(test_dataloader)
+                train_dataset = TilesDataset(train_subject_ids, train_data, train_labels)
+                train_dataloader = DataLoader(train_dataset, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
+                test_dataset = TilesDataset(test_subject_ids, test_data, test_labels)
+                test_dataloader = DataLoader(test_dataset, batch_size=batch_size, num_workers=0, shuffle=False, generator=torch.Generator(device=device))
+
+                results["splits"]["train_size"].append(len(train_labels))
+                results["splits"]["test_size"].append(len(test_labels))
+                results["splits"]["train_labels"][0].append(train_counts[0][1])
+                results["splits"]["train_labels"][1].append(train_counts[1][1])
+                results["splits"]["test_labels"][0].append(test_counts[0][1])
+                results["splits"]["test_labels"][1].append(test_counts[1][1])
 
                 # Load model ------------------------------------------------------------------------------------------------
-                model = load_model(MODEL_SAVE_PATH, config_path, classification=classification)
+                model = load_model(MODEL_SAVE_PATH, model_params, classification=classification, device=device)
                 model = freeze_weights(model)
 
-                if unfreeze_s4:
-                    # for layer in model.seq_model.s4_layers[-1:]:
-                    for layer in model.seq_model.s4_layers:
+                unfreeze_seq = False
+                if unfreeze_seq:
+                    for layer in model.seq_model.s4_layers[-1:]:
+                    # for layer in model.seq_model.s4_layers:
                         for param in layer.parameters():
                             param.requires_grad = True
                         
                 for param in model.cls_head.parameters():
                     param.requires_grad = True
 
-                if fold_idx == 0: summary(model)
+                if i == 0: summary(model)
 
                 optimizer = optim.AdamW(
                     model.parameters(),
-                    # lr=5e-3,
-                    lr=1e-5,
+                    lr=1e-3,
+                    # lr=1e-5,
                     # weight_decay=1e-4,
                     # betas=(0.9, 0.95)
                 )
@@ -346,6 +373,7 @@ if __name__ == "__main__":
                 results["test"]["AUC"].append(auc)
 
             logging.info(f"Average ACC | bACC | F1 | AUC: {np.mean(results["test"]["ACC"])} {np.mean(results["test"]["bACC"])} {np.mean(results["test"]["F1"])} {np.mean(results["test"]["AUC"])}")
-            RESULTS_FILE = os.path.join(SSL_ROOT, "results", "downstream", "classification", f"s4_{int(mask_ratio*100)}_{classification}_{label_type}.json")
+            # RESULTS_FILE = os.path.join(SSL_ROOT, "results", "downstream", "classification", f"s4_{mask_pct}_{classification}_{label_type}.json")
+            RESULTS_FILE = os.path.join(SSL_ROOT, "results", "downstream", "classification", f"s4_{mask_pct}_conv_probe_{label_type}.json")
             with open(RESULTS_FILE, "w") as json_file:
                 json.dump(results, json_file, indent=4)

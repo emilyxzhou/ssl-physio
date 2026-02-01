@@ -1,5 +1,0 @@
-,test_anxiety_balanced_accuracy,test_anxiety_balanced_accuracy,test_anxiety_f1,test_anxiety_f1,test_anxiety_auc,test_anxiety_auc,test_stress_balanced_accuracy,test_stress_balanced_accuracy,test_stress_f1,test_stress_f1,test_stress_auc,test_stress_auc
-,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std
-model_type,,,,,,,,,,,,
-cnn,0.643,0.061,0.158,0.051,0.503,0.034,0.589,0.054,0.204,0.077,0.514,0.029
-nn,0.645,0.063,0.133,0.043,0.493,0.041,0.591,0.055,0.188,0.071,0.509,0.034

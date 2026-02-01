@@ -1,6 +1,0 @@
-,test_anxiety_balanced_accuracy,test_anxiety_balanced_accuracy,test_anxiety_f1,test_anxiety_f1,test_anxiety_auc,test_anxiety_auc,test_stress_balanced_accuracy,test_stress_balanced_accuracy,test_stress_f1,test_stress_f1,test_stress_auc,test_stress_auc
-,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std
-masking_ratio,,,,,,,,,,,,
-10,0.636,0.049,0.137,0.048,0.502,0.036,0.588,0.049,0.195,0.068,0.517,0.029
-30,0.648,0.055,0.153,0.052,0.516,0.033,0.607,0.067,0.208,0.068,0.508,0.032
-50,0.643,0.062,0.148,0.042,0.499,0.032,0.603,0.06,0.205,0.077,0.501,0.037

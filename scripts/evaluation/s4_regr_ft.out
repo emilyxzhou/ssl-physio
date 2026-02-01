@@ -1,0 +1,1600 @@
+nohup: ignoring input
+CUDA extension for structured kernels (Cauchy and Vandermonde multiplication) not found. Install by going to extensions/kernels/ and running `python setup.py install`, for improved speed and memory efficiency. Note that the kernel changed for state-spaces 4.0 and must be recompiled.
+Falling back on slow Cauchy and Vandermonde kernel. Install at least one of pykeops or the CUDA extension for better speed and memory efficiency.
+============================================================
+10% masking
+============================================================
+------------------------------------------------------------
+RestingHeartRate
+------------------------------------------------------------
+Training on 772 samples, testing on 293.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.052032152073046165 0.19534536839028763 PearsonRResult(statistic=np.float64(-0.07447710572443261), pvalue=np.float64(0.20367196994105852))
+------------------------------------------------------------
+Training on 826 samples, testing on 239.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.052926962522973964 0.1873552767773774 PearsonRResult(statistic=np.float64(0.24814082987830893), pvalue=np.float64(0.00010581305582080277))
+------------------------------------------------------------
+Training on 870 samples, testing on 195.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.02972998548866199 0.14392157232659497 PearsonRResult(statistic=np.float64(0.016327832197418263), pvalue=np.float64(0.8207698124494271))
+------------------------------------------------------------
+Training on 884 samples, testing on 181.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.036826692172605195 0.16407868915573082 PearsonRResult(statistic=np.float64(-0.10804664043039164), pvalue=np.float64(0.1476758295158528))
+------------------------------------------------------------
+Training on 908 samples, testing on 157.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.0355824036797096 0.15925963787178748 PearsonRResult(statistic=np.float64(0.012854840897808324), pvalue=np.float64(0.8730463740557511))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.04141963918739939 0.16999210890435562 0.018959951363742254 0.40905395980358217
+------------------------------------------------------------
+NumberSteps
+------------------------------------------------------------
+Training on 784 samples, testing on 294.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.03442108820460849 0.14726198351280065 PearsonRResult(statistic=np.float64(0.06906722621519719), pvalue=np.float64(0.23775308240766224))
+------------------------------------------------------------
+Training on 836 samples, testing on 242.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.023134302191738284 0.12127288738133012 PearsonRResult(statistic=np.float64(0.05857895316068003), pvalue=np.float64(0.3642292205110569))
+------------------------------------------------------------
+Training on 880 samples, testing on 198.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.029874711323673264 0.13666279232994608 PearsonRResult(statistic=np.float64(-0.06867523007889076), pvalue=np.float64(0.3363695666702811))
+------------------------------------------------------------
+Training on 894 samples, testing on 184.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.0208253362800483 0.11906045902958383 PearsonRResult(statistic=np.float64(0.18205320498298375), pvalue=np.float64(0.013384706763841943))
+------------------------------------------------------------
+Training on 918 samples, testing on 160.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.032961323791167715 0.1430445655357518 PearsonRResult(statistic=np.float64(0.010713241136110645), pvalue=np.float64(0.8930433398236758))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.02824335235824721 0.13346053755788248 0.05034747908321617 0.36895598323530365
+------------------------------------------------------------
+SleepMinutesAsleep
+------------------------------------------------------------
+Training on 789 samples, testing on 298.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+Default device set to CUDA.
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      66,048
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 215,649
+Non-trainable params: 396,384
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      66,048
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 215,649
+Non-trainable params: 396,384
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      66,048
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 215,649
+Non-trainable params: 396,384
+======================================================================MSE | MAE | R: 0.009977707086428448 0.07865362623685375 PearsonRResult(statistic=np.float64(0.3682901274110715), pvalue=np.float64(5.270901293434152e-11))
+------------------------------------------------------------
+Training on 842 samples, testing on 245.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.02340393455071392 0.11082536666095802 PearsonRResult(statistic=np.float64(0.4101182156460528), pvalue=np.float64(2.34372562996626e-11))
+------------------------------------------------------------
+Training on 889 samples, testing on 198.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.011157014313152159 0.0792795851474861 PearsonRResult(statistic=np.float64(0.24540546968198101), pvalue=np.float64(0.0004926182428535247))
+------------------------------------------------------------
+Training on 902 samples, testing on 185.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.0088432146713469 0.0752229953930204 PearsonRResult(statistic=np.float64(0.271618613005678), pvalue=np.float64(0.00018407130685950152))
+------------------------------------------------------------
+Training on 926 samples, testing on 161.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.008055810148517235 0.06652142279607227 PearsonRResult(statistic=np.float64(0.45965297875131006), pvalue=np.float64(8.588307348954065e-10))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.012287536154031733 0.08210059924687811 0.3510170808992187 0.00013533809693800608
+============================================================
+30% masking
+============================================================
+------------------------------------------------------------
+RestingHeartRate
+------------------------------------------------------------
+Training on 772 samples, testing on 293.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.05305703448630465 0.19757185813645592 PearsonRResult(statistic=np.float64(-0.0656472320776682), pvalue=np.float64(0.2626690698123028))
+------------------------------------------------------------
+Training on 826 samples, testing on 239.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.053735316113137074 0.1862582000589881 PearsonRResult(statistic=np.float64(0.2138246378382481), pvalue=np.float64(0.0008782467528744828))
+------------------------------------------------------------
+Training on 870 samples, testing on 195.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.02958608151340771 0.14158827976623492 PearsonRResult(statistic=np.float64(0.02134276760378675), pvalue=np.float64(0.7671131432649447))
+------------------------------------------------------------
+Training on 884 samples, testing on 181.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.03604624161248671 0.16567035656973508 PearsonRResult(statistic=np.float64(-0.047382864985288445), pvalue=np.float64(0.5264654908053689))
+------------------------------------------------------------
+Training on 908 samples, testing on 157.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.043044168620271585 0.1712380322428013 PearsonRResult(statistic=np.float64(-0.11956539419090124), pvalue=np.float64(0.13582131009379964))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.043093768469121545 0.17246534535484306 0.0005143828376353909 0.3385894521458581
+------------------------------------------------------------
+NumberSteps
+------------------------------------------------------------
+Training on 784 samples, testing on 294.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.03249319880301122 0.1418508492623889 PearsonRResult(statistic=np.float64(0.09745633479144293), pvalue=np.float64(0.09533918746692711))
+------------------------------------------------------------
+Training on 836 samples, testing on 242.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.02231685047402554 0.11820131972467038 PearsonRResult(statistic=np.float64(0.08783822657116917), pvalue=np.float64(0.17319750183717753))
+------------------------------------------------------------
+Training on 880 samples, testing on 198.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.030168795245555345 0.13809199728833788 PearsonRResult(statistic=np.float64(-0.012913718317726246), pvalue=np.float64(0.8567057850595864))
+------------------------------------------------------------
+Training on 894 samples, testing on 184.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.021104769461426302 0.12083218683786433 PearsonRResult(statistic=np.float64(0.23918047417866706), pvalue=np.float64(0.0010759159178067397))
+------------------------------------------------------------
+Training on 918 samples, testing on 160.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.03182099603852858 0.14096100646673798 PearsonRResult(statistic=np.float64(0.019968154368832765), pvalue=np.float64(0.8021048410334575))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.0275809220045094 0.1319874719159999 0.08630589431847714 0.38568464626299104
+------------------------------------------------------------
+SleepMinutesAsleep
+------------------------------------------------------------
+Training on 789 samples, testing on 298.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      66,048
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 215,649
+Non-trainable params: 396,384
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      66,048
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 215,649
+Non-trainable params: 396,384
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      66,048
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 215,649
+Non-trainable params: 396,384
+======================================================================MSE | MAE | R: 0.009936267568472979 0.07976647744097456 PearsonRResult(statistic=np.float64(0.3853989033075955), pvalue=np.float64(5.4565399550379484e-12))
+------------------------------------------------------------
+Training on 842 samples, testing on 245.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.021840456175023084 0.10592319659144869 PearsonRResult(statistic=np.float64(0.479281380233903), pvalue=np.float64(1.781530341794935e-15))
+------------------------------------------------------------
+Training on 889 samples, testing on 198.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.010475609011082082 0.07618212020491642 PearsonRResult(statistic=np.float64(0.31184813395243144), pvalue=np.float64(7.736640988058038e-06))
+------------------------------------------------------------
+Training on 902 samples, testing on 185.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.00926856943746122 0.07647392982487902 PearsonRResult(statistic=np.float64(0.23158107418355908), pvalue=np.float64(0.0015153732150525706))
+------------------------------------------------------------
+Training on 926 samples, testing on 161.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.007848487728029829 0.0649339027197642 PearsonRResult(statistic=np.float64(0.48339414385847634), pvalue=np.float64(8.296201196242557e-11))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.011873877984013839 0.08065592535639658 0.3783007271071931 0.0003046219888921924
+============================================================
+50% masking
+============================================================
+------------------------------------------------------------
+RestingHeartRate
+------------------------------------------------------------
+Training on 772 samples, testing on 293.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.05259078093480694 0.19857594231832285 PearsonRResult(statistic=np.float64(-0.08909808976778937), pvalue=np.float64(0.12810379950105458))
+------------------------------------------------------------
+Training on 826 samples, testing on 239.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.05683066177897046 0.19341626501482403 PearsonRResult(statistic=np.float64(0.17712534516566894), pvalue=np.float64(0.006038589430565583))
+------------------------------------------------------------
+Training on 870 samples, testing on 195.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.028226625056833304 0.14121809963487153 PearsonRResult(statistic=np.float64(-0.038041216671412297), pvalue=np.float64(0.5975045179592728))
+------------------------------------------------------------
+Training on 884 samples, testing on 181.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.036320289490682695 0.16669204703059348 PearsonRResult(statistic=np.float64(-0.1584689081238791), pvalue=np.float64(0.033114463159010135))
+------------------------------------------------------------
+Training on 908 samples, testing on 157.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.03961820259935617 0.17218884184524177 PearsonRResult(statistic=np.float64(-0.1040515019881178), pvalue=np.float64(0.1946771953226535))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.04271731197212991 0.17441823916877072 -0.04250687427710592 0.19188771307451133
+------------------------------------------------------------
+NumberSteps
+------------------------------------------------------------
+Training on 784 samples, testing on 294.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.029796795005784457 0.13610436201837756 PearsonRResult(statistic=np.float64(0.1199076862219141), pvalue=np.float64(0.0399129561965674))
+------------------------------------------------------------
+Training on 836 samples, testing on 242.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.021368160793233913 0.11723649830558514 PearsonRResult(statistic=np.float64(0.03333294722773792), pvalue=np.float64(0.6058560874280756))
+------------------------------------------------------------
+Training on 880 samples, testing on 198.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.0284785776161689 0.1338717925359413 PearsonRResult(statistic=np.float64(0.015769576218170867), pvalue=np.float64(0.8254768166675467))
+------------------------------------------------------------
+Training on 894 samples, testing on 184.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.02161478888739916 0.12211061382935373 PearsonRResult(statistic=np.float64(0.23198873951302829), pvalue=np.float64(0.0015309773473346036))
+------------------------------------------------------------
+Training on 918 samples, testing on 160.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.030936034822350612 0.13617027261495313 PearsonRResult(statistic=np.float64(0.06501499633738059), pvalue=np.float64(0.4140436185458407))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.02643887142498741 0.12909870786084218 0.09320278910364636 0.377364091237073
+------------------------------------------------------------
+SleepMinutesAsleep
+------------------------------------------------------------
+Training on 789 samples, testing on 298.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      66,048
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 215,649
+Non-trainable params: 396,384
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      66,048
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 215,649
+Non-trainable params: 396,384
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      66,048
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 215,649
+Non-trainable params: 396,384
+======================================================================MSE | MAE | R: 0.010031271716640222 0.07953200966335752 PearsonRResult(statistic=np.float64(0.3718117225321444), pvalue=np.float64(3.340649956978614e-11))
+------------------------------------------------------------
+Training on 842 samples, testing on 245.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.022070731890540287 0.10513042869322742 PearsonRResult(statistic=np.float64(0.4818751113816206), pvalue=np.float64(1.1952934140342312e-15))
+------------------------------------------------------------
+Training on 889 samples, testing on 198.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.010140033580422187 0.07543426428854919 PearsonRResult(statistic=np.float64(0.33370380837201963), pvalue=np.float64(1.5526962902461618e-06))
+------------------------------------------------------------
+Training on 902 samples, testing on 185.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.009083367465366018 0.07686729608258878 PearsonRResult(statistic=np.float64(0.22184406097111523), pvalue=np.float64(0.002406459824898735))
+------------------------------------------------------------
+Training on 926 samples, testing on 161.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.009436977091289581 0.0723772928702663 PearsonRResult(statistic=np.float64(0.3499282872857583), pvalue=np.float64(5.359657412635005e-06))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.01215247634885166 0.08186825831959785 0.3518325981085316 0.0004826744424018622
+============================================================
+70% masking
+============================================================
+------------------------------------------------------------
+RestingHeartRate
+------------------------------------------------------------
+Training on 772 samples, testing on 293.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.05308227849347882 0.19937640961978667 PearsonRResult(statistic=np.float64(-0.11239658817533815), pvalue=np.float64(0.054632259599970125))
+------------------------------------------------------------
+Training on 826 samples, testing on 239.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.055794960708887634 0.1908537664007775 PearsonRResult(statistic=np.float64(0.10425939253967273), pvalue=np.float64(0.10789097653275449))
+------------------------------------------------------------
+Training on 870 samples, testing on 195.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.027490405991928667 0.13795327653742243 PearsonRResult(statistic=np.float64(-0.0026113347600747122), pvalue=np.float64(0.971098229724322))
+------------------------------------------------------------
+Training on 884 samples, testing on 181.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.036792791332578456 0.17184880791155382 PearsonRResult(statistic=np.float64(-0.17194259998235156), pvalue=np.float64(0.02064091182757267))
+------------------------------------------------------------
+Training on 908 samples, testing on 157.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.035133570484556946 0.16210957140426474 PearsonRResult(statistic=np.float64(-0.1335435769554095), pvalue=np.float64(0.09543453232437574))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.0416588014022861 0.17242836637476103 -0.06324694146670025 0.24993938200179905
+------------------------------------------------------------
+NumberSteps
+------------------------------------------------------------
+Training on 784 samples, testing on 294.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.03136772264475565 0.14001270947895966 PearsonRResult(statistic=np.float64(0.13247596136657558), pvalue=np.float64(0.023096484830573378))
+------------------------------------------------------------
+Training on 836 samples, testing on 242.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.021782376865867904 0.11633229585961535 PearsonRResult(statistic=np.float64(0.06423272162368471), pvalue=np.float64(0.31969686175661005))
+------------------------------------------------------------
+Training on 880 samples, testing on 198.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.029614601252450523 0.13719451415149536 PearsonRResult(statistic=np.float64(-0.08787075300660818), pvalue=np.float64(0.21832097651706103))
+------------------------------------------------------------
+Training on 894 samples, testing on 184.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.021374670274810794 0.1192333706919536 PearsonRResult(statistic=np.float64(0.17741965759480288), pvalue=np.float64(0.015979525980299676))
+------------------------------------------------------------
+Training on 918 samples, testing on 160.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.0352800437315072 0.14918671405455988 PearsonRResult(statistic=np.float64(-0.13560351489564645), pvalue=np.float64(0.08731740946502138))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.027883882953878412 0.13239192084731677 0.030130814536561707 0.13288225170991314
+------------------------------------------------------------
+SleepMinutesAsleep
+------------------------------------------------------------
+Training on 789 samples, testing on 298.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      66,048
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 215,649
+Non-trainable params: 396,384
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      66,048
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 215,649
+Non-trainable params: 396,384
+======================================================================
+======================================================================
+Layer (type:depth-idx)                        Param #
+======================================================================
+S4MAE                                         --
+├─ConvEncoder: 1-1                            --
+│    └─ModuleList: 2-1                        --
+│    │    └─BlockConv: 3-1                    (288)
+│    │    └─BlockConv: 3-2                    (6,336)
+│    │    └─BlockConv: 3-3                    (24,960)
+├─PatchMasking: 1-2                           --
+├─S4Model: 1-3                                --
+│    └─Linear: 2-2                            (16,512)
+│    └─ModuleList: 2-3                        --
+│    │    └─S4Block: 3-4                      (66,048)
+│    │    └─S4Block: 3-5                      (66,048)
+│    │    └─S4Block: 3-6                      (66,048)
+│    │    └─S4Block: 3-7                      (66,048)
+│    │    └─S4Block: 3-8                      (66,048)
+│    │    └─S4Block: 3-9                      66,048
+│    └─ModuleList: 2-4                        --
+│    │    └─LayerNorm: 3-10                   (256)
+│    │    └─LayerNorm: 3-11                   (256)
+│    │    └─LayerNorm: 3-12                   (256)
+│    │    └─LayerNorm: 3-13                   (256)
+│    │    └─LayerNorm: 3-14                   (256)
+│    │    └─LayerNorm: 3-15                   (256)
+│    └─ModuleList: 2-5                        --
+│    │    └─Dropout1d: 3-16                   --
+│    │    └─Dropout1d: 3-17                   --
+│    │    └─Dropout1d: 3-18                   --
+│    │    └─Dropout1d: 3-19                   --
+│    │    └─Dropout1d: 3-20                   --
+│    │    └─Dropout1d: 3-21                   --
+│    └─Linear: 2-6                            (16,512)
+├─CNN: 1-4                                    --
+│    └─Conv1d: 2-7                            69,248
+│    └─ReLU: 2-8                              --
+│    └─AvgPool1d: 2-9                         --
+│    └─Conv1d: 2-10                           49,280
+│    └─ReLU: 2-11                             --
+│    └─AvgPool1d: 2-12                        --
+│    └─Conv1d: 2-13                           24,640
+│    └─ReLU: 2-14                             --
+│    └─AvgPool1d: 2-15                        --
+│    └─Conv1d: 2-16                           6,176
+│    └─ReLU: 2-17                             --
+│    └─AvgPool1d: 2-18                        --
+│    └─Linear: 2-19                           257
+======================================================================
+Total params: 612,033
+Trainable params: 215,649
+Non-trainable params: 396,384
+======================================================================MSE | MAE | R: 0.00871124915693495 0.07422714645300794 PearsonRResult(statistic=np.float64(0.4725589927980954), pvalue=np.float64(5.533979795406955e-18))
+------------------------------------------------------------
+Training on 842 samples, testing on 245.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.021148137361310913 0.10346167283129257 PearsonRResult(statistic=np.float64(0.5318342997723094), pvalue=np.float64(2.724658004426944e-19))
+------------------------------------------------------------
+Training on 889 samples, testing on 198.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.009532215207171778 0.07150622649708016 PearsonRResult(statistic=np.float64(0.3999766041188563), pvalue=np.float64(5.280768710476772e-09))
+------------------------------------------------------------
+Training on 902 samples, testing on 185.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.009156693342915566 0.07712616725599342 PearsonRResult(statistic=np.float64(0.2804290911719145), pvalue=np.float64(0.00011051573691858549))
+------------------------------------------------------------
+Training on 926 samples, testing on 161.
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+Constructing S4 (H, N, L) = (128, 32, None)
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+S4: Initializing kernel to length 180
+MSE | MAE | R: 0.007952217921921495 0.0654812540967841 PearsonRResult(statistic=np.float64(0.5245273131001512), pvalue=np.float64(9.218963538348078e-13))
+------------------------------------------------------------
+Average MSE | MAE | R | p: 0.01130010259805094 0.07836049342683164 0.44186526019226535 2.2104203721839623e-05
+

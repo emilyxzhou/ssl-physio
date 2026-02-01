@@ -10,7 +10,7 @@ paths = [
         USER_ROOT, "ssl-physio", "src", "dataloaders"
     ),
     os.path.join(
-        USER_ROOT, "ssl-physio", "src", "s4-models"
+        USER_ROOT, "ssl-physio", "src", "s4_models"
     ),
     os.path.join(
         USER_ROOT, "ssl-physio", "src", "trainers"
@@ -23,14 +23,11 @@ physio_data_path = os.path.join(
 )
 sys.path.append(physio_data_path)
 
+import copy
 import json
 import logging
 import math
 import numpy as np
-import pprint
-import random
-import signal
-import time
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -46,21 +43,23 @@ from pathlib import Path
 from scipy.stats import pearsonr, ConstantInputWarning
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, f1_score, recall_score, roc_auc_score, \
     mean_squared_error, mean_absolute_error
+from sklearn.model_selection import GroupKFold
 from torch import optim
 from torch.utils.data import DataLoader
 from torchinfo import summary
 from tqdm import tqdm
 
-from tiles_dataloader import load_tiles_open, load_tiles_holdout, TilesDataset, generate_binary_labels, generate_continuous_labels_day
+from tiles_dataloader import get_data_from_splits, TilesDataset, generate_binary_labels, generate_continuous_labels_day
 
-from s4model import S4Model
+from s4_mae import S4MAE
+from utils import get_kfold_loaders
 
 # Define logging console
 import logging
 logging.basicConfig(
-    format="%(asctime)s %(levelname)-3s ==> %(message)s", 
+    format="%(message)s", 
     level=logging.INFO, 
-    datefmt="%Y-%m-%d %H:%M:%S"
+    # datefmt="%Y-%m-%d %H:%M:%S"
 )
 
 os.environ["S4_FAST_CAUCHY"] = "0"
@@ -185,103 +184,98 @@ if __name__ == "__main__":
     scale = "mean"
     window_size = 15    # minutes
     label_types = [
-        constants.Labels.HR,
-        constants.Labels.SDNN,
         constants.Labels.RHR,
         constants.Labels.STEPS,
         constants.Labels.SLEEP_MINS
     ]
-    num_folds = 5
-    for label_type in label_types:
-        logging.info(f"Label: {label_type} " + "-"*80)
 
-        subject_ids, dates, data = load_tiles_holdout(
-            signal_columns=signal_columns,
-            scale=scale, window_size=window_size, debug=debug
-        )
-        labels = generate_continuous_labels_day(subject_ids, dates, version="holdout", label_type=label_type, debug=debug)
-        if label_type == constants.Labels.STEPS:
-            labels[:] = [s / 1000 for s in labels]
+    subject_ids, dates, data = get_data_from_splits()
+    all_labels = generate_continuous_labels_day(subject_ids, dates, label_types=label_types)
+    
+    for label_type in label_types:
+        logging.info(f"Label: {label_type} " + "-"*60)
+
+        subject_ids_copy = copy.deepcopy(subject_ids)
+        data_copy = copy.deepcopy(data)
+
+        results = {
+            "splits": {
+                "train_size": [],
+                "test_size": [],
+                "train_labels": {
+                    0: [],
+                    1: []
+                },
+                "test_labels": {
+                    0: [],
+                    1: []
+                }
+            },
+            "train": {
+                "MSE": [],
+                "MAE": [],
+                "R": [],
+                "p": []
+            },
+            "test": {
+                "MSE": [],
+                "MAE": [],
+                "R": [],
+                "p": []
+            }
+        }
+
+        labels = all_labels[label_type]
+
         nan_indices = [i for i in range(len(labels)) if np.isnan(labels[i])]
         nan_indices.sort(reverse=True)
         for i in nan_indices:
-            subject_ids.pop(i)
-            data.pop(i)
+            subject_ids_copy.pop(i)
+            data_copy.pop(i)
             labels.pop(i)
 
-        # 5 folds, randomly sampling 700 samples as the training set and using the remaining as the test set
-        # subject_id_folds, data_folds, labels_folds = split_k_fold(subject_ids, data, labels, num_folds=num_folds, seed=37)
-        results = {
-                "splits": {
-                    "train_size": [],
-                    "test_size": [],
-                },
-                "train": {
-                    "MSE": [],
-                    "MAE": [],
-                    "R": [],
-                    "p": []
-                },
-                "test": {
-                    "MSE": [],
-                    "MAE": [],
-                    "R": [],
-                    "p": []
-                }
-            }
+        subject_ids_copy = np.asarray(subject_ids_copy)
+        data_copy = np.asarray(data_copy)
+        labels = np.asarray(labels)
 
-        for i in range(num_folds):
-            logging.info(f"Fold {i+1}")
-            train_subject_ids, train_data, train_labels = list(), list(), list()
-            test_subject_ids, test_data, test_labels = list(), list(), list()
-            # for j in range(num_folds):
-            #     if j != i: 
-            #         train_subject_ids.extend(subject_id_folds[j])
-            #         train_data.extend(data_folds[j])
-            #         train_labels.extend(labels_folds[j])
-            #     else: 
-            #         test_subject_ids.extend(subject_id_folds[j])
-            #         test_data.extend(data_folds[j])
-            #         test_labels.extend(labels_folds[j])
+        group_kfold = GroupKFold(n_splits=5, shuffle=True, random_state=42)
 
-            random.seed(42*i)
-            num_train_samples = int(len(subject_ids) * 0.09)
-            logging.info(f"# training samples: {num_train_samples}")
-            logging.info(f"# testing samples: {len(subject_ids) - num_train_samples}")
-            train_indices = random.sample(list(range(len(subject_ids))), num_train_samples)
-            for idx in range(len(subject_ids)):
-                if idx in train_indices:
-                    train_subject_ids.append(subject_ids[idx])
-                    train_data.append(data[idx])
-                    train_labels.append(labels[idx])
-                else:
-                    test_subject_ids.append(subject_ids[idx])
-                    test_data.append(data[idx])
-                    test_labels.append(labels[idx])
+        for i, (train_index, test_index) in enumerate(group_kfold.split(data_copy, labels, subject_ids_copy)):
+            train_subject_ids = subject_ids_copy[train_index].tolist()
+            train_data = []
+            for idx in train_index: train_data.append(data_copy[idx])
+            train_labels = labels[train_index]
+            train_labels = train_labels.tolist()
 
-            tiles_holdout_train = TilesDataset(
-                subject_ids=train_subject_ids, data=train_data, labels=train_labels
-            )
-            train_dataloader = DataLoader(tiles_holdout_train, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
+            test_subject_ids = subject_ids_copy[test_index].tolist()
+            test_data = []
+            for idx in test_index: test_data.append(data_copy[idx])
+            test_labels = labels[test_index]
+            test_labels = test_labels.tolist()
 
-            tiles_holdout_test = TilesDataset(
-                subject_ids=test_subject_ids, data=test_data, labels=test_labels
-            )
-            test_dataloader = DataLoader(tiles_holdout_test, batch_size=batch_size, num_workers=0, shuffle=False)
+            train_dataset = TilesDataset(train_subject_ids, train_data, train_labels)
+            train_dataloader = DataLoader(train_dataset, batch_size=batch_size, num_workers=0, shuffle=True, generator=torch.Generator(device=device))
+            test_dataset = TilesDataset(test_subject_ids, test_data, test_labels)
+            test_dataloader = DataLoader(test_dataset, batch_size=batch_size, num_workers=0, shuffle=False, generator=torch.Generator(device=device))
 
-            results["splits"]["train_size"].append(len(train_subject_ids))
-            results["splits"]["test_size"].append(len(test_subject_ids))
+            results["splits"]["train_size"].append(len(train_labels))
+            results["splits"]["test_size"].append(len(test_labels))
+            logging.info(f"Training on {len(train_labels)} samples, testing on {len(test_labels)}.")
 
             # Load model ------------------------------------------------------------------------------------------------
-            model = S4Model(
-                d_input=1440,
-                d_output=1,
-                d_model=128,
-                n_layers=6,
-                dropout=0.3,
-                prenorm=False,
-                pooling=True
-            )
+            # Load model ------------------------------------------------------------------------------------------------
+            config_path = os.path.join(SSL_ROOT, "config", "s4_config.json")
+            config = json.load(open(config_path, "r"))
+            training_params = config["training_params"]
+            model_params = config["model_params"]
+            model_params["enc_hidden_dims"] = None
+            model_params["dec_hidden_dims"] = None
+            model_params["mask_ratio"] = 0.0
+            model = S4MAE(
+                **model_params,
+                classification="lin_probe",
+                device=device
+            ).to(device)
             if i == 0: summary(model)
 
             optimizer = optim.AdamW(

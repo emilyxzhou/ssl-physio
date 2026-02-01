@@ -1,3 +1,4 @@
+import json
 import numpy as np
 import torch
 import random
@@ -5,6 +6,9 @@ import random
 from sklearn.model_selection import KFold
 from sklearn.model_selection import train_test_split, KFold
 from torch.utils.data import DataLoader, Subset
+
+from mamba.mamba_mae import MambaMAE
+from s4_models.s4_mae import S4MAE
 
 
 def split_k_fold(subject_ids, data, labels, num_folds=5, seed=37):
@@ -106,3 +110,44 @@ def normalize_list(x):
     min_x = min(x)
     max_x = max(x)
     return [(i - min_x) / (max_x - min_x) for i in x]
+
+
+def load_model(checkpoint_path, config_path, model_type, mask_ratio=None, device="cuda:0"):
+    # Read arguments -----------------------------------------------------------------------------------------------
+    config = json.load(open(config_path, "r"))
+    model_params = config["model_params"]
+    if model_params["dec_hidden_dims"] is not None: model_params["d_model"] = model_params["dec_hidden_dims"][0]
+    model_params["mask_ratio"] = 0.0
+
+    checkpoint = torch.load(checkpoint_path, map_location="cpu")
+
+    if model_type == "s4":
+        model = S4MAE(
+            **model_params,
+            classification="lin_probe"
+        ).to(device)
+    elif model_type == "mamba":
+        model = MambaMAE(
+            **model_params,
+            classification="lin_probe"
+        ).to(device)
+
+    # Load weights
+    if "model" in checkpoint:
+        model.load_state_dict(checkpoint["model"], strict=False)
+    else:
+        model.load_state_dict(checkpoint, strict=False)
+    model.eval()
+    return model
+
+
+def freeze_weights(model):
+    """Freeze all model weights for inference."""
+    for param in model.parameters():
+        param.requires_grad = False
+    model.eval()
+    return model
+
+
+if __name__ == "__main__":
+    pass

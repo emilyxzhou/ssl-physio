@@ -18,9 +18,9 @@ os.environ["S4_BACKEND"] = "keops"   # or "keops" if you installed pykeops
 # Define logging console
 import logging
 logging.basicConfig(
-    format="%(asctime)s %(levelname)-3s ==> %(message)s", 
+    format="%(message)s", 
     level=logging.INFO, 
-    datefmt="%Y-%m-%d %H:%M:%S"
+    # datefmt="%Y-%m-%d %H:%M:%S"
 )
 
 
@@ -57,14 +57,13 @@ class Trainer:
         device="cuda", debug=False
     ):
         print("Starting training...")
+        model.train()
         model = model.to(device)
         if resume_checkpoint:
             model = self.resume_checkpoint(resume_checkpoint, model)
 
         for epoch in range(self.start_epoch, self.n_epochs):
             logging.info(f"Epoch {epoch+1}/{self.n_epochs}")
-
-            model.train()
             total_loss = 0.0
             total_samples = 0
 

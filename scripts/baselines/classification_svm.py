@@ -10,7 +10,7 @@ paths = [
         USER_ROOT, "ssl-physio", "src", "dataloaders"
     ),
     os.path.join(
-        USER_ROOT, "ssl-physio", "src", "s4-models"
+        USER_ROOT, "ssl-physio", "src", "s4_models"
     ),
     os.path.join(
         USER_ROOT, "ssl-physio", "src", "trainers"
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     ]
     num_folds = 5
     for label_type in label_types:
-        logging.info(f"Label: {label_type} " + "-"*80)
+        logging.info(f"Label: {label_type} " + "-"*60)
 
         results = {
             "splits": {

@@ -1,0 +1,544 @@
+nohup: ignoring input
+CUDA extension for structured kernels (Cauchy and Vandermonde multiplication) not found. Install by going to extensions/kernels/ and running `python setup.py install`, for improved speed and memory efficiency. Note that the kernel changed for state-spaces 4.0 and must be recompiled.
+Falling back on slow Cauchy and Vandermonde kernel. Install at least one of pykeops or the CUDA extension for better speed and memory efficiency.
+2026-01-31 21:04:36 INFO ==> Label: age ------------------------------------------------------------
+2026-01-31 21:04:48 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:04:48 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:04:48 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:04:48 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:04:48 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:04:49 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:04:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:04:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:04:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:04:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:04:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:04:49 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:09:27 INFO ==> ACC | bACC | F1 | AUC: 0.5333333333333333 0.5005692599620494 0.49996279485080736 0.48834914611005686
+2026-01-31 21:09:27 INFO ==> ------------------------------------------------------------
+2026-01-31 21:09:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:09:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:09:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:09:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:09:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:09:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:09:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:09:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:09:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:09:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:09:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:09:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:14:05 INFO ==> ACC | bACC | F1 | AUC: 0.6046511627906976 0.5221674876847291 0.520655737704918 0.6308374384236453
+2026-01-31 21:14:05 INFO ==> ------------------------------------------------------------
+2026-01-31 21:14:05 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:14:05 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:14:05 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:14:05 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:14:05 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:14:05 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:14:05 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:14:05 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:14:05 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:14:05 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:14:05 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:14:05 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:18:39 INFO ==> ACC | bACC | F1 | AUC: 0.5625 0.5154703674212262 0.5084019427057632 0.5946991241041975
+2026-01-31 21:18:39 INFO ==> ------------------------------------------------------------
+2026-01-31 21:18:39 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:18:39 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:18:39 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:18:39 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:18:39 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:18:39 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:18:39 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:18:39 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:18:39 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:18:39 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:18:39 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:18:39 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:23:04 INFO ==> ACC | bACC | F1 | AUC: 0.5625 0.4497747747747748 0.44718011624171267 0.4876126126126127
+2026-01-31 21:23:04 INFO ==> ------------------------------------------------------------
+2026-01-31 21:23:04 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:23:04 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:23:04 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:23:04 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:23:04 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:23:04 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:23:04 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:23:04 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:23:04 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:23:04 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:23:04 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:23:04 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:27:36 INFO ==> ACC | bACC | F1 | AUC: 0.5787037037037037 0.4980769230769231 0.49712180520377625 0.45064102564102565
+2026-01-31 21:27:36 INFO ==> ------------------------------------------------------------
+2026-01-31 21:27:36 INFO ==> Average ACC | bACC | F1 | AUC: 0.568337639965547 0.4972117625839405 0.4946644793413954 0.5304278693783077
+2026-01-31 21:27:36 INFO ==> Label: shift ------------------------------------------------------------
+2026-01-31 21:27:47 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:27:47 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:27:47 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:27:47 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:27:47 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:27:47 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:27:47 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:27:47 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:27:47 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:27:47 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:27:47 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:27:47 INFO ==> S4: Initializing kernel to length 1440
+Default device set to CUDA.
+Setting decoder to identity mapping.
+===============================================================================================
+Layer (type:depth-idx)                        Output Shape              Param #
+===============================================================================================
+S4MAE                                         [1, 1]                    --
+├─PatchMasking: 1-1                           [1, 2, 1440]              --
+├─Identity: 1-2                               [1, 2, 1440]              --
+├─S4Model: 1-3                                [1, 1440, 128]            --
+│    └─Linear: 2-1                            [1, 1440, 128]            384
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-1                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-2                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-3                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-4                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-5                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-6                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-7                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-8                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-9                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-10                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-11                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-12                   [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-13                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-14                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-15                   [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-16                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-17                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-18                   [1, 1440, 128]            256
+│    └─Linear: 2-20                           [1, 1440, 128]            16,512
+├─LogisticRegressionHead: 1-4                 [1, 1]                    --
+│    └─Linear: 2-21                           [1, 1]                    184,321
+===============================================================================================
+Total params: 599,041
+Trainable params: 599,041
+Non-trainable params: 0
+Total mult-adds (Units.MEGABYTES): 0.40
+===============================================================================================
+Input size (MB): 0.01
+Forward/backward pass size (MB): 38.34
+Params size (MB): 2.39
+Estimated Total Size (MB): 40.74
+===============================================================================================
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.
+===============================================================================================
+Layer (type:depth-idx)                        Output Shape              Param #
+===============================================================================================
+S4MAE                                         [1, 1]                    --
+├─PatchMasking: 1-1                           [1, 2, 1440]              --
+├─Identity: 1-2                               [1, 2, 1440]              --
+├─S4Model: 1-3                                [1, 1440, 128]            --
+│    └─Linear: 2-1                            [1, 1440, 128]            384
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-1                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-2                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-3                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-4                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-5                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-6                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-7                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-8                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-9                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-10                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-11                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-12                   [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-13                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-14                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-15                   [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-16                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-17                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-18                   [1, 1440, 128]            256
+│    └─Linear: 2-20                           [1, 1440, 128]            16,512
+├─LogisticRegressionHead: 1-4                 [1, 1]                    --
+│    └─Linear: 2-21                           [1, 1]                    184,321
+===============================================================================================
+Total params: 599,041
+Trainable params: 599,041
+Non-trainable params: 0
+Total mult-adds (Units.MEGABYTES): 0.40
+===============================================================================================
+Input size (MB): 0.01
+Forward/backward pass size (MB): 38.34
+Params size (MB): 2.39
+Estimated Total Size (MB): 40.74
+===============================================================================================2026-01-31 21:32:19 INFO ==> ACC | bACC | F1 | AUC: 0.9353233830845771 0.7339572192513368 0.7419259259259259 0.8475935828877005
+2026-01-31 21:32:19 INFO ==> ------------------------------------------------------------
+2026-01-31 21:32:19 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:32:19 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:32:19 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:32:19 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:32:19 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:32:19 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:32:19 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:32:19 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:32:19 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:32:19 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:32:19 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:32:19 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:36:52 INFO ==> ACC | bACC | F1 | AUC: 0.9279279279279279 0.8539473684210526 0.8539473684210526 0.9468749999999999
+2026-01-31 21:36:52 INFO ==> ------------------------------------------------------------
+2026-01-31 21:36:52 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:36:52 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:36:52 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:36:52 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:36:52 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:36:52 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:36:52 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:36:52 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:36:52 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:36:52 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:36:52 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:36:52 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:41:26 INFO ==> ACC | bACC | F1 | AUC: 0.9504950495049505 0.7004385964912281 0.7369791666666667 0.8763157894736842
+2026-01-31 21:41:26 INFO ==> ------------------------------------------------------------
+2026-01-31 21:41:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:41:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:41:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:41:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:41:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:41:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:41:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:41:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:41:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:41:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:41:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:41:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:45:42 INFO ==> ACC | bACC | F1 | AUC: 0.8286852589641435 0.7205882352941176 0.7446350408139122 0.8284592245989304
+2026-01-31 21:45:42 INFO ==> ------------------------------------------------------------
+2026-01-31 21:45:42 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:45:42 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:45:42 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:45:42 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:45:42 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:45:42 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:45:42 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:45:42 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:45:42 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:45:42 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:45:42 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:45:42 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:50:15 INFO ==> ACC | bACC | F1 | AUC: 0.9289099526066351 0.706390977443609 0.7534470670717457 0.8017543859649123
+2026-01-31 21:50:15 INFO ==> ------------------------------------------------------------
+2026-01-31 21:50:15 INFO ==> Average ACC | bACC | F1 | AUC: 0.9142683144176468 0.7430644793802689 0.7661869137798606 0.8601995965850454
+2026-01-31 21:50:15 INFO ==> Label: anxiety ------------------------------------------------------------
+2026-01-31 21:50:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:50:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:50:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:50:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:50:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:50:26 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:50:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:50:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:50:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:50:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:50:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:50:26 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:54:51 INFO ==> ACC | bACC | F1 | AUC: 0.6286919831223629 0.48684210526315785 0.4791208791208791 0.4637604111288322
+2026-01-31 21:54:51 INFO ==> ------------------------------------------------------------
+2026-01-31 21:54:51 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:54:51 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:54:52 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:54:52 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:54:52 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:54:52 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:54:52 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:54:52 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:54:52 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:54:52 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:54:52 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:54:52 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:59:27 INFO ==> ACC | bACC | F1 | AUC: 0.6059113300492611 0.490255376344086 0.48930817610062893 0.5435483870967741
+2026-01-31 21:59:27 INFO ==> ------------------------------------------------------------
+2026-01-31 21:59:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:59:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:59:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:59:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:59:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:59:27 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 21:59:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:59:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:59:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:59:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:59:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 21:59:27 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:04:00 INFO ==> ACC | bACC | F1 | AUC: 0.6568627450980392 0.513888888888889 0.5010482180293501 0.4996527777777778
+2026-01-31 22:04:00 INFO ==> ------------------------------------------------------------
+2026-01-31 22:04:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:04:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:04:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:04:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:04:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:04:00 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:04:00 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:04:00 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:04:00 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:04:00 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:04:00 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:04:00 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:08:15 INFO ==> ACC | bACC | F1 | AUC: 0.6141078838174274 0.4934789202305126 0.44872961605627565 0.5252502274795268
+2026-01-31 22:08:15 INFO ==> ------------------------------------------------------------
+2026-01-31 22:08:15 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:08:15 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:08:15 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:08:15 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:08:15 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:08:15 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:08:15 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:08:15 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:08:15 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:08:15 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:08:15 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:08:15 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:12:48 INFO ==> ACC | bACC | F1 | AUC: 0.6039603960396039 0.4775510204081632 0.47539280612907414 0.5369202226345083
+2026-01-31 22:12:48 INFO ==> ------------------------------------------------------------
+2026-01-31 22:12:48 INFO ==> Average ACC | bACC | F1 | AUC: 0.621906867625339 0.49240326222696174 0.47871993908724153 0.5138264052234838
+2026-01-31 22:12:48 INFO ==> Label: stress ------------------------------------------------------------
+2026-01-31 22:12:58 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:12:58 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:12:58 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:12:58 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:12:58 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:12:58 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:12:58 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:12:58 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:12:58 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:12:58 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:12:58 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:12:58 INFO ==> S4: Initializing kernel to length 1440
+
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.
+===============================================================================================
+Layer (type:depth-idx)                        Output Shape              Param #
+===============================================================================================
+S4MAE                                         [1, 1]                    --
+├─PatchMasking: 1-1                           [1, 2, 1440]              --
+├─Identity: 1-2                               [1, 2, 1440]              --
+├─S4Model: 1-3                                [1, 1440, 128]            --
+│    └─Linear: 2-1                            [1, 1440, 128]            384
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-1                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-2                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-3                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-4                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-5                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-6                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-7                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-8                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-9                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-10                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-11                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-12                   [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-13                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-14                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-15                   [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-16                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-17                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-18                   [1, 1440, 128]            256
+│    └─Linear: 2-20                           [1, 1440, 128]            16,512
+├─LogisticRegressionHead: 1-4                 [1, 1]                    --
+│    └─Linear: 2-21                           [1, 1]                    184,321
+===============================================================================================
+Total params: 599,041
+Trainable params: 599,041
+Non-trainable params: 0
+Total mult-adds (Units.MEGABYTES): 0.40
+===============================================================================================
+Input size (MB): 0.01
+Forward/backward pass size (MB): 38.34
+Params size (MB): 2.39
+Estimated Total Size (MB): 40.74
+===============================================================================================
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.
+===============================================================================================
+Layer (type:depth-idx)                        Output Shape              Param #
+===============================================================================================
+S4MAE                                         [1, 1]                    --
+├─PatchMasking: 1-1                           [1, 2, 1440]              --
+├─Identity: 1-2                               [1, 2, 1440]              --
+├─S4Model: 1-3                                [1, 1440, 128]            --
+│    └─Linear: 2-1                            [1, 1440, 128]            384
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-1                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-2                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-3                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-4                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-5                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-6                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-7                      [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-8                    [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-9                    [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-10                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-11                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-12                   [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-13                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-14                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-15                   [1, 1440, 128]            256
+│    └─ModuleList: 2-17                       --                        (recursive)
+│    │    └─S4Block: 3-16                     [1, 128, 1440]            66,048
+│    └─ModuleList: 2-18                       --                        --
+│    │    └─Dropout1d: 3-17                   [1, 128, 1440]            --
+│    └─ModuleList: 2-19                       --                        (recursive)
+│    │    └─LayerNorm: 3-18                   [1, 1440, 128]            256
+│    └─Linear: 2-20                           [1, 1440, 128]            16,512
+├─LogisticRegressionHead: 1-4                 [1, 1]                    --
+│    └─Linear: 2-21                           [1, 1]                    184,321
+===============================================================================================
+Total params: 599,041
+Trainable params: 599,041
+Non-trainable params: 0
+Total mult-adds (Units.MEGABYTES): 0.40
+===============================================================================================
+Input size (MB): 0.01
+Forward/backward pass size (MB): 38.34
+Params size (MB): 2.39
+Estimated Total Size (MB): 40.74
+===============================================================================================2026-01-31 22:17:32 INFO ==> ACC | bACC | F1 | AUC: 0.5887445887445888 0.5033450704225352 0.5028882093102276 0.47341549295774643
+2026-01-31 22:17:32 INFO ==> ------------------------------------------------------------
+2026-01-31 22:17:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:17:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:17:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:17:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:17:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:17:32 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:17:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:17:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:17:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:17:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:17:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:17:32 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:22:18 INFO ==> ACC | bACC | F1 | AUC: 0.6517412935323383 0.5447080291970803 0.5401960784313726 0.5393476277372262
+2026-01-31 22:22:18 INFO ==> ------------------------------------------------------------
+2026-01-31 22:22:18 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:22:18 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:22:18 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:22:18 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:22:18 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:22:18 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:22:18 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:22:18 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:22:18 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:22:18 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:22:18 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:22:18 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:26:47 INFO ==> ACC | bACC | F1 | AUC: 0.673469387755102 0.5839598997493735 0.586225095659058 0.6244181883279627
+2026-01-31 22:26:47 INFO ==> ------------------------------------------------------------
+2026-01-31 22:26:47 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:26:47 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:26:47 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:26:47 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:26:47 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:26:47 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:26:47 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:26:47 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:26:47 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:26:47 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:26:47 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:26:47 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:29:17 INFO ==> ACC | bACC | F1 | AUC: 0.691304347826087 0.539079822616408 0.5290555155010814 0.5693828529194382
+2026-01-31 22:29:17 INFO ==> ------------------------------------------------------------
+2026-01-31 22:29:17 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:29:17 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:29:17 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:29:17 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:29:17 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:29:17 INFO ==> Constructing S4 (H, N, L) = (128, 32, None)
+2026-01-31 22:29:17 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:29:17 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:29:17 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:29:17 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:29:17 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:29:17 INFO ==> S4: Initializing kernel to length 1440
+2026-01-31 22:31:46 INFO ==> ACC | bACC | F1 | AUC: 0.6069868995633187 0.46415752741774674 0.46159874608150475 0.5783649052841475
+2026-01-31 22:31:46 INFO ==> ------------------------------------------------------------
+2026-01-31 22:31:46 INFO ==> Average ACC | bACC | F1 | AUC: 0.642449303484287 0.5270500698806287 0.5239927289966488 0.5569858134453043
+
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.
+Setting decoder to identity mapping.

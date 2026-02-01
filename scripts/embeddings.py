@@ -10,7 +10,7 @@ paths = [
         USER_ROOT, "ssl-physio", "src", "mamba"
     ),
     os.path.join(
-        USER_ROOT, "ssl-physio", "src", "s4-models"
+        USER_ROOT, "ssl-physio", "src", "s4_models"
     ),
     os.path.join(
         USER_ROOT, "ssl-physio", "src", "trainers"
@@ -40,13 +40,13 @@ from data_reader import get_data_for_subject_list
 from mamba_mae import MambaMAE
 from preprocessing import apply_moving_average, impute_missing
 from s4_mae import S4MAE
-from tiles_dataloader import get_pretrain_eval_dataloaders
+from tiles_dataloader import get_data_from_splits
 
 # Define logging console
 logging.basicConfig(
-    format="%(asctime)s %(levelname)-3s ==> %(message)s", 
+    format="%(message)s", 
     level=logging.INFO, 
-    datefmt="%Y-%m-%d %H:%M:%S"
+    # datefmt="%Y-%m-%d %H:%M:%S"
 )
 
 os.environ["S4_FAST_CAUCHY"] = "0"
@@ -58,12 +58,11 @@ MODELS_BASE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction"
 
 SAVE_BASE_DIR = "/data1/emilyzho/tiles-2018-processed/tiles-test/embeddings"
 
-def load_model(checkpoint_path, config_path, model_type, mask_ratio=None):
+
+def load_model(checkpoint_path, model_params, model_type, mask_ratio=None):
     # Read arguments -----------------------------------------------------------------------------------------------
-    config = json.load(open(config_path, "r"))
-    model_params = config["model_params"]
     if model_params["dec_hidden_dims"] is not None: model_params["d_model"] = model_params["dec_hidden_dims"][0]
-    if mask_ratio is not None: model_params["mask_ratio"] = mask_ratio
+    model_params["mask_ratio"] = 0.0
 
     checkpoint = torch.load(checkpoint_path, map_location="cpu")
 
@@ -95,7 +94,7 @@ def freeze_weights(model):
     return model
 
 
-def extract_embeddings(model, data_list, device, batch_size=32):
+def extract_embeddings(model, data_list, device, batch_size=32, method="mean"):
     """
     Extract embeddings from the encoder.
     
@@ -134,8 +133,11 @@ def extract_embeddings(model, data_list, device, batch_size=32):
             conv_output = model.encoder(batch_tensor)  # (batch, 2, 1440) with Identity encoder
             seq_output = model.seq_model(conv_output.transpose(-1, -2))  # (batch, 1440, 128)
             
-            # Mean pool over sequence length to get single embedding per day
-            embedding = seq_output.mean(dim=1)  # (batch, 128)
+            # Pooling to get single embedding per day
+            if method == "mean": embedding = seq_output.mean(dim=1)                                   # (batch, 128)
+            elif method == "flatten": embedding = torch.flatten(seq_output, start_dim=1, end_dim=2)   # (batch, 128*1440)
+            elif method == "temporal": embedding = seq_output.mean(dim=2)                             # (batch, 1440)
+            elif method == "raw": embedding = seq_output                                              # (batch, 1440, 128)
             embeddings.append(embedding.cpu().numpy())
     
     return np.vstack(embeddings)  # (num_samples, 128)
@@ -321,70 +323,20 @@ if __name__ == "__main__":
     scale = "mean"
     window_size = 15    # minutes
 
-    splits = json.load(open('/data1/emilyzho/tiles-2018-processed/subject_splits.json', "r"))
-    subject_ids = []
-    dates = []
-    data = []
-
-    unique_subjects = splits["test"].keys()
-    dfs = get_data_for_subject_list(unique_subjects)
-    for data_df in dfs: 
-        id = data_df["ID"].iloc[0]
-        date = data_df["Date"].iloc[0]
-
-        try: df = data_df[signal_columns]
-        except Exception: continue
-
-        for col in signal_columns:
-            df.loc[:, col] = df[col].astype(float)
-
-        # Filtering out invalid days
-        nan_count = np.sum(np.isnan(np.array(df["bpm"], dtype=float)))
-        if nan_count/1440 > 0.2:
-            continue
-
-        # Get indices of NaN in HR array to remove from step count array
-        # nan_hr_rows = df[df["bpm"].isna()].index
-        # df.loc[nan_hr_rows, "StepCount"] = np.nan
-
-        # Perform imputation: linear interpolation on heart rate, step count
-        for col in signal_columns:
-            df.loc[:, col] = impute_missing(df, col, method="linear")
-            df.loc[:, col] = df[col].bfill()
-        df = df.bfill()
-
-        # Apply moving averagez
-        if window_size > 0:
-            for col in signal_columns:
-                df.loc[:, col] = apply_moving_average(df, col, window_size=window_size)
-
-        # Scale data according to `scale` parameter
-        if scale == "mean":
-            scaler = StandardScaler()
-            for col in signal_columns:
-                df.loc[:, col] = scaler.fit_transform(df[[col]])
-        elif scale == "median":
-            for col in signal_columns:
-                med = df[col].median()
-                q1 = np.nanpercentile(df[col], 25)
-                q3 = np.nanpercentile(df[col], 75)
-                iqr = q3 - q1
-
-                df.loc[:, col] = (df[col] - med) / (iqr + 1e-5)
-
-        df = df.to_numpy()
-
-        subject_ids.append(id)
-        dates.append(date)
-        data.append(df)
+    subject_ids, dates, data = get_data_from_splits("test")
 
     # Report data statistics
     stats = report_data_statistics(subject_ids, dates, data)
 
     # Process each model ------------------------------------------------------------------------------------------
+    method = "mean"
     for model_type in model_types:
         for mask_pct in mask_ratios:
             config_path = f"{USER_ROOT}/ssl-physio/config/{model_type}_config.json"
+            config = json.load(open(config_path, "r"))
+            model_params = config["model_params"]
+            if model_params["enc_hidden_dims"] is not None: enc_type = "_cnn"
+            else: enc_type = ""
             checkpoint_path = os.path.join(MODELS_BASE_PATH, f"{model_type}-mae_{mask_pct}.pt")
             mask_ratio = mask_pct / 100.0
             
@@ -395,21 +347,21 @@ if __name__ == "__main__":
             # Load model
             print(f"\nLoading model from: {checkpoint_path}")
             model = load_model(
-                checkpoint_path, config_path, model_type, mask_ratio=mask_ratio
+                checkpoint_path, model_params, model_type, mask_ratio=mask_ratio
             )
             model = freeze_weights(model)
             print("Model loaded and frozen.")
 
             # Extract embeddings
             print("\nExtracting embeddings...")
-            embeddings = extract_embeddings(model, data, device, batch_size=batch_size)
+            embeddings = extract_embeddings(model, data, device, batch_size=batch_size, method=method)
             
             print(f"\nEmbeddings extracted:")
             print(f"  Shape: {embeddings.shape}")
             print(f"  Memory: {embeddings.nbytes / 1024 / 1024:.2f} MB")
 
             # Save to subfolder
-            save_dir = os.path.join(SAVE_BASE_DIR, model_type, f"masking_{mask_pct}")
+            save_dir = os.path.join(SAVE_BASE_DIR, model_type, f"masking_{mask_pct}_{method}{enc_type}")
             print(f"\nSaving to: {save_dir}")
             save_embeddings(embeddings, subject_ids, dates, save_dir, mask_pct)
             
