@@ -83,15 +83,15 @@ def organize_data_by_subject(embeddings, index, labels_dict, min_days_per_subjec
     Organize embeddings and all 5 targets by subject.
     
     Args:
-        embeddings: np.ndarray of shape (N, 128)
+        embeddings: np.ndarray of shape (N, 180, 128) - minute-level embeddings
         index: list of dicts from index.json
         labels_dict: dict from load_labels
         min_days_per_subject: minimum days required
     
     Returns:
         subject_data: dict mapping user_id -> {
-            'embeddings': np.ndarray (num_days, 128),
-            'targets': np.ndarray (num_days, 5) [stress, anxiety, rhr, sleep, steps],
+            'embeddings': np.ndarray (num_days, 180, 128),
+            'targets': np.ndarray (num_days, 5) [anxiety, stress, steps, rhr, sleep],
             'dates': list of date strings
         }
     """
@@ -160,7 +160,7 @@ def sample_support_windows(subject_data, target_subject, input_days, output_days
         rng: numpy random generator for reproducibility
     
     Returns:
-        X_support: np.ndarray (num_samples, input_days, 128)
+        X_support: np.ndarray (num_samples, input_days, 180, 128)
         Y_support: np.ndarray (num_samples, output_days, 5)
     """
     if rng is None:
@@ -222,7 +222,7 @@ def create_query_windows(subject_data, target_subject, input_days, output_days, 
         stride: step between consecutive windows
     
     Returns:
-        X_query: np.ndarray (num_windows, input_days, 128)
+        X_query: np.ndarray (num_windows, input_days, 180, 128)
         Y_query: np.ndarray (num_windows, output_days, 5)
     """
     subj_emb = subject_data[target_subject]['embeddings']
