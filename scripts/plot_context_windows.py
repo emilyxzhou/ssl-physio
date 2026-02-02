@@ -174,20 +174,17 @@ def aggregate_results(results, metric_key):
     return aggregated
 
 
-def get_averaged_mse(results, avg_over="output_days"):
+def get_averaged_mse(results):
     """
-    Get MSE averaged across targets and optionally across input/output days.
+    Get MSE aggregated per (emb_config, input_days, output_days) combination.
     
-    Args:
-        results: Raw results dict
-        avg_over: "output_days" to average across forecast lengths,
-                  "input_days" to average across context lengths,
-                  "both" to get single value per embedding config
+    For each combination:
+    - Average MSE across the 3 regression targets (rhr, sleep, steps)
+    - Compute mean and SEM across seeds
     
     Returns:
-        dict: Aggregated MSE values
+        dict: aggregated[emb_config][input_days][output_days] = (mean, sem)
     """
-    # First, compute combined MSE (average of rhr, sleep, steps)
     aggregated = defaultdict(lambda: defaultdict(dict))
     
     for emb_config in results:
@@ -222,7 +219,7 @@ def plot_context_window_vs_mse(results, output_dir):
     Averages across all output_days and seeds.
     """
     setup_plot_style()
-    aggregated = get_averaged_mse(results, avg_over="output_days")
+    aggregated = get_averaged_mse(results)
     
     fig, ax = plt.subplots(figsize=(5.5, 4))
     
