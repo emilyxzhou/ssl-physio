@@ -592,6 +592,405 @@ def plot_per_target_comparison(results, output_dir):
 
 
 # ============================================================================
+# Plot 5: Seed Variability Analysis
+# ============================================================================
+
+def plot_seed_variability(results, output_dir):
+    """
+    Plot seed-to-seed variability to show how random subject selection affects results.
+    Creates multiple visualizations:
+    1. Box plot of MSE across seeds for each configuration
+    2. Coefficient of variation by configuration
+    3. Seed-wise scatter showing individual seed results
+    """
+    setup_plot_style()
+    
+    # Collect all seed MSEs per configuration
+    seed_data = defaultdict(lambda: defaultdict(list))  # config -> seed -> [mses]
+    config_all_mses = defaultdict(list)  # config -> [all mses across all conditions]
+    
+    for emb_config in results:
+        for in_days in results[emb_config]:
+            for out_days in results[emb_config][in_days]:
+                for seed, metrics in results[emb_config][in_days][out_days].items():
+                    target_mses = []
+                    for target in REGRESSION_TARGETS:
+                        key = f"{target}_mse_mean"
+                        if key in metrics:
+                            target_mses.append(metrics[key])
+                    if len(target_mses) == 3:
+                        avg_mse = np.mean(target_mses)
+                        seed_data[emb_config][seed].append(avg_mse)
+                        config_all_mses[emb_config].append(avg_mse)
+    
+    configs_to_plot = ["raw_data", "s4_masking_30", "s4_masking_70", 
+                       "mamba_masking_30", "mamba_masking_70"]
+    configs_present = [c for c in configs_to_plot if c in seed_data]
+    
+    # -------------------------------------------------------------------------
+    # Plot 5a: Box plot showing MSE distribution across seeds
+    # -------------------------------------------------------------------------
+    fig, ax = plt.subplots(figsize=(7, 4.5))
+    
+    box_data = []
+    box_labels = []
+    box_colors = []
+    
+    for emb_config in configs_present:
+        # Compute per-seed mean MSE (each seed has multiple conditions)
+        seed_means = []
+        for seed in SEEDS:
+            if seed in seed_data[emb_config] and seed_data[emb_config][seed]:
+                seed_means.append(np.mean(seed_data[emb_config][seed]))
+        if seed_means:
+            box_data.append(seed_means)
+            box_labels.append(EMBEDDING_CONFIGS[emb_config])
+            box_colors.append(COLORS[emb_config])
+    
+    if box_data:
+        bp = ax.boxplot(box_data, labels=box_labels, patch_artist=True, 
+                       widths=0.6, showfliers=True, notch=False)
+        
+        for patch, color in zip(bp['boxes'], box_colors):
+            patch.set_facecolor(color)
+            patch.set_alpha(0.7)
+        for whisker in bp['whiskers']:
+            whisker.set_color('#555555')
+        for cap in bp['caps']:
+            cap.set_color('#555555')
+        for median in bp['medians']:
+            median.set_color('#222222')
+            median.set_linewidth(2)
+        
+        # Overlay individual seed points
+        for i, (data, color) in enumerate(zip(box_data, box_colors)):
+            x_jitter = np.random.normal(i+1, 0.04, len(data))
+            ax.scatter(x_jitter, data, color=color, s=50, alpha=0.8, 
+                      edgecolor='white', linewidth=1, zorder=10)
+    
+    ax.set_ylabel("Mean MSE (averaged over conditions)")
+    ax.set_title("Seed Variability: MSE Distribution Across Random Seeds")
+    plt.xticks(rotation=15, ha='right')
+    
+    plt.tight_layout()
+    plt.savefig(output_dir / "pdf" / "seed_variability_boxplot.pdf")
+    plt.savefig(output_dir / "png" / "seed_variability_boxplot.png")
+    plt.close()
+    print("  Saved: seed_variability_boxplot")
+    
+    # -------------------------------------------------------------------------
+    # Plot 5b: Coefficient of Variation (CV) by configuration
+    # -------------------------------------------------------------------------
+    fig, ax = plt.subplots(figsize=(6, 4))
+    
+    cvs = []
+    cv_labels = []
+    cv_colors = []
+    
+    for emb_config in configs_present:
+        seed_means = []
+        for seed in SEEDS:
+            if seed in seed_data[emb_config] and seed_data[emb_config][seed]:
+                seed_means.append(np.mean(seed_data[emb_config][seed]))
+        if len(seed_means) >= 2:
+            cv = np.std(seed_means) / np.mean(seed_means) * 100  # CV as percentage
+            cvs.append(cv)
+            cv_labels.append(EMBEDDING_CONFIGS[emb_config])
+            cv_colors.append(COLORS[emb_config])
+    
+    if cvs:
+        x_pos = np.arange(len(cvs))
+        bars = ax.bar(x_pos, cvs, color=cv_colors, edgecolor='white', linewidth=1)
+        ax.set_xticks(x_pos)
+        ax.set_xticklabels(cv_labels, rotation=15, ha='right')
+        ax.set_ylabel("Coefficient of Variation (%)")
+        ax.set_title("Seed Variability: How Much Does Random Selection Matter?")
+        
+        # Add value labels on bars
+        for bar, cv in zip(bars, cvs):
+            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.3,
+                   f'{cv:.1f}%', ha='center', va='bottom', fontsize=9)
+    
+    plt.tight_layout()
+    plt.savefig(output_dir / "pdf" / "seed_variability_cv.pdf")
+    plt.savefig(output_dir / "png" / "seed_variability_cv.png")
+    plt.close()
+    print("  Saved: seed_variability_cv")
+    
+    # -------------------------------------------------------------------------
+    # Plot 5c: Seed-wise line plot showing consistency across seeds
+    # -------------------------------------------------------------------------
+    fig, ax = plt.subplots(figsize=(7, 4.5))
+    
+    for emb_config in configs_present:
+        seed_means = []
+        seed_ids = []
+        for seed in SEEDS:
+            if seed in seed_data[emb_config] and seed_data[emb_config][seed]:
+                seed_means.append(np.mean(seed_data[emb_config][seed]))
+                seed_ids.append(seed)
+        
+        if seed_means:
+            ax.plot(seed_ids, seed_means, 
+                   label=EMBEDDING_CONFIGS[emb_config],
+                   color=COLORS[emb_config],
+                   marker=MARKERS[emb_config],
+                   linestyle=LINE_STYLES[emb_config],
+                   markeredgecolor='white',
+                   markeredgewidth=0.8,
+                   linewidth=1.5,
+                   markersize=8)
+    
+    ax.set_xlabel("Seed")
+    ax.set_ylabel("Mean MSE")
+    ax.set_xticks(SEEDS)
+    ax.set_title("Seed-wise Comparison: Individual Random Seed Performance")
+    ax.legend(loc='upper right', frameon=True)
+    
+    plt.tight_layout()
+    plt.savefig(output_dir / "pdf" / "seed_variability_lineplot.pdf")
+    plt.savefig(output_dir / "png" / "seed_variability_lineplot.png")
+    plt.close()
+    print("  Saved: seed_variability_lineplot")
+    
+    # -------------------------------------------------------------------------
+    # Plot 5d: Variability by input/output days
+    # -------------------------------------------------------------------------
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+    
+    # Left: Variability by input days
+    ax = axes[0]
+    for emb_config in configs_present:
+        in_cvs = []
+        in_days_list = []
+        for in_days in INPUT_DAYS:
+            seed_vals = defaultdict(list)
+            for out_days in OUTPUT_DAYS:
+                if out_days in results[emb_config].get(in_days, {}):
+                    for seed, metrics in results[emb_config][in_days][out_days].items():
+                        target_mses = []
+                        for target in REGRESSION_TARGETS:
+                            key = f"{target}_mse_mean"
+                            if key in metrics:
+                                target_mses.append(metrics[key])
+                        if len(target_mses) == 3:
+                            seed_vals[seed].append(np.mean(target_mses))
+            
+            # Compute CV across seeds for this input_days
+            seed_means = [np.mean(v) for v in seed_vals.values() if v]
+            if len(seed_means) >= 2:
+                cv = np.std(seed_means) / np.mean(seed_means) * 100
+                in_cvs.append(cv)
+                in_days_list.append(in_days)
+        
+        if in_cvs:
+            ax.plot(in_days_list, in_cvs,
+                   label=EMBEDDING_CONFIGS[emb_config],
+                   color=COLORS[emb_config],
+                   marker=MARKERS[emb_config],
+                   linestyle=LINE_STYLES[emb_config],
+                   markeredgecolor='white',
+                   markeredgewidth=0.8)
+    
+    ax.set_xlabel("Context Window (days)")
+    ax.set_ylabel("Coefficient of Variation (%)")
+    ax.set_title("Variability by Context Length")
+    ax.set_xticks(INPUT_DAYS)
+    ax.legend(loc='best', frameon=True, fontsize=8)
+    
+    # Right: Variability by output days
+    ax = axes[1]
+    for emb_config in configs_present:
+        out_cvs = []
+        out_days_list = []
+        for out_days in OUTPUT_DAYS:
+            seed_vals = defaultdict(list)
+            for in_days in INPUT_DAYS:
+                if out_days in results[emb_config].get(in_days, {}):
+                    for seed, metrics in results[emb_config][in_days][out_days].items():
+                        target_mses = []
+                        for target in REGRESSION_TARGETS:
+                            key = f"{target}_mse_mean"
+                            if key in metrics:
+                                target_mses.append(metrics[key])
+                        if len(target_mses) == 3:
+                            seed_vals[seed].append(np.mean(target_mses))
+            
+            # Compute CV across seeds for this output_days
+            seed_means = [np.mean(v) for v in seed_vals.values() if v]
+            if len(seed_means) >= 2:
+                cv = np.std(seed_means) / np.mean(seed_means) * 100
+                out_cvs.append(cv)
+                out_days_list.append(out_days)
+        
+        if out_cvs:
+            ax.plot(out_days_list, out_cvs,
+                   label=EMBEDDING_CONFIGS[emb_config],
+                   color=COLORS[emb_config],
+                   marker=MARKERS[emb_config],
+                   linestyle=LINE_STYLES[emb_config],
+                   markeredgecolor='white',
+                   markeredgewidth=0.8)
+    
+    ax.set_xlabel("Forecast Horizon (days)")
+    ax.set_ylabel("Coefficient of Variation (%)")
+    ax.set_title("Variability by Forecast Length")
+    ax.set_xticks(OUTPUT_DAYS)
+    ax.legend(loc='best', frameon=True, fontsize=8)
+    
+    plt.tight_layout()
+    plt.savefig(output_dir / "pdf" / "seed_variability_by_days.pdf")
+    plt.savefig(output_dir / "png" / "seed_variability_by_days.png")
+    plt.close()
+    print("  Saved: seed_variability_by_days")
+    
+    # -------------------------------------------------------------------------
+    # Plot 5e: Distribution of seed MSEs by forecast day (box plots)
+    # -------------------------------------------------------------------------
+    fig, axes = plt.subplots(2, 3, figsize=(12, 8))
+    axes = axes.flatten()
+    
+    for idx, emb_config in enumerate(configs_present[:6]):  # Max 6 configs
+        ax = axes[idx]
+        
+        # Collect seed means for each forecast day
+        box_data = []
+        box_positions = []
+        
+        for out_days in OUTPUT_DAYS:
+            seed_means = []
+            for seed in SEEDS:
+                seed_mses = []
+                for in_days in INPUT_DAYS:
+                    if out_days in results[emb_config].get(in_days, {}):
+                        if seed in results[emb_config][in_days][out_days]:
+                            metrics = results[emb_config][in_days][out_days][seed]
+                            target_mses = []
+                            for target in REGRESSION_TARGETS:
+                                key = f"{target}_mse_mean"
+                                if key in metrics:
+                                    target_mses.append(metrics[key])
+                            if len(target_mses) == 3:
+                                seed_mses.append(np.mean(target_mses))
+                if seed_mses:
+                    seed_means.append(np.mean(seed_mses))
+            
+            if seed_means:
+                box_data.append(seed_means)
+                box_positions.append(out_days)
+        
+        if box_data:
+            bp = ax.boxplot(box_data, positions=box_positions, patch_artist=True,
+                           widths=0.6, showfliers=True)
+            
+            for patch in bp['boxes']:
+                patch.set_facecolor(COLORS[emb_config])
+                patch.set_alpha(0.7)
+            for whisker in bp['whiskers']:
+                whisker.set_color('#555555')
+            for cap in bp['caps']:
+                cap.set_color('#555555')
+            for median in bp['medians']:
+                median.set_color('#222222')
+                median.set_linewidth(2)
+            
+            # Overlay individual seed points
+            for i, (pos, data) in enumerate(zip(box_positions, box_data)):
+                x_jitter = np.random.normal(pos, 0.08, len(data))
+                ax.scatter(x_jitter, data, color=COLORS[emb_config], s=30, 
+                          alpha=0.8, edgecolor='white', linewidth=0.5, zorder=10)
+        
+        ax.set_xlabel("Forecast Horizon (days)")
+        ax.set_ylabel("MSE")
+        ax.set_title(EMBEDDING_CONFIGS[emb_config])
+        ax.set_xticks(OUTPUT_DAYS)
+    
+    # Hide unused subplots
+    for idx in range(len(configs_present), 6):
+        axes[idx].set_visible(False)
+    
+    plt.suptitle("Seed Distribution by Forecast Day", fontsize=12, fontweight='bold', y=1.02)
+    plt.tight_layout()
+    plt.savefig(output_dir / "pdf" / "seed_distribution_by_forecast.pdf", bbox_inches='tight')
+    plt.savefig(output_dir / "png" / "seed_distribution_by_forecast.png", bbox_inches='tight')
+    plt.close()
+    print("  Saved: seed_distribution_by_forecast")
+    
+    # -------------------------------------------------------------------------
+    # Plot 5f: Combined view - all configs on same forecast day plot
+    # -------------------------------------------------------------------------
+    fig, ax = plt.subplots(figsize=(10, 5))
+    
+    # For each forecast day, show grouped box plots for all configs
+    n_configs = len(configs_present)
+    width = 0.12
+    
+    for i, emb_config in enumerate(configs_present):
+        positions = []
+        box_data = []
+        
+        for out_days in OUTPUT_DAYS:
+            seed_means = []
+            for seed in SEEDS:
+                seed_mses = []
+                for in_days in INPUT_DAYS:
+                    if out_days in results[emb_config].get(in_days, {}):
+                        if seed in results[emb_config][in_days][out_days]:
+                            metrics = results[emb_config][in_days][out_days][seed]
+                            target_mses = []
+                            for target in REGRESSION_TARGETS:
+                                key = f"{target}_mse_mean"
+                                if key in metrics:
+                                    target_mses.append(metrics[key])
+                            if len(target_mses) == 3:
+                                seed_mses.append(np.mean(target_mses))
+                if seed_mses:
+                    seed_means.append(np.mean(seed_mses))
+            
+            if seed_means:
+                # Offset position for grouped box plots
+                offset = (i - n_configs/2 + 0.5) * width
+                positions.append(out_days + offset)
+                box_data.append(seed_means)
+        
+        if box_data:
+            bp = ax.boxplot(box_data, positions=positions, patch_artist=True,
+                           widths=width*0.8, showfliers=False)
+            
+            for patch in bp['boxes']:
+                patch.set_facecolor(COLORS[emb_config])
+                patch.set_alpha(0.8)
+                patch.set_edgecolor('white')
+            for whisker in bp['whiskers']:
+                whisker.set_color(COLORS[emb_config])
+                whisker.set_alpha(0.6)
+            for cap in bp['caps']:
+                cap.set_color(COLORS[emb_config])
+                cap.set_alpha(0.6)
+            for median in bp['medians']:
+                median.set_color('#222222')
+                median.set_linewidth(1.5)
+    
+    # Create legend manually
+    legend_patches = [plt.Rectangle((0,0), 1, 1, facecolor=COLORS[c], alpha=0.8, 
+                                     edgecolor='white', label=EMBEDDING_CONFIGS[c])
+                     for c in configs_present]
+    ax.legend(handles=legend_patches, loc='upper right', frameon=True)
+    
+    ax.set_xlabel("Forecast Horizon (days)")
+    ax.set_ylabel("MSE (distribution across seeds)")
+    ax.set_title("Seed Variability Across Forecast Days: All Configurations")
+    ax.set_xticks(OUTPUT_DAYS)
+    ax.set_xticklabels(OUTPUT_DAYS)
+    
+    plt.tight_layout()
+    plt.savefig(output_dir / "pdf" / "seed_distribution_forecast_combined.pdf")
+    plt.savefig(output_dir / "png" / "seed_distribution_forecast_combined.png")
+    plt.close()
+    print("  Saved: seed_distribution_forecast_combined")
+
+
+# ============================================================================
 # Main
 # ============================================================================
 
@@ -623,17 +1022,20 @@ def main():
     # Generate plots
     print("\nGenerating plots...")
     
-    print("\n[1/4] Context window vs MSE...")
+    print("\n[1/5] Context window vs MSE...")
     plot_context_window_vs_mse(results, OUTPUT_DIR)
     
-    print("\n[2/4] Forecast window vs MSE...")
+    print("\n[2/5] Forecast window vs MSE...")
     plot_forecast_window_vs_mse(results, OUTPUT_DIR)
     
-    print("\n[3/4] Heatmaps...")
+    print("\n[3/5] Heatmaps...")
     plot_heatmaps(results, OUTPUT_DIR)
     
-    print("\n[4/4] Per-target comparison...")
+    print("\n[4/5] Per-target comparison...")
     plot_per_target_comparison(results, OUTPUT_DIR)
+    
+    print("\n[5/5] Seed variability analysis...")
+    plot_seed_variability(results, OUTPUT_DIR)
     
     print("\n" + "="*60)
     print("All plots generated successfully!")
