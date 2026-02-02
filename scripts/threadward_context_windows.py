@@ -32,10 +32,10 @@ class ContextWindowsRunner(threadward.Threadward):
             SUCCESS_CONDITION="NO_ERROR_AND_VERIFY",
             OUTPUT_MODE="LOG_FILE_ONLY",
             NUM_WORKERS=10,  # MAML is more GPU-intensive
-            NUM_GPUS_PER_WORKER=0.1,
+            NUM_GPUS_PER_WORKER=0.2,
             NUM_CPUS_PER_WORKER=-1,
             AVOID_GPUS=None,
-            INCLUDE_GPUS=[1],
+            INCLUDE_GPUS=[0, 1],
             FAILURE_HANDLING="PRINT_FAILURE_AND_CONTINUE",
             TASK_FOLDER_LOCATION="VARIABLE_SUBFOLDER",
             EXISTING_FOLDER_HANDLING="VERIFY",
@@ -96,12 +96,12 @@ class ContextWindowsRunner(threadward.Threadward):
         embedding_configs = []
         embedding_nicknames = []
         
-        # S4 and Mamba with masking ratios
-        for model in ["s4", "mamba"]:
-            for ratio in ["masking_10", "masking_30", "masking_50", "masking_70"]:
-                config = f"{model}_{ratio}"
-                embedding_configs.append(config)
-                embedding_nicknames.append(config)
+        # # S4 and Mamba with masking ratios
+        # for model in ["s4", "mamba"]:
+        #     for ratio in ["masking_10", "masking_30", "masking_50", "masking_70"]:
+        #         config = f"{model}_{ratio}"
+        #         embedding_configs.append(config)
+        #         embedding_nicknames.append(config)
         
         # Raw data (no masking)
         embedding_configs.append("raw_data")
@@ -113,7 +113,8 @@ class ContextWindowsRunner(threadward.Threadward):
         
         # 3. Days in/out combinations
         input_days_options = [3, 5, 7]
-        output_days_options = [1, 2, 3, 4, 5, 6, 7]
+        # output_days_options = [1, 2, 3, 4, 5, 6, 7]
+        output_days_options = [6, 7]
         
         days_values = []
         days_nicknames = []

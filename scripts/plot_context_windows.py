@@ -20,15 +20,15 @@ import seaborn as sns
 # ============================================================================
 
 # Results directory (handle nested structure)
-RESULTS_BASE = Path("/data1/mjma/ssl-physio/context_windows_results/context_windows_results")
-OUTPUT_DIR = Path("/data1/mjma/ssl-physio/context_windows_plots")
+RESULTS_BASE = Path("/home/emilyzho/ssl-physio/context_windows_results")
+OUTPUT_DIR = Path("/home/emilyzho/ssl-physio/context_windows_plots")
 
 # Embedding configurations to plot
 EMBEDDING_CONFIGS = {
     "s4_masking_30": "S4 (30%)",
     "s4_masking_70": "S4 (70%)",
     "mamba_masking_30": "Mamba (30%)",
-    "mamba_masking_50": "Mamba (50%)",
+    "mamba_masking_70": "Mamba (70%)",
     "raw_data": "Raw Signal",
 }
 
@@ -55,7 +55,7 @@ COLORS = {
     "s4_masking_30": "#E74C3C",   # Coral red
     "s4_masking_70": "#C0392B",   # Dark red  
     "mamba_masking_30": "#3498DB", # Sky blue
-    "mamba_masking_50": "#2980B9", # Dark blue
+    "mamba_masking_70": "#2980B9", # Dark blue
 }
 
 MARKERS = {
@@ -63,7 +63,7 @@ MARKERS = {
     "s4_masking_30": "o",         # Circle
     "s4_masking_70": "^",         # Triangle up
     "mamba_masking_30": "D",      # Diamond
-    "mamba_masking_50": "v",      # Triangle down
+    "mamba_masking_70": "v",      # Triangle down
 }
 
 LINE_STYLES = {
@@ -71,7 +71,7 @@ LINE_STYLES = {
     "s4_masking_30": "-",
     "s4_masking_70": "--",
     "mamba_masking_30": "-",
-    "mamba_masking_50": "--",
+    "mamba_masking_70": "--",
 }
 
 # ============================================================================
@@ -226,7 +226,7 @@ def plot_context_window_vs_mse(results, output_dir):
     
     fig, ax = plt.subplots(figsize=(5.5, 4))
     
-    for emb_config in ["raw_data", "s4_masking_30", "s4_masking_70", "mamba_masking_30", "mamba_masking_50"]:
+    for emb_config in ["raw_data", "s4_masking_30", "s4_masking_70", "mamba_masking_30", "mamba_masking_70"]:
         if emb_config not in aggregated:
             continue
             
@@ -299,7 +299,7 @@ def plot_forecast_window_vs_mse(results, output_dir):
         },
         {
             "title": "Mamba Embeddings vs Raw Signal", 
-            "configs": ["raw_data", "mamba_masking_30", "mamba_masking_50"],
+            "configs": ["raw_data", "mamba_masking_30", "mamba_masking_70"],
             "filename": "forecast_window_vs_mse_mamba"
         }
     ]
@@ -468,7 +468,7 @@ def plot_heatmaps(results, output_dir):
     axes = axes.flatten()
     
     configs_to_plot = ["raw_data", "s4_masking_30", "s4_masking_70", 
-                       "mamba_masking_30", "mamba_masking_50"]
+                       "mamba_masking_30", "mamba_masking_70"]
     
     cmap = sns.color_palette("rocket_r", as_cmap=True)
     
@@ -555,7 +555,7 @@ def plot_per_target_comparison(results, output_dir):
     offsets = np.linspace(-2*width, 2*width, 5)
     
     configs_to_plot = ["raw_data", "s4_masking_30", "s4_masking_70", 
-                       "mamba_masking_30", "mamba_masking_50"]
+                       "mamba_masking_30", "mamba_masking_70"]
     
     for i, emb_config in enumerate(configs_to_plot):
         if emb_config not in target_data:
