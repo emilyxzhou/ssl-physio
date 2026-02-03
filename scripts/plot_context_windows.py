@@ -845,17 +845,14 @@ def plot_seed_variability(results, output_dir):
     print("  Saved: seed_variability_by_days")
     
     # -------------------------------------------------------------------------
-    # Plot 5e: Distribution of seed MSEs by forecast day (box plots)
+    # Plot 5e: Combined seed distribution by forecast day (line plot with error bars)
     # -------------------------------------------------------------------------
-    fig, axes = plt.subplots(2, 3, figsize=(12, 8))
-    axes = axes.flatten()
+    fig, ax = plt.subplots(figsize=(8, 5))
     
-    for idx, emb_config in enumerate(configs_present[:6]):  # Max 6 configs
-        ax = axes[idx]
-        
-        # Collect seed means for each forecast day
-        box_data = []
-        box_positions = []
+    for emb_config in configs_present:
+        means = []
+        stds = []
+        out_days_list = []
         
         for out_days in OUTPUT_DAYS:
             seed_means = []
@@ -875,119 +872,35 @@ def plot_seed_variability(results, output_dir):
                 if seed_mses:
                     seed_means.append(np.mean(seed_mses))
             
-            if seed_means:
-                box_data.append(seed_means)
-                box_positions.append(out_days)
+            if len(seed_means) >= 2:
+                means.append(np.mean(seed_means))
+                stds.append(np.std(seed_means))
+                out_days_list.append(out_days)
         
-        if box_data:
-            bp = ax.boxplot(box_data, positions=box_positions, patch_artist=True,
-                           widths=0.6, showfliers=True)
-            
-            for patch in bp['boxes']:
-                patch.set_facecolor(COLORS[emb_config])
-                patch.set_alpha(0.7)
-            for whisker in bp['whiskers']:
-                whisker.set_color('#555555')
-            for cap in bp['caps']:
-                cap.set_color('#555555')
-            for median in bp['medians']:
-                median.set_color('#222222')
-                median.set_linewidth(2)
-            
-            # Overlay individual seed points
-            for i, (pos, data) in enumerate(zip(box_positions, box_data)):
-                x_jitter = np.random.normal(pos, 0.08, len(data))
-                ax.scatter(x_jitter, data, color=COLORS[emb_config], s=30, 
-                          alpha=0.8, edgecolor='white', linewidth=0.5, zorder=10)
-        
-        ax.set_xlabel("Forecast Horizon (days)")
-        ax.set_ylabel("MSE")
-        ax.set_title(EMBEDDING_CONFIGS[emb_config])
-        ax.set_xticks(OUTPUT_DAYS)
-    
-    # Hide unused subplots
-    for idx in range(len(configs_present), 6):
-        axes[idx].set_visible(False)
-    
-    plt.suptitle("Seed Distribution by Forecast Day", fontsize=12, fontweight='bold', y=1.02)
-    plt.tight_layout()
-    plt.savefig(output_dir / "pdf" / "seed_distribution_by_forecast.pdf", bbox_inches='tight')
-    plt.savefig(output_dir / "png" / "seed_distribution_by_forecast.png", bbox_inches='tight')
-    plt.close()
-    print("  Saved: seed_distribution_by_forecast")
-    
-    # -------------------------------------------------------------------------
-    # Plot 5f: Combined view - all configs on same forecast day plot
-    # -------------------------------------------------------------------------
-    fig, ax = plt.subplots(figsize=(10, 5))
-    
-    # For each forecast day, show grouped box plots for all configs
-    n_configs = len(configs_present)
-    width = 0.12
-    
-    for i, emb_config in enumerate(configs_present):
-        positions = []
-        box_data = []
-        
-        for out_days in OUTPUT_DAYS:
-            seed_means = []
-            for seed in SEEDS:
-                seed_mses = []
-                for in_days in INPUT_DAYS:
-                    if out_days in results[emb_config].get(in_days, {}):
-                        if seed in results[emb_config][in_days][out_days]:
-                            metrics = results[emb_config][in_days][out_days][seed]
-                            target_mses = []
-                            for target in REGRESSION_TARGETS:
-                                key = f"{target}_mse_mean"
-                                if key in metrics:
-                                    target_mses.append(metrics[key])
-                            if len(target_mses) == 3:
-                                seed_mses.append(np.mean(target_mses))
-                if seed_mses:
-                    seed_means.append(np.mean(seed_mses))
-            
-            if seed_means:
-                # Offset position for grouped box plots
-                offset = (i - n_configs/2 + 0.5) * width
-                positions.append(out_days + offset)
-                box_data.append(seed_means)
-        
-        if box_data:
-            bp = ax.boxplot(box_data, positions=positions, patch_artist=True,
-                           widths=width*0.8, showfliers=False)
-            
-            for patch in bp['boxes']:
-                patch.set_facecolor(COLORS[emb_config])
-                patch.set_alpha(0.8)
-                patch.set_edgecolor('white')
-            for whisker in bp['whiskers']:
-                whisker.set_color(COLORS[emb_config])
-                whisker.set_alpha(0.6)
-            for cap in bp['caps']:
-                cap.set_color(COLORS[emb_config])
-                cap.set_alpha(0.6)
-            for median in bp['medians']:
-                median.set_color('#222222')
-                median.set_linewidth(1.5)
-    
-    # Create legend manually
-    legend_patches = [plt.Rectangle((0,0), 1, 1, facecolor=COLORS[c], alpha=0.8, 
-                                     edgecolor='white', label=EMBEDDING_CONFIGS[c])
-                     for c in configs_present]
-    ax.legend(handles=legend_patches, loc='upper right', frameon=True)
+        if means:
+            ax.errorbar(out_days_list, means, yerr=stds,
+                       label=EMBEDDING_CONFIGS[emb_config],
+                       color=COLORS[emb_config],
+                       marker=MARKERS[emb_config],
+                       linestyle=LINE_STYLES[emb_config],
+                       markeredgecolor='white',
+                       markeredgewidth=0.8,
+                       capsize=3,
+                       capthick=1.5,
+                       elinewidth=1.5)
     
     ax.set_xlabel("Forecast Horizon (days)")
-    ax.set_ylabel("MSE (distribution across seeds)")
-    ax.set_title("Seed Variability Across Forecast Days: All Configurations")
+    ax.set_ylabel("MSE (mean ± std across seeds)")
+    ax.set_title("Seed Variability by Forecast Day")
     ax.set_xticks(OUTPUT_DAYS)
-    ax.set_xticklabels(OUTPUT_DAYS)
+    ax.legend(loc='best', frameon=True)
+    ax.grid(True, alpha=0.3)
     
     plt.tight_layout()
-    plt.savefig(output_dir / "pdf" / "seed_distribution_forecast_combined.pdf")
-    plt.savefig(output_dir / "png" / "seed_distribution_forecast_combined.png")
+    plt.savefig(output_dir / "pdf" / "seed_distribution_by_forecast.pdf")
+    plt.savefig(output_dir / "png" / "seed_distribution_by_forecast.png")
     plt.close()
-    print("  Saved: seed_distribution_forecast_combined")
+    print("  Saved: seed_distribution_by_forecast")
 
 
 # ============================================================================
