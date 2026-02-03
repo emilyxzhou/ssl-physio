@@ -83,6 +83,51 @@ def freeze_weights(model):
     return model
 
 
+def plot_input(data, mask, mask_pct):
+    base_time = datetime.datetime(2024, 1, 1)
+    time_axis = [base_time + datetime.timedelta(minutes=i) for i in range(1440)]
+
+    # Initialize stacked subplots
+    fig, axes = plt.subplots(2, 1, figsize=(12, 8), sharex=True)
+
+    labels = ['Step Count', 'Heart Rate']
+
+    for i, ax in enumerate(axes):
+        ax.plot(time_axis, data[i], color='navy', alpha=1, label='Original', linewidth=1.5)
+        
+        masked_indices = np.where(mask[i] == 0)[0]
+        if len(masked_indices) > 0:
+            change_points = np.where(np.diff(masked_indices) > 1)[0]
+            starts = np.insert(change_points + 1, 0, 0)
+            ends = np.append(change_points, len(masked_indices) - 1)
+            
+            for s, e in zip(starts, ends):
+                ax.axvspan(time_axis[masked_indices[s]], time_axis[masked_indices[e]], 
+                        color='gray', alpha=0.15, label='Masked' if s == 1 else "")
+
+        ax.set_ylabel(labels[i], fontsize=10, fontweight='bold')
+        
+        ax.set_yticks([])
+        ax.set_yticklabels([])
+        ax.tick_params(axis='y', left=False)
+        
+        if i == 1:
+            ax.set_xlabel('Time (HH:MM)')
+            ax.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
+            ax.xaxis.set_major_locator(mdates.HourLocator(interval=2))
+        
+        ax.legend(loc='upper right', frameon=True, fontsize='small')
+        ax.spines['left'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        ax.spines['top'].set_visible(False)
+
+    plt.suptitle(f'Masked Input ({mask_pct}% masking)', fontsize=14)
+
+    plt.tight_layout()
+    save_path = f"/home/emilyzho/ssl-physio/plots/reconstruction/raw_data_{mask_pct}.png"
+    plt.savefig(save_path, dpi=300, bbox_inches='tight', pad_inches=0.2)
+
+
 def plot_recon(data, mask, reconstruction, model_type, mask_pct):
     base_time = datetime.datetime(2024, 1, 1)
     time_axis = [base_time + datetime.timedelta(minutes=i) for i in range(1440)]
@@ -95,11 +140,11 @@ def plot_recon(data, mask, reconstruction, model_type, mask_pct):
 
     for i, ax in enumerate(axes):
         # 1. Plot Ground Truth and Reconstruction
-        ax.plot(time_axis, data[i], color='black', alpha=0.3, label='Original', linewidth=1)
+        ax.plot(time_axis, data[i], color='navy', alpha=0.3, label='Original', linewidth=1)
         ax.plot(time_axis, reconstruction[i], color=colors[i], label='Reconstructed', linewidth=1.5)
         
         # 2. Highlight Masked Regions
-        masked_indices = np.where(mask[i] == 1)[0]
+        masked_indices = np.where(mask[i] == 0)[0]
         if len(masked_indices) > 0:
             change_points = np.where(np.diff(masked_indices) > 1)[0]
             starts = np.insert(change_points + 1, 0, 0)
@@ -159,6 +204,7 @@ if __name__ == "__main__":
         'Date': dates,
         'Data': data
     })
+    random.seed(12)
     test_subject = random.choice(subject_ids)
     test_date = random.choice(
         data_df.loc[(data_df['ID'] == test_subject), 'Date'].tolist()
@@ -166,7 +212,7 @@ if __name__ == "__main__":
 
     print(f"Randomly selected subject and date: {test_subject}, {test_date}")
 
-    for model_type in model_types:
+    for i, model_type in enumerate(model_types):
         for mask_pct in mask_pcts:
             print("="*50)
             print(f"{model_type} {mask_pct}% masking")
@@ -194,7 +240,6 @@ if __name__ == "__main__":
             conv_output = model.encoder(test_sample)  # (batch, 2, 1440) with Identity encoder
             seq_output = model.seq_model(conv_output.transpose(-1, -2))  # (batch, 1440, 128)
             seq_output = seq_output.detach().cpu().numpy()[0]
-            print(seq_output.shape)
 
             # Get masked positions
             x_recon_masked = (out * (1-mask)).detach().cpu().numpy()
@@ -205,5 +250,6 @@ if __name__ == "__main__":
             recon = out.detach().cpu().numpy()[0]
 
             plot_recon(test_sample, mask, recon, model_type, mask_pct)
+            if i == 0: plot_input(test_sample, mask, mask_pct)
 
             
