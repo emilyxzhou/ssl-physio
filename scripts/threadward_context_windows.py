@@ -96,12 +96,12 @@ class ContextWindowsRunner(threadward.Threadward):
         embedding_configs = []
         embedding_nicknames = []
         
-        # # S4 and Mamba with masking ratios
-        # for model in ["s4", "mamba"]:
-        #     for ratio in ["masking_10", "masking_30", "masking_50", "masking_70"]:
-        #         config = f"{model}_{ratio}"
-        #         embedding_configs.append(config)
-        #         embedding_nicknames.append(config)
+        # S4 and Mamba with masking ratios
+        for model in ["s4", "mamba"]:
+            for ratio in ["masking_10", "masking_30", "masking_50", "masking_70"]:
+                config = f"{model}_{ratio}"
+                embedding_configs.append(config)
+                embedding_nicknames.append(config)
         
         # Raw data (no masking)
         embedding_configs.append("raw_data")

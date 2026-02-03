@@ -20,8 +20,8 @@ import seaborn as sns
 # ============================================================================
 
 # Results directory (handle nested structure)
-RESULTS_BASE = Path("/home/emilyzho/ssl-physio/context_windows_results")
-OUTPUT_DIR = Path("/home/emilyzho/ssl-physio/context_windows_plots")
+RESULTS_BASE = Path("/data1/mjma/ssl-physio/context_windows_results/context_windows_results")
+OUTPUT_DIR = Path("/data1/mjma/ssl-physio/context_windows_plots")
 
 # Embedding configurations to plot
 EMBEDDING_CONFIGS = {
@@ -281,79 +281,39 @@ def plot_context_window_vs_mse(results, output_dir):
 def plot_forecast_window_vs_mse(results, output_dir):
     """
     Plot forecast window length (output_days) vs MSE.
-    Two separate panels: S4 variants + baseline, Mamba variants + baseline.
-    Both panels share the same y-axis range for consistency.
+    Single combined plot with all embedding configurations.
     """
     setup_plot_style()
     aggregated = get_averaged_mse(results)
     
-    # Panel configurations
-    panels = [
-        {
-            "title": "S4 Embeddings vs Raw Signal",
-            "configs": ["raw_data", "s4_masking_30", "s4_masking_70"],
-            "filename": "forecast_window_vs_mse_s4"
-        },
-        {
-            "title": "Mamba Embeddings vs Raw Signal", 
-            "configs": ["raw_data", "mamba_masking_30", "mamba_masking_70"],
-            "filename": "forecast_window_vs_mse_mamba"
-        }
-    ]
+    # All configs to plot
+    all_configs = ["raw_data", "s4_masking_30", "s4_masking_70", "mamba_masking_30", "mamba_masking_70"]
     
-    # Pre-compute all data to determine global y-axis limits
-    all_panel_data = []
-    global_y_min = float('inf')
-    global_y_max = float('-inf')
+    fig, ax = plt.subplots(figsize=(8, 5))
     
-    for panel in panels:
-        panel_data = {}
-        for emb_config in panel["configs"]:
-            if emb_config not in aggregated:
-                continue
-            
-            x_vals = []
-            y_means = []
-            y_stds = []
-            
-            for out_days in OUTPUT_DAYS:
-                in_means = []
-                in_stds = []
-                for in_days in INPUT_DAYS:
-                    if out_days in aggregated[emb_config][in_days]:
-                        mean, std = aggregated[emb_config][in_days][out_days]
-                        in_means.append(mean)
-                        in_stds.append(std)
-                
-                if in_means:
-                    x_vals.append(out_days)
-                    y_means.append(np.mean(in_means))
-                    y_stds.append(np.sqrt(np.mean(np.array(in_stds)**2)))
-            
-            if x_vals:
-                panel_data[emb_config] = (x_vals, y_means, y_stds)
-                # Update global limits (include error bars)
-                for m, s in zip(y_means, y_stds):
-                    global_y_min = min(global_y_min, m - s)
-                    global_y_max = max(global_y_max, m + s)
+    for emb_config in all_configs:
+        if emb_config not in aggregated:
+            continue
         
-        all_panel_data.append(panel_data)
-    
-    # Add padding to y-axis limits
-    y_range = global_y_max - global_y_min
-    y_padding = y_range * 0.1
-    global_y_min = max(0, global_y_min - y_padding)  # Don't go below 0 for MSE
-    global_y_max = global_y_max + y_padding
-    
-    # Now create plots with consistent axes
-    for panel, panel_data in zip(panels, all_panel_data):
-        fig, ax = plt.subplots(figsize=(5.5, 4))
+        x_vals = []
+        y_means = []
+        y_stds = []
         
-        for emb_config in panel["configs"]:
-            if emb_config not in panel_data:
-                continue
+        for out_days in OUTPUT_DAYS:
+            in_means = []
+            in_stds = []
+            for in_days in INPUT_DAYS:
+                if out_days in aggregated[emb_config][in_days]:
+                    mean, std = aggregated[emb_config][in_days][out_days]
+                    in_means.append(mean)
+                    in_stds.append(std)
             
-            x_vals, y_means, y_stds = panel_data[emb_config]
+            if in_means:
+                x_vals.append(out_days)
+                y_means.append(np.mean(in_means))
+                y_stds.append(np.sqrt(np.mean(np.array(in_stds)**2)))
+        
+        if x_vals:
             ax.errorbar(
                 x_vals, y_means, yerr=y_stds,
                 label=EMBEDDING_CONFIGS[emb_config],
@@ -365,20 +325,20 @@ def plot_forecast_window_vs_mse(results, output_dir):
                 markeredgecolor='white',
                 markeredgewidth=0.8
             )
-        
-        ax.set_xlabel("Forecast Horizon (days)")
-        ax.set_ylabel("Mean Squared Error")
-        ax.set_xticks(OUTPUT_DAYS)
-        ax.set_ylim(global_y_min, global_y_max)  # Apply consistent y-axis
-        ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-        ax.legend(loc='upper left', frameon=True)
-        ax.set_title(panel["title"])
-        
-        plt.tight_layout()
-        plt.savefig(output_dir / "pdf" / f"{panel['filename']}.pdf")
-        plt.savefig(output_dir / "png" / f"{panel['filename']}.png")
-        plt.close()
-        print(f"  Saved: {panel['filename']}")
+    
+    ax.set_xlabel("Forecast Horizon (days)")
+    ax.set_ylabel("Mean Squared Error")
+    ax.set_title("Forecast Window vs MSE")
+    ax.set_xticks(OUTPUT_DAYS)
+    ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+    ax.legend(loc='best', frameon=True)
+    ax.grid(True, alpha=0.3)
+    
+    plt.tight_layout()
+    plt.savefig(output_dir / "pdf" / "forecast_window_vs_mse.pdf")
+    plt.savefig(output_dir / "png" / "forecast_window_vs_mse.png")
+    plt.close()
+    print("  Saved: forecast_window_vs_mse")
 
 
 # ============================================================================
