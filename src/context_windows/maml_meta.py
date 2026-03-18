@@ -264,7 +264,7 @@ class MultiTargetMAML:
     """
     
     def __init__(self, model_type, input_days, output_days, config, device, 
-                 embedding_dim=128, sequence_len=180):
+                 embedding_dim=128, sequence_len=180, masking_ratio=0.0):
         """
         Args:
             model_type: "nn" or "cnn"
@@ -287,7 +287,8 @@ class MultiTargetMAML:
         self.trainers = {}
         for target_name in TARGET_CONFIG.keys():
             model = create_maml_learner(model_type, input_days, output_days,
-                                        embedding_dim=embedding_dim, sequence_len=sequence_len)
+                                        embedding_dim=embedding_dim, sequence_len=sequence_len,
+                                        masking_ratio=masking_ratio)
             self.trainers[target_name] = MAMLTrainer(model, target_name, config, device)
     
     def train_epoch(self, x_support, y_support, x_query, y_query):

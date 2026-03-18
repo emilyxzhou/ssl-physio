@@ -84,7 +84,7 @@ def run_context_windows(
     
     Args:
         embedding_model: "s4", "mamba", or "raw_data"
-        masking_ratio: "masking_10", "masking_30", "masking_50", "masking_70"
+        masking_ratio: "masking_0", "masking_10", "masking_30", "masking_50", "masking_70"
                       (ignored for raw_data)
         input_days: number of input days (3, 5, or 7)
         output_days: number of output days to predict (1-7)
@@ -330,7 +330,7 @@ if __name__ == "__main__":
                        help='Masking ratio (ignored for raw_data)')
     parser.add_argument('--input-days', type=int, default=3, choices=[3, 5, 7])
     parser.add_argument('--output-days', type=int, default=5, choices=[1, 2, 3, 4, 5, 6, 7])
-    parser.add_argument('--prediction-model', default='nn', choices=['nn', 'cnn'])
+    parser.add_argument('--prediction-model', default='cnn', choices=['nn', 'cnn'])
     parser.add_argument('--seed', type=int, default=0)
     parser.add_argument('--output-folder', default='./test_context_windows')
     parser.add_argument('--meta-epochs', type=int, default=20)

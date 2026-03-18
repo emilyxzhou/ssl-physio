@@ -20,8 +20,8 @@ import seaborn as sns
 # ============================================================================
 
 # Results directory (handle nested structure)
-RESULTS_BASE = Path("/data1/mjma/ssl-physio/context_windows_results/context_windows_results")
-OUTPUT_DIR = Path("/data1/mjma/ssl-physio/context_windows_plots")
+RESULTS_BASE = Path("/home/emilyzho/ssl-physio/context_windows_results")
+OUTPUT_DIR = Path("/home/emilyzho/ssl-physio/context_windows_plots")
 
 # Embedding configurations to plot
 EMBEDDING_CONFIGS = {
@@ -51,19 +51,19 @@ SEEDS = [0, 1, 2, 3, 4]
 
 # Carefully curated palette for colorblind accessibility and print clarity
 COLORS = {
-    "raw_data": "#2C3E50",        # Dark slate (baseline)
-    "s4_masking_30": "#E74C3C",   # Coral red
-    "s4_masking_70": "#C0392B",   # Dark red  
-    "mamba_masking_30": "#3498DB", # Sky blue
-    "mamba_masking_70": "#2980B9", # Dark blue
+    "raw_data": "#2C3E50",
+    "s4_masking_30": "#E74C3C",
+    "s4_masking_70": "#C0392B",
+    "mamba_masking_30": "#3498DB",
+    "mamba_masking_70": "#2980B9",
 }
 
 MARKERS = {
-    "raw_data": "s",              # Square (baseline)
-    "s4_masking_30": "o",         # Circle
-    "s4_masking_70": "^",         # Triangle up
-    "mamba_masking_30": "D",      # Diamond
-    "mamba_masking_70": "v",      # Triangle down
+    "raw_data": "s",
+    "s4_masking_30": "o",
+    "s4_masking_70": "^",
+    "mamba_masking_30": "x",
+    "mamba_masking_70": "v",
 }
 
 LINE_STYLES = {
@@ -79,7 +79,6 @@ LINE_STYLES = {
 # ============================================================================
 
 def setup_plot_style():
-    """Configure matplotlib for publication-quality plots."""
     plt.rcParams.update({
         # Font settings
         'font.family': 'serif',
@@ -209,19 +208,48 @@ def get_averaged_mse(results):
     return aggregated
 
 
+def get_average_mse_for_target(results, target):
+    """
+    Get MSE aggregated per (emb_config, input_days, output_days) combination for the specified target.
+    
+    For each combination:
+    - Compute mean and SEM across seeds
+    
+    Returns:
+        dict: aggregated[emb_config][input_days][output_days] = (mean, sem)
+    """
+    aggregated = defaultdict(lambda: defaultdict(dict))
+    
+    for emb_config in results:
+        for in_days in results[emb_config]:
+            for out_days in results[emb_config][in_days]:
+                seed_mses = []
+                for seed, metrics in results[emb_config][in_days][out_days].items():
+                    seed_mses.append(np.mean(metrics[f"{target}_mse_mean"]))
+                
+                if seed_mses:
+                    aggregated[emb_config][in_days][out_days] = (
+                        np.mean(seed_mses),
+                        np.std(seed_mses) / np.sqrt(len(seed_mses))  # SEM
+                    )
+    
+    return aggregated
+
+
 # ============================================================================
 # Plot 1: Context Window Length vs MSE
 # ============================================================================
 
-def plot_context_window_vs_mse(results, output_dir):
+def plot_context_window_vs_mse(results, output_dir, target=None):
     """
     Plot context window length (input_days) vs MSE.
     Averages across all output_days and seeds.
     """
     setup_plot_style()
-    aggregated = get_averaged_mse(results)
+    if target is None: aggregated = get_averaged_mse(results)
+    else: aggregated = get_average_mse_for_target(results, target)
     
-    fig, ax = plt.subplots(figsize=(5.5, 4))
+    fig, ax = plt.subplots(figsize=(6, 5))
     
     for emb_config in ["raw_data", "s4_masking_30", "s4_masking_70", "mamba_masking_30", "mamba_masking_70"]:
         if emb_config not in aggregated:
@@ -264,12 +292,19 @@ def plot_context_window_vs_mse(results, output_dir):
     ax.set_ylabel("Mean Squared Error")
     ax.set_xticks(INPUT_DAYS)
     ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-    ax.legend(loc='upper right', frameon=True)
-    ax.set_title("Effect of Context Window Length on Prediction Error")
+    plt.locator_params(axis='y', nbins=5)
+    ax.legend(bbox_to_anchor=(0.53, 0.2), frameon=True, ncol=2)
+    if target is None: ax.set_title("Effect of Context Window Length on Prediction Error\n(Mean across targets)")
+    else: ax.set_title(f"Effect of Context Window Length on Prediction Error ({target.upper()})")
     
     plt.tight_layout()
-    plt.savefig(output_dir / "pdf" / "context_window_vs_mse.pdf")
-    plt.savefig(output_dir / "png" / "context_window_vs_mse.png")
+    if target is None:
+        plt.savefig(output_dir / "pdf" / "context_window_vs_mse.pdf")
+        plt.savefig(output_dir / "png" / "context_window_vs_mse.png")
+    else:
+        plt.savefig(output_dir / "pdf" / f"context_window_vs_mse_{target}.pdf")
+        plt.savefig(output_dir / "png" / f"context_window_vs_mse_{target}.png")
+
     plt.close()
     print("  Saved: context_window_vs_mse")
 
@@ -278,18 +313,19 @@ def plot_context_window_vs_mse(results, output_dir):
 # Plot 2: Forecast Window Length vs MSE (Two Panels)
 # ============================================================================
 
-def plot_forecast_window_vs_mse(results, output_dir):
+def plot_forecast_window_vs_mse(results, output_dir, target=None):
     """
     Plot forecast window length (output_days) vs MSE.
     Single combined plot with all embedding configurations.
     """
     setup_plot_style()
-    aggregated = get_averaged_mse(results)
+    if target is None: aggregated = get_averaged_mse(results)
+    else: aggregated = get_average_mse_for_target(results, target)
     
     # All configs to plot
     all_configs = ["raw_data", "s4_masking_30", "s4_masking_70", "mamba_masking_30", "mamba_masking_70"]
     
-    fig, ax = plt.subplots(figsize=(8, 5))
+    fig, ax = plt.subplots(figsize=(6, 5))
     
     for emb_config in all_configs:
         if emb_config not in aggregated:
@@ -328,15 +364,21 @@ def plot_forecast_window_vs_mse(results, output_dir):
     
     ax.set_xlabel("Forecast Horizon (days)")
     ax.set_ylabel("Mean Squared Error")
-    ax.set_title("Forecast Window vs MSE")
     ax.set_xticks(OUTPUT_DAYS)
     ax.xaxis.set_major_locator(MaxNLocator(integer=True))
     ax.legend(loc='best', frameon=True)
     ax.grid(True, alpha=0.3)
+    if target is None: ax.set_title("Effect of Forecast Window Length on Prediction Error\n(Mean across targets)")
+    else: ax.set_title(f"Effect of Forecast Window Length on Prediction Error ({target.upper()})")
     
     plt.tight_layout()
-    plt.savefig(output_dir / "pdf" / "forecast_window_vs_mse.pdf")
-    plt.savefig(output_dir / "png" / "forecast_window_vs_mse.png")
+    
+    if target is None:
+        plt.savefig(output_dir / "pdf" / "forecast_window_vs_mse.pdf")
+        plt.savefig(output_dir / "png" / "forecast_window_vs_mse.png")
+    else:
+        plt.savefig(output_dir / "pdf" / f"forecast_window_vs_mse_{target}.pdf")
+        plt.savefig(output_dir / "png" / f"forecast_window_vs_mse_{target}.png")
     plt.close()
     print("  Saved: forecast_window_vs_mse")
 
@@ -541,7 +583,7 @@ def plot_per_target_comparison(results, output_dir):
     ax.set_ylabel("Mean Squared Error")
     ax.set_xticks(x)
     ax.set_xticklabels([TARGET_DISPLAY[t] for t in REGRESSION_TARGETS])
-    ax.legend(loc='upper right', frameon=True, ncol=2)
+    ax.legend(bbox_to_anchor=(0.98, 1), frameon=True, ncol=1)
     ax.set_title("Prediction Error by Target Variable")
     
     plt.tight_layout()
@@ -897,18 +939,20 @@ def main():
     
     print("\n[1/5] Context window vs MSE...")
     plot_context_window_vs_mse(results, OUTPUT_DIR)
+    for target in REGRESSION_TARGETS: plot_context_window_vs_mse(results, OUTPUT_DIR, target)
     
     print("\n[2/5] Forecast window vs MSE...")
     plot_forecast_window_vs_mse(results, OUTPUT_DIR)
+    for target in REGRESSION_TARGETS: plot_forecast_window_vs_mse(results, OUTPUT_DIR, target)
     
     print("\n[3/5] Heatmaps...")
     plot_heatmaps(results, OUTPUT_DIR)
     
-    print("\n[4/5] Per-target comparison...")
-    plot_per_target_comparison(results, OUTPUT_DIR)
+    # print("\n[4/5] Per-target comparison...")
+    # plot_per_target_comparison(results, OUTPUT_DIR)
     
-    print("\n[5/5] Seed variability analysis...")
-    plot_seed_variability(results, OUTPUT_DIR)
+    # print("\n[5/5] Seed variability analysis...")
+    # plot_seed_variability(results, OUTPUT_DIR)
     
     print("\n" + "="*60)
     print("All plots generated successfully!")

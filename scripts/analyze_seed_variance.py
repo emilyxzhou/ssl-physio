@@ -1,6 +1,4 @@
 """
-Analyze Seed Variance
-
 Measures how random weight initialization (different seeds) affects test metrics
 for each model configuration. This answers: "With the same data and model setup,
 how much does randomness in initialization cause variance in results?"
@@ -247,25 +245,18 @@ def main():
         'num_seeds_per_config': 5,
         'metrics_analyzed': ALL_TEST_METRICS,
         
-        # 1. Overall: average seed-induced variance across all configs
         'overall': summarize_overall(results),
         
-        # 2. Human-readable interpretations
         'interpretations': compute_variance_interpretation(summarize_overall(results)),
         
-        # 3. Does CNN or NN have more seed variance?
         'by_prediction_model': summarize_by_slice(results, 'prediction_model'),
         
-        # 4. Does masking ratio affect seed variance?
         'by_masking_model': summarize_by_slice(results, 'masking_model'),
         
-        # 5. Does prediction horizon affect seed variance?
         'by_days_predicted': summarize_by_slice(results, 'days_predicted'),
         
-        # 6. Does context length affect seed variance?
         'by_days_given': summarize_by_slice(results, 'days_given'),
         
-        # 7. Which specific configs are most/least sensitive to random init?
         'extreme_configs': find_extreme_variance_configs(results),
     }
     
@@ -275,7 +266,6 @@ def main():
     
     print(f"\nSaved variance summary to: {output_path}")
     
-    # Print quick summary
     print("\n" + "="*70)
     print("SEED VARIANCE SUMMARY")
     print("How much does random weight initialization affect test metrics?")

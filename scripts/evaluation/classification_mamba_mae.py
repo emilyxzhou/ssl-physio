@@ -210,7 +210,7 @@ if __name__ == "__main__":
     # Read arguments -----------------------------------------------------------------------------------------------
     parser = argparse.ArgumentParser(description="Script for Mamba downstream classification.")
     parser.add_argument("--debug", "-d", type=str, default=False)
-    parser.add_argument("--classification", "-c", type=str, default="finetune")
+    parser.add_argument("--classification", "-c", type=str, default="lin_probe")
     parser.add_argument("--device", "-dev", type=str, default="cuda:1")
     args = parser.parse_args()
     debug = args.debug
@@ -255,7 +255,8 @@ if __name__ == "__main__":
         scale = "mean"
         window_size = 15    # minutes
         label_types = [
-            "age", "shift", "anxiety", "stress"
+            # "age", "shift", 
+            "anxiety", "stress"
         ]
         for label_type in label_types:
             logging.info("-"*60)

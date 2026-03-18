@@ -378,7 +378,7 @@ def generate_binary_labels(subject_ids, dates, version="open", label_type="age",
     # Label threshold if applicable
     if label_type in ["anxiety", "stress"]:
         for subject_id in subject_labels.keys():
-            average_label = np.nanmean(subject_labels[subject_id])
+            average_label = np.nanmedian(subject_labels[subject_id])
             subject_labels[subject_id] = average_label
 
     for i in range(len(subject_ids)):

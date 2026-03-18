@@ -18,7 +18,7 @@ from collections import defaultdict
 import numpy as np
 
 # Base path for tiles-test data
-TILES_TEST_DIR = "/data1/mjma/tiles-2018-processed/tiles-test"
+TILES_TEST_DIR = "/data1/emilyzho/tiles-2018-processed/tiles-test"
 EMBEDDINGS_BASE_DIR = os.path.join(TILES_TEST_DIR, "embeddings")
 RAW_DATA_DIR = os.path.join(TILES_TEST_DIR, "data")
 

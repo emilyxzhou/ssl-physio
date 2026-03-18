@@ -37,7 +37,46 @@ from sklearn.preprocessing import StandardScaler
 from tiles_dataloader import get_embeddings_from_file, TilesDataset, generate_binary_labels, generate_continuous_labels_day
 
 
+def setup_plot_style():
+    """Configure matplotlib for publication-quality plots."""
+    plt.rcParams.update({
+        # Font settings
+        'font.family': 'serif',
+        'font.serif': ['Times New Roman', 'DejaVu Serif', 'serif'],
+        'font.size': 16,
+        'axes.titlesize': 14,
+        'axes.labelsize': 14,
+        'xtick.labelsize': 14,
+        'ytick.labelsize': 14,
+        'legend.fontsize': 14,
+        
+        # Figure settings
+        'figure.dpi': 150,
+        'savefig.dpi': 300,
+        'savefig.bbox': 'tight',
+        'savefig.pad_inches': 0.1,
+        
+        # Axes settings
+        'axes.linewidth': 0.8,
+        'axes.spines.top': False,
+        'axes.spines.right': False,
+        'axes.grid': True,
+        'grid.alpha': 0.3,
+        'grid.linewidth': 0.5,
+        
+        # Line settings
+        'lines.linewidth': 1.8,
+        'lines.markersize': 7,
+        
+        # Legend settings
+        'legend.framealpha': 0.9,
+        'legend.edgecolor': '0.8',
+        'legend.fancybox': False,
+    })
+
+
 if __name__ == "__main__":
+    setup_plot_style()
     method = "raw"
     binary_labels = ["age", "shift", "anxiety", "stress"]
     legend_dict = {
@@ -48,7 +87,8 @@ if __name__ == "__main__":
     }
     markers = {0: "o", 1: "^"}
     model_types = ["s4", "mamba"]
-    mask_pcts = [10, 30, 50, 70]
+    # mask_pcts = [10, 30, 50, 70]
+    mask_pcts = [50]
 
     for model_type in model_types:
         for mask_pct in mask_pcts:
@@ -94,16 +134,16 @@ if __name__ == "__main__":
             df['tsne_2'] = tsne_results[:, 1]
 
             # Plot binary features
-            fig1, axes1 = plt.subplots(2, 2, figsize=(16, 12))
+            fig1, axes1 = plt.subplots(2, 2, figsize=(12, 12))
             axes1 = axes1.flatten()
-            fig2, axes2 = plt.subplots(2, 2, figsize=(16, 12))
+            fig2, axes2 = plt.subplots(2, 2, figsize=(12, 12))
             axes2 = axes2.flatten()
 
             for i, col in enumerate(binary_labels):
                 # Plot by binary label --------------------------------------------------
                 sns.scatterplot(
                     data=df[['tsne_1', 'tsne_2', col]], x='tsne_1', y='tsne_2', hue=col,
-                    ax=axes1[i], palette='coolwarm', alpha=0.7, s=35
+                    ax=axes1[i], palette='coolwarm', alpha=0.7, s=40
                 )
                 axes1[i].set_xticks([])
                 axes1[i].set_yticks([])
@@ -127,8 +167,8 @@ if __name__ == "__main__":
                     frameon=True
                 )
 
-                axes1[i].set_title(f't-SNE by {col}', fontsize=14)
-                fig1.suptitle(f'{model_type.capitalize()} ({mask_pct}%)', fontsize=15, fontweight='bold')
+                axes1[i].set_title(f't-SNE by {col.capitalize()}', fontsize=18)
+                fig1.suptitle(f'{model_type.capitalize()} ({mask_pct}%)', fontsize=20, fontweight='bold')
 
                 # Plot by ID and binary label --------------------------------------------------
                 sns.scatterplot(
@@ -174,7 +214,7 @@ if __name__ == "__main__":
             fig3, axes3 = plt.subplots(figsize=(10, 10))
             sns.scatterplot(
                 data=df, x='tsne_1', y='tsne_2', hue='ID',
-                ax=axes3, palette='husl', alpha=0.7, s=35,
+                ax=axes3, palette='husl', alpha=0.7, s=40,
                 legend=False
             )
             axes3.set_xticks([])

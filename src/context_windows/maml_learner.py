@@ -8,10 +8,41 @@ Input: (batch, input_days, 180, 128) - sequence of daily minute-level embeddings
 Output: (batch, output_days, 5) - predictions for 5 targets
 """
 
+import os
+import sys
+from pathlib import Path
+USER_ROOT = str(Path(__file__).resolve().parents[3])
+SSL_ROOT = os.path.join(USER_ROOT, "ssl-physio")
+paths = [
+    os.path.join(
+        USER_ROOT, "ssl-physio", "src"
+    ),
+    os.path.join(
+        USER_ROOT, "ssl-physio", "src", "dataloaders"
+    ),
+    os.path.join(
+        USER_ROOT, "ssl-physio", "src", "mamba"
+    ),
+    os.path.join(
+        USER_ROOT, "ssl-physio", "src", "s4_models"
+    ),
+    os.path.join(
+        USER_ROOT, "ssl-physio", "src", "trainers"
+    )
+]
+
+import json
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
+
+
+from mamba_mae import MambaMAE
+from s4_mae import S4MAE
+
+
+device = 'cuda:1'
 
 
 class MAMLLearner(nn.Module):
@@ -153,6 +184,142 @@ class MAMLCNNLearner(MAMLLearner):
     - Raw biosignal data: embedding_dim=2, sequence_len=1440
     """
     
+    def __init__(self, input_days, output_days, embedding_dim=128, sequence_len=180):
+        super().__init__()
+        
+        self.input_days = input_days
+        self.output_days = output_days
+        self.embedding_dim = embedding_dim
+        self.sequence_len = sequence_len
+        self.total_seq_len = input_days * sequence_len  # Total sequence length after flattening days
+
+        config_path = os.path.join(SSL_ROOT, "config", "s4_config.json")
+        config = json.load(open(config_path, "r"))
+        model_params = config["model_params"]
+        model_params["enc_hidden_dims"] = None
+        model_params["dec_hidden_dims"] = None
+        model_params["mask_ratio"] = 0.0
+        
+        self.model = S4MAE(
+            **model_params,
+            classification=False,
+            device=device
+        ).to(device)
+        self.model.train()
+        
+        # Conv1d expects (batch, channels, length)
+        # Input will be (batch, embedding_dim, input_days * sequence_len) after reshape
+        
+        # Conv layer 1: embedding_dim -> 64, kernel_size=3
+        w1 = nn.Parameter(torch.empty(64, embedding_dim, 3))
+        nn.init.kaiming_normal_(w1)
+        b1 = nn.Parameter(torch.zeros(64))
+        self.vars.extend([w1, b1])
+        
+        # Conv layer 2: 64 -> 64, kernel_size=3
+        w2 = nn.Parameter(torch.empty(64, 64, 3))
+        nn.init.kaiming_normal_(w2)
+        b2 = nn.Parameter(torch.zeros(64))
+        self.vars.extend([w2, b2])
+        
+        # Conv layer 3: 64 -> 32, kernel_size=3
+        w3 = nn.Parameter(torch.empty(32, 64, 3))
+        nn.init.kaiming_normal_(w3)
+        b3 = nn.Parameter(torch.zeros(32))
+        self.vars.extend([w3, b3])
+        
+        # Conv layer 4: 32 -> 32, kernel_size=3
+        w4 = nn.Parameter(torch.empty(32, 32, 3))
+        nn.init.kaiming_normal_(w4)
+        b4 = nn.Parameter(torch.zeros(32))
+        self.vars.extend([w4, b4])
+        
+        # Calculate flattened size after 4 pooling layers (each divides by 2)
+        # Length after pooling: total_seq_len // 16
+        self.pooled_len = self.total_seq_len // 16
+        fc_input_dim = 32 * self.pooled_len
+        
+        # Linear head: flattened -> output_days * 5
+        self.output_dim = output_days * 5
+        w5 = nn.Parameter(torch.empty(self.output_dim, fc_input_dim))
+        nn.init.kaiming_normal_(w5)
+        b5 = nn.Parameter(torch.zeros(self.output_dim))
+        self.vars.extend([w5, b5])
+    
+    def forward(self, x, vars=None):
+        """
+        Args:
+            x: (batch, input_days, sequence_len, embedding_dim)
+               - S4/Mamba: (batch, input_days, 180, 128)
+               - raw_data: (batch, input_days, 1440, 2)
+            vars: optional parameters [w1, b1, w2, b2, w3, b3, w4, b4, w5, b5]
+        
+        Returns:
+            (batch, output_days, 5)
+        """
+        if vars is None:
+            vars = self.vars
+        
+        w1, b1, w2, b2, w3, b3, w4, b4, w5, b5 = vars
+        
+        batch_size = x.size(0)
+        batch = batch.to(device)                  # original shape (batch_size, 1440, num_features)
+        batch = torch.transpose(batch, 1, 2)    # new shape (batch_size, num_features, 1440)
+
+        x = self.model(x)
+        
+        # Reshape from (batch, input_days, 180, 128) to (batch, 128, input_days * 180)
+        # First: (batch, input_days, 180, 128) -> (batch, input_days * 180, 128)
+        x = x.view(batch_size, -1, self.embedding_dim)
+        # Then transpose: (batch, input_days * 180, 128) -> (batch, 128, input_days * 180)
+        x = x.transpose(1, 2)
+        
+        # Conv block 1: conv -> relu -> pool
+        x = F.conv1d(x, w1, b1, padding=1)
+        x = F.relu(x)
+        x = F.avg_pool1d(x, kernel_size=2)
+        
+        # Conv block 2: conv -> relu -> pool
+        x = F.conv1d(x, w2, b2, padding=1)
+        x = F.relu(x)
+        x = F.avg_pool1d(x, kernel_size=2)
+        
+        # Conv block 3: conv -> relu -> pool
+        x = F.conv1d(x, w3, b3, padding=1)
+        x = F.relu(x)
+        x = F.avg_pool1d(x, kernel_size=2)
+        
+        # Conv block 4: conv -> relu -> pool
+        x = F.conv1d(x, w4, b4, padding=1)
+        x = F.relu(x)
+        x = F.avg_pool1d(x, kernel_size=2)
+        
+        # Flatten: (batch, 32, pooled_len) -> (batch, 32 * pooled_len)
+        x = x.view(batch_size, -1)
+        
+        # Linear head
+        x = F.linear(x, w5, b5)
+        
+        # Reshape to (batch, output_days, 5)
+        x = x.view(batch_size, self.output_days, 5)
+        
+        return x
+    
+    def get_hyperparameters(self):
+        return {
+            'model_type': 'cnn',
+            'input_days': self.input_days,
+            'output_days': self.output_days,
+            'embedding_dim': self.embedding_dim,
+            'sequence_len': self.sequence_len,
+            'total_seq_len': self.total_seq_len,
+            'pooled_len': self.pooled_len,
+            'output_dim': self.output_dim,
+            'num_params': sum(p.numel() for p in self.vars)
+        }
+    
+
+class MAMLS4CNNLearner(MAMLLearner):
     def __init__(self, input_days, output_days, embedding_dim=128, sequence_len=180):
         super().__init__()
         

@@ -44,6 +44,43 @@ from tiles_dataloader import get_data_from_splits, get_embeddings_from_file, Til
 MODELS_BASE_PATH = f"{USER_ROOT}/ssl-physio/models/reconstruction"
 
 
+def setup_plot_style():
+    plt.rcParams.update({
+        # Font settings
+        'font.family': 'serif',
+        'font.serif': ['Times New Roman', 'DejaVu Serif', 'serif'],
+        'font.size': 16,
+        'axes.titlesize': 14,
+        'axes.labelsize': 14,
+        'xtick.labelsize': 14,
+        'ytick.labelsize': 14,
+        'legend.fontsize': 14,
+        
+        # Figure settings
+        'figure.dpi': 150,
+        'savefig.dpi': 300,
+        'savefig.bbox': 'tight',
+        'savefig.pad_inches': 0.1,
+        
+        # Axes settings
+        'axes.linewidth': 0.8,
+        'axes.spines.top': False,
+        'axes.spines.right': False,
+        'axes.grid': True,
+        'grid.alpha': 0.3,
+        'grid.linewidth': 0.5,
+        
+        # Line settings
+        'lines.linewidth': 1.8,
+        'lines.markersize': 7,
+        
+        # Legend settings
+        'legend.framealpha': 0.9,
+        'legend.edgecolor': '0.8',
+        'legend.fancybox': False,
+    })
+
+
 def load_model(checkpoint_path, config_path, model_type, mask_ratio=None, device="cuda:1"):
     # Read arguments -----------------------------------------------------------------------------------------------
     config = json.load(open(config_path, "r"))
@@ -105,7 +142,7 @@ def plot_input(data, mask, mask_pct):
                 ax.axvspan(time_axis[masked_indices[s]], time_axis[masked_indices[e]], 
                         color='gray', alpha=0.15, label='Masked' if s == 1 else "")
 
-        ax.set_ylabel(labels[i], fontsize=10, fontweight='bold')
+        ax.set_ylabel(labels[i], fontsize=14, fontweight='bold')
         
         ax.set_yticks([])
         ax.set_yticklabels([])
@@ -136,7 +173,7 @@ def plot_recon(data, mask, reconstruction, model_type, mask_pct):
     fig, axes = plt.subplots(2, 1, figsize=(12, 8), sharex=True)
 
     labels = ['Step Count', 'Heart Rate']
-    colors = ["#3b8dc8", "#d67327"]
+    colors = ["#2980B9", "#E74C3C"]
 
     for i, ax in enumerate(axes):
         # 1. Plot Ground Truth and Reconstruction
@@ -155,7 +192,7 @@ def plot_recon(data, mask, reconstruction, model_type, mask_pct):
                         color='gray', alpha=0.15, label='Masked' if s == 1 else "")
 
         # 3. Apply Specific Formatting
-        ax.set_ylabel(labels[i], fontsize=10, fontweight='bold')
+        ax.set_ylabel(labels[i], fontsize=14, fontweight='bold')
         
         # Remove vertical ticks and labels
         ax.set_yticks([])
@@ -168,12 +205,12 @@ def plot_recon(data, mask, reconstruction, model_type, mask_pct):
             ax.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
             ax.xaxis.set_major_locator(mdates.HourLocator(interval=2))
         
-        ax.legend(loc='upper right', frameon=True, fontsize='small')
+        ax.legend(loc='upper right', frameon=True)
         ax.spines['left'].set_visible(False)
         ax.spines['right'].set_visible(False)
         ax.spines['top'].set_visible(False)
 
-    plt.suptitle(f'Masked Autoencoder Reconstruction ({model_type.capitalize()}, {mask_pct}% masking)', fontsize=14)
+    plt.suptitle(f'Masked Autoencoder Reconstruction ({model_type.capitalize()}, {mask_pct}% masking)', fontsize=18)
 
     plt.tight_layout()
     save_path = f"/home/emilyzho/ssl-physio/plots/reconstruction/recon_{model_type}_{mask_pct}.png"
@@ -185,10 +222,12 @@ if __name__ == "__main__":
     device = torch.device("cuda:1") if torch.cuda.is_available() else torch.device("cpu")
     if torch.cuda.is_available():
         torch.set_default_device("cuda:1")
-        print("\Default device set to CUDA.")
+        print("\nDefault device set to CUDA.")
     else:
         print("\nCUDA not available, using CPU.")
     torch.set_default_dtype(torch.float)
+
+    setup_plot_style()
 
     method = "raw"
     binary_labels = ["age", "shift", "anxiety", "stress"]
