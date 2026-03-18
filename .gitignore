@@ -1,9 +1,9 @@
 *__pycache__/
 *.pyc
 embedding_sequencers_results/
-wandb/
 context_windows_results/
 context_windows_results_old/
 context_windows_plots/
 test*/
+**/wandb/
 *.out
