@@ -241,7 +241,7 @@ def get_pretrain_eval_dataloaders(
     :param label_type: None (pre-training)
         - Classification: "shift", "age", "sex", "anxiety", "stress"
         - Regression: "RMSStdDev_ms", "RRPeakCoverage", "SDNN_ms", "RR0 ", "bpm", "level"
-            - The following are obtained from the daily summary files located at '/data1/tiantiaf/tiles-opendata/tiles-phase1-opendataset-holdout/fitbit/daily-summary/{subject_ID}'
+            - The following are obtained from the daily summary files located at '/data1/<>/tiles-opendata/tiles-phase1-opendataset-holdout/fitbit/daily-summary/{subject_ID}'
             - "NumberSteps", "RestingHeartRate", "SleepMinutesAsleep"
     :param scale: Description
     :param window_size: Description
@@ -411,7 +411,7 @@ def generate_continuous_labels_day(subject_ids, dates, version="open", label_typ
     :param dates: list of dates obtained from `load_tiles_open` or `load_tiles_holdout`
     :param version: "open", "holdout"
     :param label_type: "RMSStdDev_ms", "RRPeakCoverage", "SDNN_ms", "RR0 ", "bpm", "level"
-        - The following are obtained from the daily summary files located at '/data1/tiantiaf/tiles-opendata/tiles-phase1-opendataset-holdout/fitbit/daily-summary/{subject_ID}'
+        - The following are obtained from the daily summary files located at '/data1/<>/tiles-opendata/tiles-phase1-opendataset-holdout/fitbit/daily-summary/{subject_ID}'
         - "NumberSteps", "RestingHeartRate", "SleepMinutesAsleep"
     """
     if type(label_types) is not list: label_types = [label_types]
@@ -441,7 +441,7 @@ def generate_continuous_labels_day(subject_ids, dates, version="open", label_typ
                     labels[label_type].append(np.nan)
             
     else:    # "RestingHeartRate", "SleepMinutesAsleep", "NumberSteps"
-        summary_files = glob.glob("/data1/tiantiaf/tiles-opendata/tiles-phase1-*/fitbit/daily-summary/*")
+        summary_files = glob.glob("/data1/<>/tiles-opendata/tiles-phase1-*/fitbit/daily-summary/*")
         summary_dfs = []
         for fp in summary_files:
             subject_id = fp.split("/")[-1].split(".")[0]
@@ -495,7 +495,7 @@ def get_dataloaders(
     :param label_type: None (pre-training)
         - Classification: "shift", "age", "sex", "anxiety", "stress"
         - Regression: "RMSStdDev_ms", "RRPeakCoverage", "SDNN_ms", "RR0 ", "bpm", "level"
-            - The following are obtained from the daily summary files located at '/data1/tiantiaf/tiles-opendata/tiles-phase1-opendataset-holdout/fitbit/daily-summary/{subject_ID}'
+            - The following are obtained from the daily summary files located at '/data1/<>/tiles-opendata/tiles-phase1-opendataset-holdout/fitbit/daily-summary/{subject_ID}'
             - "NumberSteps", "RestingHeartRate", "SleepMinutesAsleep"
     :param scale: Description
     :param window_size: Description
@@ -567,7 +567,7 @@ def get_data_from_splits(split="test"):
         id = data_df["ID"].iloc[0]
         date = data_df["Date"].iloc[0]
 
-        try: df = data_df[signal_columns]
+        try: df = data_df[signal_columns].astype(float)
         except Exception: continue
 
         for col in signal_columns:
